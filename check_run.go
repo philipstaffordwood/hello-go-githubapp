@@ -21,6 +21,7 @@ import (
 	"github.com/google/go-github/v30/github"
 	"github.com/palantir/go-githubapp/githubapp"
 	"github.com/pkg/errors"
+	"github.com/rs/zerolog"
 )
 
 type CheckRunHandler struct {
@@ -38,6 +39,9 @@ func (h *CheckRunHandler) Handle(ctx context.Context, eventType, deliveryID stri
 	if err := json.Unmarshal(payload, &event); err != nil {
 		return errors.Wrap(err, "failed to parse issue comment event payload")
 	}
+
+	zerolog.Ctx(ctx).Printf("%v, ",event.GetAction(), event.GetCheckRun().GetApp().GetName())
+
 
 	if event.GetAction() == "completed" {
 		repo := event.GetRepo()
