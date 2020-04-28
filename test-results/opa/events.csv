@@ -1,0 +1,17 @@
+LAST SEEN                      Count  TYPE     REASON             OBJECT                                   MESSAGE
+2020-04-27 20:38:24 +0000 UTC  1      Normal   Scheduled          Pod/opa-56d68dd6b-c8lnr                  Successfully assigned opa/opa-56d68dd6b-c8lnr to kind-control-plane
+2020-04-27 20:38:24 +0000 UTC  1      Warning  FailedMount        Pod/opa-56d68dd6b-c8lnr                  MountVolume.SetUp failed for volume "opa-config" : configmap "opa-config" not found
+2020-04-27 20:38:27 +0000 UTC  1      Normal   Pulling            Pod/opa-56d68dd6b-c8lnr                  Pulling image "openpolicyagent/opa:0.17.3"
+2020-04-27 20:38:29 +0000 UTC  1      Normal   Pulled             Pod/opa-56d68dd6b-c8lnr                  Successfully pulled image "openpolicyagent/opa:0.17.3"
+2020-04-27 20:38:29 +0000 UTC  1      Normal   Created            Pod/opa-56d68dd6b-c8lnr                  Created container opa
+2020-04-27 20:38:29 +0000 UTC  1      Normal   Started            Pod/opa-56d68dd6b-c8lnr                  Started container opa
+2020-04-27 20:38:29 +0000 UTC  1      Normal   Pulling            Pod/opa-56d68dd6b-c8lnr                  Pulling image "openpolicyagent/kube-mgmt:0.10"
+2020-04-27 20:38:31 +0000 UTC  1      Normal   Pulled             Pod/opa-56d68dd6b-c8lnr                  Successfully pulled image "openpolicyagent/kube-mgmt:0.10"
+2020-04-27 20:38:31 +0000 UTC  1      Normal   Created            Pod/opa-56d68dd6b-c8lnr                  Created container kube-mgmt
+2020-04-27 20:38:31 +0000 UTC  1      Normal   Started            Pod/opa-56d68dd6b-c8lnr                  Started container kube-mgmt
+2020-04-27 20:38:24 +0000 UTC  1      Normal   SuccessfulCreate   ReplicaSet/opa-56d68dd6b                 Created pod: opa-56d68dd6b-c8lnr
+2020-04-27 20:38:23 +0000 UTC  1      Normal   CertificateIssued  CertificateRequest/opa-server-777702660  Certificate fetched from issuer successfully
+2020-04-27 20:38:23 +0000 UTC  1      Normal   GeneratedKey       Certificate/opa-server                   Generated a new private key
+2020-04-27 20:38:23 +0000 UTC  1      Normal   Requested          Certificate/opa-server                   Created new CertificateRequest resource "opa-server-777702660"
+2020-04-27 20:38:23 +0000 UTC  1      Normal   Issued             Certificate/opa-server                   Certificate issued successfully
+2020-04-27 20:38:24 +0000 UTC  1      Normal   ScalingReplicaSet  Deployment/opa                           Scaled up replica set opa-56d68dd6b to 1

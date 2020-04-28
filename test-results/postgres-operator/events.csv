@@ -1,0 +1,76 @@
+LAST SEEN                      Count  TYPE    REASON                 OBJECT                                                  MESSAGE
+2020-04-27 20:43:34 +0000 UTC  1      Normal  WaitForFirstConsumer   PersistentVolumeClaim/pgdata-postgres-7b8z59-0          waiting for first consumer to be created before binding
+2020-04-27 20:43:36 +0000 UTC  2      Normal  ExternalProvisioning   PersistentVolumeClaim/pgdata-postgres-7b8z59-0          waiting for a volume to be created, either by external provisioner "rancher.io/local-path" or manually created by system administrator
+2020-04-27 20:43:34 +0000 UTC  1      Normal  Provisioning           PersistentVolumeClaim/pgdata-postgres-7b8z59-0          External provisioner is provisioning volume for claim "postgres-operator/pgdata-postgres-7b8z59-0"
+2020-04-27 20:43:36 +0000 UTC  1      Normal  ProvisioningSucceeded  PersistentVolumeClaim/pgdata-postgres-7b8z59-0          Successfully provisioned volume pvc-5b5b5ecc-e55b-4ead-8a93-6ac8ddc77274
+2020-04-27 20:43:40 +0000 UTC  1      Normal  WaitForFirstConsumer   PersistentVolumeClaim/pgdata-postgres-7b8z59-1          waiting for first consumer to be created before binding
+2020-04-27 20:43:40 +0000 UTC  1      Normal  ExternalProvisioning   PersistentVolumeClaim/pgdata-postgres-7b8z59-1          waiting for a volume to be created, either by external provisioner "rancher.io/local-path" or manually created by system administrator
+2020-04-27 20:43:40 +0000 UTC  1      Normal  Provisioning           PersistentVolumeClaim/pgdata-postgres-7b8z59-1          External provisioner is provisioning volume for claim "postgres-operator/pgdata-postgres-7b8z59-1"
+2020-04-27 20:43:46 +0000 UTC  1      Normal  ProvisioningSucceeded  PersistentVolumeClaim/pgdata-postgres-7b8z59-1          Successfully provisioned volume pvc-7d50e3d5-d834-4084-98e3-c0720d70068b
+2020-04-27 20:44:44 +0000 UTC  1      Normal  WaitForFirstConsumer   PersistentVolumeClaim/pgdata-postgres-7b8z59-clone-0    waiting for first consumer to be created before binding
+2020-04-27 20:44:44 +0000 UTC  1      Normal  ExternalProvisioning   PersistentVolumeClaim/pgdata-postgres-7b8z59-clone-0    waiting for a volume to be created, either by external provisioner "rancher.io/local-path" or manually created by system administrator
+2020-04-27 20:44:44 +0000 UTC  1      Normal  Provisioning           PersistentVolumeClaim/pgdata-postgres-7b8z59-clone-0    External provisioner is provisioning volume for claim "postgres-operator/pgdata-postgres-7b8z59-clone-0"
+2020-04-27 20:44:46 +0000 UTC  1      Normal  ProvisioningSucceeded  PersistentVolumeClaim/pgdata-postgres-7b8z59-clone-0    Successfully provisioned volume pvc-ccfc4c78-8dbb-4229-97ad-49f28906532a
+2020-04-27 20:44:49 +0000 UTC  1      Normal  WaitForFirstConsumer   PersistentVolumeClaim/pgdata-postgres-7b8z59-clone-1    waiting for first consumer to be created before binding
+2020-04-27 20:44:51 +0000 UTC  3      Normal  ExternalProvisioning   PersistentVolumeClaim/pgdata-postgres-7b8z59-clone-1    waiting for a volume to be created, either by external provisioner "rancher.io/local-path" or manually created by system administrator
+2020-04-27 20:44:49 +0000 UTC  1      Normal  Provisioning           PersistentVolumeClaim/pgdata-postgres-7b8z59-clone-1    External provisioner is provisioning volume for claim "postgres-operator/pgdata-postgres-7b8z59-clone-1"
+2020-04-27 20:44:51 +0000 UTC  1      Normal  ProvisioningSucceeded  PersistentVolumeClaim/pgdata-postgres-7b8z59-clone-1    Successfully provisioned volume pvc-7e80e0e8-d8c5-4d04-8278-4f46c32abbcd
+2020-04-27 20:38:39 +0000 UTC  1      Normal  WaitForFirstConsumer   PersistentVolumeClaim/pgdata-postgres-harbor-0          waiting for first consumer to be created before binding
+2020-04-27 20:38:39 +0000 UTC  2      Normal  ExternalProvisioning   PersistentVolumeClaim/pgdata-postgres-harbor-0          waiting for a volume to be created, either by external provisioner "rancher.io/local-path" or manually created by system administrator
+2020-04-27 20:38:39 +0000 UTC  1      Normal  Provisioning           PersistentVolumeClaim/pgdata-postgres-harbor-0          External provisioner is provisioning volume for claim "postgres-operator/pgdata-postgres-harbor-0"
+2020-04-27 20:38:41 +0000 UTC  1      Normal  ProvisioningSucceeded  PersistentVolumeClaim/pgdata-postgres-harbor-0          Successfully provisioned volume pvc-1a62c55d-c34e-4cb5-91b2-06c40be68d0b
+2020-04-27 20:39:02 +0000 UTC  1      Normal  WaitForFirstConsumer   PersistentVolumeClaim/pgdata-postgres-harbor-1          waiting for first consumer to be created before binding
+2020-04-27 20:39:02 +0000 UTC  1      Normal  ExternalProvisioning   PersistentVolumeClaim/pgdata-postgres-harbor-1          waiting for a volume to be created, either by external provisioner "rancher.io/local-path" or manually created by system administrator
+2020-04-27 20:39:02 +0000 UTC  1      Normal  Provisioning           PersistentVolumeClaim/pgdata-postgres-harbor-1          External provisioner is provisioning volume for claim "postgres-operator/pgdata-postgres-harbor-1"
+2020-04-27 20:39:04 +0000 UTC  1      Normal  ProvisioningSucceeded  PersistentVolumeClaim/pgdata-postgres-harbor-1          Successfully provisioned volume pvc-00fea81d-5f07-42be-a325-90ed06c966e4
+2020-04-27 20:43:37 +0000 UTC  1      Normal  Scheduled              Pod/postgres-7b8z59-0                                   Successfully assigned postgres-operator/postgres-7b8z59-0 to kind-control-plane
+2020-04-27 20:43:38 +0000 UTC  1      Normal  Pulled                 Pod/postgres-7b8z59-0                                   Container image "docker.io/flanksource/spilo:1.6-p2.flanksource" already present on machine
+2020-04-27 20:43:39 +0000 UTC  1      Normal  Created                Pod/postgres-7b8z59-0                                   Created container postgres
+2020-04-27 20:43:39 +0000 UTC  1      Normal  Started                Pod/postgres-7b8z59-0                                   Started container postgres
+2020-04-27 20:45:19 +0000 UTC  1      Normal  Killing                Pod/postgres-7b8z59-0                                   Stopping container postgres
+2020-04-27 20:43:47 +0000 UTC  1      Normal  Scheduled              Pod/postgres-7b8z59-1                                   Successfully assigned postgres-operator/postgres-7b8z59-1 to kind-control-plane
+2020-04-27 20:43:49 +0000 UTC  1      Normal  Pulled                 Pod/postgres-7b8z59-1                                   Container image "docker.io/flanksource/spilo:1.6-p2.flanksource" already present on machine
+2020-04-27 20:43:49 +0000 UTC  1      Normal  Created                Pod/postgres-7b8z59-1                                   Created container postgres
+2020-04-27 20:43:49 +0000 UTC  1      Normal  Started                Pod/postgres-7b8z59-1                                   Started container postgres
+2020-04-27 20:45:30 +0000 UTC  1      Normal  Killing                Pod/postgres-7b8z59-1                                   Stopping container postgres
+2020-04-27 20:44:47 +0000 UTC  1      Normal  Scheduled              Pod/postgres-7b8z59-clone-0                             Successfully assigned postgres-operator/postgres-7b8z59-clone-0 to kind-control-plane
+2020-04-27 20:44:48 +0000 UTC  1      Normal  Pulled                 Pod/postgres-7b8z59-clone-0                             Container image "docker.io/flanksource/spilo:1.6-p2.flanksource" already present on machine
+2020-04-27 20:44:49 +0000 UTC  1      Normal  Created                Pod/postgres-7b8z59-clone-0                             Created container postgres
+2020-04-27 20:44:49 +0000 UTC  1      Normal  Started                Pod/postgres-7b8z59-clone-0                             Started container postgres
+2020-04-27 20:45:19 +0000 UTC  1      Normal  Killing                Pod/postgres-7b8z59-clone-0                             Stopping container postgres
+2020-04-27 20:44:52 +0000 UTC  1      Normal  Scheduled              Pod/postgres-7b8z59-clone-1                             Successfully assigned postgres-operator/postgres-7b8z59-clone-1 to kind-control-plane
+2020-04-27 20:44:53 +0000 UTC  1      Normal  Pulled                 Pod/postgres-7b8z59-clone-1                             Container image "docker.io/flanksource/spilo:1.6-p2.flanksource" already present on machine
+2020-04-27 20:44:53 +0000 UTC  1      Normal  Created                Pod/postgres-7b8z59-clone-1                             Created container postgres
+2020-04-27 20:44:53 +0000 UTC  1      Normal  Started                Pod/postgres-7b8z59-clone-1                             Started container postgres
+2020-04-27 20:45:30 +0000 UTC  1      Normal  Killing                Pod/postgres-7b8z59-clone-1                             Stopping container postgres
+2020-04-27 20:44:44 +0000 UTC  1      Normal  SuccessfulCreate       StatefulSet/postgres-7b8z59-clone                       create Claim pgdata-postgres-7b8z59-clone-0 Pod postgres-7b8z59-clone-0 in StatefulSet postgres-7b8z59-clone success
+2020-04-27 20:44:44 +0000 UTC  1      Normal  SuccessfulCreate       StatefulSet/postgres-7b8z59-clone                       create Pod postgres-7b8z59-clone-0 in StatefulSet postgres-7b8z59-clone successful
+2020-04-27 20:44:49 +0000 UTC  1      Normal  SuccessfulCreate       StatefulSet/postgres-7b8z59-clone                       create Claim pgdata-postgres-7b8z59-clone-1 Pod postgres-7b8z59-clone-1 in StatefulSet postgres-7b8z59-clone success
+2020-04-27 20:44:49 +0000 UTC  1      Normal  SuccessfulCreate       StatefulSet/postgres-7b8z59-clone                       create Pod postgres-7b8z59-clone-1 in StatefulSet postgres-7b8z59-clone successful
+2020-04-27 20:43:34 +0000 UTC  1      Normal  SuccessfulCreate       StatefulSet/postgres-7b8z59                             create Claim pgdata-postgres-7b8z59-0 Pod postgres-7b8z59-0 in StatefulSet postgres-7b8z59 success
+2020-04-27 20:43:34 +0000 UTC  1      Normal  SuccessfulCreate       StatefulSet/postgres-7b8z59                             create Pod postgres-7b8z59-0 in StatefulSet postgres-7b8z59 successful
+2020-04-27 20:43:40 +0000 UTC  1      Normal  SuccessfulCreate       StatefulSet/postgres-7b8z59                             create Claim pgdata-postgres-7b8z59-1 Pod postgres-7b8z59-1 in StatefulSet postgres-7b8z59 success
+2020-04-27 20:43:40 +0000 UTC  1      Normal  SuccessfulCreate       StatefulSet/postgres-7b8z59                             create Pod postgres-7b8z59-1 in StatefulSet postgres-7b8z59 successful
+2020-04-27 20:38:42 +0000 UTC  1      Normal  Scheduled              Pod/postgres-harbor-0                                   Successfully assigned postgres-operator/postgres-harbor-0 to kind-control-plane
+2020-04-27 20:38:43 +0000 UTC  1      Normal  Pulling                Pod/postgres-harbor-0                                   Pulling image "docker.io/flanksource/spilo:1.6-p2.flanksource"
+2020-04-27 20:38:59 +0000 UTC  1      Normal  Pulled                 Pod/postgres-harbor-0                                   Successfully pulled image "docker.io/flanksource/spilo:1.6-p2.flanksource"
+2020-04-27 20:39:01 +0000 UTC  1      Normal  Created                Pod/postgres-harbor-0                                   Created container postgres
+2020-04-27 20:39:02 +0000 UTC  1      Normal  Started                Pod/postgres-harbor-0                                   Started container postgres
+2020-04-27 20:39:05 +0000 UTC  1      Normal  Scheduled              Pod/postgres-harbor-1                                   Successfully assigned postgres-operator/postgres-harbor-1 to kind-control-plane
+2020-04-27 20:39:06 +0000 UTC  1      Normal  Pulled                 Pod/postgres-harbor-1                                   Container image "docker.io/flanksource/spilo:1.6-p2.flanksource" already present on machine
+2020-04-27 20:39:06 +0000 UTC  1      Normal  Created                Pod/postgres-harbor-1                                   Created container postgres
+2020-04-27 20:39:06 +0000 UTC  1      Normal  Started                Pod/postgres-harbor-1                                   Started container postgres
+2020-04-27 20:38:39 +0000 UTC  1      Normal  SuccessfulCreate       StatefulSet/postgres-harbor                             create Claim pgdata-postgres-harbor-0 Pod postgres-harbor-0 in StatefulSet postgres-harbor success
+2020-04-27 20:38:39 +0000 UTC  1      Normal  SuccessfulCreate       StatefulSet/postgres-harbor                             create Pod postgres-harbor-0 in StatefulSet postgres-harbor successful
+2020-04-27 20:39:02 +0000 UTC  1      Normal  SuccessfulCreate       StatefulSet/postgres-harbor                             create Claim pgdata-postgres-harbor-1 Pod postgres-harbor-1 in StatefulSet postgres-harbor success
+2020-04-27 20:39:02 +0000 UTC  1      Normal  SuccessfulCreate       StatefulSet/postgres-harbor                             create Pod postgres-harbor-1 in StatefulSet postgres-harbor successful
+2020-04-27 20:36:27 +0000 UTC  1      Normal  Scheduled              Pod/postgres-operator-74b9745bdc-chln2                  Successfully assigned postgres-operator/postgres-operator-74b9745bdc-chln2 to kind-control-plane
+2020-04-27 20:36:28 +0000 UTC  1      Normal  Pulling                Pod/postgres-operator-74b9745bdc-chln2                  Pulling image "docker.io/flanksource/postgres-operator:v1.3.4.flanksource.1"
+2020-04-27 20:36:30 +0000 UTC  1      Normal  Pulled                 Pod/postgres-operator-74b9745bdc-chln2                  Successfully pulled image "docker.io/flanksource/postgres-operator:v1.3.4.flanksource.1"
+2020-04-27 20:36:30 +0000 UTC  1      Normal  Created                Pod/postgres-operator-74b9745bdc-chln2                  Created container postgres-operator
+2020-04-27 20:36:30 +0000 UTC  1      Normal  Started                Pod/postgres-operator-74b9745bdc-chln2                  Started container postgres-operator
+2020-04-27 20:36:27 +0000 UTC  1      Normal  SuccessfulCreate       ReplicaSet/postgres-operator-74b9745bdc                 Created pod: postgres-operator-74b9745bdc-chln2
+2020-04-27 20:36:27 +0000 UTC  1      Normal  ScalingReplicaSet      Deployment/postgres-operator                            Scaled up replica set postgres-operator-74b9745bdc to 1
+2020-04-27 20:45:50 +0000 UTC  6      Normal  NoPods                 PodDisruptionBudget/postgres-postgres-7b8z59-clone-pdb  No matching pods found
+2020-04-27 20:45:50 +0000 UTC  7      Normal  NoPods                 PodDisruptionBudget/postgres-postgres-7b8z59-pdb        No matching pods found
+2020-04-27 20:38:39 +0000 UTC  2      Normal  NoPods                 PodDisruptionBudget/postgres-postgres-harbor-pdb        No matching pods found

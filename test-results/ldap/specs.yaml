@@ -1,0 +1,651 @@
+apiVersion: v1
+items:
+- items:
+  - apiVersion: v1
+    data:
+      users.ldif: |
+        #########################################################
+        # MICROSOFT SCHEMA for sAMAccountName and memberOf
+        # these two attributes are not defined in Apache Directory Server
+        #########################################################
+
+        dn: cn=microsoft, ou=schema
+        objectclass: metaSchema
+        objectclass: top
+        cn: microsoft
+
+        dn: ou=attributetypes, cn=microsoft, ou=schema
+        objectclass: organizationalUnit
+        objectclass: top
+        ou: attributetypes
+
+        dn: m-oid=1.2.840.113556.1.4.221, ou=attributetypes, cn=microsoft, ou=schema
+        objectclass: metaAttributeType
+        objectclass: metaTop
+        objectclass: top
+        m-oid: 1.2.840.113556.1.4.221
+        m-name: sAMAccountName
+        m-equality: caseIgnoreMatch
+        m-syntax: 1.3.6.1.4.1.1466.115.121.1.15
+        m-singleValue: TRUE
+
+        dn: m-oid=1.2.840.113556.1.4.222, ou=attributetypes, cn=microsoft, ou=schema
+        objectclass: metaAttributeType
+        objectclass: metaTop
+        objectclass: top
+        m-oid: 1.2.840.113556.1.4.222
+        m-name: memberOf
+        m-equality: caseIgnoreMatch
+        m-syntax: 1.3.6.1.4.1.1466.115.121.1.15
+        m-singleValue: FALSE
+
+        dn: m-oid=1.2.840.113556.1.4.223, ou=attributetypes, cn=microsoft, ou=schema
+        objectclass: metaAttributeType
+        objectclass: metaTop
+        objectclass: top
+        m-oid: 1.2.840.113556.1.4.223
+        m-name: objectCategory
+        m-equality: caseIgnoreMatch
+        m-syntax: 1.3.6.1.4.1.1466.115.121.1.15
+        m-singleValue: TRUE
+
+        dn: ou=objectclasses, cn=microsoft, ou=schema
+        objectclass: organizationalUnit
+        objectclass: top
+        ou: objectClasses
+
+        dn: m-oid=1.2.840.113556.1.5.6, ou=objectclasses, cn=microsoft, ou=schema
+        objectclass: metaObjectClass
+        objectclass: metaTop
+        objectclass: top
+        m-oid: 1.2.840.113556.1.5.6
+        m-name: simulatedMicrosoftSecurityPrincipal
+        m-supObjectClass: top
+        m-typeObjectClass: AUXILIARY
+        m-must: sAMAccountName
+        m-may: memberOf
+        m-must: objectCategory
+
+        ############
+        # Domain
+        ############
+        dn: ou=users,dc=example,dc=com
+        objectClass: organizationalUnit
+        objectClass: top
+        ou: users
+
+        dn: uid=test,ou=users,dc=example,dc=com
+        objectClass: top
+        objectClass: person
+        objectClass: inetOrgPerson
+        objectClass: simulatedMicrosoftSecurityPrincipal
+        objectCategory: User
+        cn: Test User
+        sn: test
+        uid: test
+        sAMAccountName: test
+        userPassword: secret
+        memberOf: admin
+        mail: test@example.com
+        displayName: John
+
+        dn: ou=roles,dc=example,dc=com
+        objectclass: top
+        objectclass: organizationalUnit
+        ou: roles
+
+        dn: cn=admin,ou=roles,dc=example,dc=com
+        objectClass: top
+        objectClass: groupOfNames
+        cn: admin
+        member: uid=test,ou=users,dc=example,dc=com
+
+        dn: ou=groups,dc=example,dc=com
+        objectclass: top
+        objectclass: organizationalunit
+        ou: groups
+
+        dn: cn=k8s,ou=groups,dc=example,dc=com
+        objectClass: top
+        objectClass: groupOfNames
+        cn: Kubernetes
+        member: uid=test,ou=users,dc=example,dc=com
+    kind: ConfigMap
+    metadata:
+      creationTimestamp: "2020-04-27T20:35:50Z"
+      name: apacheds-ldif
+      namespace: ldap
+      resourceVersion: "1202"
+      selfLink: /api/v1/namespaces/ldap/configmaps/apacheds-ldif
+      uid: bfb2d360-5a6d-497a-87b9-8eb70cb46ae3
+  metadata: {}
+- items:
+  - apiVersion: v1
+    kind: Pod
+    metadata:
+      annotations:
+        cni.projectcalico.org/podIP: 100.200.82.13/32
+      creationTimestamp: "2020-04-27T20:35:51Z"
+      generateName: apacheds-56c656465d-
+      labels:
+        app: apacheds
+        pod-template-hash: 56c656465d
+      name: apacheds-56c656465d-zf4gm
+      namespace: ldap
+      ownerReferences:
+      - apiVersion: apps/v1
+        blockOwnerDeletion: true
+        controller: true
+        kind: ReplicaSet
+        name: apacheds-56c656465d
+        uid: a7251ba6-bf8c-4b96-8719-b91000ebb8df
+      resourceVersion: "1391"
+      selfLink: /api/v1/namespaces/ldap/pods/apacheds-56c656465d-zf4gm
+      uid: 090d0b88-0993-44ab-b9d6-88108a531f15
+    spec:
+      containers:
+      - env:
+        - name: BOOTSTRAP_FILE
+          value: /bootstrap/users.ldif
+        image: quay.io/toni0/apacheds:2.0.0_AM25_1
+        imagePullPolicy: IfNotPresent
+        name: apacheds
+        ports:
+        - containerPort: 10389
+          name: ldap
+          protocol: TCP
+        - containerPort: 10636
+          name: ldaps
+          protocol: TCP
+        resources:
+          limits:
+            cpu: 500m
+            memory: 500Mi
+          requests:
+            cpu: 10m
+            memory: 300Mi
+        terminationMessagePath: /dev/termination-log
+        terminationMessagePolicy: File
+        volumeMounts:
+        - mountPath: /bootstrap
+          name: config-ldif
+        - mountPath: /var/run/secrets/kubernetes.io/serviceaccount
+          name: default-token-xmt4j
+          readOnly: true
+      dnsPolicy: ClusterFirst
+      enableServiceLinks: true
+      nodeName: kind-control-plane
+      priority: 0
+      restartPolicy: Always
+      schedulerName: default-scheduler
+      securityContext: {}
+      serviceAccount: default
+      serviceAccountName: default
+      terminationGracePeriodSeconds: 30
+      tolerations:
+      - effect: NoExecute
+        key: node.kubernetes.io/not-ready
+        operator: Exists
+        tolerationSeconds: 300
+      - effect: NoExecute
+        key: node.kubernetes.io/unreachable
+        operator: Exists
+        tolerationSeconds: 300
+      volumes:
+      - configMap:
+          defaultMode: 420
+          items:
+          - key: users.ldif
+            path: users.ldif
+          name: apacheds-ldif
+        name: config-ldif
+      - name: default-token-xmt4j
+        secret:
+          defaultMode: 420
+          secretName: default-token-xmt4j
+    status:
+      conditions:
+      - lastProbeTime: null
+        lastTransitionTime: "2020-04-27T20:35:51Z"
+        status: "True"
+        type: Initialized
+      - lastProbeTime: null
+        lastTransitionTime: "2020-04-27T20:36:09Z"
+        status: "True"
+        type: Ready
+      - lastProbeTime: null
+        lastTransitionTime: "2020-04-27T20:36:09Z"
+        status: "True"
+        type: ContainersReady
+      - lastProbeTime: null
+        lastTransitionTime: "2020-04-27T20:35:51Z"
+        status: "True"
+        type: PodScheduled
+      containerStatuses:
+      - containerID: containerd://1f00097f69870083c8de084c5e4f827a32eab56884a7f98a833b8895660f9083
+        image: quay.io/toni0/apacheds:2.0.0_AM25_1
+        imageID: quay.io/toni0/apacheds@sha256:29fc119ba1072f28c6560cb5331e1ec099a59c90b693d4ef2c36d23c25d0cf26
+        lastState: {}
+        name: apacheds
+        ready: true
+        restartCount: 0
+        state:
+          running:
+            startedAt: "2020-04-27T20:36:09Z"
+      hostIP: 172.17.0.2
+      phase: Running
+      podIP: 100.200.82.13
+      qosClass: Burstable
+      startTime: "2020-04-27T20:35:51Z"
+  metadata: {}
+- items:
+  - apiVersion: v1
+    kind: ServiceAccount
+    metadata:
+      creationTimestamp: "2020-04-27T20:35:50Z"
+      name: default
+      namespace: ldap
+      resourceVersion: "1187"
+      selfLink: /api/v1/namespaces/ldap/serviceaccounts/default
+      uid: 1177f986-26dd-4e7a-8c59-15334a2c7d9e
+    secrets:
+    - name: default-token-xmt4j
+  metadata: {}
+- items:
+  - apiVersion: v1
+    kind: Service
+    metadata:
+      creationTimestamp: "2020-04-27T20:35:51Z"
+      name: apacheds
+      namespace: ldap
+      resourceVersion: "1220"
+      selfLink: /api/v1/namespaces/ldap/services/apacheds
+      uid: 71ba95c5-82da-4d3d-817a-122ba5d9803a
+    spec:
+      clusterIP: 10.106.239.96
+      ports:
+      - name: ldap
+        port: 10389
+        protocol: TCP
+        targetPort: 10389
+      - name: ldaps
+        port: 10636
+        protocol: TCP
+        targetPort: 10636
+      selector:
+        app: apacheds
+      sessionAffinity: None
+      type: ClusterIP
+    status:
+      loadBalancer: {}
+  metadata: {}
+- items:
+  - apiVersion: apps/v1
+    kind: Deployment
+    metadata:
+      annotations:
+        deployment.kubernetes.io/revision: "1"
+      creationTimestamp: "2020-04-27T20:35:51Z"
+      generation: 2
+      labels:
+        app: apacheds
+      name: apacheds
+      namespace: ldap
+      resourceVersion: "2249"
+      selfLink: /apis/apps/v1/namespaces/ldap/deployments/apacheds
+      uid: 83c05762-dbfb-49e1-8fec-52a245378f2b
+    spec:
+      progressDeadlineSeconds: 600
+      replicas: 1
+      revisionHistoryLimit: 10
+      selector:
+        matchLabels:
+          app: apacheds
+      strategy:
+        rollingUpdate:
+          maxSurge: 25%
+          maxUnavailable: 25%
+        type: RollingUpdate
+      template:
+        metadata:
+          creationTimestamp: null
+          labels:
+            app: apacheds
+        spec:
+          containers:
+          - env:
+            - name: BOOTSTRAP_FILE
+              value: /bootstrap/users.ldif
+            image: quay.io/toni0/apacheds:2.0.0_AM25_1
+            imagePullPolicy: IfNotPresent
+            name: apacheds
+            ports:
+            - containerPort: 10389
+              name: ldap
+              protocol: TCP
+            - containerPort: 10636
+              name: ldaps
+              protocol: TCP
+            resources:
+              limits:
+                cpu: 500m
+                memory: 500Mi
+              requests:
+                cpu: 10m
+                memory: 300Mi
+            terminationMessagePath: /dev/termination-log
+            terminationMessagePolicy: File
+            volumeMounts:
+            - mountPath: /bootstrap
+              name: config-ldif
+          dnsPolicy: ClusterFirst
+          restartPolicy: Always
+          schedulerName: default-scheduler
+          securityContext: {}
+          terminationGracePeriodSeconds: 30
+          volumes:
+          - configMap:
+              defaultMode: 420
+              items:
+              - key: users.ldif
+                path: users.ldif
+              name: apacheds-ldif
+            name: config-ldif
+    status:
+      availableReplicas: 1
+      conditions:
+      - lastTransitionTime: "2020-04-27T20:36:09Z"
+        lastUpdateTime: "2020-04-27T20:36:09Z"
+        message: Deployment has minimum availability.
+        reason: MinimumReplicasAvailable
+        status: "True"
+        type: Available
+      - lastTransitionTime: "2020-04-27T20:35:51Z"
+        lastUpdateTime: "2020-04-27T20:36:09Z"
+        message: ReplicaSet "apacheds-56c656465d" has successfully progressed.
+        reason: NewReplicaSetAvailable
+        status: "True"
+        type: Progressing
+      observedGeneration: 2
+      readyReplicas: 1
+      replicas: 1
+      updatedReplicas: 1
+  metadata: {}
+- items:
+  - apiVersion: apps/v1
+    kind: ReplicaSet
+    metadata:
+      annotations:
+        deployment.kubernetes.io/desired-replicas: "1"
+        deployment.kubernetes.io/max-replicas: "2"
+        deployment.kubernetes.io/revision: "1"
+      creationTimestamp: "2020-04-27T20:35:51Z"
+      generation: 1
+      labels:
+        app: apacheds
+        pod-template-hash: 56c656465d
+      name: apacheds-56c656465d
+      namespace: ldap
+      ownerReferences:
+      - apiVersion: apps/v1
+        blockOwnerDeletion: true
+        controller: true
+        kind: Deployment
+        name: apacheds
+        uid: 83c05762-dbfb-49e1-8fec-52a245378f2b
+      resourceVersion: "1392"
+      selfLink: /apis/apps/v1/namespaces/ldap/replicasets/apacheds-56c656465d
+      uid: a7251ba6-bf8c-4b96-8719-b91000ebb8df
+    spec:
+      replicas: 1
+      selector:
+        matchLabels:
+          app: apacheds
+          pod-template-hash: 56c656465d
+      template:
+        metadata:
+          creationTimestamp: null
+          labels:
+            app: apacheds
+            pod-template-hash: 56c656465d
+        spec:
+          containers:
+          - env:
+            - name: BOOTSTRAP_FILE
+              value: /bootstrap/users.ldif
+            image: quay.io/toni0/apacheds:2.0.0_AM25_1
+            imagePullPolicy: IfNotPresent
+            name: apacheds
+            ports:
+            - containerPort: 10389
+              name: ldap
+              protocol: TCP
+            - containerPort: 10636
+              name: ldaps
+              protocol: TCP
+            resources:
+              limits:
+                cpu: 500m
+                memory: 500Mi
+              requests:
+                cpu: 10m
+                memory: 300Mi
+            terminationMessagePath: /dev/termination-log
+            terminationMessagePolicy: File
+            volumeMounts:
+            - mountPath: /bootstrap
+              name: config-ldif
+          dnsPolicy: ClusterFirst
+          restartPolicy: Always
+          schedulerName: default-scheduler
+          securityContext: {}
+          terminationGracePeriodSeconds: 30
+          volumes:
+          - configMap:
+              defaultMode: 420
+              items:
+              - key: users.ldif
+                path: users.ldif
+              name: apacheds-ldif
+            name: config-ldif
+    status:
+      availableReplicas: 1
+      fullyLabeledReplicas: 1
+      observedGeneration: 1
+      readyReplicas: 1
+      replicas: 1
+  metadata: {}
+- items:
+  - apiVersion: extensions/v1beta1
+    kind: Deployment
+    metadata:
+      annotations:
+        deployment.kubernetes.io/revision: "1"
+      creationTimestamp: "2020-04-27T20:35:51Z"
+      generation: 2
+      labels:
+        app: apacheds
+      name: apacheds
+      namespace: ldap
+      resourceVersion: "2249"
+      selfLink: /apis/extensions/v1beta1/namespaces/ldap/deployments/apacheds
+      uid: 83c05762-dbfb-49e1-8fec-52a245378f2b
+    spec:
+      progressDeadlineSeconds: 600
+      replicas: 1
+      revisionHistoryLimit: 10
+      selector:
+        matchLabels:
+          app: apacheds
+      strategy:
+        rollingUpdate:
+          maxSurge: 25%
+          maxUnavailable: 25%
+        type: RollingUpdate
+      template:
+        metadata:
+          creationTimestamp: null
+          labels:
+            app: apacheds
+        spec:
+          containers:
+          - env:
+            - name: BOOTSTRAP_FILE
+              value: /bootstrap/users.ldif
+            image: quay.io/toni0/apacheds:2.0.0_AM25_1
+            imagePullPolicy: IfNotPresent
+            name: apacheds
+            ports:
+            - containerPort: 10389
+              name: ldap
+              protocol: TCP
+            - containerPort: 10636
+              name: ldaps
+              protocol: TCP
+            resources:
+              limits:
+                cpu: 500m
+                memory: 500Mi
+              requests:
+                cpu: 10m
+                memory: 300Mi
+            terminationMessagePath: /dev/termination-log
+            terminationMessagePolicy: File
+            volumeMounts:
+            - mountPath: /bootstrap
+              name: config-ldif
+          dnsPolicy: ClusterFirst
+          restartPolicy: Always
+          schedulerName: default-scheduler
+          securityContext: {}
+          terminationGracePeriodSeconds: 30
+          volumes:
+          - configMap:
+              defaultMode: 420
+              items:
+              - key: users.ldif
+                path: users.ldif
+              name: apacheds-ldif
+            name: config-ldif
+    status:
+      availableReplicas: 1
+      conditions:
+      - lastTransitionTime: "2020-04-27T20:36:09Z"
+        lastUpdateTime: "2020-04-27T20:36:09Z"
+        message: Deployment has minimum availability.
+        reason: MinimumReplicasAvailable
+        status: "True"
+        type: Available
+      - lastTransitionTime: "2020-04-27T20:35:51Z"
+        lastUpdateTime: "2020-04-27T20:36:09Z"
+        message: ReplicaSet "apacheds-56c656465d" has successfully progressed.
+        reason: NewReplicaSetAvailable
+        status: "True"
+        type: Progressing
+      observedGeneration: 2
+      readyReplicas: 1
+      replicas: 1
+      updatedReplicas: 1
+  metadata: {}
+- items:
+  - apiVersion: extensions/v1beta1
+    kind: ReplicaSet
+    metadata:
+      annotations:
+        deployment.kubernetes.io/desired-replicas: "1"
+        deployment.kubernetes.io/max-replicas: "2"
+        deployment.kubernetes.io/revision: "1"
+      creationTimestamp: "2020-04-27T20:35:51Z"
+      generation: 1
+      labels:
+        app: apacheds
+        pod-template-hash: 56c656465d
+      name: apacheds-56c656465d
+      namespace: ldap
+      ownerReferences:
+      - apiVersion: apps/v1
+        blockOwnerDeletion: true
+        controller: true
+        kind: Deployment
+        name: apacheds
+        uid: 83c05762-dbfb-49e1-8fec-52a245378f2b
+      resourceVersion: "1392"
+      selfLink: /apis/extensions/v1beta1/namespaces/ldap/replicasets/apacheds-56c656465d
+      uid: a7251ba6-bf8c-4b96-8719-b91000ebb8df
+    spec:
+      replicas: 1
+      selector:
+        matchLabels:
+          app: apacheds
+          pod-template-hash: 56c656465d
+      template:
+        metadata:
+          creationTimestamp: null
+          labels:
+            app: apacheds
+            pod-template-hash: 56c656465d
+        spec:
+          containers:
+          - env:
+            - name: BOOTSTRAP_FILE
+              value: /bootstrap/users.ldif
+            image: quay.io/toni0/apacheds:2.0.0_AM25_1
+            imagePullPolicy: IfNotPresent
+            name: apacheds
+            ports:
+            - containerPort: 10389
+              name: ldap
+              protocol: TCP
+            - containerPort: 10636
+              name: ldaps
+              protocol: TCP
+            resources:
+              limits:
+                cpu: 500m
+                memory: 500Mi
+              requests:
+                cpu: 10m
+                memory: 300Mi
+            terminationMessagePath: /dev/termination-log
+            terminationMessagePolicy: File
+            volumeMounts:
+            - mountPath: /bootstrap
+              name: config-ldif
+          dnsPolicy: ClusterFirst
+          restartPolicy: Always
+          schedulerName: default-scheduler
+          securityContext: {}
+          terminationGracePeriodSeconds: 30
+          volumes:
+          - configMap:
+              defaultMode: 420
+              items:
+              - key: users.ldif
+                path: users.ldif
+              name: apacheds-ldif
+            name: config-ldif
+    status:
+      availableReplicas: 1
+      fullyLabeledReplicas: 1
+      observedGeneration: 1
+      readyReplicas: 1
+      replicas: 1
+  metadata: {}
+- items:
+  - apiVersion: metrics.k8s.io/v1beta1
+    containers:
+    - name: apacheds
+      usage:
+        cpu: 5m
+        memory: 843376Ki
+    kind: PodMetrics
+    metadata:
+      creationTimestamp: "2020-04-27T20:46:11Z"
+      name: apacheds-56c656465d-zf4gm
+      namespace: ldap
+      selfLink: /apis/metrics.k8s.io/v1beta1/namespaces/ldap/pods/apacheds-56c656465d-zf4gm
+    timestamp: "2020-04-27T20:46:11Z"
+    window: 5m0s
+  metadata: {}
+kind: List
+metadata: {}

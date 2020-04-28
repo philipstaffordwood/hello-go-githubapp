@@ -1,0 +1,42 @@
+apiVersion: v1
+items:
+- items:
+  - apiVersion: v1
+    kind: ServiceAccount
+    metadata:
+      creationTimestamp: "2020-04-27T20:34:35Z"
+      name: default
+      namespace: default
+      resourceVersion: "436"
+      selfLink: /api/v1/namespaces/default/serviceaccounts/default
+      uid: 7dcc14e3-61b9-439e-8e66-9daa5753dd62
+    secrets:
+    - name: default-token-97pbm
+  metadata: {}
+- items:
+  - apiVersion: v1
+    kind: Service
+    metadata:
+      creationTimestamp: "2020-04-27T20:34:16Z"
+      labels:
+        component: apiserver
+        provider: kubernetes
+      name: kubernetes
+      namespace: default
+      resourceVersion: "149"
+      selfLink: /api/v1/namespaces/default/services/kubernetes
+      uid: 5b5e6bf6-9e91-4dc1-933c-6583d1e639fe
+    spec:
+      clusterIP: 10.96.0.1
+      ports:
+      - name: https
+        port: 443
+        protocol: TCP
+        targetPort: 6443
+      sessionAffinity: None
+      type: ClusterIP
+    status:
+      loadBalancer: {}
+  metadata: {}
+kind: List
+metadata: {}

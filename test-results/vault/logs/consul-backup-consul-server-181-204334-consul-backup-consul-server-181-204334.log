@@ -1,0 +1,14 @@
+++ mktemp /tmp/consul-backup.XXXXXX
++ BACKUP_FILE=/tmp/consul-backup.ONGBoE
++ consul snapshot save -http-addr=consul-server-0.consul-server.vault.svc:8500 /tmp/consul-backup.ONGBoE
+Saved and verified snapshot to index 109
++ SSL_OPTS=
++ [[ http://minio.minio.svc:9000 =~ ^http:// ]]
++ SSL_OPTS=--no-ssl
+++ date +%Y-%m-%d_%H-%M-%S
++ CURRENT_TIME=2020-04-27_20-43-43
++ FILENAME=2020-04-27_20-43-43.snapshot
++ s3cmd --host=http://minio.minio.svc:9000 --host-bucket=http://minio.minio.svc:9000/consul-backups --no-ssl --acl-private put /tmp/consul-backup.ONGBoE s3://consul-backups/consul/backups/vault/consul-server/2020-04-27_20-43-43.snapshot
+WARNING: Module python-magic is not available. Guessing MIME types based on file extensions.
+upload: '/tmp/consul-backup.ONGBoE' -> 's3://consul-backups/consul/backups/vault/consul-server/2020-04-27_20-43-43.snapshot' (13281 bytes in 0.1 seconds, 157.04 kB/s) [1 of 1]
++ rm /tmp/consul-backup.ONGBoE

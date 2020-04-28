@@ -1,0 +1,2372 @@
+apiVersion: v1
+items:
+- items:
+  - apiVersion: v1
+    data:
+      extra-from-values.json: '{}'
+    kind: ConfigMap
+    metadata:
+      creationTimestamp: "2020-04-27T20:36:29Z"
+      labels:
+        app: consul
+      name: consul-server-config
+      namespace: vault
+      resourceVersion: "1566"
+      selfLink: /api/v1/namespaces/vault/configmaps/consul-server-config
+      uid: 9b656e17-bc57-4a90-a423-8a36f64bb992
+  - apiVersion: v1
+    data:
+      extraconfig-from-values.hcl: |-
+        disable_mlock = true
+        ui = true
+        listener "tcp" {
+          address = "[::]:8200"
+          tls_cert_file = "/etc/tls/tls.crt"
+          tls_key_file = "/etc/tls/tls.key"
+          cluster_address = "[::]:8201"
+        }
+        storage "consul" {
+          path = "vault"
+          address = "consul-server:8500"
+        }
+
+        seal "awskms" {
+        }
+    kind: ConfigMap
+    metadata:
+      creationTimestamp: "2020-04-27T20:36:32Z"
+      labels:
+        app.kubernetes.io/name: vault
+      name: vault-config
+      namespace: vault
+      resourceVersion: "1644"
+      selfLink: /api/v1/namespaces/vault/configmaps/vault-config
+      uid: 67bd423c-262f-4a35-b068-8103fdd26963
+  metadata: {}
+- items:
+  - apiVersion: v1
+    kind: PersistentVolumeClaim
+    metadata:
+      annotations:
+        pv.kubernetes.io/bind-completed: "yes"
+        pv.kubernetes.io/bound-by-controller: "yes"
+        volume.beta.kubernetes.io/storage-provisioner: rancher.io/local-path
+        volume.kubernetes.io/selected-node: kind-control-plane
+      creationTimestamp: "2020-04-27T20:36:30Z"
+      finalizers:
+      - kubernetes.io/pvc-protection
+      labels:
+        app: consul
+        component: server
+        hasDNS: "true"
+      name: consul-data-consul-server-0
+      namespace: vault
+      resourceVersion: "1752"
+      selfLink: /api/v1/namespaces/vault/persistentvolumeclaims/consul-data-consul-server-0
+      uid: 6e3234a7-4d3a-45d7-954b-dcc74d4b4d8d
+    spec:
+      accessModes:
+      - ReadWriteOnce
+      resources:
+        requests:
+          storage: 10Gi
+      storageClassName: local-path
+      volumeMode: Filesystem
+      volumeName: pvc-6e3234a7-4d3a-45d7-954b-dcc74d4b4d8d
+    status:
+      accessModes:
+      - ReadWriteOnce
+      capacity:
+        storage: 10Gi
+      phase: Bound
+  - apiVersion: v1
+    kind: PersistentVolumeClaim
+    metadata:
+      annotations:
+        pv.kubernetes.io/bind-completed: "yes"
+        pv.kubernetes.io/bound-by-controller: "yes"
+        volume.beta.kubernetes.io/storage-provisioner: rancher.io/local-path
+        volume.kubernetes.io/selected-node: kind-control-plane
+      creationTimestamp: "2020-04-27T20:36:30Z"
+      finalizers:
+      - kubernetes.io/pvc-protection
+      labels:
+        app: consul
+        component: server
+        hasDNS: "true"
+      name: consul-data-consul-server-1
+      namespace: vault
+      resourceVersion: "1701"
+      selfLink: /api/v1/namespaces/vault/persistentvolumeclaims/consul-data-consul-server-1
+      uid: 32102c2c-b1fd-4c1f-8ca0-c41fa5b45914
+    spec:
+      accessModes:
+      - ReadWriteOnce
+      resources:
+        requests:
+          storage: 10Gi
+      storageClassName: local-path
+      volumeMode: Filesystem
+      volumeName: pvc-32102c2c-b1fd-4c1f-8ca0-c41fa5b45914
+    status:
+      accessModes:
+      - ReadWriteOnce
+      capacity:
+        storage: 10Gi
+      phase: Bound
+  - apiVersion: v1
+    kind: PersistentVolumeClaim
+    metadata:
+      annotations:
+        pv.kubernetes.io/bind-completed: "yes"
+        pv.kubernetes.io/bound-by-controller: "yes"
+        volume.beta.kubernetes.io/storage-provisioner: rancher.io/local-path
+        volume.kubernetes.io/selected-node: kind-control-plane
+      creationTimestamp: "2020-04-27T20:36:30Z"
+      finalizers:
+      - kubernetes.io/pvc-protection
+      labels:
+        app: consul
+        component: server
+        hasDNS: "true"
+      name: consul-data-consul-server-2
+      namespace: vault
+      resourceVersion: "1737"
+      selfLink: /api/v1/namespaces/vault/persistentvolumeclaims/consul-data-consul-server-2
+      uid: b3556e10-4bf8-4b4c-8768-07273516531c
+    spec:
+      accessModes:
+      - ReadWriteOnce
+      resources:
+        requests:
+          storage: 10Gi
+      storageClassName: local-path
+      volumeMode: Filesystem
+      volumeName: pvc-b3556e10-4bf8-4b4c-8768-07273516531c
+    status:
+      accessModes:
+      - ReadWriteOnce
+      capacity:
+        storage: 10Gi
+      phase: Bound
+  metadata: {}
+- items:
+  - apiVersion: v1
+    kind: Pod
+    metadata:
+      annotations:
+        cni.projectcalico.org/podIP: 100.200.82.16/32
+      creationTimestamp: "2020-04-27T20:43:34Z"
+      name: consul-backup-consul-server-181-204334
+      namespace: vault
+      resourceVersion: "6269"
+      selfLink: /api/v1/namespaces/vault/pods/consul-backup-consul-server-181-204334
+      uid: 972d334e-ce93-46d3-a35b-b15b52ced35e
+    spec:
+      containers:
+      - command:
+        - /scripts/backup.sh
+        env:
+        - name: POD_NAMESPACE
+          valueFrom:
+            fieldRef:
+              apiVersion: v1
+              fieldPath: metadata.namespace
+        - name: AWS_ACCESS_KEY_ID
+          valueFrom:
+            secretKeyRef:
+              key: AWS_ACCESS_KEY_ID
+              name: consul-backup-config
+        - name: AWS_SECRET_ACCESS_KEY
+          valueFrom:
+            secretKeyRef:
+              key: AWS_SECRET_ACCESS_KEY
+              name: consul-backup-config
+        - name: AWS_ENDPOINT
+          valueFrom:
+            secretKeyRef:
+              key: AWS_ENDPOINT
+              name: consul-backup-config
+        - name: AWS_S3_FORCE_PATH_STYLE
+          valueFrom:
+            secretKeyRef:
+              key: AWS_S3_FORCE_PATH_STYLE
+              name: consul-backup-config
+        - name: BACKUP_PATH
+          value: consul/backups/vault/consul-server/
+        - name: CONSUL_ADDR
+          value: consul-server-0.consul-server.vault.svc:8500
+        - name: BACKUP_BUCKET
+          value: consul-backups
+        image: docker.io/flanksource/consul-backup-restore:0.1
+        imagePullPolicy: IfNotPresent
+        name: consul-backup-consul-server-181-204334
+        resources:
+          limits:
+            cpu: 500m
+            memory: 512Mi
+          requests:
+            cpu: 10m
+            memory: 128Mi
+        terminationMessagePath: /dev/termination-log
+        terminationMessagePolicy: File
+        volumeMounts:
+        - mountPath: /var/run/secrets/kubernetes.io/serviceaccount
+          name: default-token-q7bfk
+          readOnly: true
+      dnsPolicy: ClusterFirst
+      enableServiceLinks: true
+      nodeName: kind-control-plane
+      priority: 0
+      restartPolicy: Never
+      schedulerName: default-scheduler
+      securityContext: {}
+      serviceAccount: default
+      serviceAccountName: default
+      terminationGracePeriodSeconds: 30
+      tolerations:
+      - effect: NoExecute
+        key: node.kubernetes.io/not-ready
+        operator: Exists
+        tolerationSeconds: 300
+      - effect: NoExecute
+        key: node.kubernetes.io/unreachable
+        operator: Exists
+        tolerationSeconds: 300
+      volumes:
+      - name: default-token-q7bfk
+        secret:
+          defaultMode: 420
+          secretName: default-token-q7bfk
+    status:
+      conditions:
+      - lastProbeTime: null
+        lastTransitionTime: "2020-04-27T20:43:34Z"
+        reason: PodCompleted
+        status: "True"
+        type: Initialized
+      - lastProbeTime: null
+        lastTransitionTime: "2020-04-27T20:43:34Z"
+        reason: PodCompleted
+        status: "False"
+        type: Ready
+      - lastProbeTime: null
+        lastTransitionTime: "2020-04-27T20:43:34Z"
+        reason: PodCompleted
+        status: "False"
+        type: ContainersReady
+      - lastProbeTime: null
+        lastTransitionTime: "2020-04-27T20:43:34Z"
+        status: "True"
+        type: PodScheduled
+      containerStatuses:
+      - containerID: containerd://bd5fab853f019ad96528e35a4c16935f37bc146db56b0ad17efaba9d79aa7239
+        image: docker.io/flanksource/consul-backup-restore:0.1
+        imageID: docker.io/flanksource/consul-backup-restore@sha256:bccebc7bfc0c3728a385f5eb9db3bda442309b203c1c8bf590a79a8c1901674e
+        lastState: {}
+        name: consul-backup-consul-server-181-204334
+        ready: false
+        restartCount: 0
+        state:
+          terminated:
+            containerID: containerd://bd5fab853f019ad96528e35a4c16935f37bc146db56b0ad17efaba9d79aa7239
+            exitCode: 0
+            finishedAt: "2020-04-27T20:43:43Z"
+            reason: Completed
+            startedAt: "2020-04-27T20:43:43Z"
+      hostIP: 172.17.0.2
+      phase: Succeeded
+      podIP: 100.200.82.16
+      qosClass: Burstable
+      startTime: "2020-04-27T20:43:34Z"
+  - apiVersion: v1
+    kind: Pod
+    metadata:
+      annotations:
+        cni.projectcalico.org/podIP: 100.200.82.34/32
+      creationTimestamp: "2020-04-27T20:43:50Z"
+      name: consul-backup-consul-server-181-204350
+      namespace: vault
+      resourceVersion: "6338"
+      selfLink: /api/v1/namespaces/vault/pods/consul-backup-consul-server-181-204350
+      uid: 9edb166e-a328-4754-bd8c-1c2663aaf05d
+    spec:
+      containers:
+      - command:
+        - /scripts/restore.sh
+        env:
+        - name: POD_NAMESPACE
+          valueFrom:
+            fieldRef:
+              apiVersion: v1
+              fieldPath: metadata.namespace
+        - name: AWS_ACCESS_KEY_ID
+          valueFrom:
+            secretKeyRef:
+              key: AWS_ACCESS_KEY_ID
+              name: consul-backup-config
+        - name: AWS_SECRET_ACCESS_KEY
+          valueFrom:
+            secretKeyRef:
+              key: AWS_SECRET_ACCESS_KEY
+              name: consul-backup-config
+        - name: AWS_ENDPOINT
+          valueFrom:
+            secretKeyRef:
+              key: AWS_ENDPOINT
+              name: consul-backup-config
+        - name: AWS_S3_FORCE_PATH_STYLE
+          valueFrom:
+            secretKeyRef:
+              key: AWS_S3_FORCE_PATH_STYLE
+              name: consul-backup-config
+        - name: BACKUP_PATH
+          value: consul/backups/vault/consul-server/
+        - name: CONSUL_ADDR
+          value: consul-server-0.consul-server.vault.svc:8500
+        - name: BACKUP_BUCKET
+          value: consul-backups
+        - name: RESTORE_URL
+          value: s3://consul-backups/consul/backups/vault/consul-server/2020-04-27_20-43-43.snapshot
+        - name: RESTORE_BUCKET
+          value: consul-backups
+        image: docker.io/flanksource/consul-backup-restore:0.1
+        imagePullPolicy: IfNotPresent
+        name: consul-backup-consul-server-181-204350
+        resources:
+          limits:
+            cpu: 500m
+            memory: 512Mi
+          requests:
+            cpu: 10m
+            memory: 128Mi
+        terminationMessagePath: /dev/termination-log
+        terminationMessagePolicy: File
+        volumeMounts:
+        - mountPath: /var/run/secrets/kubernetes.io/serviceaccount
+          name: default-token-q7bfk
+          readOnly: true
+      dnsPolicy: ClusterFirst
+      enableServiceLinks: true
+      nodeName: kind-control-plane
+      priority: 0
+      restartPolicy: Never
+      schedulerName: default-scheduler
+      securityContext: {}
+      serviceAccount: default
+      serviceAccountName: default
+      terminationGracePeriodSeconds: 30
+      tolerations:
+      - effect: NoExecute
+        key: node.kubernetes.io/not-ready
+        operator: Exists
+        tolerationSeconds: 300
+      - effect: NoExecute
+        key: node.kubernetes.io/unreachable
+        operator: Exists
+        tolerationSeconds: 300
+      volumes:
+      - name: default-token-q7bfk
+        secret:
+          defaultMode: 420
+          secretName: default-token-q7bfk
+    status:
+      conditions:
+      - lastProbeTime: null
+        lastTransitionTime: "2020-04-27T20:43:50Z"
+        reason: PodCompleted
+        status: "True"
+        type: Initialized
+      - lastProbeTime: null
+        lastTransitionTime: "2020-04-27T20:43:50Z"
+        reason: PodCompleted
+        status: "False"
+        type: Ready
+      - lastProbeTime: null
+        lastTransitionTime: "2020-04-27T20:43:50Z"
+        reason: PodCompleted
+        status: "False"
+        type: ContainersReady
+      - lastProbeTime: null
+        lastTransitionTime: "2020-04-27T20:43:50Z"
+        status: "True"
+        type: PodScheduled
+      containerStatuses:
+      - containerID: containerd://d51a65f4d04d955622278e44d3889f9b64e4663f726c71a84fb1983b63b8eb48
+        image: docker.io/flanksource/consul-backup-restore:0.1
+        imageID: docker.io/flanksource/consul-backup-restore@sha256:bccebc7bfc0c3728a385f5eb9db3bda442309b203c1c8bf590a79a8c1901674e
+        lastState: {}
+        name: consul-backup-consul-server-181-204350
+        ready: false
+        restartCount: 0
+        state:
+          terminated:
+            containerID: containerd://d51a65f4d04d955622278e44d3889f9b64e4663f726c71a84fb1983b63b8eb48
+            exitCode: 0
+            finishedAt: "2020-04-27T20:43:52Z"
+            reason: Completed
+            startedAt: "2020-04-27T20:43:51Z"
+      hostIP: 172.17.0.2
+      phase: Succeeded
+      podIP: 100.200.82.34
+      qosClass: Burstable
+      startTime: "2020-04-27T20:43:50Z"
+  - apiVersion: v1
+    kind: Pod
+    metadata:
+      annotations:
+        cni.projectcalico.org/podIP: 100.200.82.24/32
+        consul.hashicorp.com/connect-inject: "false"
+      creationTimestamp: "2020-04-27T20:36:30Z"
+      generateName: consul-server-
+      labels:
+        app: consul
+        component: server
+        controller-revision-hash: consul-server-7ff7f4ccb
+        hasDNS: "true"
+        statefulset.kubernetes.io/pod-name: consul-server-0
+      name: consul-server-0
+      namespace: vault
+      ownerReferences:
+      - apiVersion: apps/v1
+        blockOwnerDeletion: true
+        controller: true
+        kind: StatefulSet
+        name: consul-server
+        uid: 514b1295-bf55-4850-bfe0-2b012661cacb
+      resourceVersion: "1972"
+      selfLink: /api/v1/namespaces/vault/pods/consul-server-0
+      uid: d1d59b46-6a21-45b8-acb4-a4fc060cb0c1
+    spec:
+      affinity:
+        podAntiAffinity:
+          preferredDuringSchedulingIgnoredDuringExecution:
+          - podAffinityTerm:
+              labelSelector:
+                matchLabels:
+                  app: consul
+                  component: server
+              topologyKey: kubernetes.io/hostname
+            weight: 1
+      containers:
+      - command:
+        - /bin/sh
+        - -ec
+        - |
+          CONSUL_FULLNAME="consul"
+
+          exec /bin/consul agent \
+            -advertise="${POD_IP}" \
+            -bind=0.0.0.0 \
+            -bootstrap-expect=3 \
+            -client=0.0.0.0 \
+            -config-dir=/consul/config \
+            -datacenter=vault \
+            -data-dir=/consul/data \
+            -domain=consul \
+            -hcl="connect { enabled = true }" \
+            -ui \
+            -retry-join=${CONSUL_FULLNAME}-server-0.${CONSUL_FULLNAME}-server.${NAMESPACE}.svc \
+            -retry-join=${CONSUL_FULLNAME}-server-1.${CONSUL_FULLNAME}-server.${NAMESPACE}.svc \
+            -retry-join=${CONSUL_FULLNAME}-server-2.${CONSUL_FULLNAME}-server.${NAMESPACE}.svc \
+            -server
+        env:
+        - name: POD_IP
+          valueFrom:
+            fieldRef:
+              apiVersion: v1
+              fieldPath: status.podIP
+        - name: NAMESPACE
+          valueFrom:
+            fieldRef:
+              apiVersion: v1
+              fieldPath: metadata.namespace
+        image: consul:1.7.1
+        imagePullPolicy: IfNotPresent
+        lifecycle:
+          preStop:
+            exec:
+              command:
+              - /bin/sh
+              - -c
+              - consul leave
+        name: consul
+        ports:
+        - containerPort: 8500
+          name: http
+          protocol: TCP
+        - containerPort: 8301
+          name: serflan
+          protocol: TCP
+        - containerPort: 8302
+          name: serfwan
+          protocol: TCP
+        - containerPort: 8300
+          name: server
+          protocol: TCP
+        - containerPort: 8600
+          name: dns-tcp
+          protocol: TCP
+        - containerPort: 8600
+          name: dns-udp
+          protocol: UDP
+        readinessProbe:
+          exec:
+            command:
+            - /bin/sh
+            - -ec
+            - |
+              curl http://127.0.0.1:8500/v1/status/leader \
+              2>/dev/null | grep -E '".+"'
+          failureThreshold: 2
+          initialDelaySeconds: 5
+          periodSeconds: 3
+          successThreshold: 1
+          timeoutSeconds: 5
+        resources: {}
+        terminationMessagePath: /dev/termination-log
+        terminationMessagePolicy: File
+        volumeMounts:
+        - mountPath: /consul/data
+          name: consul-data
+        - mountPath: /consul/config
+          name: config
+        - mountPath: /var/run/secrets/kubernetes.io/serviceaccount
+          name: consul-server-token-zjhld
+          readOnly: true
+      dnsPolicy: ClusterFirst
+      enableServiceLinks: true
+      hostname: consul-server-0
+      nodeName: kind-control-plane
+      priority: 0
+      restartPolicy: Always
+      schedulerName: default-scheduler
+      securityContext:
+        fsGroup: 1000
+      serviceAccount: consul-server
+      serviceAccountName: consul-server
+      subdomain: consul-server
+      terminationGracePeriodSeconds: 30
+      tolerations:
+      - effect: NoExecute
+        key: node.kubernetes.io/not-ready
+        operator: Exists
+        tolerationSeconds: 300
+      - effect: NoExecute
+        key: node.kubernetes.io/unreachable
+        operator: Exists
+        tolerationSeconds: 300
+      volumes:
+      - name: consul-data
+        persistentVolumeClaim:
+          claimName: consul-data-consul-server-0
+      - configMap:
+          defaultMode: 420
+          name: consul-server-config
+        name: config
+      - name: consul-server-token-zjhld
+        secret:
+          defaultMode: 420
+          secretName: consul-server-token-zjhld
+    status:
+      conditions:
+      - lastProbeTime: null
+        lastTransitionTime: "2020-04-27T20:36:36Z"
+        status: "True"
+        type: Initialized
+      - lastProbeTime: null
+        lastTransitionTime: "2020-04-27T20:37:14Z"
+        status: "True"
+        type: Ready
+      - lastProbeTime: null
+        lastTransitionTime: "2020-04-27T20:37:14Z"
+        status: "True"
+        type: ContainersReady
+      - lastProbeTime: null
+        lastTransitionTime: "2020-04-27T20:36:36Z"
+        status: "True"
+        type: PodScheduled
+      containerStatuses:
+      - containerID: containerd://1c22a0ba9e4e4f1f1034b4ce6a118fbad2cf7dae8c9406f940bd2e93d9317e4c
+        image: docker.io/library/consul:1.7.1
+        imageID: docker.io/library/consul@sha256:3e064c7f96231a95677a7d7af603ef99a8ca4d63d46a70e25de794c9fc392ea2
+        lastState: {}
+        name: consul
+        ready: true
+        restartCount: 0
+        state:
+          running:
+            startedAt: "2020-04-27T20:36:41Z"
+      hostIP: 172.17.0.2
+      phase: Running
+      podIP: 100.200.82.24
+      qosClass: BestEffort
+      startTime: "2020-04-27T20:36:36Z"
+  - apiVersion: v1
+    kind: Pod
+    metadata:
+      annotations:
+        cni.projectcalico.org/podIP: 100.200.82.22/32
+        consul.hashicorp.com/connect-inject: "false"
+      creationTimestamp: "2020-04-27T20:36:30Z"
+      generateName: consul-server-
+      labels:
+        app: consul
+        component: server
+        controller-revision-hash: consul-server-7ff7f4ccb
+        hasDNS: "true"
+        statefulset.kubernetes.io/pod-name: consul-server-1
+      name: consul-server-1
+      namespace: vault
+      ownerReferences:
+      - apiVersion: apps/v1
+        blockOwnerDeletion: true
+        controller: true
+        kind: StatefulSet
+        name: consul-server
+        uid: 514b1295-bf55-4850-bfe0-2b012661cacb
+      resourceVersion: "1979"
+      selfLink: /api/v1/namespaces/vault/pods/consul-server-1
+      uid: d9f92b41-51bd-4734-bd51-385679975a6e
+    spec:
+      affinity:
+        podAntiAffinity:
+          preferredDuringSchedulingIgnoredDuringExecution:
+          - podAffinityTerm:
+              labelSelector:
+                matchLabels:
+                  app: consul
+                  component: server
+              topologyKey: kubernetes.io/hostname
+            weight: 1
+      containers:
+      - command:
+        - /bin/sh
+        - -ec
+        - |
+          CONSUL_FULLNAME="consul"
+
+          exec /bin/consul agent \
+            -advertise="${POD_IP}" \
+            -bind=0.0.0.0 \
+            -bootstrap-expect=3 \
+            -client=0.0.0.0 \
+            -config-dir=/consul/config \
+            -datacenter=vault \
+            -data-dir=/consul/data \
+            -domain=consul \
+            -hcl="connect { enabled = true }" \
+            -ui \
+            -retry-join=${CONSUL_FULLNAME}-server-0.${CONSUL_FULLNAME}-server.${NAMESPACE}.svc \
+            -retry-join=${CONSUL_FULLNAME}-server-1.${CONSUL_FULLNAME}-server.${NAMESPACE}.svc \
+            -retry-join=${CONSUL_FULLNAME}-server-2.${CONSUL_FULLNAME}-server.${NAMESPACE}.svc \
+            -server
+        env:
+        - name: POD_IP
+          valueFrom:
+            fieldRef:
+              apiVersion: v1
+              fieldPath: status.podIP
+        - name: NAMESPACE
+          valueFrom:
+            fieldRef:
+              apiVersion: v1
+              fieldPath: metadata.namespace
+        image: consul:1.7.1
+        imagePullPolicy: IfNotPresent
+        lifecycle:
+          preStop:
+            exec:
+              command:
+              - /bin/sh
+              - -c
+              - consul leave
+        name: consul
+        ports:
+        - containerPort: 8500
+          name: http
+          protocol: TCP
+        - containerPort: 8301
+          name: serflan
+          protocol: TCP
+        - containerPort: 8302
+          name: serfwan
+          protocol: TCP
+        - containerPort: 8300
+          name: server
+          protocol: TCP
+        - containerPort: 8600
+          name: dns-tcp
+          protocol: TCP
+        - containerPort: 8600
+          name: dns-udp
+          protocol: UDP
+        readinessProbe:
+          exec:
+            command:
+            - /bin/sh
+            - -ec
+            - |
+              curl http://127.0.0.1:8500/v1/status/leader \
+              2>/dev/null | grep -E '".+"'
+          failureThreshold: 2
+          initialDelaySeconds: 5
+          periodSeconds: 3
+          successThreshold: 1
+          timeoutSeconds: 5
+        resources: {}
+        terminationMessagePath: /dev/termination-log
+        terminationMessagePolicy: File
+        volumeMounts:
+        - mountPath: /consul/data
+          name: consul-data
+        - mountPath: /consul/config
+          name: config
+        - mountPath: /var/run/secrets/kubernetes.io/serviceaccount
+          name: consul-server-token-zjhld
+          readOnly: true
+      dnsPolicy: ClusterFirst
+      enableServiceLinks: true
+      hostname: consul-server-1
+      nodeName: kind-control-plane
+      priority: 0
+      restartPolicy: Always
+      schedulerName: default-scheduler
+      securityContext:
+        fsGroup: 1000
+      serviceAccount: consul-server
+      serviceAccountName: consul-server
+      subdomain: consul-server
+      terminationGracePeriodSeconds: 30
+      tolerations:
+      - effect: NoExecute
+        key: node.kubernetes.io/not-ready
+        operator: Exists
+        tolerationSeconds: 300
+      - effect: NoExecute
+        key: node.kubernetes.io/unreachable
+        operator: Exists
+        tolerationSeconds: 300
+      volumes:
+      - name: consul-data
+        persistentVolumeClaim:
+          claimName: consul-data-consul-server-1
+      - configMap:
+          defaultMode: 420
+          name: consul-server-config
+        name: config
+      - name: consul-server-token-zjhld
+        secret:
+          defaultMode: 420
+          secretName: consul-server-token-zjhld
+    status:
+      conditions:
+      - lastProbeTime: null
+        lastTransitionTime: "2020-04-27T20:36:34Z"
+        status: "True"
+        type: Initialized
+      - lastProbeTime: null
+        lastTransitionTime: "2020-04-27T20:37:15Z"
+        status: "True"
+        type: Ready
+      - lastProbeTime: null
+        lastTransitionTime: "2020-04-27T20:37:15Z"
+        status: "True"
+        type: ContainersReady
+      - lastProbeTime: null
+        lastTransitionTime: "2020-04-27T20:36:34Z"
+        status: "True"
+        type: PodScheduled
+      containerStatuses:
+      - containerID: containerd://d4fc5c4463b58ca0814d405f2f61ac7793bc1c40b70be136756f1438a2ebed84
+        image: docker.io/library/consul:1.7.1
+        imageID: docker.io/library/consul@sha256:3e064c7f96231a95677a7d7af603ef99a8ca4d63d46a70e25de794c9fc392ea2
+        lastState: {}
+        name: consul
+        ready: true
+        restartCount: 0
+        state:
+          running:
+            startedAt: "2020-04-27T20:36:41Z"
+      hostIP: 172.17.0.2
+      phase: Running
+      podIP: 100.200.82.22
+      qosClass: BestEffort
+      startTime: "2020-04-27T20:36:34Z"
+  - apiVersion: v1
+    kind: Pod
+    metadata:
+      annotations:
+        cni.projectcalico.org/podIP: 100.200.82.23/32
+        consul.hashicorp.com/connect-inject: "false"
+      creationTimestamp: "2020-04-27T20:36:30Z"
+      generateName: consul-server-
+      labels:
+        app: consul
+        component: server
+        controller-revision-hash: consul-server-7ff7f4ccb
+        hasDNS: "true"
+        statefulset.kubernetes.io/pod-name: consul-server-2
+      name: consul-server-2
+      namespace: vault
+      ownerReferences:
+      - apiVersion: apps/v1
+        blockOwnerDeletion: true
+        controller: true
+        kind: StatefulSet
+        name: consul-server
+        uid: 514b1295-bf55-4850-bfe0-2b012661cacb
+      resourceVersion: "1963"
+      selfLink: /api/v1/namespaces/vault/pods/consul-server-2
+      uid: 794800f2-89e3-465a-a339-7a628e61df17
+    spec:
+      affinity:
+        podAntiAffinity:
+          preferredDuringSchedulingIgnoredDuringExecution:
+          - podAffinityTerm:
+              labelSelector:
+                matchLabels:
+                  app: consul
+                  component: server
+              topologyKey: kubernetes.io/hostname
+            weight: 1
+      containers:
+      - command:
+        - /bin/sh
+        - -ec
+        - |
+          CONSUL_FULLNAME="consul"
+
+          exec /bin/consul agent \
+            -advertise="${POD_IP}" \
+            -bind=0.0.0.0 \
+            -bootstrap-expect=3 \
+            -client=0.0.0.0 \
+            -config-dir=/consul/config \
+            -datacenter=vault \
+            -data-dir=/consul/data \
+            -domain=consul \
+            -hcl="connect { enabled = true }" \
+            -ui \
+            -retry-join=${CONSUL_FULLNAME}-server-0.${CONSUL_FULLNAME}-server.${NAMESPACE}.svc \
+            -retry-join=${CONSUL_FULLNAME}-server-1.${CONSUL_FULLNAME}-server.${NAMESPACE}.svc \
+            -retry-join=${CONSUL_FULLNAME}-server-2.${CONSUL_FULLNAME}-server.${NAMESPACE}.svc \
+            -server
+        env:
+        - name: POD_IP
+          valueFrom:
+            fieldRef:
+              apiVersion: v1
+              fieldPath: status.podIP
+        - name: NAMESPACE
+          valueFrom:
+            fieldRef:
+              apiVersion: v1
+              fieldPath: metadata.namespace
+        image: consul:1.7.1
+        imagePullPolicy: IfNotPresent
+        lifecycle:
+          preStop:
+            exec:
+              command:
+              - /bin/sh
+              - -c
+              - consul leave
+        name: consul
+        ports:
+        - containerPort: 8500
+          name: http
+          protocol: TCP
+        - containerPort: 8301
+          name: serflan
+          protocol: TCP
+        - containerPort: 8302
+          name: serfwan
+          protocol: TCP
+        - containerPort: 8300
+          name: server
+          protocol: TCP
+        - containerPort: 8600
+          name: dns-tcp
+          protocol: TCP
+        - containerPort: 8600
+          name: dns-udp
+          protocol: UDP
+        readinessProbe:
+          exec:
+            command:
+            - /bin/sh
+            - -ec
+            - |
+              curl http://127.0.0.1:8500/v1/status/leader \
+              2>/dev/null | grep -E '".+"'
+          failureThreshold: 2
+          initialDelaySeconds: 5
+          periodSeconds: 3
+          successThreshold: 1
+          timeoutSeconds: 5
+        resources: {}
+        terminationMessagePath: /dev/termination-log
+        terminationMessagePolicy: File
+        volumeMounts:
+        - mountPath: /consul/data
+          name: consul-data
+        - mountPath: /consul/config
+          name: config
+        - mountPath: /var/run/secrets/kubernetes.io/serviceaccount
+          name: consul-server-token-zjhld
+          readOnly: true
+      dnsPolicy: ClusterFirst
+      enableServiceLinks: true
+      hostname: consul-server-2
+      nodeName: kind-control-plane
+      priority: 0
+      restartPolicy: Always
+      schedulerName: default-scheduler
+      securityContext:
+        fsGroup: 1000
+      serviceAccount: consul-server
+      serviceAccountName: consul-server
+      subdomain: consul-server
+      terminationGracePeriodSeconds: 30
+      tolerations:
+      - effect: NoExecute
+        key: node.kubernetes.io/not-ready
+        operator: Exists
+        tolerationSeconds: 300
+      - effect: NoExecute
+        key: node.kubernetes.io/unreachable
+        operator: Exists
+        tolerationSeconds: 300
+      volumes:
+      - name: consul-data
+        persistentVolumeClaim:
+          claimName: consul-data-consul-server-2
+      - configMap:
+          defaultMode: 420
+          name: consul-server-config
+        name: config
+      - name: consul-server-token-zjhld
+        secret:
+          defaultMode: 420
+          secretName: consul-server-token-zjhld
+    status:
+      conditions:
+      - lastProbeTime: null
+        lastTransitionTime: "2020-04-27T20:36:35Z"
+        status: "True"
+        type: Initialized
+      - lastProbeTime: null
+        lastTransitionTime: "2020-04-27T20:37:14Z"
+        status: "True"
+        type: Ready
+      - lastProbeTime: null
+        lastTransitionTime: "2020-04-27T20:37:14Z"
+        status: "True"
+        type: ContainersReady
+      - lastProbeTime: null
+        lastTransitionTime: "2020-04-27T20:36:35Z"
+        status: "True"
+        type: PodScheduled
+      containerStatuses:
+      - containerID: containerd://e188773223b9fb2037761a7fdb6e2f7e0c48d0f822c9d5363177aef466991750
+        image: docker.io/library/consul:1.7.1
+        imageID: docker.io/library/consul@sha256:3e064c7f96231a95677a7d7af603ef99a8ca4d63d46a70e25de794c9fc392ea2
+        lastState: {}
+        name: consul
+        ready: true
+        restartCount: 0
+        state:
+          running:
+            startedAt: "2020-04-27T20:36:41Z"
+      hostIP: 172.17.0.2
+      phase: Running
+      podIP: 100.200.82.23
+      qosClass: BestEffort
+      startTime: "2020-04-27T20:36:35Z"
+  - apiVersion: v1
+    kind: Pod
+    metadata:
+      annotations:
+        cni.projectcalico.org/podIP: 100.200.82.21/32
+      creationTimestamp: "2020-04-27T20:36:33Z"
+      generateName: vault-
+      labels:
+        app.kubernetes.io/name: vault
+        component: server
+        controller-revision-hash: vault-8b97d856b
+        statefulset.kubernetes.io/pod-name: vault-0
+      name: vault-0
+      namespace: vault
+      ownerReferences:
+      - apiVersion: apps/v1
+        blockOwnerDeletion: true
+        controller: true
+        kind: StatefulSet
+        name: vault
+        uid: b06b7620-a141-4065-baf7-2101eea6df58
+      resourceVersion: "1993"
+      selfLink: /api/v1/namespaces/vault/pods/vault-0
+      uid: e447dbd3-1857-49ff-bb0a-fdafc6536274
+    spec:
+      affinity:
+        podAntiAffinity:
+          preferredDuringSchedulingIgnoredDuringExecution:
+          - podAffinityTerm:
+              labelSelector:
+                matchLabels:
+                  app.kubernetes.io/name: vault
+                  component: server
+              topologyKey: kubernetes.io/hostname
+            weight: 1
+      containers:
+      - args:
+        - |
+          sed -E "s/HOST_IP/${HOST_IP?}/g" /vault/config/extraconfig-from-values.hcl > /tmp/storageconfig.hcl;
+          sed -Ei "s/POD_IP/${POD_IP?}/g" /tmp/storageconfig.hcl;
+          /usr/local/bin/docker-entrypoint.sh vault server -config=/tmp/storageconfig.hcl
+        command:
+        - /bin/sh
+        - -ec
+        env:
+        - name: HOST_IP
+          valueFrom:
+            fieldRef:
+              apiVersion: v1
+              fieldPath: status.hostIP
+        - name: POD_IP
+          valueFrom:
+            fieldRef:
+              apiVersion: v1
+              fieldPath: status.podIP
+        - name: VAULT_ADDR
+          value: https://127.0.0.1:8200
+        - name: VAULT_API_ADDR
+          value: https://$(POD_IP):8200
+        - name: SKIP_CHOWN
+          value: "true"
+        - name: SKIP_SETCAP
+          value: "true"
+        envFrom:
+        - secretRef:
+            name: kms
+        image: vault:1.3.2
+        imagePullPolicy: IfNotPresent
+        lifecycle:
+          preStop:
+            exec:
+              command:
+              - /bin/sh
+              - -c
+              - sleep 5 && kill -SIGTERM $(pidof vault)
+        livenessProbe:
+          failureThreshold: 3
+          httpGet:
+            path: /v1/sys/health?standbyok=true
+            port: 8200
+            scheme: HTTPS
+          initialDelaySeconds: 60
+          periodSeconds: 3
+          successThreshold: 1
+          timeoutSeconds: 5
+        name: vault
+        ports:
+        - containerPort: 8200
+          name: https
+          protocol: TCP
+        - containerPort: 8201
+          name: internal
+          protocol: TCP
+        - containerPort: 8202
+          name: replication
+          protocol: TCP
+        readinessProbe:
+          exec:
+            command:
+            - /bin/sh
+            - -ec
+            - vault status -tls-skip-verify
+          failureThreshold: 2
+          initialDelaySeconds: 5
+          periodSeconds: 3
+          successThreshold: 1
+          timeoutSeconds: 5
+        resources: {}
+        securityContext:
+          capabilities:
+            add:
+            - IPC_LOCK
+        terminationMessagePath: /dev/termination-log
+        terminationMessagePolicy: File
+        volumeMounts:
+        - mountPath: /vault/config
+          name: config
+        - mountPath: /etc/tls
+          name: vault-tls
+        - mountPath: /var/run/secrets/kubernetes.io/serviceaccount
+          name: vault-token-dj7qn
+          readOnly: true
+      dnsPolicy: ClusterFirst
+      enableServiceLinks: true
+      hostname: vault-0
+      nodeName: kind-control-plane
+      priority: 0
+      restartPolicy: Always
+      schedulerName: default-scheduler
+      securityContext:
+        fsGroup: 1000
+        runAsGroup: 1000
+        runAsNonRoot: true
+        runAsUser: 100
+      serviceAccount: vault
+      serviceAccountName: vault
+      subdomain: vault
+      terminationGracePeriodSeconds: 10
+      tolerations:
+      - effect: NoExecute
+        key: node.kubernetes.io/not-ready
+        operator: Exists
+        tolerationSeconds: 300
+      - effect: NoExecute
+        key: node.kubernetes.io/unreachable
+        operator: Exists
+        tolerationSeconds: 300
+      volumes:
+      - configMap:
+          defaultMode: 420
+          name: vault-config
+        name: config
+      - name: vault-tls
+        secret:
+          defaultMode: 420
+          secretName: vault-tls
+      - name: vault-token-dj7qn
+        secret:
+          defaultMode: 420
+          secretName: vault-token-dj7qn
+    status:
+      conditions:
+      - lastProbeTime: null
+        lastTransitionTime: "2020-04-27T20:36:33Z"
+        status: "True"
+        type: Initialized
+      - lastProbeTime: null
+        lastTransitionTime: "2020-04-27T20:37:17Z"
+        status: "True"
+        type: Ready
+      - lastProbeTime: null
+        lastTransitionTime: "2020-04-27T20:37:17Z"
+        status: "True"
+        type: ContainersReady
+      - lastProbeTime: null
+        lastTransitionTime: "2020-04-27T20:36:33Z"
+        status: "True"
+        type: PodScheduled
+      containerStatuses:
+      - containerID: containerd://09fec033fd9b5b44a0f6644d4b7b85b835f6c3c1ee0611793bd6c9ac9a071969
+        image: docker.io/library/vault:1.3.2
+        imageID: docker.io/library/vault@sha256:cf9d54f9a5ead66076066e208dbdca2094531036d4b053c596341cefb17ebf95
+        lastState: {}
+        name: vault
+        ready: true
+        restartCount: 0
+        state:
+          running:
+            startedAt: "2020-04-27T20:36:38Z"
+      hostIP: 172.17.0.2
+      phase: Running
+      podIP: 100.200.82.21
+      qosClass: BestEffort
+      startTime: "2020-04-27T20:36:33Z"
+  metadata: {}
+- items:
+  - apiVersion: v1
+    kind: ServiceAccount
+    metadata:
+      creationTimestamp: "2020-04-27T20:36:28Z"
+      labels:
+        app: consul
+      name: consul-server
+      namespace: vault
+      resourceVersion: "2297"
+      selfLink: /api/v1/namespaces/vault/serviceaccounts/consul-server
+      uid: 401223eb-c0d6-4c42-a074-ede8100ba223
+    secrets:
+    - name: consul-server-token-m9glw
+  - apiVersion: v1
+    kind: ServiceAccount
+    metadata:
+      creationTimestamp: "2020-04-27T20:36:28Z"
+      name: default
+      namespace: vault
+      resourceVersion: "1548"
+      selfLink: /api/v1/namespaces/vault/serviceaccounts/default
+      uid: 7d3e08c4-681b-425e-8a38-7a9bdd0b724b
+    secrets:
+    - name: default-token-q7bfk
+  - apiVersion: v1
+    kind: ServiceAccount
+    metadata:
+      creationTimestamp: "2020-04-27T20:36:31Z"
+      labels:
+        app.kubernetes.io/name: vault
+      name: vault
+      namespace: vault
+      resourceVersion: "2309"
+      selfLink: /api/v1/namespaces/vault/serviceaccounts/vault
+      uid: 818eb6c7-dc98-4592-8f78-bb0c4cf62633
+    secrets:
+    - name: vault-token-n7cgp
+  metadata: {}
+- items:
+  - apiVersion: v1
+    kind: Service
+    metadata:
+      creationTimestamp: "2020-04-27T20:36:29Z"
+      labels:
+        app: consul
+      name: consul-dns
+      namespace: vault
+      resourceVersion: "1570"
+      selfLink: /api/v1/namespaces/vault/services/consul-dns
+      uid: 1686324c-25aa-49eb-83e1-1509e1dd92a3
+    spec:
+      clusterIP: 10.101.208.249
+      ports:
+      - name: dns-tcp
+        port: 53
+        protocol: TCP
+        targetPort: dns-tcp
+      - name: dns-udp
+        port: 53
+        protocol: UDP
+        targetPort: dns-udp
+      selector:
+        app: consul
+        hasDNS: "true"
+      sessionAffinity: None
+      type: ClusterIP
+    status:
+      loadBalancer: {}
+  - apiVersion: v1
+    kind: Service
+    metadata:
+      annotations:
+        service.alpha.kubernetes.io/tolerate-unready-endpoints: "true"
+      creationTimestamp: "2020-04-27T20:36:30Z"
+      labels:
+        app: consul
+      name: consul-server
+      namespace: vault
+      resourceVersion: "1573"
+      selfLink: /api/v1/namespaces/vault/services/consul-server
+      uid: 7623abb8-db7b-4229-9f84-73b1568b78a1
+    spec:
+      clusterIP: None
+      ports:
+      - name: http
+        port: 8500
+        protocol: TCP
+        targetPort: 8500
+      - name: serflan-tcp
+        port: 8301
+        protocol: TCP
+        targetPort: 8301
+      - name: serflan-udp
+        port: 8301
+        protocol: UDP
+        targetPort: 8301
+      - name: serfwan-tcp
+        port: 8302
+        protocol: TCP
+        targetPort: 8302
+      - name: serfwan-udp
+        port: 8302
+        protocol: UDP
+        targetPort: 8302
+      - name: server
+        port: 8300
+        protocol: TCP
+        targetPort: 8300
+      - name: dns-tcp
+        port: 8600
+        protocol: TCP
+        targetPort: dns-tcp
+      - name: dns-udp
+        port: 8600
+        protocol: UDP
+        targetPort: dns-udp
+      publishNotReadyAddresses: true
+      selector:
+        app: consul
+        component: server
+      sessionAffinity: None
+      type: ClusterIP
+    status:
+      loadBalancer: {}
+  - apiVersion: v1
+    kind: Service
+    metadata:
+      creationTimestamp: "2020-04-27T20:36:30Z"
+      labels:
+        app: consul
+      name: consul-ui
+      namespace: vault
+      resourceVersion: "1578"
+      selfLink: /api/v1/namespaces/vault/services/consul-ui
+      uid: 6c17b462-01f8-40fb-a253-42e487aaa862
+    spec:
+      clusterIP: 10.102.206.86
+      ports:
+      - name: http
+        port: 80
+        protocol: TCP
+        targetPort: 8500
+      selector:
+        app: consul
+      sessionAffinity: None
+      type: ClusterIP
+    status:
+      loadBalancer: {}
+  - apiVersion: v1
+    kind: Service
+    metadata:
+      annotations:
+        service.alpha.kubernetes.io/tolerate-unready-endpoints: "true"
+      creationTimestamp: "2020-04-27T20:36:32Z"
+      labels:
+        app.kubernetes.io/name: vault
+      name: vault
+      namespace: vault
+      resourceVersion: "1653"
+      selfLink: /api/v1/namespaces/vault/services/vault
+      uid: 47a3f21e-fcbf-442c-a3c1-84eae4a6b7c7
+    spec:
+      clusterIP: 10.103.36.0
+      ports:
+      - name: https
+        port: 8200
+        protocol: TCP
+        targetPort: 8200
+      - name: internal
+        port: 8201
+        protocol: TCP
+        targetPort: 8201
+      publishNotReadyAddresses: true
+      selector:
+        app.kubernetes.io/name: vault
+        component: server
+      sessionAffinity: None
+      type: ClusterIP
+    status:
+      loadBalancer: {}
+  - apiVersion: v1
+    kind: Service
+    metadata:
+      creationTimestamp: "2020-04-27T20:36:33Z"
+      labels:
+        app.kubernetes.io/name: vault-ui
+      name: vault-ui
+      namespace: vault
+      resourceVersion: "1664"
+      selfLink: /api/v1/namespaces/vault/services/vault-ui
+      uid: 0a4c23e8-03d3-4861-ac5e-768948e3aad6
+    spec:
+      clusterIP: 10.111.149.209
+      ports:
+      - name: https
+        port: 8200
+        protocol: TCP
+        targetPort: 8200
+      publishNotReadyAddresses: true
+      selector:
+        app.kubernetes.io/name: vault
+        component: server
+      sessionAffinity: None
+      type: ClusterIP
+    status:
+      loadBalancer: {}
+  metadata: {}
+- items:
+  - apiVersion: apps/v1
+    data:
+      spec:
+        template:
+          $patch: replace
+          metadata:
+            annotations:
+              consul.hashicorp.com/connect-inject: "false"
+            creationTimestamp: null
+            labels:
+              app: consul
+              component: server
+              hasDNS: "true"
+          spec:
+            affinity:
+              podAntiAffinity:
+                preferredDuringSchedulingIgnoredDuringExecution:
+                - podAffinityTerm:
+                    labelSelector:
+                      matchLabels:
+                        app: consul
+                        component: server
+                    topologyKey: kubernetes.io/hostname
+                  weight: 1
+            containers:
+            - command:
+              - /bin/sh
+              - -ec
+              - |
+                CONSUL_FULLNAME="consul"
+
+                exec /bin/consul agent \
+                  -advertise="${POD_IP}" \
+                  -bind=0.0.0.0 \
+                  -bootstrap-expect=3 \
+                  -client=0.0.0.0 \
+                  -config-dir=/consul/config \
+                  -datacenter=vault \
+                  -data-dir=/consul/data \
+                  -domain=consul \
+                  -hcl="connect { enabled = true }" \
+                  -ui \
+                  -retry-join=${CONSUL_FULLNAME}-server-0.${CONSUL_FULLNAME}-server.${NAMESPACE}.svc \
+                  -retry-join=${CONSUL_FULLNAME}-server-1.${CONSUL_FULLNAME}-server.${NAMESPACE}.svc \
+                  -retry-join=${CONSUL_FULLNAME}-server-2.${CONSUL_FULLNAME}-server.${NAMESPACE}.svc \
+                  -server
+              env:
+              - name: POD_IP
+                valueFrom:
+                  fieldRef:
+                    apiVersion: v1
+                    fieldPath: status.podIP
+              - name: NAMESPACE
+                valueFrom:
+                  fieldRef:
+                    apiVersion: v1
+                    fieldPath: metadata.namespace
+              image: consul:1.7.1
+              imagePullPolicy: IfNotPresent
+              lifecycle:
+                preStop:
+                  exec:
+                    command:
+                    - /bin/sh
+                    - -c
+                    - consul leave
+              name: consul
+              ports:
+              - containerPort: 8500
+                name: http
+                protocol: TCP
+              - containerPort: 8301
+                name: serflan
+                protocol: TCP
+              - containerPort: 8302
+                name: serfwan
+                protocol: TCP
+              - containerPort: 8300
+                name: server
+                protocol: TCP
+              - containerPort: 8600
+                name: dns-tcp
+                protocol: TCP
+              - containerPort: 8600
+                name: dns-udp
+                protocol: UDP
+              readinessProbe:
+                exec:
+                  command:
+                  - /bin/sh
+                  - -ec
+                  - |
+                    curl http://127.0.0.1:8500/v1/status/leader \
+                    2>/dev/null | grep -E '".+"'
+                failureThreshold: 2
+                initialDelaySeconds: 5
+                periodSeconds: 3
+                successThreshold: 1
+                timeoutSeconds: 5
+              resources: {}
+              terminationMessagePath: /dev/termination-log
+              terminationMessagePolicy: File
+              volumeMounts:
+              - mountPath: /consul/data
+                name: consul-data
+              - mountPath: /consul/config
+                name: config
+            dnsPolicy: ClusterFirst
+            restartPolicy: Always
+            schedulerName: default-scheduler
+            securityContext:
+              fsGroup: 1000
+            serviceAccount: consul-server
+            serviceAccountName: consul-server
+            terminationGracePeriodSeconds: 30
+            volumes:
+            - configMap:
+                defaultMode: 420
+                name: consul-server-config
+              name: config
+    kind: ControllerRevision
+    metadata:
+      creationTimestamp: "2020-04-27T20:36:30Z"
+      labels:
+        app: consul
+        component: server
+        controller.kubernetes.io/hash: 7ff7f4ccb
+        hasDNS: "true"
+      name: consul-server-7ff7f4ccb
+      namespace: vault
+      ownerReferences:
+      - apiVersion: apps/v1
+        blockOwnerDeletion: true
+        controller: true
+        kind: StatefulSet
+        name: consul-server
+        uid: 514b1295-bf55-4850-bfe0-2b012661cacb
+      resourceVersion: "1588"
+      selfLink: /apis/apps/v1/namespaces/vault/controllerrevisions/consul-server-7ff7f4ccb
+      uid: a357c10e-00fd-4b62-9e77-7b82daea596f
+    revision: 1
+  - apiVersion: apps/v1
+    data:
+      spec:
+        template:
+          $patch: replace
+          metadata:
+            creationTimestamp: null
+            labels:
+              app.kubernetes.io/name: vault
+              component: server
+          spec:
+            affinity:
+              podAntiAffinity:
+                preferredDuringSchedulingIgnoredDuringExecution:
+                - podAffinityTerm:
+                    labelSelector:
+                      matchLabels:
+                        app.kubernetes.io/name: vault
+                        component: server
+                    topologyKey: kubernetes.io/hostname
+                  weight: 1
+            containers:
+            - args:
+              - |
+                sed -E "s/HOST_IP/${HOST_IP?}/g" /vault/config/extraconfig-from-values.hcl > /tmp/storageconfig.hcl;
+                sed -Ei "s/POD_IP/${POD_IP?}/g" /tmp/storageconfig.hcl;
+                /usr/local/bin/docker-entrypoint.sh vault server -config=/tmp/storageconfig.hcl
+              command:
+              - /bin/sh
+              - -ec
+              env:
+              - name: HOST_IP
+                valueFrom:
+                  fieldRef:
+                    apiVersion: v1
+                    fieldPath: status.hostIP
+              - name: POD_IP
+                valueFrom:
+                  fieldRef:
+                    apiVersion: v1
+                    fieldPath: status.podIP
+              - name: VAULT_ADDR
+                value: https://127.0.0.1:8200
+              - name: VAULT_API_ADDR
+                value: https://$(POD_IP):8200
+              - name: SKIP_CHOWN
+                value: "true"
+              - name: SKIP_SETCAP
+                value: "true"
+              envFrom:
+              - secretRef:
+                  name: kms
+              image: vault:1.3.2
+              imagePullPolicy: IfNotPresent
+              lifecycle:
+                preStop:
+                  exec:
+                    command:
+                    - /bin/sh
+                    - -c
+                    - sleep 5 && kill -SIGTERM $(pidof vault)
+              livenessProbe:
+                failureThreshold: 3
+                httpGet:
+                  path: /v1/sys/health?standbyok=true
+                  port: 8200
+                  scheme: HTTPS
+                initialDelaySeconds: 60
+                periodSeconds: 3
+                successThreshold: 1
+                timeoutSeconds: 5
+              name: vault
+              ports:
+              - containerPort: 8200
+                name: https
+                protocol: TCP
+              - containerPort: 8201
+                name: internal
+                protocol: TCP
+              - containerPort: 8202
+                name: replication
+                protocol: TCP
+              readinessProbe:
+                exec:
+                  command:
+                  - /bin/sh
+                  - -ec
+                  - vault status -tls-skip-verify
+                failureThreshold: 2
+                initialDelaySeconds: 5
+                periodSeconds: 3
+                successThreshold: 1
+                timeoutSeconds: 5
+              resources: {}
+              securityContext:
+                capabilities:
+                  add:
+                  - IPC_LOCK
+              terminationMessagePath: /dev/termination-log
+              terminationMessagePolicy: File
+              volumeMounts:
+              - mountPath: /vault/config
+                name: config
+              - mountPath: /etc/tls
+                name: vault-tls
+            dnsPolicy: ClusterFirst
+            restartPolicy: Always
+            schedulerName: default-scheduler
+            securityContext:
+              fsGroup: 1000
+              runAsGroup: 1000
+              runAsNonRoot: true
+              runAsUser: 100
+            serviceAccount: vault
+            serviceAccountName: vault
+            terminationGracePeriodSeconds: 10
+            volumes:
+            - configMap:
+                defaultMode: 420
+                name: vault-config
+              name: config
+            - name: vault-tls
+              secret:
+                defaultMode: 420
+                secretName: vault-tls
+    kind: ControllerRevision
+    metadata:
+      creationTimestamp: "2020-04-27T20:36:33Z"
+      labels:
+        app.kubernetes.io/name: vault
+        component: server
+        controller.kubernetes.io/hash: 8b97d856b
+      name: vault-8b97d856b
+      namespace: vault
+      ownerReferences:
+      - apiVersion: apps/v1
+        blockOwnerDeletion: true
+        controller: true
+        kind: StatefulSet
+        name: vault
+        uid: b06b7620-a141-4065-baf7-2101eea6df58
+      resourceVersion: "1670"
+      selfLink: /apis/apps/v1/namespaces/vault/controllerrevisions/vault-8b97d856b
+      uid: f038272e-56c4-4f1b-a410-3bddb280c05b
+    revision: 1
+  metadata: {}
+- items:
+  - apiVersion: apps/v1
+    kind: StatefulSet
+    metadata:
+      creationTimestamp: "2020-04-27T20:36:30Z"
+      generation: 1
+      labels:
+        app: consul
+        component: server
+      name: consul-server
+      namespace: vault
+      resourceVersion: "1984"
+      selfLink: /apis/apps/v1/namespaces/vault/statefulsets/consul-server
+      uid: 514b1295-bf55-4850-bfe0-2b012661cacb
+    spec:
+      podManagementPolicy: Parallel
+      replicas: 3
+      revisionHistoryLimit: 10
+      selector:
+        matchLabels:
+          app: consul
+          component: server
+          hasDNS: "true"
+      serviceName: consul-server
+      template:
+        metadata:
+          annotations:
+            consul.hashicorp.com/connect-inject: "false"
+          creationTimestamp: null
+          labels:
+            app: consul
+            component: server
+            hasDNS: "true"
+        spec:
+          affinity:
+            podAntiAffinity:
+              preferredDuringSchedulingIgnoredDuringExecution:
+              - podAffinityTerm:
+                  labelSelector:
+                    matchLabels:
+                      app: consul
+                      component: server
+                  topologyKey: kubernetes.io/hostname
+                weight: 1
+          containers:
+          - command:
+            - /bin/sh
+            - -ec
+            - |
+              CONSUL_FULLNAME="consul"
+
+              exec /bin/consul agent \
+                -advertise="${POD_IP}" \
+                -bind=0.0.0.0 \
+                -bootstrap-expect=3 \
+                -client=0.0.0.0 \
+                -config-dir=/consul/config \
+                -datacenter=vault \
+                -data-dir=/consul/data \
+                -domain=consul \
+                -hcl="connect { enabled = true }" \
+                -ui \
+                -retry-join=${CONSUL_FULLNAME}-server-0.${CONSUL_FULLNAME}-server.${NAMESPACE}.svc \
+                -retry-join=${CONSUL_FULLNAME}-server-1.${CONSUL_FULLNAME}-server.${NAMESPACE}.svc \
+                -retry-join=${CONSUL_FULLNAME}-server-2.${CONSUL_FULLNAME}-server.${NAMESPACE}.svc \
+                -server
+            env:
+            - name: POD_IP
+              valueFrom:
+                fieldRef:
+                  apiVersion: v1
+                  fieldPath: status.podIP
+            - name: NAMESPACE
+              valueFrom:
+                fieldRef:
+                  apiVersion: v1
+                  fieldPath: metadata.namespace
+            image: consul:1.7.1
+            imagePullPolicy: IfNotPresent
+            lifecycle:
+              preStop:
+                exec:
+                  command:
+                  - /bin/sh
+                  - -c
+                  - consul leave
+            name: consul
+            ports:
+            - containerPort: 8500
+              name: http
+              protocol: TCP
+            - containerPort: 8301
+              name: serflan
+              protocol: TCP
+            - containerPort: 8302
+              name: serfwan
+              protocol: TCP
+            - containerPort: 8300
+              name: server
+              protocol: TCP
+            - containerPort: 8600
+              name: dns-tcp
+              protocol: TCP
+            - containerPort: 8600
+              name: dns-udp
+              protocol: UDP
+            readinessProbe:
+              exec:
+                command:
+                - /bin/sh
+                - -ec
+                - |
+                  curl http://127.0.0.1:8500/v1/status/leader \
+                  2>/dev/null | grep -E '".+"'
+              failureThreshold: 2
+              initialDelaySeconds: 5
+              periodSeconds: 3
+              successThreshold: 1
+              timeoutSeconds: 5
+            resources: {}
+            terminationMessagePath: /dev/termination-log
+            terminationMessagePolicy: File
+            volumeMounts:
+            - mountPath: /consul/data
+              name: consul-data
+            - mountPath: /consul/config
+              name: config
+          dnsPolicy: ClusterFirst
+          restartPolicy: Always
+          schedulerName: default-scheduler
+          securityContext:
+            fsGroup: 1000
+          serviceAccount: consul-server
+          serviceAccountName: consul-server
+          terminationGracePeriodSeconds: 30
+          volumes:
+          - configMap:
+              defaultMode: 420
+              name: consul-server-config
+            name: config
+      updateStrategy:
+        rollingUpdate:
+          partition: 0
+        type: RollingUpdate
+      volumeClaimTemplates:
+      - metadata:
+          creationTimestamp: null
+          name: consul-data
+        spec:
+          accessModes:
+          - ReadWriteOnce
+          resources:
+            requests:
+              storage: 10Gi
+          volumeMode: Filesystem
+        status:
+          phase: Pending
+    status:
+      collisionCount: 0
+      currentReplicas: 3
+      currentRevision: consul-server-7ff7f4ccb
+      observedGeneration: 1
+      readyReplicas: 3
+      replicas: 3
+      updateRevision: consul-server-7ff7f4ccb
+      updatedReplicas: 3
+  - apiVersion: apps/v1
+    kind: StatefulSet
+    metadata:
+      creationTimestamp: "2020-04-27T20:36:33Z"
+      generation: 1
+      labels:
+        app.kubernetes.io/name: vault
+      name: vault
+      namespace: vault
+      resourceVersion: "1997"
+      selfLink: /apis/apps/v1/namespaces/vault/statefulsets/vault
+      uid: b06b7620-a141-4065-baf7-2101eea6df58
+    spec:
+      podManagementPolicy: Parallel
+      replicas: 1
+      revisionHistoryLimit: 10
+      selector:
+        matchLabels:
+          app.kubernetes.io/name: vault
+          component: server
+      serviceName: vault
+      template:
+        metadata:
+          creationTimestamp: null
+          labels:
+            app.kubernetes.io/name: vault
+            component: server
+        spec:
+          affinity:
+            podAntiAffinity:
+              preferredDuringSchedulingIgnoredDuringExecution:
+              - podAffinityTerm:
+                  labelSelector:
+                    matchLabels:
+                      app.kubernetes.io/name: vault
+                      component: server
+                  topologyKey: kubernetes.io/hostname
+                weight: 1
+          containers:
+          - args:
+            - |
+              sed -E "s/HOST_IP/${HOST_IP?}/g" /vault/config/extraconfig-from-values.hcl > /tmp/storageconfig.hcl;
+              sed -Ei "s/POD_IP/${POD_IP?}/g" /tmp/storageconfig.hcl;
+              /usr/local/bin/docker-entrypoint.sh vault server -config=/tmp/storageconfig.hcl
+            command:
+            - /bin/sh
+            - -ec
+            env:
+            - name: HOST_IP
+              valueFrom:
+                fieldRef:
+                  apiVersion: v1
+                  fieldPath: status.hostIP
+            - name: POD_IP
+              valueFrom:
+                fieldRef:
+                  apiVersion: v1
+                  fieldPath: status.podIP
+            - name: VAULT_ADDR
+              value: https://127.0.0.1:8200
+            - name: VAULT_API_ADDR
+              value: https://$(POD_IP):8200
+            - name: SKIP_CHOWN
+              value: "true"
+            - name: SKIP_SETCAP
+              value: "true"
+            envFrom:
+            - secretRef:
+                name: kms
+            image: vault:1.3.2
+            imagePullPolicy: IfNotPresent
+            lifecycle:
+              preStop:
+                exec:
+                  command:
+                  - /bin/sh
+                  - -c
+                  - sleep 5 && kill -SIGTERM $(pidof vault)
+            livenessProbe:
+              failureThreshold: 3
+              httpGet:
+                path: /v1/sys/health?standbyok=true
+                port: 8200
+                scheme: HTTPS
+              initialDelaySeconds: 60
+              periodSeconds: 3
+              successThreshold: 1
+              timeoutSeconds: 5
+            name: vault
+            ports:
+            - containerPort: 8200
+              name: https
+              protocol: TCP
+            - containerPort: 8201
+              name: internal
+              protocol: TCP
+            - containerPort: 8202
+              name: replication
+              protocol: TCP
+            readinessProbe:
+              exec:
+                command:
+                - /bin/sh
+                - -ec
+                - vault status -tls-skip-verify
+              failureThreshold: 2
+              initialDelaySeconds: 5
+              periodSeconds: 3
+              successThreshold: 1
+              timeoutSeconds: 5
+            resources: {}
+            securityContext:
+              capabilities:
+                add:
+                - IPC_LOCK
+            terminationMessagePath: /dev/termination-log
+            terminationMessagePolicy: File
+            volumeMounts:
+            - mountPath: /vault/config
+              name: config
+            - mountPath: /etc/tls
+              name: vault-tls
+          dnsPolicy: ClusterFirst
+          restartPolicy: Always
+          schedulerName: default-scheduler
+          securityContext:
+            fsGroup: 1000
+            runAsGroup: 1000
+            runAsNonRoot: true
+            runAsUser: 100
+          serviceAccount: vault
+          serviceAccountName: vault
+          terminationGracePeriodSeconds: 10
+          volumes:
+          - configMap:
+              defaultMode: 420
+              name: vault-config
+            name: config
+          - name: vault-tls
+            secret:
+              defaultMode: 420
+              secretName: vault-tls
+      updateStrategy:
+        type: OnDelete
+    status:
+      collisionCount: 0
+      currentReplicas: 1
+      currentRevision: vault-8b97d856b
+      observedGeneration: 1
+      readyReplicas: 1
+      replicas: 1
+      updateRevision: vault-8b97d856b
+      updatedReplicas: 1
+  metadata: {}
+- items:
+  - apiVersion: cert-manager.io/v1alpha2
+    kind: CertificateRequest
+    metadata:
+      annotations:
+        cert-manager.io/certificate-name: consul-tls
+        cert-manager.io/private-key-secret-name: consul-tls
+      creationTimestamp: "2020-04-27T20:36:34Z"
+      generation: 1
+      labels:
+        app.kubernetes.io/name: vault
+      name: consul-tls-2602614039
+      namespace: vault
+      ownerReferences:
+      - apiVersion: cert-manager.io/v1alpha2
+        blockOwnerDeletion: true
+        controller: true
+        kind: Certificate
+        name: consul-tls
+        uid: 0bc4cb8a-027d-414c-af82-1c6a6e81dca6
+      resourceVersion: "1728"
+      selfLink: /apis/cert-manager.io/v1alpha2/namespaces/vault/certificaterequests/consul-tls-2602614039
+      uid: 936185c2-6698-4b21-885d-f8394768d73c
+    spec:
+      csr: LS0tLS1CRUdJTiBDRVJUSUZJQ0FURSBSRVFVRVNULS0tLS0KTUlJQ2x6Q0NBWDhDQVFBd0Z6RVZNQk1HQTFVRUNoTU1ZMlZ5ZEMxdFlXNWhaMlZ5TUlJQklqQU5CZ2txaGtpRwo5dzBCQVFFRkFBT0NBUThBTUlJQkNnS0NBUUVBbjBoSno3SkFpY0c3ejRvYXJWaHNZbVE2VitIYndxcU9PVmVSCjJ2TExubk1BZno3K1VUOGNPL3kzd0RqZ1RYYndXbytLdGhhNlQ0eURGYjFaUVE0cG1rdmYyd2JpUVFzNUlYdW8KR0hYN3N4WUkzWEpxVDRISnB3Z2E0c2NzN2p5TXd2dTcrUnlCenZwc2JCMnV4MWlqRVNVR0grbFYwQ1M1Rlc1bwpxZ1BRSnRBaVpXUG90b1JuWmUxUmY3cmxrYXE3RHZGaE01L2ZXdy9MNHVld2NydVdMekVzb0g0czNRd25rQ1NlCjRvT2p3MXFCaW44bG0rT0FnNWd2VFNoUVdqWUpUdTYzU0paZUNRRHNkMkdrZWd4TTRaLzFuVGFSR0JwZ2ZNL3UKRGY2TklRVktiRHJvT2FVTmVNVTNrSzQ5c2NldnhwT29VU296NWN0dThUTmRtMXdEc3dJREFRQUJvRHN3T1FZSgpLb1pJaHZjTkFRa09NU3d3S2pBb0JnTlZIUkVFSVRBZmdoMTJZWFZzZEMxamIyNXpkV3d1TVRJM0xqQXVNQzR4CkxtNXBjQzVwYnpBTkJna3Foa2lHOXcwQkFRc0ZBQU9DQVFFQUMwc1JQRkpWYjhXeUQ0UWkxeG1WMmlsaVJVSjQKdmpEcVVYTWhGMElRMHU1SDVydFRaZzl6UXorcjZpMmwyN1U5NXFOcG5jVjhYODZyZlk1L2t5THpTeURQcmxDMwo1MmUyUW4zWXBqTUoxaVZlNG1oMElicWdtNmZ2bHNGcXY3UmdOZCt5TnJTcjBPZ3hYN0p1aERrYkNSbHRDMzFjCnhMb2NNNSsremFCR3psWDlXbzE5dzRmVzZDb3RPQW5LWFNEWndkQzFwSFhmcitueUVFczJwRjBSU0ZiMTkwN2gKNGhWUlE4TTVhSkFqNW56cjQvbFJQejFwT0pEdFFEYWlDTk10UHZlODVTcjAwUmpKeEwzeXlibVJqS3gyUHl1MgptS3BaVURSODFuWlkvak1zcDl2SFpEL2gxS0ErelZpVkFJMDBVYUhZaGFtQVVuY29wVDI0USs0QlpnPT0KLS0tLS1FTkQgQ0VSVElGSUNBVEUgUkVRVUVTVC0tLS0tCg==
+      issuerRef:
+        group: cert-manager.io
+        kind: ClusterIssuer
+        name: ingress-ca
+    status:
+      ca: LS0tLS1CRUdJTiBDRVJUSUZJQ0FURS0tLS0tCk1JSUMwakNDQWJxZ0F3SUJBZ0lJTTJrUWVscjYycTh3RFFZSktvWklodmNOQVFFTEJRQXdGVEVUTUJFR0ExVUUKQXhNS2FXNW5jbVZ6Y3kxallUQWVGdzB5TURBME1qY3lNREU0TURaYUZ3MHlNVEEwTWpZeU1ETXpNRFphTUJVeApFekFSQmdOVkJBTVRDbWx1WjNKbGMzTXRZMkV3Z2dFaU1BMEdDU3FHU0liM0RRRUJBUVVBQTRJQkR3QXdnZ0VLCkFvSUJBUUR6SXdlRnFIYktoRjNCWUdDaTFCOXAwNmNOVU1Hc2MyMm9lWVcvYmlqZmkvMWRRR3ViOHVBRnNPVG4KMTBHc0EvbzZxd25MS1BtT2k1U3Y3MzVlRGpPMThxSXMwcUhrdkVmbG8xVXdKZGw2Y3ZVU1ZDYTNlbStsU28xUwpEY1dxeDJuRlFjUVgxOEluc2dLYnhQZGY5UE5uQkM4QnE0L2ZPQTRoM1BBNTJEUHQxVGFCODNZZFhMdVNnMzZUCmUwTWI3ZnNadDRGZDMxWTArK0kxQklLc0dWWk0rejQxVlYrcWlucFpsTkZhQ0F4d2VwTnJPMGhXOUoxRlh0akYKTSsrYVR5bHNCQlJmV1FRcFFIZXAvME4vSzBZNDVPeURQVmdJNWp5a2d1VzM0aFZJRGYya3ViYldXMmJObVpIUAorVUI1MkZxSFpRemxWU1ZYMWhiSVI2Wm5lZzMzQWdNQkFBR2pKakFrTUE0R0ExVWREd0VCL3dRRUF3SUNwREFTCkJnTlZIUk1CQWY4RUNEQUdBUUgvQWdFQU1BMEdDU3FHU0liM0RRRUJDd1VBQTRJQkFRQ2Ura0VsWlZrZEdvVGcKVkVOQkhERGJYMkY5N0FmRDFMcjlaWTVlMHFORVJlZnpvSElJdGJrN00reXk3QTRLNzJkcHBzdlYya0ZtMXhZcApnd1o1OGZKWGtSSk5XQjlOMjNIcHVJUXdzZmVFTkpBYk8yL1UrWEZVdnBZMitaazQ5bE5oUEZWZFBjcS9nTXdSCkQ2Y2hWckF6L3NvLzh2V0h3WDREOTBQL01vd0dWQ2F4aENEWVZDRGt1WERKeGdwdnEvSDlQaXU3YlNYUjd1TVEKb3Z4V0QxN1BuN2xmdXFSbitjT2xmMVdmTXlQUmJXNHY1bGVjb0J0SGdZUkhsMG9PVU5SVXdJTHIydkkrczkzTwpjMmVPQ3dLZU9iWGllSUU3RjRGVWs2cGNUdjFBbDRjRXlzK2IyVWFxek96SndlY3J0ZUh5Z2ZTYjBWVE1mL3BwCmEzd3hZV0VDCi0tLS0tRU5EIENFUlRJRklDQVRFLS0tLS0K
+      certificate: LS0tLS1CRUdJTiBDRVJUSUZJQ0FURS0tLS0tCk1JSURGVENDQWYyZ0F3SUJBZ0lRS2xhNm1xUDI5aHBTSVREZGpRR0FHVEFOQmdrcWhraUc5dzBCQVFzRkFEQVYKTVJNd0VRWURWUVFERXdwcGJtZHlaWE56TFdOaE1CNFhEVEl3TURReU56SXdNell6TkZvWERUSXdNRGN5TmpJdwpNell6TkZvd0Z6RVZNQk1HQTFVRUNoTU1ZMlZ5ZEMxdFlXNWhaMlZ5TUlJQklqQU5CZ2txaGtpRzl3MEJBUUVGCkFBT0NBUThBTUlJQkNnS0NBUUVBbjBoSno3SkFpY0c3ejRvYXJWaHNZbVE2VitIYndxcU9PVmVSMnZMTG5uTUEKZno3K1VUOGNPL3kzd0RqZ1RYYndXbytLdGhhNlQ0eURGYjFaUVE0cG1rdmYyd2JpUVFzNUlYdW9HSFg3c3hZSQozWEpxVDRISnB3Z2E0c2NzN2p5TXd2dTcrUnlCenZwc2JCMnV4MWlqRVNVR0grbFYwQ1M1Rlc1b3FnUFFKdEFpClpXUG90b1JuWmUxUmY3cmxrYXE3RHZGaE01L2ZXdy9MNHVld2NydVdMekVzb0g0czNRd25rQ1NlNG9PancxcUIKaW44bG0rT0FnNWd2VFNoUVdqWUpUdTYzU0paZUNRRHNkMkdrZWd4TTRaLzFuVGFSR0JwZ2ZNL3VEZjZOSVFWSwpiRHJvT2FVTmVNVTNrSzQ5c2NldnhwT29VU296NWN0dThUTmRtMXdEc3dJREFRQUJvMTh3WFRBT0JnTlZIUThCCkFmOEVCQU1DQmFBd0V3WURWUjBsQkF3d0NnWUlLd1lCQlFVSEF3RXdEQVlEVlIwVEFRSC9CQUl3QURBb0JnTlYKSFJFRUlUQWZnaDEyWVhWc2RDMWpiMjV6ZFd3dU1USTNMakF1TUM0eExtNXBjQzVwYnpBTkJna3Foa2lHOXcwQgpBUXNGQUFPQ0FRRUFGU0NtQ2V6cm1MaHZKWXZnQUdnQXhNWStsTmR3cFRKdVpnR012am1nb3ZEZFJ0V2Z1WjJ4Cis4bEJkekJXUGpDc0xTWW80ZGtGbTBVRVRFRndERThIaHd4VlM0T2thdFE3UnQ4QUtjeHB1VlRyM0g5SzlDS08KVi84aGZDMm9xUGpSR0JQTG5oSHRkSmFXeDFqdFZ0OVNDQ2J3OWZTTHZ1L3EyT1lRaTZCRERoS3ZhT1EwUS9xcwp1UnpVREpmWHFYY05hZmgwcjcxekwzM0htR3VqK2YvdkJ4WGFWTW4weVJsQ2tqL3o5Wk9TU0k5S1FWNWhRUFJVCmtROGhTRE5xMC85ZGU0bWhqQTY2OElQMTBWdWI4Z1RyRkU1WkdFU284V3REaFp1a040VzhsQ1gyR2FXdElMZDYKTHpIaHVtcXA5TDF3RXRSeWtHdXpGd0RVN0cwbG5qOXFQdz09Ci0tLS0tRU5EIENFUlRJRklDQVRFLS0tLS0K
+      conditions:
+      - lastTransitionTime: "2020-04-27T20:36:34Z"
+        message: Certificate fetched from issuer successfully
+        reason: Issued
+        status: "True"
+        type: Ready
+  - apiVersion: cert-manager.io/v1alpha2
+    kind: CertificateRequest
+    metadata:
+      annotations:
+        cert-manager.io/certificate-name: vault-tls
+        cert-manager.io/private-key-secret-name: vault-tls
+      creationTimestamp: "2020-04-27T20:36:34Z"
+      generation: 1
+      labels:
+        app.kubernetes.io/name: vault
+      name: vault-tls-4180427396
+      namespace: vault
+      ownerReferences:
+      - apiVersion: cert-manager.io/v1alpha2
+        blockOwnerDeletion: true
+        controller: true
+        kind: Certificate
+        name: vault-tls
+        uid: 5b391fe0-d01d-4a17-a4f7-ba8fa39b8d91
+      resourceVersion: "1690"
+      selfLink: /apis/cert-manager.io/v1alpha2/namespaces/vault/certificaterequests/vault-tls-4180427396
+      uid: 52069916-ab6a-4919-895c-98da71152f26
+    spec:
+      csr: LS0tLS1CRUdJTiBDRVJUSUZJQ0FURSBSRVFVRVNULS0tLS0KTUlJQ2tEQ0NBWGdDQVFBd0Z6RVZNQk1HQTFVRUNoTU1ZMlZ5ZEMxdFlXNWhaMlZ5TUlJQklqQU5CZ2txaGtpRwo5dzBCQVFFRkFBT0NBUThBTUlJQkNnS0NBUUVBNlpOOWo0WHZVV1hndHlKQzlkNEZRM1RBWG41dTVhOFlKdjE2Ckd1UGwvMzV6UGlkTU93K21oQ2ZuRk9nSG9vY1FldzMvRURTRmhXZ2FRVEdtcXZGTnMzbHNNQU5ibmMzcU1md3QKQTljKzdjSDNHSHphd1JaV2VDSjRMeTJHOHFuSEpmdnVtbS8vdUwraExNK01SWmdCRm1YYlFZR3FOMkxsMlBUSgpaNU5HMnZhU2hGOXNnTkpWcUtXWFR2OGlQUFdmNktEUW5lSm9hVmJhekExbW1uZFNicFpMT0lmYi93cmh4cy9nClRJSlBtRVJOSXJBUnVmSTR0aFlNc1hYem5KeW9JVXVXQVNwamhwbUNGeDNDR09kNElDMlVKYTV5SVVjZWtDZGgKZHM5MndLWGtmTUVKTC9CUmZpVWxqeE1KdkhHNWp2bVpTWEdtbC9mR1ZUWHlyZlJPQlFJREFRQUJvRFF3TWdZSgpLb1pJaHZjTkFRa09NU1V3SXpBaEJnTlZIUkVFR2pBWWdoWjJZWFZzZEM0eE1qY3VNQzR3TGpFdWJtbHdMbWx2Ck1BMEdDU3FHU0liM0RRRUJDd1VBQTRJQkFRQzBmU1d1UFkyZlpUMmN0Zk5zNDgyU0p6c3NrSkppbnNkZTQ3QlMKT1d0ODJCNDVXQTBPcHQzL3l6dUZSMTJOeFFyampZL0NUTGZPcVRpQm8rc0ZQQlBXR3NWb0puSitKRFp1eFQyTApZY3hMVWE0amxsVkp1U21tV3ZqTDZxbDJTcDNWVytJYjZQYmV2UWtseEFETWZyc3lUMm5CcnhDME9XejJ4ZUxnCk1sWHlZUmQvVUltVkw5SHBtaUszR2lIUXcwRENWdFFhbWRkMEJacmtNN2FnblFuQndmV1FpZnk4OUZyUFhmM0gKSjZzaWovbVh2REN3d2ZKVjErWkpxUHphQVVzdVhSajVYMDJSbWZCUlo2MmtoMWFUMzBwN2RWc2NCZTZVdmVQZQo0ZFZCTFhKZkZXU0VMN2JZSkJ2Zk1qZk1ENmxBNjRRb1E3N01FSjBmdC9QYitETG4KLS0tLS1FTkQgQ0VSVElGSUNBVEUgUkVRVUVTVC0tLS0tCg==
+      issuerRef:
+        group: cert-manager.io
+        kind: ClusterIssuer
+        name: ingress-ca
+    status:
+      ca: LS0tLS1CRUdJTiBDRVJUSUZJQ0FURS0tLS0tCk1JSUMwakNDQWJxZ0F3SUJBZ0lJTTJrUWVscjYycTh3RFFZSktvWklodmNOQVFFTEJRQXdGVEVUTUJFR0ExVUUKQXhNS2FXNW5jbVZ6Y3kxallUQWVGdzB5TURBME1qY3lNREU0TURaYUZ3MHlNVEEwTWpZeU1ETXpNRFphTUJVeApFekFSQmdOVkJBTVRDbWx1WjNKbGMzTXRZMkV3Z2dFaU1BMEdDU3FHU0liM0RRRUJBUVVBQTRJQkR3QXdnZ0VLCkFvSUJBUUR6SXdlRnFIYktoRjNCWUdDaTFCOXAwNmNOVU1Hc2MyMm9lWVcvYmlqZmkvMWRRR3ViOHVBRnNPVG4KMTBHc0EvbzZxd25MS1BtT2k1U3Y3MzVlRGpPMThxSXMwcUhrdkVmbG8xVXdKZGw2Y3ZVU1ZDYTNlbStsU28xUwpEY1dxeDJuRlFjUVgxOEluc2dLYnhQZGY5UE5uQkM4QnE0L2ZPQTRoM1BBNTJEUHQxVGFCODNZZFhMdVNnMzZUCmUwTWI3ZnNadDRGZDMxWTArK0kxQklLc0dWWk0rejQxVlYrcWlucFpsTkZhQ0F4d2VwTnJPMGhXOUoxRlh0akYKTSsrYVR5bHNCQlJmV1FRcFFIZXAvME4vSzBZNDVPeURQVmdJNWp5a2d1VzM0aFZJRGYya3ViYldXMmJObVpIUAorVUI1MkZxSFpRemxWU1ZYMWhiSVI2Wm5lZzMzQWdNQkFBR2pKakFrTUE0R0ExVWREd0VCL3dRRUF3SUNwREFTCkJnTlZIUk1CQWY4RUNEQUdBUUgvQWdFQU1BMEdDU3FHU0liM0RRRUJDd1VBQTRJQkFRQ2Ura0VsWlZrZEdvVGcKVkVOQkhERGJYMkY5N0FmRDFMcjlaWTVlMHFORVJlZnpvSElJdGJrN00reXk3QTRLNzJkcHBzdlYya0ZtMXhZcApnd1o1OGZKWGtSSk5XQjlOMjNIcHVJUXdzZmVFTkpBYk8yL1UrWEZVdnBZMitaazQ5bE5oUEZWZFBjcS9nTXdSCkQ2Y2hWckF6L3NvLzh2V0h3WDREOTBQL01vd0dWQ2F4aENEWVZDRGt1WERKeGdwdnEvSDlQaXU3YlNYUjd1TVEKb3Z4V0QxN1BuN2xmdXFSbitjT2xmMVdmTXlQUmJXNHY1bGVjb0J0SGdZUkhsMG9PVU5SVXdJTHIydkkrczkzTwpjMmVPQ3dLZU9iWGllSUU3RjRGVWs2cGNUdjFBbDRjRXlzK2IyVWFxek96SndlY3J0ZUh5Z2ZTYjBWVE1mL3BwCmEzd3hZV0VDCi0tLS0tRU5EIENFUlRJRklDQVRFLS0tLS0K
+      certificate: LS0tLS1CRUdJTiBDRVJUSUZJQ0FURS0tLS0tCk1JSUREakNDQWZhZ0F3SUJBZ0lRSGZNTWJ1bCtlVm1zVTR2Yzl3QUh1ekFOQmdrcWhraUc5dzBCQVFzRkFEQVYKTVJNd0VRWURWUVFERXdwcGJtZHlaWE56TFdOaE1CNFhEVEl3TURReU56SXdNell6TkZvWERUSXdNRGN5TmpJdwpNell6TkZvd0Z6RVZNQk1HQTFVRUNoTU1ZMlZ5ZEMxdFlXNWhaMlZ5TUlJQklqQU5CZ2txaGtpRzl3MEJBUUVGCkFBT0NBUThBTUlJQkNnS0NBUUVBNlpOOWo0WHZVV1hndHlKQzlkNEZRM1RBWG41dTVhOFlKdjE2R3VQbC8zNXoKUGlkTU93K21oQ2ZuRk9nSG9vY1FldzMvRURTRmhXZ2FRVEdtcXZGTnMzbHNNQU5ibmMzcU1md3RBOWMrN2NIMwpHSHphd1JaV2VDSjRMeTJHOHFuSEpmdnVtbS8vdUwraExNK01SWmdCRm1YYlFZR3FOMkxsMlBUSlo1TkcydmFTCmhGOXNnTkpWcUtXWFR2OGlQUFdmNktEUW5lSm9hVmJhekExbW1uZFNicFpMT0lmYi93cmh4cy9nVElKUG1FUk4KSXJBUnVmSTR0aFlNc1hYem5KeW9JVXVXQVNwamhwbUNGeDNDR09kNElDMlVKYTV5SVVjZWtDZGhkczkyd0tYawpmTUVKTC9CUmZpVWxqeE1KdkhHNWp2bVpTWEdtbC9mR1ZUWHlyZlJPQlFJREFRQUJvMWd3VmpBT0JnTlZIUThCCkFmOEVCQU1DQmFBd0V3WURWUjBsQkF3d0NnWUlLd1lCQlFVSEF3RXdEQVlEVlIwVEFRSC9CQUl3QURBaEJnTlYKSFJFRUdqQVlnaFoyWVhWc2RDNHhNamN1TUM0d0xqRXVibWx3TG1sdk1BMEdDU3FHU0liM0RRRUJDd1VBQTRJQgpBUUFOMVRvYjRzQ3FpUWJFcHlNSHA3NXNhVlFnQmxsSjFpTTB0eVpNNGNHSnlwU0NtZ2Y1RXR0bHV3QzFMdThaCk1NZGM5NnhQeUQ5aCtuWWhEZGFkcmc4SGNVYXRkZ3gvWEdKRWZsZHc1RDlrNk44OG5rKzk3QnBnWkRnNXp1TWYKVlNreFVNTi80eXQvcFZHZ0VBanpRMGw3S0dyaWNtT1hkQ1RVczZvYzVsdmNzTTBROUxpNEZLV2k1U2RoZkJXSgpUeWUwcDNYOUgzdXFHd0t3RzBXU2xGcElrWXJnVjFOL0pBQUlTWUc1S0UySFhuRVV1RTVEWjJ3K2N6NGlrSDlkCkhjSUo1enpkTDljTWRSbjhHUkRVT0paZDNrdmMzQ29xMUI1Y0RjRjZwUEpKNWw4cGZYd3JwTFBOdXdpQ1hZR2MKdVN1MW9yNGYvaWVlTzFSbk5rUG1Qd0ExCi0tLS0tRU5EIENFUlRJRklDQVRFLS0tLS0K
+      conditions:
+      - lastTransitionTime: "2020-04-27T20:36:34Z"
+        message: Certificate fetched from issuer successfully
+        reason: Issued
+        status: "True"
+        type: Ready
+  metadata: {}
+- items:
+  - apiVersion: cert-manager.io/v1alpha2
+    kind: Certificate
+    metadata:
+      creationTimestamp: "2020-04-27T20:36:34Z"
+      generation: 1
+      labels:
+        app.kubernetes.io/name: vault
+      name: consul-tls
+      namespace: vault
+      ownerReferences:
+      - apiVersion: extensions/v1beta1
+        blockOwnerDeletion: true
+        controller: true
+        kind: Ingress
+        name: consul
+        uid: 470fa6e3-6452-4610-a678-56dcf2594155
+      resourceVersion: "1731"
+      selfLink: /apis/cert-manager.io/v1alpha2/namespaces/vault/certificates/consul-tls
+      uid: 0bc4cb8a-027d-414c-af82-1c6a6e81dca6
+    spec:
+      dnsNames:
+      - vault-consul.127.0.0.1.nip.io
+      issuerRef:
+        group: cert-manager.io
+        kind: ClusterIssuer
+        name: ingress-ca
+      secretName: consul-tls
+    status:
+      conditions:
+      - lastTransitionTime: "2020-04-27T20:36:34Z"
+        message: Certificate is up to date and has not expired
+        reason: Ready
+        status: "True"
+        type: Ready
+      notAfter: "2020-07-26T20:36:34Z"
+  - apiVersion: cert-manager.io/v1alpha2
+    kind: Certificate
+    metadata:
+      creationTimestamp: "2020-04-27T20:36:34Z"
+      generation: 1
+      labels:
+        app.kubernetes.io/name: vault
+      name: vault-tls
+      namespace: vault
+      ownerReferences:
+      - apiVersion: extensions/v1beta1
+        blockOwnerDeletion: true
+        controller: true
+        kind: Ingress
+        name: vault
+        uid: 9723c666-1028-4276-a355-e02487f08e83
+      resourceVersion: "1694"
+      selfLink: /apis/cert-manager.io/v1alpha2/namespaces/vault/certificates/vault-tls
+      uid: 5b391fe0-d01d-4a17-a4f7-ba8fa39b8d91
+    spec:
+      dnsNames:
+      - vault.127.0.0.1.nip.io
+      issuerRef:
+        group: cert-manager.io
+        kind: ClusterIssuer
+        name: ingress-ca
+      secretName: vault-tls
+    status:
+      conditions:
+      - lastTransitionTime: "2020-04-27T20:36:34Z"
+        message: Certificate is up to date and has not expired
+        reason: Ready
+        status: "True"
+        type: Ready
+      notAfter: "2020-07-26T20:36:34Z"
+  metadata: {}
+- items:
+  - apiVersion: extensions/v1beta1
+    kind: Ingress
+    metadata:
+      annotations:
+        kubernetes.io/tls-acme: "true"
+      creationTimestamp: "2020-04-27T20:36:34Z"
+      generation: 1
+      labels:
+        app.kubernetes.io/name: vault
+      name: consul
+      namespace: vault
+      resourceVersion: "1712"
+      selfLink: /apis/extensions/v1beta1/namespaces/vault/ingresses/consul
+      uid: 470fa6e3-6452-4610-a678-56dcf2594155
+    spec:
+      rules:
+      - host: vault-consul.127.0.0.1.nip.io
+        http:
+          paths:
+          - backend:
+              serviceName: consul-server
+              servicePort: 8500
+      tls:
+      - hosts:
+        - vault-consul.127.0.0.1.nip.io
+        secretName: consul-tls
+    status:
+      loadBalancer: {}
+  - apiVersion: extensions/v1beta1
+    kind: Ingress
+    metadata:
+      annotations:
+        kubernetes.io/tls-acme: "true"
+        nginx.ingress.kubernetes.io/backend-protocol: HTTPS
+      creationTimestamp: "2020-04-27T20:36:34Z"
+      generation: 1
+      labels:
+        app.kubernetes.io/name: vault
+      name: vault
+      namespace: vault
+      resourceVersion: "1682"
+      selfLink: /apis/extensions/v1beta1/namespaces/vault/ingresses/vault
+      uid: 9723c666-1028-4276-a355-e02487f08e83
+    spec:
+      rules:
+      - host: vault.127.0.0.1.nip.io
+        http:
+          paths:
+          - backend:
+              serviceName: vault-ui
+              servicePort: 8200
+      tls:
+      - hosts:
+        - vault.127.0.0.1.nip.io
+        secretName: vault-tls
+    status:
+      loadBalancer: {}
+  metadata: {}
+- items:
+  - apiVersion: metrics.k8s.io/v1beta1
+    containers:
+    - name: consul
+      usage:
+        cpu: 48m
+        memory: 36004Ki
+    kind: PodMetrics
+    metadata:
+      creationTimestamp: "2020-04-27T20:46:19Z"
+      name: consul-server-0
+      namespace: vault
+      selfLink: /apis/metrics.k8s.io/v1beta1/namespaces/vault/pods/consul-server-0
+    timestamp: "2020-04-27T20:46:19Z"
+    window: 5m0s
+  - apiVersion: metrics.k8s.io/v1beta1
+    containers:
+    - name: consul
+      usage:
+        cpu: 24m
+        memory: 33856Ki
+    kind: PodMetrics
+    metadata:
+      creationTimestamp: "2020-04-27T20:46:19Z"
+      name: consul-server-1
+      namespace: vault
+      selfLink: /apis/metrics.k8s.io/v1beta1/namespaces/vault/pods/consul-server-1
+    timestamp: "2020-04-27T20:46:19Z"
+    window: 5m0s
+  - apiVersion: metrics.k8s.io/v1beta1
+    containers:
+    - name: consul
+      usage:
+        cpu: 25m
+        memory: 39756Ki
+    kind: PodMetrics
+    metadata:
+      creationTimestamp: "2020-04-27T20:46:19Z"
+      name: consul-server-2
+      namespace: vault
+      selfLink: /apis/metrics.k8s.io/v1beta1/namespaces/vault/pods/consul-server-2
+    timestamp: "2020-04-27T20:46:19Z"
+    window: 5m0s
+  - apiVersion: metrics.k8s.io/v1beta1
+    containers:
+    - name: vault
+      usage:
+        cpu: 42m
+        memory: 44776Ki
+    kind: PodMetrics
+    metadata:
+      creationTimestamp: "2020-04-27T20:46:19Z"
+      name: vault-0
+      namespace: vault
+      selfLink: /apis/metrics.k8s.io/v1beta1/namespaces/vault/pods/vault-0
+    timestamp: "2020-04-27T20:46:19Z"
+    window: 5m0s
+  metadata: {}
+- items:
+  - apiVersion: networking.k8s.io/v1beta1
+    kind: Ingress
+    metadata:
+      annotations:
+        kubernetes.io/tls-acme: "true"
+      creationTimestamp: "2020-04-27T20:36:34Z"
+      generation: 1
+      labels:
+        app.kubernetes.io/name: vault
+      name: consul
+      namespace: vault
+      resourceVersion: "1712"
+      selfLink: /apis/networking.k8s.io/v1beta1/namespaces/vault/ingresses/consul
+      uid: 470fa6e3-6452-4610-a678-56dcf2594155
+    spec:
+      rules:
+      - host: vault-consul.127.0.0.1.nip.io
+        http:
+          paths:
+          - backend:
+              serviceName: consul-server
+              servicePort: 8500
+      tls:
+      - hosts:
+        - vault-consul.127.0.0.1.nip.io
+        secretName: consul-tls
+    status:
+      loadBalancer: {}
+  - apiVersion: networking.k8s.io/v1beta1
+    kind: Ingress
+    metadata:
+      annotations:
+        kubernetes.io/tls-acme: "true"
+        nginx.ingress.kubernetes.io/backend-protocol: HTTPS
+      creationTimestamp: "2020-04-27T20:36:34Z"
+      generation: 1
+      labels:
+        app.kubernetes.io/name: vault
+      name: vault
+      namespace: vault
+      resourceVersion: "1682"
+      selfLink: /apis/networking.k8s.io/v1beta1/namespaces/vault/ingresses/vault
+      uid: 9723c666-1028-4276-a355-e02487f08e83
+    spec:
+      rules:
+      - host: vault.127.0.0.1.nip.io
+        http:
+          paths:
+          - backend:
+              serviceName: vault-ui
+              servicePort: 8200
+      tls:
+      - hosts:
+        - vault.127.0.0.1.nip.io
+        secretName: vault-tls
+    status:
+      loadBalancer: {}
+  metadata: {}
+- items:
+  - apiVersion: policy/v1beta1
+    kind: PodDisruptionBudget
+    metadata:
+      creationTimestamp: "2020-04-27T20:36:28Z"
+      generation: 1
+      labels:
+        app: consul
+      name: consul-server
+      namespace: vault
+      resourceVersion: "1980"
+      selfLink: /apis/policy/v1beta1/namespaces/vault/poddisruptionbudgets/consul-server
+      uid: 2654086d-0764-45b8-afdd-790f2e40f890
+    spec:
+      maxUnavailable: 1
+      selector:
+        matchLabels:
+          app: consul
+    status:
+      currentHealthy: 3
+      desiredHealthy: 2
+      disruptionsAllowed: 1
+      expectedPods: 3
+      observedGeneration: 1
+  - apiVersion: policy/v1beta1
+    kind: PodDisruptionBudget
+    metadata:
+      creationTimestamp: "2020-04-27T20:36:31Z"
+      generation: 1
+      labels:
+        app.kubernetes.io/name: vault
+      name: vault
+      namespace: vault
+      resourceVersion: "1994"
+      selfLink: /apis/policy/v1beta1/namespaces/vault/poddisruptionbudgets/vault
+      uid: 5fca3dae-c32f-4735-88d5-baad2caad81e
+    spec:
+      maxUnavailable: 1
+      selector:
+        matchLabels:
+          app.kubernetes.io/name: vault
+          component: server
+    status:
+      currentHealthy: 1
+      desiredHealthy: 0
+      disruptionsAllowed: 1
+      expectedPods: 1
+      observedGeneration: 1
+  metadata: {}
+kind: List
+metadata: {}

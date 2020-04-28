@@ -1,0 +1,689 @@
+apiVersion: v1
+items:
+- items:
+  - apiVersion: v1
+    kind: Pod
+    metadata:
+      annotations:
+        cni.projectcalico.org/podIP: 100.200.82.54/32
+      creationTimestamp: "2020-04-27T20:40:47Z"
+      generateName: sealed-secrets-controller-8dd955b66-
+      labels:
+        name: sealed-secrets-controller
+        pod-template-hash: 8dd955b66
+      name: sealed-secrets-controller-8dd955b66-rtw99
+      namespace: sealed-secrets
+      ownerReferences:
+      - apiVersion: apps/v1
+        blockOwnerDeletion: true
+        controller: true
+        kind: ReplicaSet
+        name: sealed-secrets-controller-8dd955b66
+        uid: 2b81a798-7b0e-42ed-bd22-e822b1ddb46d
+      resourceVersion: "4954"
+      selfLink: /api/v1/namespaces/sealed-secrets/pods/sealed-secrets-controller-8dd955b66-rtw99
+      uid: dfa17693-2977-451e-97da-73b41705b1f7
+    spec:
+      containers:
+      - args:
+        - --key-renew-period=0
+        command:
+        - controller
+        image: quay.io/bitnami/sealed-secrets-controller:v0.10.0
+        imagePullPolicy: Always
+        livenessProbe:
+          failureThreshold: 3
+          httpGet:
+            path: /healthz
+            port: http
+            scheme: HTTP
+          periodSeconds: 10
+          successThreshold: 1
+          timeoutSeconds: 1
+        name: sealed-secrets-controller
+        ports:
+        - containerPort: 8080
+          name: http
+          protocol: TCP
+        readinessProbe:
+          failureThreshold: 3
+          httpGet:
+            path: /healthz
+            port: http
+            scheme: HTTP
+          periodSeconds: 10
+          successThreshold: 1
+          timeoutSeconds: 1
+        resources: {}
+        securityContext:
+          readOnlyRootFilesystem: true
+          runAsNonRoot: true
+          runAsUser: 1001
+        terminationMessagePath: /dev/termination-log
+        terminationMessagePolicy: File
+        volumeMounts:
+        - mountPath: /tmp
+          name: tmp
+        - mountPath: /var/run/secrets/kubernetes.io/serviceaccount
+          name: sealed-secrets-controller-token-7qf8b
+          readOnly: true
+      dnsPolicy: ClusterFirst
+      enableServiceLinks: true
+      nodeName: kind-control-plane
+      priority: 0
+      restartPolicy: Always
+      schedulerName: default-scheduler
+      securityContext:
+        fsGroup: 65534
+      serviceAccount: sealed-secrets-controller
+      serviceAccountName: sealed-secrets-controller
+      terminationGracePeriodSeconds: 30
+      tolerations:
+      - effect: NoExecute
+        key: node.kubernetes.io/not-ready
+        operator: Exists
+        tolerationSeconds: 300
+      - effect: NoExecute
+        key: node.kubernetes.io/unreachable
+        operator: Exists
+        tolerationSeconds: 300
+      volumes:
+      - emptyDir: {}
+        name: tmp
+      - name: sealed-secrets-controller-token-7qf8b
+        secret:
+          defaultMode: 420
+          secretName: sealed-secrets-controller-token-7qf8b
+    status:
+      conditions:
+      - lastProbeTime: null
+        lastTransitionTime: "2020-04-27T20:40:47Z"
+        status: "True"
+        type: Initialized
+      - lastProbeTime: null
+        lastTransitionTime: "2020-04-27T20:41:00Z"
+        status: "True"
+        type: Ready
+      - lastProbeTime: null
+        lastTransitionTime: "2020-04-27T20:41:00Z"
+        status: "True"
+        type: ContainersReady
+      - lastProbeTime: null
+        lastTransitionTime: "2020-04-27T20:40:47Z"
+        status: "True"
+        type: PodScheduled
+      containerStatuses:
+      - containerID: containerd://a3c9942e52f606b63c8c9d7a25fce8ea16726cc42a03873bdde61f0d8a10d804
+        image: quay.io/bitnami/sealed-secrets-controller:v0.10.0
+        imageID: quay.io/bitnami/sealed-secrets-controller@sha256:0986d56e7b3b8b7d0ac668e8c9cb35813cf00e06efb56ec2709018ef5ba39081
+        lastState: {}
+        name: sealed-secrets-controller
+        ready: true
+        restartCount: 0
+        state:
+          running:
+            startedAt: "2020-04-27T20:40:51Z"
+      hostIP: 172.17.0.2
+      phase: Running
+      podIP: 100.200.82.54
+      qosClass: BestEffort
+      startTime: "2020-04-27T20:40:47Z"
+  metadata: {}
+- items:
+  - apiVersion: v1
+    kind: ServiceAccount
+    metadata:
+      creationTimestamp: "2020-04-27T20:40:46Z"
+      name: default
+      namespace: sealed-secrets
+      resourceVersion: "4197"
+      selfLink: /api/v1/namespaces/sealed-secrets/serviceaccounts/default
+      uid: ed766c34-3926-4076-b2c6-d2f5c3c6b07e
+    secrets:
+    - name: default-token-wrqk9
+  - apiVersion: v1
+    kind: ServiceAccount
+    metadata:
+      creationTimestamp: "2020-04-27T20:40:47Z"
+      labels:
+        name: sealed-secrets-controller
+      name: sealed-secrets-controller
+      namespace: sealed-secrets
+      resourceVersion: "4202"
+      selfLink: /api/v1/namespaces/sealed-secrets/serviceaccounts/sealed-secrets-controller
+      uid: e3f5db5b-eec9-40c2-b6e7-86635366a911
+    secrets:
+    - name: sealed-secrets-controller-token-7qf8b
+  metadata: {}
+- items:
+  - apiVersion: v1
+    kind: Service
+    metadata:
+      creationTimestamp: "2020-04-27T20:40:48Z"
+      labels:
+        name: sealed-secrets-controller
+      name: sealed-secrets-controller
+      namespace: sealed-secrets
+      resourceVersion: "4229"
+      selfLink: /api/v1/namespaces/sealed-secrets/services/sealed-secrets-controller
+      uid: ae5fb6d4-d21c-4523-8e03-2b9e0fad63bd
+    spec:
+      clusterIP: 10.109.57.232
+      ports:
+      - port: 8080
+        protocol: TCP
+        targetPort: 8080
+      selector:
+        name: sealed-secrets-controller
+      sessionAffinity: None
+      type: ClusterIP
+    status:
+      loadBalancer: {}
+  metadata: {}
+- items:
+  - apiVersion: apps/v1
+    kind: Deployment
+    metadata:
+      annotations:
+        deployment.kubernetes.io/revision: "1"
+      creationTimestamp: "2020-04-27T20:40:47Z"
+      generation: 1
+      labels:
+        name: sealed-secrets-controller
+      name: sealed-secrets-controller
+      namespace: sealed-secrets
+      resourceVersion: "5323"
+      selfLink: /apis/apps/v1/namespaces/sealed-secrets/deployments/sealed-secrets-controller
+      uid: ff6924e6-df56-4a94-afa2-f676430eba61
+    spec:
+      minReadySeconds: 30
+      progressDeadlineSeconds: 600
+      replicas: 1
+      revisionHistoryLimit: 10
+      selector:
+        matchLabels:
+          name: sealed-secrets-controller
+      strategy:
+        rollingUpdate:
+          maxSurge: 25%
+          maxUnavailable: 25%
+        type: RollingUpdate
+      template:
+        metadata:
+          creationTimestamp: null
+          labels:
+            name: sealed-secrets-controller
+        spec:
+          containers:
+          - args:
+            - --key-renew-period=0
+            command:
+            - controller
+            image: quay.io/bitnami/sealed-secrets-controller:v0.10.0
+            imagePullPolicy: Always
+            livenessProbe:
+              failureThreshold: 3
+              httpGet:
+                path: /healthz
+                port: http
+                scheme: HTTP
+              periodSeconds: 10
+              successThreshold: 1
+              timeoutSeconds: 1
+            name: sealed-secrets-controller
+            ports:
+            - containerPort: 8080
+              name: http
+              protocol: TCP
+            readinessProbe:
+              failureThreshold: 3
+              httpGet:
+                path: /healthz
+                port: http
+                scheme: HTTP
+              periodSeconds: 10
+              successThreshold: 1
+              timeoutSeconds: 1
+            resources: {}
+            securityContext:
+              readOnlyRootFilesystem: true
+              runAsNonRoot: true
+              runAsUser: 1001
+            terminationMessagePath: /dev/termination-log
+            terminationMessagePolicy: File
+            volumeMounts:
+            - mountPath: /tmp
+              name: tmp
+          dnsPolicy: ClusterFirst
+          restartPolicy: Always
+          schedulerName: default-scheduler
+          securityContext:
+            fsGroup: 65534
+          serviceAccount: sealed-secrets-controller
+          serviceAccountName: sealed-secrets-controller
+          terminationGracePeriodSeconds: 30
+          volumes:
+          - emptyDir: {}
+            name: tmp
+    status:
+      availableReplicas: 1
+      conditions:
+      - lastTransitionTime: "2020-04-27T20:41:39Z"
+        lastUpdateTime: "2020-04-27T20:41:39Z"
+        message: Deployment has minimum availability.
+        reason: MinimumReplicasAvailable
+        status: "True"
+        type: Available
+      - lastTransitionTime: "2020-04-27T20:40:47Z"
+        lastUpdateTime: "2020-04-27T20:41:39Z"
+        message: ReplicaSet "sealed-secrets-controller-8dd955b66" has successfully
+          progressed.
+        reason: NewReplicaSetAvailable
+        status: "True"
+        type: Progressing
+      observedGeneration: 1
+      readyReplicas: 1
+      replicas: 1
+      updatedReplicas: 1
+  metadata: {}
+- items:
+  - apiVersion: apps/v1
+    kind: ReplicaSet
+    metadata:
+      annotations:
+        deployment.kubernetes.io/desired-replicas: "1"
+        deployment.kubernetes.io/max-replicas: "2"
+        deployment.kubernetes.io/revision: "1"
+      creationTimestamp: "2020-04-27T20:40:47Z"
+      generation: 1
+      labels:
+        name: sealed-secrets-controller
+        pod-template-hash: 8dd955b66
+      name: sealed-secrets-controller-8dd955b66
+      namespace: sealed-secrets
+      ownerReferences:
+      - apiVersion: apps/v1
+        blockOwnerDeletion: true
+        controller: true
+        kind: Deployment
+        name: sealed-secrets-controller
+        uid: ff6924e6-df56-4a94-afa2-f676430eba61
+      resourceVersion: "5322"
+      selfLink: /apis/apps/v1/namespaces/sealed-secrets/replicasets/sealed-secrets-controller-8dd955b66
+      uid: 2b81a798-7b0e-42ed-bd22-e822b1ddb46d
+    spec:
+      minReadySeconds: 30
+      replicas: 1
+      selector:
+        matchLabels:
+          name: sealed-secrets-controller
+          pod-template-hash: 8dd955b66
+      template:
+        metadata:
+          creationTimestamp: null
+          labels:
+            name: sealed-secrets-controller
+            pod-template-hash: 8dd955b66
+        spec:
+          containers:
+          - args:
+            - --key-renew-period=0
+            command:
+            - controller
+            image: quay.io/bitnami/sealed-secrets-controller:v0.10.0
+            imagePullPolicy: Always
+            livenessProbe:
+              failureThreshold: 3
+              httpGet:
+                path: /healthz
+                port: http
+                scheme: HTTP
+              periodSeconds: 10
+              successThreshold: 1
+              timeoutSeconds: 1
+            name: sealed-secrets-controller
+            ports:
+            - containerPort: 8080
+              name: http
+              protocol: TCP
+            readinessProbe:
+              failureThreshold: 3
+              httpGet:
+                path: /healthz
+                port: http
+                scheme: HTTP
+              periodSeconds: 10
+              successThreshold: 1
+              timeoutSeconds: 1
+            resources: {}
+            securityContext:
+              readOnlyRootFilesystem: true
+              runAsNonRoot: true
+              runAsUser: 1001
+            terminationMessagePath: /dev/termination-log
+            terminationMessagePolicy: File
+            volumeMounts:
+            - mountPath: /tmp
+              name: tmp
+          dnsPolicy: ClusterFirst
+          restartPolicy: Always
+          schedulerName: default-scheduler
+          securityContext:
+            fsGroup: 65534
+          serviceAccount: sealed-secrets-controller
+          serviceAccountName: sealed-secrets-controller
+          terminationGracePeriodSeconds: 30
+          volumes:
+          - emptyDir: {}
+            name: tmp
+    status:
+      availableReplicas: 1
+      fullyLabeledReplicas: 1
+      observedGeneration: 1
+      readyReplicas: 1
+      replicas: 1
+  metadata: {}
+- items:
+  - apiVersion: extensions/v1beta1
+    kind: Deployment
+    metadata:
+      annotations:
+        deployment.kubernetes.io/revision: "1"
+      creationTimestamp: "2020-04-27T20:40:47Z"
+      generation: 1
+      labels:
+        name: sealed-secrets-controller
+      name: sealed-secrets-controller
+      namespace: sealed-secrets
+      resourceVersion: "5323"
+      selfLink: /apis/extensions/v1beta1/namespaces/sealed-secrets/deployments/sealed-secrets-controller
+      uid: ff6924e6-df56-4a94-afa2-f676430eba61
+    spec:
+      minReadySeconds: 30
+      progressDeadlineSeconds: 600
+      replicas: 1
+      revisionHistoryLimit: 10
+      selector:
+        matchLabels:
+          name: sealed-secrets-controller
+      strategy:
+        rollingUpdate:
+          maxSurge: 25%
+          maxUnavailable: 25%
+        type: RollingUpdate
+      template:
+        metadata:
+          creationTimestamp: null
+          labels:
+            name: sealed-secrets-controller
+        spec:
+          containers:
+          - args:
+            - --key-renew-period=0
+            command:
+            - controller
+            image: quay.io/bitnami/sealed-secrets-controller:v0.10.0
+            imagePullPolicy: Always
+            livenessProbe:
+              failureThreshold: 3
+              httpGet:
+                path: /healthz
+                port: http
+                scheme: HTTP
+              periodSeconds: 10
+              successThreshold: 1
+              timeoutSeconds: 1
+            name: sealed-secrets-controller
+            ports:
+            - containerPort: 8080
+              name: http
+              protocol: TCP
+            readinessProbe:
+              failureThreshold: 3
+              httpGet:
+                path: /healthz
+                port: http
+                scheme: HTTP
+              periodSeconds: 10
+              successThreshold: 1
+              timeoutSeconds: 1
+            resources: {}
+            securityContext:
+              readOnlyRootFilesystem: true
+              runAsNonRoot: true
+              runAsUser: 1001
+            terminationMessagePath: /dev/termination-log
+            terminationMessagePolicy: File
+            volumeMounts:
+            - mountPath: /tmp
+              name: tmp
+          dnsPolicy: ClusterFirst
+          restartPolicy: Always
+          schedulerName: default-scheduler
+          securityContext:
+            fsGroup: 65534
+          serviceAccount: sealed-secrets-controller
+          serviceAccountName: sealed-secrets-controller
+          terminationGracePeriodSeconds: 30
+          volumes:
+          - emptyDir: {}
+            name: tmp
+    status:
+      availableReplicas: 1
+      conditions:
+      - lastTransitionTime: "2020-04-27T20:41:39Z"
+        lastUpdateTime: "2020-04-27T20:41:39Z"
+        message: Deployment has minimum availability.
+        reason: MinimumReplicasAvailable
+        status: "True"
+        type: Available
+      - lastTransitionTime: "2020-04-27T20:40:47Z"
+        lastUpdateTime: "2020-04-27T20:41:39Z"
+        message: ReplicaSet "sealed-secrets-controller-8dd955b66" has successfully
+          progressed.
+        reason: NewReplicaSetAvailable
+        status: "True"
+        type: Progressing
+      observedGeneration: 1
+      readyReplicas: 1
+      replicas: 1
+      updatedReplicas: 1
+  metadata: {}
+- items:
+  - apiVersion: extensions/v1beta1
+    kind: ReplicaSet
+    metadata:
+      annotations:
+        deployment.kubernetes.io/desired-replicas: "1"
+        deployment.kubernetes.io/max-replicas: "2"
+        deployment.kubernetes.io/revision: "1"
+      creationTimestamp: "2020-04-27T20:40:47Z"
+      generation: 1
+      labels:
+        name: sealed-secrets-controller
+        pod-template-hash: 8dd955b66
+      name: sealed-secrets-controller-8dd955b66
+      namespace: sealed-secrets
+      ownerReferences:
+      - apiVersion: apps/v1
+        blockOwnerDeletion: true
+        controller: true
+        kind: Deployment
+        name: sealed-secrets-controller
+        uid: ff6924e6-df56-4a94-afa2-f676430eba61
+      resourceVersion: "5322"
+      selfLink: /apis/extensions/v1beta1/namespaces/sealed-secrets/replicasets/sealed-secrets-controller-8dd955b66
+      uid: 2b81a798-7b0e-42ed-bd22-e822b1ddb46d
+    spec:
+      minReadySeconds: 30
+      replicas: 1
+      selector:
+        matchLabels:
+          name: sealed-secrets-controller
+          pod-template-hash: 8dd955b66
+      template:
+        metadata:
+          creationTimestamp: null
+          labels:
+            name: sealed-secrets-controller
+            pod-template-hash: 8dd955b66
+        spec:
+          containers:
+          - args:
+            - --key-renew-period=0
+            command:
+            - controller
+            image: quay.io/bitnami/sealed-secrets-controller:v0.10.0
+            imagePullPolicy: Always
+            livenessProbe:
+              failureThreshold: 3
+              httpGet:
+                path: /healthz
+                port: http
+                scheme: HTTP
+              periodSeconds: 10
+              successThreshold: 1
+              timeoutSeconds: 1
+            name: sealed-secrets-controller
+            ports:
+            - containerPort: 8080
+              name: http
+              protocol: TCP
+            readinessProbe:
+              failureThreshold: 3
+              httpGet:
+                path: /healthz
+                port: http
+                scheme: HTTP
+              periodSeconds: 10
+              successThreshold: 1
+              timeoutSeconds: 1
+            resources: {}
+            securityContext:
+              readOnlyRootFilesystem: true
+              runAsNonRoot: true
+              runAsUser: 1001
+            terminationMessagePath: /dev/termination-log
+            terminationMessagePolicy: File
+            volumeMounts:
+            - mountPath: /tmp
+              name: tmp
+          dnsPolicy: ClusterFirst
+          restartPolicy: Always
+          schedulerName: default-scheduler
+          securityContext:
+            fsGroup: 65534
+          serviceAccount: sealed-secrets-controller
+          serviceAccountName: sealed-secrets-controller
+          terminationGracePeriodSeconds: 30
+          volumes:
+          - emptyDir: {}
+            name: tmp
+    status:
+      availableReplicas: 1
+      fullyLabeledReplicas: 1
+      observedGeneration: 1
+      readyReplicas: 1
+      replicas: 1
+  metadata: {}
+- items:
+  - apiVersion: metrics.k8s.io/v1beta1
+    containers:
+    - name: sealed-secrets-controller
+      usage:
+        cpu: 1m
+        memory: 11760Ki
+    kind: PodMetrics
+    metadata:
+      creationTimestamp: "2020-04-27T20:46:18Z"
+      name: sealed-secrets-controller-8dd955b66-rtw99
+      namespace: sealed-secrets
+      selfLink: /apis/metrics.k8s.io/v1beta1/namespaces/sealed-secrets/pods/sealed-secrets-controller-8dd955b66-rtw99
+    timestamp: "2020-04-27T20:46:18Z"
+    window: 5m0s
+  metadata: {}
+- items:
+  - apiVersion: rbac.authorization.k8s.io/v1
+    kind: RoleBinding
+    metadata:
+      creationTimestamp: "2020-04-27T20:40:50Z"
+      labels:
+        name: sealed-secrets-controller
+      name: sealed-secrets-controller
+      namespace: sealed-secrets
+      resourceVersion: "4357"
+      selfLink: /apis/rbac.authorization.k8s.io/v1/namespaces/sealed-secrets/rolebindings/sealed-secrets-controller
+      uid: 7ca28692-3498-4ca8-9e81-636ac524ad92
+    roleRef:
+      apiGroup: rbac.authorization.k8s.io
+      kind: Role
+      name: sealed-secrets-key-admin
+    subjects:
+    - kind: ServiceAccount
+      name: sealed-secrets-controller
+      namespace: sealed-secrets
+  - apiVersion: rbac.authorization.k8s.io/v1
+    kind: RoleBinding
+    metadata:
+      creationTimestamp: "2020-04-27T20:40:50Z"
+      labels:
+        name: sealed-secrets-service-proxier
+      name: sealed-secrets-service-proxier
+      namespace: sealed-secrets
+      resourceVersion: "4312"
+      selfLink: /apis/rbac.authorization.k8s.io/v1/namespaces/sealed-secrets/rolebindings/sealed-secrets-service-proxier
+      uid: 75faefc1-b197-419a-b99b-1f79bb82f7bd
+    roleRef:
+      apiGroup: rbac.authorization.k8s.io
+      kind: Role
+      name: sealed-secrets-service-proxier
+    subjects:
+    - apiGroup: rbac.authorization.k8s.io
+      kind: Group
+      name: system:authenticated
+  metadata: {}
+- items:
+  - apiVersion: rbac.authorization.k8s.io/v1
+    kind: Role
+    metadata:
+      creationTimestamp: "2020-04-27T20:40:48Z"
+      labels:
+        name: sealed-secrets-key-admin
+      name: sealed-secrets-key-admin
+      namespace: sealed-secrets
+      resourceVersion: "4243"
+      selfLink: /apis/rbac.authorization.k8s.io/v1/namespaces/sealed-secrets/roles/sealed-secrets-key-admin
+      uid: 1c470559-7613-4816-b5cc-6fd096bdfbcf
+    rules:
+    - apiGroups:
+      - ""
+      resources:
+      - secrets
+      verbs:
+      - create
+      - list
+  - apiVersion: rbac.authorization.k8s.io/v1
+    kind: Role
+    metadata:
+      creationTimestamp: "2020-04-27T20:40:48Z"
+      labels:
+        name: sealed-secrets-service-proxier
+      name: sealed-secrets-service-proxier
+      namespace: sealed-secrets
+      resourceVersion: "4237"
+      selfLink: /apis/rbac.authorization.k8s.io/v1/namespaces/sealed-secrets/roles/sealed-secrets-service-proxier
+      uid: b1135355-651e-4d46-8fbf-92a1b0c17a94
+    rules:
+    - apiGroups:
+      - ""
+      resourceNames:
+      - 'http:sealed-secrets-controller:'
+      - sealed-secrets-controller
+      resources:
+      - services/proxy
+      verbs:
+      - create
+      - get
+  metadata: {}
+kind: List
+metadata: {}

@@ -1,0 +1,17 @@
+apiVersion: v1
+items:
+- items:
+  - apiVersion: v1
+    kind: ServiceAccount
+    metadata:
+      creationTimestamp: "2020-04-27T20:38:19Z"
+      name: default
+      namespace: nsx-system
+      resourceVersion: "2325"
+      selfLink: /api/v1/namespaces/nsx-system/serviceaccounts/default
+      uid: d84075c5-7a18-4c36-b5cb-73d4929e9f7e
+    secrets:
+    - name: default-token-m8x9l
+  metadata: {}
+kind: List
+metadata: {}

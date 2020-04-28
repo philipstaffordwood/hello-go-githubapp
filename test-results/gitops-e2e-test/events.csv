@@ -1,0 +1,30 @@
+LAST SEEN                      Count  TYPE     REASON             OBJECT                                           MESSAGE
+2020-04-27 20:40:51 +0000 UTC  1      Normal   Scheduled          Pod/flux-memcache-platform-cli-9cbb8774c-x4vrc   Successfully assigned gitops-e2e-test/flux-memcache-platform-cli-9cbb8774c-x4vrc to kind-control-plane
+2020-04-27 20:40:53 +0000 UTC  1      Normal   Pulling            Pod/flux-memcache-platform-cli-9cbb8774c-x4vrc   Pulling image "docker.io/memcached:1.4.36-alpine"
+2020-04-27 20:40:54 +0000 UTC  1      Normal   Pulled             Pod/flux-memcache-platform-cli-9cbb8774c-x4vrc   Successfully pulled image "docker.io/memcached:1.4.36-alpine"
+2020-04-27 20:40:54 +0000 UTC  1      Normal   Created            Pod/flux-memcache-platform-cli-9cbb8774c-x4vrc   Created container flux-memcache-platform-cli
+2020-04-27 20:40:55 +0000 UTC  1      Normal   Started            Pod/flux-memcache-platform-cli-9cbb8774c-x4vrc   Started container flux-memcache-platform-cli
+2020-04-27 20:40:51 +0000 UTC  1      Normal   SuccessfulCreate   ReplicaSet/flux-memcache-platform-cli-9cbb8774c  Created pod: flux-memcache-platform-cli-9cbb8774c-x4vrc
+2020-04-27 20:40:51 +0000 UTC  1      Normal   ScalingReplicaSet  Deployment/flux-memcache-platform-cli            Scaled up replica set flux-memcache-platform-cli-9cbb8774c to 1
+2020-04-27 20:40:53 +0000 UTC  1      Normal   Scheduled          Pod/flux-platform-cli-5dd99c6dbd-qsxls           Successfully assigned gitops-e2e-test/flux-platform-cli-5dd99c6dbd-qsxls to kind-control-plane
+2020-04-27 20:40:53 +0000 UTC  1      Warning  FailedMount        Pod/flux-platform-cli-5dd99c6dbd-qsxls           MountVolume.SetUp failed for volume "flux-git-deploy-platform-cli" : secret "flux-git-deploy-platform-cli" not found
+2020-04-27 20:40:54 +0000 UTC  2      Warning  FailedMount        Pod/flux-platform-cli-5dd99c6dbd-qsxls           MountVolume.SetUp failed for volume "flux-ssh-platform-cli" : configmap "flux-ssh-platform-cli" not found
+2020-04-27 20:40:56 +0000 UTC  1      Normal   Pulling            Pod/flux-platform-cli-5dd99c6dbd-qsxls           Pulling image "docker.io/fluxcd/flux:1.16.0"
+2020-04-27 20:41:00 +0000 UTC  1      Normal   Pulled             Pod/flux-platform-cli-5dd99c6dbd-qsxls           Successfully pulled image "docker.io/fluxcd/flux:1.16.0"
+2020-04-27 20:41:00 +0000 UTC  1      Normal   Created            Pod/flux-platform-cli-5dd99c6dbd-qsxls           Created container flux-platform-cli
+2020-04-27 20:41:01 +0000 UTC  1      Normal   Started            Pod/flux-platform-cli-5dd99c6dbd-qsxls           Started container flux-platform-cli
+2020-04-27 20:40:53 +0000 UTC  1      Normal   SuccessfulCreate   ReplicaSet/flux-platform-cli-5dd99c6dbd          Created pod: flux-platform-cli-5dd99c6dbd-qsxls
+2020-04-27 20:40:53 +0000 UTC  1      Normal   ScalingReplicaSet  Deployment/flux-platform-cli                     Scaled up replica set flux-platform-cli-5dd99c6dbd to 1
+2020-04-27 20:41:04 +0000 UTC  1      Normal   Scheduled          Pod/nginx-7b56665dd8-tqq7l                       Successfully assigned gitops-e2e-test/nginx-7b56665dd8-tqq7l to kind-control-plane
+2020-04-27 20:41:06 +0000 UTC  1      Normal   Pulling            Pod/nginx-7b56665dd8-tqq7l                       Pulling image "nginx:1.17.9"
+2020-04-27 20:41:10 +0000 UTC  1      Normal   Pulled             Pod/nginx-7b56665dd8-tqq7l                       Successfully pulled image "nginx:1.17.9"
+2020-04-27 20:41:10 +0000 UTC  1      Normal   Created            Pod/nginx-7b56665dd8-tqq7l                       Created container nginx
+2020-04-27 20:41:11 +0000 UTC  1      Normal   Started            Pod/nginx-7b56665dd8-tqq7l                       Started container nginx
+2020-04-27 20:41:04 +0000 UTC  1      Normal   Scheduled          Pod/nginx-7b56665dd8-z5tmw                       Successfully assigned gitops-e2e-test/nginx-7b56665dd8-z5tmw to kind-control-plane
+2020-04-27 20:41:06 +0000 UTC  1      Normal   Pulling            Pod/nginx-7b56665dd8-z5tmw                       Pulling image "nginx:1.17.9"
+2020-04-27 20:41:10 +0000 UTC  1      Normal   Pulled             Pod/nginx-7b56665dd8-z5tmw                       Successfully pulled image "nginx:1.17.9"
+2020-04-27 20:41:10 +0000 UTC  1      Normal   Created            Pod/nginx-7b56665dd8-z5tmw                       Created container nginx
+2020-04-27 20:41:11 +0000 UTC  1      Normal   Started            Pod/nginx-7b56665dd8-z5tmw                       Started container nginx
+2020-04-27 20:41:04 +0000 UTC  1      Normal   SuccessfulCreate   ReplicaSet/nginx-7b56665dd8                      Created pod: nginx-7b56665dd8-z5tmw
+2020-04-27 20:41:04 +0000 UTC  1      Normal   SuccessfulCreate   ReplicaSet/nginx-7b56665dd8                      Created pod: nginx-7b56665dd8-tqq7l
+2020-04-27 20:41:04 +0000 UTC  1      Normal   ScalingReplicaSet  Deployment/nginx                                 Scaled up replica set nginx-7b56665dd8 to 2

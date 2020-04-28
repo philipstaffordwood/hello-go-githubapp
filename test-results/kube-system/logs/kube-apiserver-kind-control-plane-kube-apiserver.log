@@ -1,0 +1,904 @@
+Flag --insecure-port has been deprecated, This flag will be removed in a future version.
+I0427 20:34:11.088493       1 server.go:560] external host was not specified, using 172.17.0.2
+I0427 20:34:11.088703       1 server.go:147] Version: v1.15.7
+I0427 20:34:11.672237       1 plugins.go:158] Loaded 10 mutating admission controller(s) successfully in the following order: NamespaceLifecycle,LimitRanger,ServiceAccount,NodeRestriction,TaintNodesByCondition,Priority,DefaultTolerationSeconds,DefaultStorageClass,StorageObjectInUseProtection,MutatingAdmissionWebhook.
+I0427 20:34:11.672286       1 plugins.go:161] Loaded 6 validating admission controller(s) successfully in the following order: LimitRanger,ServiceAccount,Priority,PersistentVolumeClaimResize,ValidatingAdmissionWebhook,ResourceQuota.
+E0427 20:34:11.673124       1 prometheus.go:55] failed to register depth metric admission_quota_controller: duplicate metrics collector registration attempted
+E0427 20:34:11.673157       1 prometheus.go:68] failed to register adds metric admission_quota_controller: duplicate metrics collector registration attempted
+E0427 20:34:11.673180       1 prometheus.go:82] failed to register latency metric admission_quota_controller: duplicate metrics collector registration attempted
+E0427 20:34:11.673200       1 prometheus.go:96] failed to register workDuration metric admission_quota_controller: duplicate metrics collector registration attempted
+E0427 20:34:11.673243       1 prometheus.go:112] failed to register unfinished metric admission_quota_controller: duplicate metrics collector registration attempted
+E0427 20:34:11.673262       1 prometheus.go:126] failed to register unfinished metric admission_quota_controller: duplicate metrics collector registration attempted
+E0427 20:34:11.673296       1 prometheus.go:152] failed to register depth metric admission_quota_controller: duplicate metrics collector registration attempted
+E0427 20:34:11.673310       1 prometheus.go:164] failed to register adds metric admission_quota_controller: duplicate metrics collector registration attempted
+E0427 20:34:11.673338       1 prometheus.go:176] failed to register latency metric admission_quota_controller: duplicate metrics collector registration attempted
+E0427 20:34:11.673369       1 prometheus.go:188] failed to register work_duration metric admission_quota_controller: duplicate metrics collector registration attempted
+E0427 20:34:11.673389       1 prometheus.go:203] failed to register unfinished_work_seconds metric admission_quota_controller: duplicate metrics collector registration attempted
+E0427 20:34:11.673405       1 prometheus.go:216] failed to register longest_running_processor_microseconds metric admission_quota_controller: duplicate metrics collector registration attempted
+I0427 20:34:11.673427       1 plugins.go:158] Loaded 10 mutating admission controller(s) successfully in the following order: NamespaceLifecycle,LimitRanger,ServiceAccount,NodeRestriction,TaintNodesByCondition,Priority,DefaultTolerationSeconds,DefaultStorageClass,StorageObjectInUseProtection,MutatingAdmissionWebhook.
+I0427 20:34:11.673433       1 plugins.go:161] Loaded 6 validating admission controller(s) successfully in the following order: LimitRanger,ServiceAccount,Priority,PersistentVolumeClaimResize,ValidatingAdmissionWebhook,ResourceQuota.
+I0427 20:34:11.674841       1 client.go:354] parsed scheme: ""
+I0427 20:34:11.674861       1 client.go:354] scheme "" not registered, fallback to default scheme
+I0427 20:34:11.674917       1 asm_amd64.s:1337] ccResolverWrapper: sending new addresses to cc: [{127.0.0.1:2379 0  <nil>}]
+I0427 20:34:11.674994       1 asm_amd64.s:1337] balancerWrapper: got update addr from Notify: [{127.0.0.1:2379 <nil>}]
+I0427 20:34:12.255085       1 asm_amd64.s:1337] balancerWrapper: got update addr from Notify: [{127.0.0.1:2379 <nil>}]
+I0427 20:34:12.255437       1 client.go:354] parsed scheme: ""
+I0427 20:34:12.255454       1 client.go:354] scheme "" not registered, fallback to default scheme
+I0427 20:34:12.255486       1 asm_amd64.s:1337] ccResolverWrapper: sending new addresses to cc: [{127.0.0.1:2379 0  <nil>}]
+I0427 20:34:12.255546       1 asm_amd64.s:1337] balancerWrapper: got update addr from Notify: [{127.0.0.1:2379 <nil>}]
+I0427 20:34:12.261929       1 asm_amd64.s:1337] balancerWrapper: got update addr from Notify: [{127.0.0.1:2379 <nil>}]
+I0427 20:34:12.281479       1 master.go:233] Using reconciler: lease
+I0427 20:34:12.281833       1 client.go:354] parsed scheme: ""
+I0427 20:34:12.281845       1 client.go:354] scheme "" not registered, fallback to default scheme
+I0427 20:34:12.281871       1 asm_amd64.s:1337] ccResolverWrapper: sending new addresses to cc: [{127.0.0.1:2379 0  <nil>}]
+I0427 20:34:12.281927       1 asm_amd64.s:1337] balancerWrapper: got update addr from Notify: [{127.0.0.1:2379 <nil>}]
+I0427 20:34:12.288378       1 asm_amd64.s:1337] balancerWrapper: got update addr from Notify: [{127.0.0.1:2379 <nil>}]
+I0427 20:34:12.290971       1 client.go:354] parsed scheme: ""
+I0427 20:34:12.291006       1 client.go:354] scheme "" not registered, fallback to default scheme
+I0427 20:34:12.291153       1 asm_amd64.s:1337] ccResolverWrapper: sending new addresses to cc: [{127.0.0.1:2379 0  <nil>}]
+I0427 20:34:12.291338       1 asm_amd64.s:1337] balancerWrapper: got update addr from Notify: [{127.0.0.1:2379 <nil>}]
+I0427 20:34:12.297535       1 asm_amd64.s:1337] balancerWrapper: got update addr from Notify: [{127.0.0.1:2379 <nil>}]
+I0427 20:34:12.298082       1 client.go:354] parsed scheme: ""
+I0427 20:34:12.298096       1 client.go:354] scheme "" not registered, fallback to default scheme
+I0427 20:34:12.298119       1 asm_amd64.s:1337] ccResolverWrapper: sending new addresses to cc: [{127.0.0.1:2379 0  <nil>}]
+I0427 20:34:12.298178       1 asm_amd64.s:1337] balancerWrapper: got update addr from Notify: [{127.0.0.1:2379 <nil>}]
+I0427 20:34:12.304320       1 asm_amd64.s:1337] balancerWrapper: got update addr from Notify: [{127.0.0.1:2379 <nil>}]
+I0427 20:34:12.304681       1 client.go:354] parsed scheme: ""
+I0427 20:34:12.304698       1 client.go:354] scheme "" not registered, fallback to default scheme
+I0427 20:34:12.304734       1 asm_amd64.s:1337] ccResolverWrapper: sending new addresses to cc: [{127.0.0.1:2379 0  <nil>}]
+I0427 20:34:12.304801       1 asm_amd64.s:1337] balancerWrapper: got update addr from Notify: [{127.0.0.1:2379 <nil>}]
+I0427 20:34:12.310883       1 asm_amd64.s:1337] balancerWrapper: got update addr from Notify: [{127.0.0.1:2379 <nil>}]
+I0427 20:34:12.311327       1 client.go:354] parsed scheme: ""
+I0427 20:34:12.311344       1 client.go:354] scheme "" not registered, fallback to default scheme
+I0427 20:34:12.311384       1 asm_amd64.s:1337] ccResolverWrapper: sending new addresses to cc: [{127.0.0.1:2379 0  <nil>}]
+I0427 20:34:12.311420       1 asm_amd64.s:1337] balancerWrapper: got update addr from Notify: [{127.0.0.1:2379 <nil>}]
+I0427 20:34:12.318383       1 asm_amd64.s:1337] balancerWrapper: got update addr from Notify: [{127.0.0.1:2379 <nil>}]
+I0427 20:34:12.318969       1 client.go:354] parsed scheme: ""
+I0427 20:34:12.318986       1 client.go:354] scheme "" not registered, fallback to default scheme
+I0427 20:34:12.319016       1 asm_amd64.s:1337] ccResolverWrapper: sending new addresses to cc: [{127.0.0.1:2379 0  <nil>}]
+I0427 20:34:12.319055       1 asm_amd64.s:1337] balancerWrapper: got update addr from Notify: [{127.0.0.1:2379 <nil>}]
+I0427 20:34:12.325716       1 asm_amd64.s:1337] balancerWrapper: got update addr from Notify: [{127.0.0.1:2379 <nil>}]
+I0427 20:34:12.326229       1 client.go:354] parsed scheme: ""
+I0427 20:34:12.326245       1 client.go:354] scheme "" not registered, fallback to default scheme
+I0427 20:34:12.326272       1 asm_amd64.s:1337] ccResolverWrapper: sending new addresses to cc: [{127.0.0.1:2379 0  <nil>}]
+I0427 20:34:12.326320       1 asm_amd64.s:1337] balancerWrapper: got update addr from Notify: [{127.0.0.1:2379 <nil>}]
+I0427 20:34:12.334472       1 asm_amd64.s:1337] balancerWrapper: got update addr from Notify: [{127.0.0.1:2379 <nil>}]
+I0427 20:34:12.334920       1 client.go:354] parsed scheme: ""
+I0427 20:34:12.334940       1 client.go:354] scheme "" not registered, fallback to default scheme
+I0427 20:34:12.334984       1 asm_amd64.s:1337] ccResolverWrapper: sending new addresses to cc: [{127.0.0.1:2379 0  <nil>}]
+I0427 20:34:12.335029       1 asm_amd64.s:1337] balancerWrapper: got update addr from Notify: [{127.0.0.1:2379 <nil>}]
+I0427 20:34:12.341133       1 asm_amd64.s:1337] balancerWrapper: got update addr from Notify: [{127.0.0.1:2379 <nil>}]
+I0427 20:34:12.341580       1 client.go:354] parsed scheme: ""
+I0427 20:34:12.341594       1 client.go:354] scheme "" not registered, fallback to default scheme
+I0427 20:34:12.341624       1 asm_amd64.s:1337] ccResolverWrapper: sending new addresses to cc: [{127.0.0.1:2379 0  <nil>}]
+I0427 20:34:12.341692       1 asm_amd64.s:1337] balancerWrapper: got update addr from Notify: [{127.0.0.1:2379 <nil>}]
+I0427 20:34:12.348002       1 asm_amd64.s:1337] balancerWrapper: got update addr from Notify: [{127.0.0.1:2379 <nil>}]
+I0427 20:34:12.348543       1 client.go:354] parsed scheme: ""
+I0427 20:34:12.348561       1 client.go:354] scheme "" not registered, fallback to default scheme
+I0427 20:34:12.348590       1 asm_amd64.s:1337] ccResolverWrapper: sending new addresses to cc: [{127.0.0.1:2379 0  <nil>}]
+I0427 20:34:12.348649       1 asm_amd64.s:1337] balancerWrapper: got update addr from Notify: [{127.0.0.1:2379 <nil>}]
+I0427 20:34:12.354654       1 asm_amd64.s:1337] balancerWrapper: got update addr from Notify: [{127.0.0.1:2379 <nil>}]
+I0427 20:34:12.355141       1 client.go:354] parsed scheme: ""
+I0427 20:34:12.355159       1 client.go:354] scheme "" not registered, fallback to default scheme
+I0427 20:34:12.355184       1 asm_amd64.s:1337] ccResolverWrapper: sending new addresses to cc: [{127.0.0.1:2379 0  <nil>}]
+I0427 20:34:12.355231       1 asm_amd64.s:1337] balancerWrapper: got update addr from Notify: [{127.0.0.1:2379 <nil>}]
+I0427 20:34:12.361202       1 asm_amd64.s:1337] balancerWrapper: got update addr from Notify: [{127.0.0.1:2379 <nil>}]
+I0427 20:34:12.361662       1 client.go:354] parsed scheme: ""
+I0427 20:34:12.361682       1 client.go:354] scheme "" not registered, fallback to default scheme
+I0427 20:34:12.361712       1 asm_amd64.s:1337] ccResolverWrapper: sending new addresses to cc: [{127.0.0.1:2379 0  <nil>}]
+I0427 20:34:12.361770       1 asm_amd64.s:1337] balancerWrapper: got update addr from Notify: [{127.0.0.1:2379 <nil>}]
+I0427 20:34:12.367919       1 asm_amd64.s:1337] balancerWrapper: got update addr from Notify: [{127.0.0.1:2379 <nil>}]
+I0427 20:34:12.368613       1 client.go:354] parsed scheme: ""
+I0427 20:34:12.368639       1 client.go:354] scheme "" not registered, fallback to default scheme
+I0427 20:34:12.368670       1 asm_amd64.s:1337] ccResolverWrapper: sending new addresses to cc: [{127.0.0.1:2379 0  <nil>}]
+I0427 20:34:12.368723       1 asm_amd64.s:1337] balancerWrapper: got update addr from Notify: [{127.0.0.1:2379 <nil>}]
+I0427 20:34:12.376437       1 asm_amd64.s:1337] balancerWrapper: got update addr from Notify: [{127.0.0.1:2379 <nil>}]
+I0427 20:34:12.376850       1 client.go:354] parsed scheme: ""
+I0427 20:34:12.376864       1 client.go:354] scheme "" not registered, fallback to default scheme
+I0427 20:34:12.376893       1 asm_amd64.s:1337] ccResolverWrapper: sending new addresses to cc: [{127.0.0.1:2379 0  <nil>}]
+I0427 20:34:12.376930       1 asm_amd64.s:1337] balancerWrapper: got update addr from Notify: [{127.0.0.1:2379 <nil>}]
+I0427 20:34:12.383087       1 asm_amd64.s:1337] balancerWrapper: got update addr from Notify: [{127.0.0.1:2379 <nil>}]
+I0427 20:34:12.383578       1 client.go:354] parsed scheme: ""
+I0427 20:34:12.383598       1 client.go:354] scheme "" not registered, fallback to default scheme
+I0427 20:34:12.383642       1 asm_amd64.s:1337] ccResolverWrapper: sending new addresses to cc: [{127.0.0.1:2379 0  <nil>}]
+I0427 20:34:12.383726       1 asm_amd64.s:1337] balancerWrapper: got update addr from Notify: [{127.0.0.1:2379 <nil>}]
+I0427 20:34:12.390793       1 asm_amd64.s:1337] balancerWrapper: got update addr from Notify: [{127.0.0.1:2379 <nil>}]
+I0427 20:34:12.391159       1 client.go:354] parsed scheme: ""
+I0427 20:34:12.391178       1 client.go:354] scheme "" not registered, fallback to default scheme
+I0427 20:34:12.391209       1 asm_amd64.s:1337] ccResolverWrapper: sending new addresses to cc: [{127.0.0.1:2379 0  <nil>}]
+I0427 20:34:12.391299       1 asm_amd64.s:1337] balancerWrapper: got update addr from Notify: [{127.0.0.1:2379 <nil>}]
+I0427 20:34:12.397555       1 asm_amd64.s:1337] balancerWrapper: got update addr from Notify: [{127.0.0.1:2379 <nil>}]
+I0427 20:34:12.397822       1 client.go:354] parsed scheme: ""
+I0427 20:34:12.397841       1 client.go:354] scheme "" not registered, fallback to default scheme
+I0427 20:34:12.397876       1 asm_amd64.s:1337] ccResolverWrapper: sending new addresses to cc: [{127.0.0.1:2379 0  <nil>}]
+I0427 20:34:12.397914       1 asm_amd64.s:1337] balancerWrapper: got update addr from Notify: [{127.0.0.1:2379 <nil>}]
+I0427 20:34:12.404650       1 asm_amd64.s:1337] balancerWrapper: got update addr from Notify: [{127.0.0.1:2379 <nil>}]
+I0427 20:34:12.405016       1 client.go:354] parsed scheme: ""
+I0427 20:34:12.405028       1 client.go:354] scheme "" not registered, fallback to default scheme
+I0427 20:34:12.405077       1 asm_amd64.s:1337] ccResolverWrapper: sending new addresses to cc: [{127.0.0.1:2379 0  <nil>}]
+I0427 20:34:12.405126       1 asm_amd64.s:1337] balancerWrapper: got update addr from Notify: [{127.0.0.1:2379 <nil>}]
+I0427 20:34:12.411054       1 asm_amd64.s:1337] balancerWrapper: got update addr from Notify: [{127.0.0.1:2379 <nil>}]
+I0427 20:34:12.469519       1 client.go:354] parsed scheme: ""
+I0427 20:34:12.469540       1 client.go:354] scheme "" not registered, fallback to default scheme
+I0427 20:34:12.469567       1 asm_amd64.s:1337] ccResolverWrapper: sending new addresses to cc: [{127.0.0.1:2379 0  <nil>}]
+I0427 20:34:12.469598       1 asm_amd64.s:1337] balancerWrapper: got update addr from Notify: [{127.0.0.1:2379 <nil>}]
+I0427 20:34:12.475833       1 asm_amd64.s:1337] balancerWrapper: got update addr from Notify: [{127.0.0.1:2379 <nil>}]
+I0427 20:34:12.476310       1 client.go:354] parsed scheme: ""
+I0427 20:34:12.476326       1 client.go:354] scheme "" not registered, fallback to default scheme
+I0427 20:34:12.476357       1 asm_amd64.s:1337] ccResolverWrapper: sending new addresses to cc: [{127.0.0.1:2379 0  <nil>}]
+I0427 20:34:12.476406       1 asm_amd64.s:1337] balancerWrapper: got update addr from Notify: [{127.0.0.1:2379 <nil>}]
+I0427 20:34:12.482685       1 asm_amd64.s:1337] balancerWrapper: got update addr from Notify: [{127.0.0.1:2379 <nil>}]
+I0427 20:34:12.483157       1 client.go:354] parsed scheme: ""
+I0427 20:34:12.483175       1 client.go:354] scheme "" not registered, fallback to default scheme
+I0427 20:34:12.483207       1 asm_amd64.s:1337] ccResolverWrapper: sending new addresses to cc: [{127.0.0.1:2379 0  <nil>}]
+I0427 20:34:12.483260       1 asm_amd64.s:1337] balancerWrapper: got update addr from Notify: [{127.0.0.1:2379 <nil>}]
+I0427 20:34:12.489793       1 asm_amd64.s:1337] balancerWrapper: got update addr from Notify: [{127.0.0.1:2379 <nil>}]
+I0427 20:34:12.490300       1 client.go:354] parsed scheme: ""
+I0427 20:34:12.490316       1 client.go:354] scheme "" not registered, fallback to default scheme
+I0427 20:34:12.490349       1 asm_amd64.s:1337] ccResolverWrapper: sending new addresses to cc: [{127.0.0.1:2379 0  <nil>}]
+I0427 20:34:12.490400       1 asm_amd64.s:1337] balancerWrapper: got update addr from Notify: [{127.0.0.1:2379 <nil>}]
+I0427 20:34:12.497458       1 asm_amd64.s:1337] balancerWrapper: got update addr from Notify: [{127.0.0.1:2379 <nil>}]
+I0427 20:34:12.497944       1 client.go:354] parsed scheme: ""
+I0427 20:34:12.497962       1 client.go:354] scheme "" not registered, fallback to default scheme
+I0427 20:34:12.498001       1 asm_amd64.s:1337] ccResolverWrapper: sending new addresses to cc: [{127.0.0.1:2379 0  <nil>}]
+I0427 20:34:12.498078       1 asm_amd64.s:1337] balancerWrapper: got update addr from Notify: [{127.0.0.1:2379 <nil>}]
+I0427 20:34:12.505338       1 asm_amd64.s:1337] balancerWrapper: got update addr from Notify: [{127.0.0.1:2379 <nil>}]
+I0427 20:34:12.505766       1 client.go:354] parsed scheme: ""
+I0427 20:34:12.505781       1 client.go:354] scheme "" not registered, fallback to default scheme
+I0427 20:34:12.505817       1 asm_amd64.s:1337] ccResolverWrapper: sending new addresses to cc: [{127.0.0.1:2379 0  <nil>}]
+I0427 20:34:12.505869       1 asm_amd64.s:1337] balancerWrapper: got update addr from Notify: [{127.0.0.1:2379 <nil>}]
+I0427 20:34:12.511984       1 asm_amd64.s:1337] balancerWrapper: got update addr from Notify: [{127.0.0.1:2379 <nil>}]
+I0427 20:34:12.512447       1 client.go:354] parsed scheme: ""
+I0427 20:34:12.512462       1 client.go:354] scheme "" not registered, fallback to default scheme
+I0427 20:34:12.512494       1 asm_amd64.s:1337] ccResolverWrapper: sending new addresses to cc: [{127.0.0.1:2379 0  <nil>}]
+I0427 20:34:12.512532       1 asm_amd64.s:1337] balancerWrapper: got update addr from Notify: [{127.0.0.1:2379 <nil>}]
+I0427 20:34:12.519435       1 asm_amd64.s:1337] balancerWrapper: got update addr from Notify: [{127.0.0.1:2379 <nil>}]
+I0427 20:34:12.519911       1 client.go:354] parsed scheme: ""
+I0427 20:34:12.519925       1 client.go:354] scheme "" not registered, fallback to default scheme
+I0427 20:34:12.519950       1 asm_amd64.s:1337] ccResolverWrapper: sending new addresses to cc: [{127.0.0.1:2379 0  <nil>}]
+I0427 20:34:12.519987       1 asm_amd64.s:1337] balancerWrapper: got update addr from Notify: [{127.0.0.1:2379 <nil>}]
+I0427 20:34:12.526410       1 asm_amd64.s:1337] balancerWrapper: got update addr from Notify: [{127.0.0.1:2379 <nil>}]
+I0427 20:34:12.526923       1 client.go:354] parsed scheme: ""
+I0427 20:34:12.526939       1 client.go:354] scheme "" not registered, fallback to default scheme
+I0427 20:34:12.526970       1 asm_amd64.s:1337] ccResolverWrapper: sending new addresses to cc: [{127.0.0.1:2379 0  <nil>}]
+I0427 20:34:12.527044       1 asm_amd64.s:1337] balancerWrapper: got update addr from Notify: [{127.0.0.1:2379 <nil>}]
+I0427 20:34:12.534603       1 asm_amd64.s:1337] balancerWrapper: got update addr from Notify: [{127.0.0.1:2379 <nil>}]
+I0427 20:34:12.535145       1 client.go:354] parsed scheme: ""
+I0427 20:34:12.535163       1 client.go:354] scheme "" not registered, fallback to default scheme
+I0427 20:34:12.535200       1 asm_amd64.s:1337] ccResolverWrapper: sending new addresses to cc: [{127.0.0.1:2379 0  <nil>}]
+I0427 20:34:12.535252       1 asm_amd64.s:1337] balancerWrapper: got update addr from Notify: [{127.0.0.1:2379 <nil>}]
+I0427 20:34:12.541239       1 asm_amd64.s:1337] balancerWrapper: got update addr from Notify: [{127.0.0.1:2379 <nil>}]
+I0427 20:34:12.541853       1 client.go:354] parsed scheme: ""
+I0427 20:34:12.541872       1 client.go:354] scheme "" not registered, fallback to default scheme
+I0427 20:34:12.541905       1 asm_amd64.s:1337] ccResolverWrapper: sending new addresses to cc: [{127.0.0.1:2379 0  <nil>}]
+I0427 20:34:12.541946       1 asm_amd64.s:1337] balancerWrapper: got update addr from Notify: [{127.0.0.1:2379 <nil>}]
+I0427 20:34:12.549160       1 asm_amd64.s:1337] balancerWrapper: got update addr from Notify: [{127.0.0.1:2379 <nil>}]
+I0427 20:34:12.549592       1 client.go:354] parsed scheme: ""
+I0427 20:34:12.549606       1 client.go:354] scheme "" not registered, fallback to default scheme
+I0427 20:34:12.549637       1 asm_amd64.s:1337] ccResolverWrapper: sending new addresses to cc: [{127.0.0.1:2379 0  <nil>}]
+I0427 20:34:12.549671       1 asm_amd64.s:1337] balancerWrapper: got update addr from Notify: [{127.0.0.1:2379 <nil>}]
+I0427 20:34:12.555920       1 asm_amd64.s:1337] balancerWrapper: got update addr from Notify: [{127.0.0.1:2379 <nil>}]
+I0427 20:34:12.556372       1 client.go:354] parsed scheme: ""
+I0427 20:34:12.556389       1 client.go:354] scheme "" not registered, fallback to default scheme
+I0427 20:34:12.556420       1 asm_amd64.s:1337] ccResolverWrapper: sending new addresses to cc: [{127.0.0.1:2379 0  <nil>}]
+I0427 20:34:12.556469       1 asm_amd64.s:1337] balancerWrapper: got update addr from Notify: [{127.0.0.1:2379 <nil>}]
+I0427 20:34:12.563656       1 asm_amd64.s:1337] balancerWrapper: got update addr from Notify: [{127.0.0.1:2379 <nil>}]
+I0427 20:34:12.564116       1 client.go:354] parsed scheme: ""
+I0427 20:34:12.564134       1 client.go:354] scheme "" not registered, fallback to default scheme
+I0427 20:34:12.564165       1 asm_amd64.s:1337] ccResolverWrapper: sending new addresses to cc: [{127.0.0.1:2379 0  <nil>}]
+I0427 20:34:12.564202       1 asm_amd64.s:1337] balancerWrapper: got update addr from Notify: [{127.0.0.1:2379 <nil>}]
+I0427 20:34:12.570394       1 asm_amd64.s:1337] balancerWrapper: got update addr from Notify: [{127.0.0.1:2379 <nil>}]
+I0427 20:34:12.570929       1 client.go:354] parsed scheme: ""
+I0427 20:34:12.570945       1 client.go:354] scheme "" not registered, fallback to default scheme
+I0427 20:34:12.570975       1 asm_amd64.s:1337] ccResolverWrapper: sending new addresses to cc: [{127.0.0.1:2379 0  <nil>}]
+I0427 20:34:12.571018       1 asm_amd64.s:1337] balancerWrapper: got update addr from Notify: [{127.0.0.1:2379 <nil>}]
+I0427 20:34:12.577079       1 asm_amd64.s:1337] balancerWrapper: got update addr from Notify: [{127.0.0.1:2379 <nil>}]
+I0427 20:34:12.577630       1 client.go:354] parsed scheme: ""
+I0427 20:34:12.577648       1 client.go:354] scheme "" not registered, fallback to default scheme
+I0427 20:34:12.577678       1 asm_amd64.s:1337] ccResolverWrapper: sending new addresses to cc: [{127.0.0.1:2379 0  <nil>}]
+I0427 20:34:12.577721       1 asm_amd64.s:1337] balancerWrapper: got update addr from Notify: [{127.0.0.1:2379 <nil>}]
+I0427 20:34:12.583845       1 asm_amd64.s:1337] balancerWrapper: got update addr from Notify: [{127.0.0.1:2379 <nil>}]
+I0427 20:34:12.585169       1 client.go:354] parsed scheme: ""
+I0427 20:34:12.585185       1 client.go:354] scheme "" not registered, fallback to default scheme
+I0427 20:34:12.585240       1 asm_amd64.s:1337] ccResolverWrapper: sending new addresses to cc: [{127.0.0.1:2379 0  <nil>}]
+I0427 20:34:12.585320       1 asm_amd64.s:1337] balancerWrapper: got update addr from Notify: [{127.0.0.1:2379 <nil>}]
+I0427 20:34:12.591504       1 asm_amd64.s:1337] balancerWrapper: got update addr from Notify: [{127.0.0.1:2379 <nil>}]
+I0427 20:34:12.591838       1 client.go:354] parsed scheme: ""
+I0427 20:34:12.591857       1 client.go:354] scheme "" not registered, fallback to default scheme
+I0427 20:34:12.591884       1 asm_amd64.s:1337] ccResolverWrapper: sending new addresses to cc: [{127.0.0.1:2379 0  <nil>}]
+I0427 20:34:12.591965       1 asm_amd64.s:1337] balancerWrapper: got update addr from Notify: [{127.0.0.1:2379 <nil>}]
+I0427 20:34:12.598183       1 asm_amd64.s:1337] balancerWrapper: got update addr from Notify: [{127.0.0.1:2379 <nil>}]
+I0427 20:34:12.598665       1 client.go:354] parsed scheme: ""
+I0427 20:34:12.598683       1 client.go:354] scheme "" not registered, fallback to default scheme
+I0427 20:34:12.598712       1 asm_amd64.s:1337] ccResolverWrapper: sending new addresses to cc: [{127.0.0.1:2379 0  <nil>}]
+I0427 20:34:12.598768       1 asm_amd64.s:1337] balancerWrapper: got update addr from Notify: [{127.0.0.1:2379 <nil>}]
+I0427 20:34:12.605694       1 asm_amd64.s:1337] balancerWrapper: got update addr from Notify: [{127.0.0.1:2379 <nil>}]
+I0427 20:34:12.606235       1 client.go:354] parsed scheme: ""
+I0427 20:34:12.606252       1 client.go:354] scheme "" not registered, fallback to default scheme
+I0427 20:34:12.606279       1 asm_amd64.s:1337] ccResolverWrapper: sending new addresses to cc: [{127.0.0.1:2379 0  <nil>}]
+I0427 20:34:12.606349       1 asm_amd64.s:1337] balancerWrapper: got update addr from Notify: [{127.0.0.1:2379 <nil>}]
+I0427 20:34:12.612654       1 asm_amd64.s:1337] balancerWrapper: got update addr from Notify: [{127.0.0.1:2379 <nil>}]
+I0427 20:34:12.613007       1 client.go:354] parsed scheme: ""
+I0427 20:34:12.613021       1 client.go:354] scheme "" not registered, fallback to default scheme
+I0427 20:34:12.613058       1 asm_amd64.s:1337] ccResolverWrapper: sending new addresses to cc: [{127.0.0.1:2379 0  <nil>}]
+I0427 20:34:12.613147       1 asm_amd64.s:1337] balancerWrapper: got update addr from Notify: [{127.0.0.1:2379 <nil>}]
+I0427 20:34:12.619330       1 asm_amd64.s:1337] balancerWrapper: got update addr from Notify: [{127.0.0.1:2379 <nil>}]
+I0427 20:34:12.619813       1 client.go:354] parsed scheme: ""
+I0427 20:34:12.619832       1 client.go:354] scheme "" not registered, fallback to default scheme
+I0427 20:34:12.619859       1 asm_amd64.s:1337] ccResolverWrapper: sending new addresses to cc: [{127.0.0.1:2379 0  <nil>}]
+I0427 20:34:12.619914       1 asm_amd64.s:1337] balancerWrapper: got update addr from Notify: [{127.0.0.1:2379 <nil>}]
+I0427 20:34:12.627001       1 asm_amd64.s:1337] balancerWrapper: got update addr from Notify: [{127.0.0.1:2379 <nil>}]
+I0427 20:34:12.627379       1 client.go:354] parsed scheme: ""
+I0427 20:34:12.627404       1 client.go:354] scheme "" not registered, fallback to default scheme
+I0427 20:34:12.627432       1 asm_amd64.s:1337] ccResolverWrapper: sending new addresses to cc: [{127.0.0.1:2379 0  <nil>}]
+I0427 20:34:12.627458       1 asm_amd64.s:1337] balancerWrapper: got update addr from Notify: [{127.0.0.1:2379 <nil>}]
+I0427 20:34:12.635207       1 asm_amd64.s:1337] balancerWrapper: got update addr from Notify: [{127.0.0.1:2379 <nil>}]
+I0427 20:34:12.638159       1 client.go:354] parsed scheme: ""
+I0427 20:34:12.638181       1 client.go:354] scheme "" not registered, fallback to default scheme
+I0427 20:34:12.638222       1 asm_amd64.s:1337] ccResolverWrapper: sending new addresses to cc: [{127.0.0.1:2379 0  <nil>}]
+I0427 20:34:12.638508       1 asm_amd64.s:1337] balancerWrapper: got update addr from Notify: [{127.0.0.1:2379 <nil>}]
+I0427 20:34:12.646135       1 asm_amd64.s:1337] balancerWrapper: got update addr from Notify: [{127.0.0.1:2379 <nil>}]
+I0427 20:34:12.646437       1 client.go:354] parsed scheme: ""
+I0427 20:34:12.646452       1 client.go:354] scheme "" not registered, fallback to default scheme
+I0427 20:34:12.646480       1 asm_amd64.s:1337] ccResolverWrapper: sending new addresses to cc: [{127.0.0.1:2379 0  <nil>}]
+I0427 20:34:12.646513       1 asm_amd64.s:1337] balancerWrapper: got update addr from Notify: [{127.0.0.1:2379 <nil>}]
+I0427 20:34:12.653664       1 asm_amd64.s:1337] balancerWrapper: got update addr from Notify: [{127.0.0.1:2379 <nil>}]
+I0427 20:34:12.654094       1 client.go:354] parsed scheme: ""
+I0427 20:34:12.654111       1 client.go:354] scheme "" not registered, fallback to default scheme
+I0427 20:34:12.654140       1 asm_amd64.s:1337] ccResolverWrapper: sending new addresses to cc: [{127.0.0.1:2379 0  <nil>}]
+I0427 20:34:12.654202       1 asm_amd64.s:1337] balancerWrapper: got update addr from Notify: [{127.0.0.1:2379 <nil>}]
+I0427 20:34:12.660385       1 asm_amd64.s:1337] balancerWrapper: got update addr from Notify: [{127.0.0.1:2379 <nil>}]
+I0427 20:34:12.660742       1 client.go:354] parsed scheme: ""
+I0427 20:34:12.660756       1 client.go:354] scheme "" not registered, fallback to default scheme
+I0427 20:34:12.660782       1 asm_amd64.s:1337] ccResolverWrapper: sending new addresses to cc: [{127.0.0.1:2379 0  <nil>}]
+I0427 20:34:12.660821       1 asm_amd64.s:1337] balancerWrapper: got update addr from Notify: [{127.0.0.1:2379 <nil>}]
+I0427 20:34:12.666832       1 asm_amd64.s:1337] balancerWrapper: got update addr from Notify: [{127.0.0.1:2379 <nil>}]
+I0427 20:34:12.667228       1 client.go:354] parsed scheme: ""
+I0427 20:34:12.667245       1 client.go:354] scheme "" not registered, fallback to default scheme
+I0427 20:34:12.667279       1 asm_amd64.s:1337] ccResolverWrapper: sending new addresses to cc: [{127.0.0.1:2379 0  <nil>}]
+I0427 20:34:12.667320       1 asm_amd64.s:1337] balancerWrapper: got update addr from Notify: [{127.0.0.1:2379 <nil>}]
+I0427 20:34:12.669411       1 client.go:354] parsed scheme: ""
+I0427 20:34:12.669428       1 client.go:354] scheme "" not registered, fallback to default scheme
+I0427 20:34:12.669465       1 asm_amd64.s:1337] ccResolverWrapper: sending new addresses to cc: [{127.0.0.1:2379 0  <nil>}]
+I0427 20:34:12.669515       1 asm_amd64.s:1337] balancerWrapper: got update addr from Notify: [{127.0.0.1:2379 <nil>}]
+I0427 20:34:12.692755       1 asm_amd64.s:1337] balancerWrapper: got update addr from Notify: [{127.0.0.1:2379 <nil>}]
+I0427 20:34:12.692760       1 asm_amd64.s:1337] balancerWrapper: got update addr from Notify: [{127.0.0.1:2379 <nil>}]
+I0427 20:34:12.694423       1 client.go:354] parsed scheme: ""
+I0427 20:34:12.694441       1 client.go:354] scheme "" not registered, fallback to default scheme
+I0427 20:34:12.694473       1 asm_amd64.s:1337] ccResolverWrapper: sending new addresses to cc: [{127.0.0.1:2379 0  <nil>}]
+I0427 20:34:12.694519       1 asm_amd64.s:1337] balancerWrapper: got update addr from Notify: [{127.0.0.1:2379 <nil>}]
+I0427 20:34:12.700530       1 asm_amd64.s:1337] balancerWrapper: got update addr from Notify: [{127.0.0.1:2379 <nil>}]
+I0427 20:34:12.701025       1 client.go:354] parsed scheme: ""
+I0427 20:34:12.701042       1 client.go:354] scheme "" not registered, fallback to default scheme
+I0427 20:34:12.701068       1 asm_amd64.s:1337] ccResolverWrapper: sending new addresses to cc: [{127.0.0.1:2379 0  <nil>}]
+I0427 20:34:12.701102       1 asm_amd64.s:1337] balancerWrapper: got update addr from Notify: [{127.0.0.1:2379 <nil>}]
+I0427 20:34:12.707453       1 asm_amd64.s:1337] balancerWrapper: got update addr from Notify: [{127.0.0.1:2379 <nil>}]
+I0427 20:34:12.708026       1 client.go:354] parsed scheme: ""
+I0427 20:34:12.708039       1 client.go:354] scheme "" not registered, fallback to default scheme
+I0427 20:34:12.708068       1 asm_amd64.s:1337] ccResolverWrapper: sending new addresses to cc: [{127.0.0.1:2379 0  <nil>}]
+I0427 20:34:12.708109       1 asm_amd64.s:1337] balancerWrapper: got update addr from Notify: [{127.0.0.1:2379 <nil>}]
+I0427 20:34:12.714263       1 asm_amd64.s:1337] balancerWrapper: got update addr from Notify: [{127.0.0.1:2379 <nil>}]
+I0427 20:34:12.714788       1 client.go:354] parsed scheme: ""
+I0427 20:34:12.714805       1 client.go:354] scheme "" not registered, fallback to default scheme
+I0427 20:34:12.714838       1 asm_amd64.s:1337] ccResolverWrapper: sending new addresses to cc: [{127.0.0.1:2379 0  <nil>}]
+I0427 20:34:12.714892       1 asm_amd64.s:1337] balancerWrapper: got update addr from Notify: [{127.0.0.1:2379 <nil>}]
+I0427 20:34:12.721176       1 asm_amd64.s:1337] balancerWrapper: got update addr from Notify: [{127.0.0.1:2379 <nil>}]
+I0427 20:34:12.721513       1 client.go:354] parsed scheme: ""
+I0427 20:34:12.721530       1 client.go:354] scheme "" not registered, fallback to default scheme
+I0427 20:34:12.721571       1 asm_amd64.s:1337] ccResolverWrapper: sending new addresses to cc: [{127.0.0.1:2379 0  <nil>}]
+I0427 20:34:12.721612       1 asm_amd64.s:1337] balancerWrapper: got update addr from Notify: [{127.0.0.1:2379 <nil>}]
+I0427 20:34:12.727847       1 asm_amd64.s:1337] balancerWrapper: got update addr from Notify: [{127.0.0.1:2379 <nil>}]
+I0427 20:34:12.728234       1 client.go:354] parsed scheme: ""
+I0427 20:34:12.728254       1 client.go:354] scheme "" not registered, fallback to default scheme
+I0427 20:34:12.728295       1 asm_amd64.s:1337] ccResolverWrapper: sending new addresses to cc: [{127.0.0.1:2379 0  <nil>}]
+I0427 20:34:12.728378       1 asm_amd64.s:1337] balancerWrapper: got update addr from Notify: [{127.0.0.1:2379 <nil>}]
+I0427 20:34:12.736370       1 asm_amd64.s:1337] balancerWrapper: got update addr from Notify: [{127.0.0.1:2379 <nil>}]
+I0427 20:34:12.736942       1 client.go:354] parsed scheme: ""
+I0427 20:34:12.736959       1 client.go:354] scheme "" not registered, fallback to default scheme
+I0427 20:34:12.737014       1 asm_amd64.s:1337] ccResolverWrapper: sending new addresses to cc: [{127.0.0.1:2379 0  <nil>}]
+I0427 20:34:12.737063       1 asm_amd64.s:1337] balancerWrapper: got update addr from Notify: [{127.0.0.1:2379 <nil>}]
+I0427 20:34:12.743275       1 asm_amd64.s:1337] balancerWrapper: got update addr from Notify: [{127.0.0.1:2379 <nil>}]
+I0427 20:34:12.743632       1 client.go:354] parsed scheme: ""
+I0427 20:34:12.743649       1 client.go:354] scheme "" not registered, fallback to default scheme
+I0427 20:34:12.743679       1 asm_amd64.s:1337] ccResolverWrapper: sending new addresses to cc: [{127.0.0.1:2379 0  <nil>}]
+I0427 20:34:12.743737       1 asm_amd64.s:1337] balancerWrapper: got update addr from Notify: [{127.0.0.1:2379 <nil>}]
+I0427 20:34:12.750016       1 asm_amd64.s:1337] balancerWrapper: got update addr from Notify: [{127.0.0.1:2379 <nil>}]
+I0427 20:34:12.750526       1 client.go:354] parsed scheme: ""
+I0427 20:34:12.750542       1 client.go:354] scheme "" not registered, fallback to default scheme
+I0427 20:34:12.750590       1 asm_amd64.s:1337] ccResolverWrapper: sending new addresses to cc: [{127.0.0.1:2379 0  <nil>}]
+I0427 20:34:12.750629       1 asm_amd64.s:1337] balancerWrapper: got update addr from Notify: [{127.0.0.1:2379 <nil>}]
+I0427 20:34:12.756852       1 asm_amd64.s:1337] balancerWrapper: got update addr from Notify: [{127.0.0.1:2379 <nil>}]
+I0427 20:34:12.757351       1 client.go:354] parsed scheme: ""
+I0427 20:34:12.757369       1 client.go:354] scheme "" not registered, fallback to default scheme
+I0427 20:34:12.757396       1 asm_amd64.s:1337] ccResolverWrapper: sending new addresses to cc: [{127.0.0.1:2379 0  <nil>}]
+I0427 20:34:12.758249       1 asm_amd64.s:1337] balancerWrapper: got update addr from Notify: [{127.0.0.1:2379 <nil>}]
+I0427 20:34:12.785465       1 asm_amd64.s:1337] balancerWrapper: got update addr from Notify: [{127.0.0.1:2379 <nil>}]
+I0427 20:34:12.786058       1 client.go:354] parsed scheme: ""
+I0427 20:34:12.786078       1 client.go:354] scheme "" not registered, fallback to default scheme
+I0427 20:34:12.786123       1 asm_amd64.s:1337] ccResolverWrapper: sending new addresses to cc: [{127.0.0.1:2379 0  <nil>}]
+I0427 20:34:12.786177       1 asm_amd64.s:1337] balancerWrapper: got update addr from Notify: [{127.0.0.1:2379 <nil>}]
+I0427 20:34:12.792495       1 asm_amd64.s:1337] balancerWrapper: got update addr from Notify: [{127.0.0.1:2379 <nil>}]
+I0427 20:34:12.793102       1 client.go:354] parsed scheme: ""
+I0427 20:34:12.793121       1 client.go:354] scheme "" not registered, fallback to default scheme
+I0427 20:34:12.793152       1 asm_amd64.s:1337] ccResolverWrapper: sending new addresses to cc: [{127.0.0.1:2379 0  <nil>}]
+I0427 20:34:12.793186       1 asm_amd64.s:1337] balancerWrapper: got update addr from Notify: [{127.0.0.1:2379 <nil>}]
+I0427 20:34:12.800145       1 asm_amd64.s:1337] balancerWrapper: got update addr from Notify: [{127.0.0.1:2379 <nil>}]
+I0427 20:34:12.800736       1 client.go:354] parsed scheme: ""
+I0427 20:34:12.800754       1 client.go:354] scheme "" not registered, fallback to default scheme
+I0427 20:34:12.800786       1 asm_amd64.s:1337] ccResolverWrapper: sending new addresses to cc: [{127.0.0.1:2379 0  <nil>}]
+I0427 20:34:12.800833       1 asm_amd64.s:1337] balancerWrapper: got update addr from Notify: [{127.0.0.1:2379 <nil>}]
+I0427 20:34:12.809321       1 asm_amd64.s:1337] balancerWrapper: got update addr from Notify: [{127.0.0.1:2379 <nil>}]
+I0427 20:34:12.809868       1 client.go:354] parsed scheme: ""
+I0427 20:34:12.809885       1 client.go:354] scheme "" not registered, fallback to default scheme
+I0427 20:34:12.809917       1 asm_amd64.s:1337] ccResolverWrapper: sending new addresses to cc: [{127.0.0.1:2379 0  <nil>}]
+I0427 20:34:12.809956       1 asm_amd64.s:1337] balancerWrapper: got update addr from Notify: [{127.0.0.1:2379 <nil>}]
+I0427 20:34:12.816185       1 asm_amd64.s:1337] balancerWrapper: got update addr from Notify: [{127.0.0.1:2379 <nil>}]
+I0427 20:34:12.816692       1 client.go:354] parsed scheme: ""
+I0427 20:34:12.816704       1 client.go:354] scheme "" not registered, fallback to default scheme
+I0427 20:34:12.816742       1 asm_amd64.s:1337] ccResolverWrapper: sending new addresses to cc: [{127.0.0.1:2379 0  <nil>}]
+I0427 20:34:12.816782       1 asm_amd64.s:1337] balancerWrapper: got update addr from Notify: [{127.0.0.1:2379 <nil>}]
+I0427 20:34:12.822980       1 asm_amd64.s:1337] balancerWrapper: got update addr from Notify: [{127.0.0.1:2379 <nil>}]
+I0427 20:34:12.823491       1 client.go:354] parsed scheme: ""
+I0427 20:34:12.823508       1 client.go:354] scheme "" not registered, fallback to default scheme
+I0427 20:34:12.823537       1 asm_amd64.s:1337] ccResolverWrapper: sending new addresses to cc: [{127.0.0.1:2379 0  <nil>}]
+I0427 20:34:12.823572       1 asm_amd64.s:1337] balancerWrapper: got update addr from Notify: [{127.0.0.1:2379 <nil>}]
+I0427 20:34:12.830481       1 asm_amd64.s:1337] balancerWrapper: got update addr from Notify: [{127.0.0.1:2379 <nil>}]
+I0427 20:34:12.830995       1 client.go:354] parsed scheme: ""
+I0427 20:34:12.831013       1 client.go:354] scheme "" not registered, fallback to default scheme
+I0427 20:34:12.831045       1 asm_amd64.s:1337] ccResolverWrapper: sending new addresses to cc: [{127.0.0.1:2379 0  <nil>}]
+I0427 20:34:12.831098       1 asm_amd64.s:1337] balancerWrapper: got update addr from Notify: [{127.0.0.1:2379 <nil>}]
+I0427 20:34:12.838141       1 asm_amd64.s:1337] balancerWrapper: got update addr from Notify: [{127.0.0.1:2379 <nil>}]
+I0427 20:34:12.838661       1 client.go:354] parsed scheme: ""
+I0427 20:34:12.838681       1 client.go:354] scheme "" not registered, fallback to default scheme
+I0427 20:34:12.838751       1 asm_amd64.s:1337] ccResolverWrapper: sending new addresses to cc: [{127.0.0.1:2379 0  <nil>}]
+I0427 20:34:12.838824       1 asm_amd64.s:1337] balancerWrapper: got update addr from Notify: [{127.0.0.1:2379 <nil>}]
+I0427 20:34:12.844916       1 asm_amd64.s:1337] balancerWrapper: got update addr from Notify: [{127.0.0.1:2379 <nil>}]
+I0427 20:34:12.845439       1 client.go:354] parsed scheme: ""
+I0427 20:34:12.845457       1 client.go:354] scheme "" not registered, fallback to default scheme
+I0427 20:34:12.845486       1 asm_amd64.s:1337] ccResolverWrapper: sending new addresses to cc: [{127.0.0.1:2379 0  <nil>}]
+I0427 20:34:12.845555       1 asm_amd64.s:1337] balancerWrapper: got update addr from Notify: [{127.0.0.1:2379 <nil>}]
+I0427 20:34:12.851892       1 asm_amd64.s:1337] balancerWrapper: got update addr from Notify: [{127.0.0.1:2379 <nil>}]
+I0427 20:34:12.852405       1 client.go:354] parsed scheme: ""
+I0427 20:34:12.852417       1 client.go:354] scheme "" not registered, fallback to default scheme
+I0427 20:34:12.852443       1 asm_amd64.s:1337] ccResolverWrapper: sending new addresses to cc: [{127.0.0.1:2379 0  <nil>}]
+I0427 20:34:12.852485       1 asm_amd64.s:1337] balancerWrapper: got update addr from Notify: [{127.0.0.1:2379 <nil>}]
+I0427 20:34:12.858756       1 asm_amd64.s:1337] balancerWrapper: got update addr from Notify: [{127.0.0.1:2379 <nil>}]
+I0427 20:34:12.860177       1 client.go:354] parsed scheme: ""
+I0427 20:34:12.860198       1 client.go:354] scheme "" not registered, fallback to default scheme
+I0427 20:34:12.860239       1 asm_amd64.s:1337] ccResolverWrapper: sending new addresses to cc: [{127.0.0.1:2379 0  <nil>}]
+I0427 20:34:12.860301       1 asm_amd64.s:1337] balancerWrapper: got update addr from Notify: [{127.0.0.1:2379 <nil>}]
+I0427 20:34:12.867364       1 asm_amd64.s:1337] balancerWrapper: got update addr from Notify: [{127.0.0.1:2379 <nil>}]
+I0427 20:34:12.867726       1 client.go:354] parsed scheme: ""
+I0427 20:34:12.867746       1 client.go:354] scheme "" not registered, fallback to default scheme
+I0427 20:34:12.867774       1 asm_amd64.s:1337] ccResolverWrapper: sending new addresses to cc: [{127.0.0.1:2379 0  <nil>}]
+I0427 20:34:12.867843       1 asm_amd64.s:1337] balancerWrapper: got update addr from Notify: [{127.0.0.1:2379 <nil>}]
+I0427 20:34:12.874141       1 asm_amd64.s:1337] balancerWrapper: got update addr from Notify: [{127.0.0.1:2379 <nil>}]
+I0427 20:34:12.874525       1 client.go:354] parsed scheme: ""
+I0427 20:34:12.874541       1 client.go:354] scheme "" not registered, fallback to default scheme
+I0427 20:34:12.874584       1 asm_amd64.s:1337] ccResolverWrapper: sending new addresses to cc: [{127.0.0.1:2379 0  <nil>}]
+I0427 20:34:12.874682       1 asm_amd64.s:1337] balancerWrapper: got update addr from Notify: [{127.0.0.1:2379 <nil>}]
+I0427 20:34:12.881146       1 asm_amd64.s:1337] balancerWrapper: got update addr from Notify: [{127.0.0.1:2379 <nil>}]
+I0427 20:34:12.881612       1 client.go:354] parsed scheme: ""
+I0427 20:34:12.881626       1 client.go:354] scheme "" not registered, fallback to default scheme
+I0427 20:34:12.881660       1 asm_amd64.s:1337] ccResolverWrapper: sending new addresses to cc: [{127.0.0.1:2379 0  <nil>}]
+I0427 20:34:12.881700       1 asm_amd64.s:1337] balancerWrapper: got update addr from Notify: [{127.0.0.1:2379 <nil>}]
+I0427 20:34:12.887798       1 asm_amd64.s:1337] balancerWrapper: got update addr from Notify: [{127.0.0.1:2379 <nil>}]
+W0427 20:34:12.984702       1 genericapiserver.go:351] Skipping API batch/v2alpha1 because it has no resources.
+W0427 20:34:12.991960       1 genericapiserver.go:351] Skipping API node.k8s.io/v1alpha1 because it has no resources.
+W0427 20:34:12.999062       1 genericapiserver.go:351] Skipping API rbac.authorization.k8s.io/v1alpha1 because it has no resources.
+W0427 20:34:13.004343       1 genericapiserver.go:351] Skipping API scheduling.k8s.io/v1alpha1 because it has no resources.
+W0427 20:34:13.006221       1 genericapiserver.go:351] Skipping API storage.k8s.io/v1alpha1 because it has no resources.
+E0427 20:34:13.568739       1 prometheus.go:55] failed to register depth metric admission_quota_controller: duplicate metrics collector registration attempted
+E0427 20:34:13.568779       1 prometheus.go:68] failed to register adds metric admission_quota_controller: duplicate metrics collector registration attempted
+E0427 20:34:13.568800       1 prometheus.go:82] failed to register latency metric admission_quota_controller: duplicate metrics collector registration attempted
+E0427 20:34:13.568815       1 prometheus.go:96] failed to register workDuration metric admission_quota_controller: duplicate metrics collector registration attempted
+E0427 20:34:13.568841       1 prometheus.go:112] failed to register unfinished metric admission_quota_controller: duplicate metrics collector registration attempted
+E0427 20:34:13.568885       1 prometheus.go:126] failed to register unfinished metric admission_quota_controller: duplicate metrics collector registration attempted
+E0427 20:34:13.568913       1 prometheus.go:152] failed to register depth metric admission_quota_controller: duplicate metrics collector registration attempted
+E0427 20:34:13.568934       1 prometheus.go:164] failed to register adds metric admission_quota_controller: duplicate metrics collector registration attempted
+E0427 20:34:13.568978       1 prometheus.go:176] failed to register latency metric admission_quota_controller: duplicate metrics collector registration attempted
+E0427 20:34:13.569020       1 prometheus.go:188] failed to register work_duration metric admission_quota_controller: duplicate metrics collector registration attempted
+E0427 20:34:13.569052       1 prometheus.go:203] failed to register unfinished_work_seconds metric admission_quota_controller: duplicate metrics collector registration attempted
+E0427 20:34:13.569081       1 prometheus.go:216] failed to register longest_running_processor_microseconds metric admission_quota_controller: duplicate metrics collector registration attempted
+I0427 20:34:13.569113       1 plugins.go:158] Loaded 10 mutating admission controller(s) successfully in the following order: NamespaceLifecycle,LimitRanger,ServiceAccount,NodeRestriction,TaintNodesByCondition,Priority,DefaultTolerationSeconds,DefaultStorageClass,StorageObjectInUseProtection,MutatingAdmissionWebhook.
+I0427 20:34:13.569123       1 plugins.go:161] Loaded 6 validating admission controller(s) successfully in the following order: LimitRanger,ServiceAccount,Priority,PersistentVolumeClaimResize,ValidatingAdmissionWebhook,ResourceQuota.
+I0427 20:34:13.570370       1 client.go:354] parsed scheme: ""
+I0427 20:34:13.570384       1 client.go:354] scheme "" not registered, fallback to default scheme
+I0427 20:34:13.570441       1 asm_amd64.s:1337] ccResolverWrapper: sending new addresses to cc: [{127.0.0.1:2379 0  <nil>}]
+I0427 20:34:13.570479       1 asm_amd64.s:1337] balancerWrapper: got update addr from Notify: [{127.0.0.1:2379 <nil>}]
+I0427 20:34:13.576738       1 asm_amd64.s:1337] balancerWrapper: got update addr from Notify: [{127.0.0.1:2379 <nil>}]
+I0427 20:34:13.577260       1 client.go:354] parsed scheme: ""
+I0427 20:34:13.577276       1 client.go:354] scheme "" not registered, fallback to default scheme
+I0427 20:34:13.577314       1 asm_amd64.s:1337] ccResolverWrapper: sending new addresses to cc: [{127.0.0.1:2379 0  <nil>}]
+I0427 20:34:13.577360       1 asm_amd64.s:1337] balancerWrapper: got update addr from Notify: [{127.0.0.1:2379 <nil>}]
+I0427 20:34:13.584707       1 asm_amd64.s:1337] balancerWrapper: got update addr from Notify: [{127.0.0.1:2379 <nil>}]
+E0427 20:34:14.885384       1 genericapiserver.go:270] Failed to add pre-shutdown hook for audit-backend unable to add "audit-backend" because it is already registered
+I0427 20:34:14.885425       1 secure_serving.go:116] Serving securely on [::]:6443
+I0427 20:34:14.885465       1 autoregister_controller.go:140] Starting autoregister controller
+I0427 20:34:14.885469       1 cache.go:32] Waiting for caches to sync for autoregister controller
+I0427 20:34:14.885653       1 controller.go:81] Starting OpenAPI AggregationController
+I0427 20:34:14.885698       1 crd_finalizer.go:255] Starting CRDFinalizer
+I0427 20:34:14.885736       1 controller.go:83] Starting OpenAPI controller
+I0427 20:34:14.885775       1 customresource_discovery_controller.go:208] Starting DiscoveryController
+I0427 20:34:14.885792       1 naming_controller.go:288] Starting NamingConditionController
+I0427 20:34:14.885808       1 establishing_controller.go:73] Starting EstablishingController
+I0427 20:34:14.885824       1 nonstructuralschema_controller.go:191] Starting NonStructuralSchemaConditionController
+I0427 20:34:14.885968       1 apiservice_controller.go:94] Starting APIServiceRegistrationController
+I0427 20:34:14.885993       1 cache.go:32] Waiting for caches to sync for APIServiceRegistrationController controller
+I0427 20:34:14.886009       1 crdregistration_controller.go:112] Starting crd-autoregister controller
+I0427 20:34:14.886014       1 controller_utils.go:1029] Waiting for caches to sync for crd-autoregister controller
+I0427 20:34:14.886896       1 available_controller.go:376] Starting AvailableConditionController
+I0427 20:34:14.886920       1 cache.go:32] Waiting for caches to sync for AvailableConditionController controller
+E0427 20:34:14.887105       1 controller.go:148] Unable to remove old endpoints from kubernetes service: StorageError: key not found, Code: 1, Key: /registry/masterleases/172.17.0.2, ResourceVersion: 0, AdditionalErrorMsg: 
+I0427 20:34:14.985667       1 cache.go:39] Caches are synced for autoregister controller
+I0427 20:34:14.986166       1 controller_utils.go:1036] Caches are synced for crd-autoregister controller
+I0427 20:34:14.986198       1 cache.go:39] Caches are synced for APIServiceRegistrationController controller
+I0427 20:34:14.987033       1 cache.go:39] Caches are synced for AvailableConditionController controller
+I0427 20:34:14.994646       1 controller.go:606] quota admission added evaluator for: leases.coordination.k8s.io
+I0427 20:34:15.884096       1 controller.go:107] OpenAPI AggregationController: Processing item 
+I0427 20:34:15.884124       1 controller.go:130] OpenAPI AggregationController: action for item : Nothing (removed from the queue).
+I0427 20:34:15.884134       1 controller.go:130] OpenAPI AggregationController: action for item k8s_internal_local_delegation_chain_0000000000: Nothing (removed from the queue).
+I0427 20:34:15.890219       1 storage_scheduling.go:119] created PriorityClass system-node-critical with value 2000001000
+I0427 20:34:15.892811       1 storage_scheduling.go:119] created PriorityClass system-cluster-critical with value 2000000000
+I0427 20:34:15.892832       1 storage_scheduling.go:128] all system priority classes are created successfully or already exist.
+I0427 20:34:16.122764       1 controller.go:606] quota admission added evaluator for: roles.rbac.authorization.k8s.io
+I0427 20:34:16.147770       1 controller.go:606] quota admission added evaluator for: rolebindings.rbac.authorization.k8s.io
+W0427 20:34:16.261112       1 lease.go:223] Resetting endpoints for master service "kubernetes" to [172.17.0.2]
+I0427 20:34:16.261766       1 controller.go:606] quota admission added evaluator for: endpoints
+I0427 20:34:17.585781       1 controller.go:606] quota admission added evaluator for: serviceaccounts
+I0427 20:34:17.596084       1 controller.go:606] quota admission added evaluator for: deployments.apps
+I0427 20:34:17.957294       1 controller.go:606] quota admission added evaluator for: daemonsets.apps
+E0427 20:34:21.779478       1 oidc.go:232] oidc authenticator: initializing plugin: Get https://dex.127.0.0.1.nip.io/.well-known/openid-configuration: dial tcp 127.0.0.1:443: connect: connection refused
+E0427 20:34:31.778045       1 oidc.go:232] oidc authenticator: initializing plugin: Get https://dex.127.0.0.1.nip.io/.well-known/openid-configuration: dial tcp 127.0.0.1:443: connect: connection refused
+I0427 20:34:33.396738       1 controller.go:606] quota admission added evaluator for: namespaces
+I0427 20:34:35.292361       1 controller.go:606] quota admission added evaluator for: controllerrevisions.apps
+I0427 20:34:35.906250       1 controller.go:606] quota admission added evaluator for: replicasets.apps
+E0427 20:34:41.777056       1 oidc.go:232] oidc authenticator: initializing plugin: Get https://dex.127.0.0.1.nip.io/.well-known/openid-configuration: dial tcp 127.0.0.1:443: connect: connection refused
+I0427 20:34:45.890512       1 client.go:354] parsed scheme: ""
+I0427 20:34:45.890530       1 client.go:354] scheme "" not registered, fallback to default scheme
+I0427 20:34:45.890552       1 asm_amd64.s:1337] ccResolverWrapper: sending new addresses to cc: [{127.0.0.1:2379 0  <nil>}]
+I0427 20:34:45.890580       1 asm_amd64.s:1337] balancerWrapper: got update addr from Notify: [{127.0.0.1:2379 <nil>}]
+I0427 20:34:45.896799       1 asm_amd64.s:1337] balancerWrapper: got update addr from Notify: [{127.0.0.1:2379 <nil>}]
+I0427 20:34:45.915674       1 client.go:354] parsed scheme: ""
+I0427 20:34:45.915691       1 client.go:354] scheme "" not registered, fallback to default scheme
+I0427 20:34:45.915714       1 asm_amd64.s:1337] ccResolverWrapper: sending new addresses to cc: [{127.0.0.1:2379 0  <nil>}]
+I0427 20:34:45.915741       1 asm_amd64.s:1337] balancerWrapper: got update addr from Notify: [{127.0.0.1:2379 <nil>}]
+I0427 20:34:45.922291       1 asm_amd64.s:1337] balancerWrapper: got update addr from Notify: [{127.0.0.1:2379 <nil>}]
+I0427 20:34:45.926855       1 client.go:354] parsed scheme: ""
+I0427 20:34:45.926872       1 client.go:354] scheme "" not registered, fallback to default scheme
+I0427 20:34:45.926894       1 asm_amd64.s:1337] ccResolverWrapper: sending new addresses to cc: [{127.0.0.1:2379 0  <nil>}]
+I0427 20:34:45.926921       1 asm_amd64.s:1337] balancerWrapper: got update addr from Notify: [{127.0.0.1:2379 <nil>}]
+I0427 20:34:45.934293       1 asm_amd64.s:1337] balancerWrapper: got update addr from Notify: [{127.0.0.1:2379 <nil>}]
+I0427 20:34:45.949021       1 client.go:354] parsed scheme: ""
+I0427 20:34:45.949041       1 client.go:354] scheme "" not registered, fallback to default scheme
+I0427 20:34:45.949064       1 asm_amd64.s:1337] ccResolverWrapper: sending new addresses to cc: [{127.0.0.1:2379 0  <nil>}]
+I0427 20:34:45.949090       1 asm_amd64.s:1337] balancerWrapper: got update addr from Notify: [{127.0.0.1:2379 <nil>}]
+I0427 20:34:45.955345       1 asm_amd64.s:1337] balancerWrapper: got update addr from Notify: [{127.0.0.1:2379 <nil>}]
+I0427 20:34:47.045425       1 client.go:354] parsed scheme: ""
+I0427 20:34:47.045443       1 client.go:354] scheme "" not registered, fallback to default scheme
+I0427 20:34:47.045476       1 asm_amd64.s:1337] ccResolverWrapper: sending new addresses to cc: [{127.0.0.1:2379 0  <nil>}]
+I0427 20:34:47.045514       1 asm_amd64.s:1337] balancerWrapper: got update addr from Notify: [{127.0.0.1:2379 <nil>}]
+I0427 20:34:47.052478       1 asm_amd64.s:1337] balancerWrapper: got update addr from Notify: [{127.0.0.1:2379 <nil>}]
+I0427 20:34:47.059037       1 client.go:354] parsed scheme: ""
+I0427 20:34:47.059059       1 client.go:354] scheme "" not registered, fallback to default scheme
+I0427 20:34:47.059093       1 asm_amd64.s:1337] ccResolverWrapper: sending new addresses to cc: [{127.0.0.1:2379 0  <nil>}]
+I0427 20:34:47.059162       1 asm_amd64.s:1337] balancerWrapper: got update addr from Notify: [{127.0.0.1:2379 <nil>}]
+I0427 20:34:47.067434       1 asm_amd64.s:1337] balancerWrapper: got update addr from Notify: [{127.0.0.1:2379 <nil>}]
+I0427 20:34:47.068527       1 client.go:354] parsed scheme: ""
+I0427 20:34:47.068542       1 client.go:354] scheme "" not registered, fallback to default scheme
+I0427 20:34:47.068571       1 asm_amd64.s:1337] ccResolverWrapper: sending new addresses to cc: [{127.0.0.1:2379 0  <nil>}]
+I0427 20:34:47.068622       1 asm_amd64.s:1337] balancerWrapper: got update addr from Notify: [{127.0.0.1:2379 <nil>}]
+I0427 20:34:47.077227       1 asm_amd64.s:1337] balancerWrapper: got update addr from Notify: [{127.0.0.1:2379 <nil>}]
+I0427 20:34:47.144178       1 client.go:354] parsed scheme: ""
+I0427 20:34:47.144199       1 client.go:354] scheme "" not registered, fallback to default scheme
+I0427 20:34:47.144222       1 asm_amd64.s:1337] ccResolverWrapper: sending new addresses to cc: [{127.0.0.1:2379 0  <nil>}]
+I0427 20:34:47.144469       1 asm_amd64.s:1337] balancerWrapper: got update addr from Notify: [{127.0.0.1:2379 <nil>}]
+I0427 20:34:47.154616       1 client.go:354] parsed scheme: ""
+I0427 20:34:47.154640       1 client.go:354] scheme "" not registered, fallback to default scheme
+I0427 20:34:47.154671       1 asm_amd64.s:1337] ccResolverWrapper: sending new addresses to cc: [{127.0.0.1:2379 0  <nil>}]
+I0427 20:34:47.154861       1 asm_amd64.s:1337] balancerWrapper: got update addr from Notify: [{127.0.0.1:2379 <nil>}]
+I0427 20:34:47.154904       1 asm_amd64.s:1337] balancerWrapper: got update addr from Notify: [{127.0.0.1:2379 <nil>}]
+I0427 20:34:47.163545       1 asm_amd64.s:1337] balancerWrapper: got update addr from Notify: [{127.0.0.1:2379 <nil>}]
+I0427 20:34:47.164723       1 client.go:354] parsed scheme: ""
+I0427 20:34:47.164747       1 client.go:354] scheme "" not registered, fallback to default scheme
+I0427 20:34:47.164780       1 asm_amd64.s:1337] ccResolverWrapper: sending new addresses to cc: [{127.0.0.1:2379 0  <nil>}]
+I0427 20:34:47.164829       1 asm_amd64.s:1337] balancerWrapper: got update addr from Notify: [{127.0.0.1:2379 <nil>}]
+I0427 20:34:47.173798       1 asm_amd64.s:1337] balancerWrapper: got update addr from Notify: [{127.0.0.1:2379 <nil>}]
+I0427 20:34:47.174867       1 client.go:354] parsed scheme: ""
+I0427 20:34:47.174884       1 client.go:354] scheme "" not registered, fallback to default scheme
+I0427 20:34:47.174919       1 asm_amd64.s:1337] ccResolverWrapper: sending new addresses to cc: [{127.0.0.1:2379 0  <nil>}]
+I0427 20:34:47.174959       1 asm_amd64.s:1337] balancerWrapper: got update addr from Notify: [{127.0.0.1:2379 <nil>}]
+I0427 20:34:47.181912       1 asm_amd64.s:1337] balancerWrapper: got update addr from Notify: [{127.0.0.1:2379 <nil>}]
+I0427 20:34:47.183014       1 client.go:354] parsed scheme: ""
+I0427 20:34:47.183036       1 client.go:354] scheme "" not registered, fallback to default scheme
+I0427 20:34:47.183091       1 asm_amd64.s:1337] ccResolverWrapper: sending new addresses to cc: [{127.0.0.1:2379 0  <nil>}]
+I0427 20:34:47.183139       1 asm_amd64.s:1337] balancerWrapper: got update addr from Notify: [{127.0.0.1:2379 <nil>}]
+I0427 20:34:47.189485       1 asm_amd64.s:1337] balancerWrapper: got update addr from Notify: [{127.0.0.1:2379 <nil>}]
+I0427 20:34:48.103406       1 client.go:354] parsed scheme: ""
+I0427 20:34:48.103425       1 client.go:354] scheme "" not registered, fallback to default scheme
+I0427 20:34:48.103447       1 asm_amd64.s:1337] ccResolverWrapper: sending new addresses to cc: [{127.0.0.1:2379 0  <nil>}]
+I0427 20:34:48.103474       1 asm_amd64.s:1337] balancerWrapper: got update addr from Notify: [{127.0.0.1:2379 <nil>}]
+I0427 20:34:48.109538       1 asm_amd64.s:1337] balancerWrapper: got update addr from Notify: [{127.0.0.1:2379 <nil>}]
+I0427 20:34:48.125803       1 client.go:354] parsed scheme: ""
+I0427 20:34:48.125823       1 client.go:354] scheme "" not registered, fallback to default scheme
+I0427 20:34:48.125862       1 asm_amd64.s:1337] ccResolverWrapper: sending new addresses to cc: [{127.0.0.1:2379 0  <nil>}]
+I0427 20:34:48.125897       1 asm_amd64.s:1337] balancerWrapper: got update addr from Notify: [{127.0.0.1:2379 <nil>}]
+I0427 20:34:48.132155       1 asm_amd64.s:1337] balancerWrapper: got update addr from Notify: [{127.0.0.1:2379 <nil>}]
+I0427 20:34:50.662337       1 client.go:354] parsed scheme: ""
+I0427 20:34:50.662358       1 client.go:354] scheme "" not registered, fallback to default scheme
+I0427 20:34:50.662388       1 asm_amd64.s:1337] ccResolverWrapper: sending new addresses to cc: [{127.0.0.1:2379 0  <nil>}]
+I0427 20:34:50.662436       1 asm_amd64.s:1337] balancerWrapper: got update addr from Notify: [{127.0.0.1:2379 <nil>}]
+I0427 20:34:50.672639       1 asm_amd64.s:1337] balancerWrapper: got update addr from Notify: [{127.0.0.1:2379 <nil>}]
+E0427 20:34:51.776878       1 oidc.go:232] oidc authenticator: initializing plugin: Get https://dex.127.0.0.1.nip.io/.well-known/openid-configuration: dial tcp 127.0.0.1:443: connect: connection refused
+I0427 20:34:53.242341       1 client.go:354] parsed scheme: ""
+I0427 20:34:53.242367       1 client.go:354] scheme "" not registered, fallback to default scheme
+I0427 20:34:53.242402       1 asm_amd64.s:1337] ccResolverWrapper: sending new addresses to cc: [{127.0.0.1:2379 0  <nil>}]
+I0427 20:34:53.242674       1 asm_amd64.s:1337] balancerWrapper: got update addr from Notify: [{127.0.0.1:2379 <nil>}]
+I0427 20:34:53.251085       1 asm_amd64.s:1337] balancerWrapper: got update addr from Notify: [{127.0.0.1:2379 <nil>}]
+I0427 20:34:53.252947       1 client.go:354] parsed scheme: ""
+I0427 20:34:53.252966       1 client.go:354] scheme "" not registered, fallback to default scheme
+I0427 20:34:53.252990       1 asm_amd64.s:1337] ccResolverWrapper: sending new addresses to cc: [{127.0.0.1:2379 0  <nil>}]
+I0427 20:34:53.253016       1 asm_amd64.s:1337] balancerWrapper: got update addr from Notify: [{127.0.0.1:2379 <nil>}]
+I0427 20:34:53.260027       1 asm_amd64.s:1337] balancerWrapper: got update addr from Notify: [{127.0.0.1:2379 <nil>}]
+I0427 20:34:53.262021       1 client.go:354] parsed scheme: ""
+I0427 20:34:53.262041       1 client.go:354] scheme "" not registered, fallback to default scheme
+I0427 20:34:53.262074       1 asm_amd64.s:1337] ccResolverWrapper: sending new addresses to cc: [{127.0.0.1:2379 0  <nil>}]
+I0427 20:34:53.262131       1 asm_amd64.s:1337] balancerWrapper: got update addr from Notify: [{127.0.0.1:2379 <nil>}]
+I0427 20:34:53.268399       1 asm_amd64.s:1337] balancerWrapper: got update addr from Notify: [{127.0.0.1:2379 <nil>}]
+I0427 20:34:53.269672       1 client.go:354] parsed scheme: ""
+I0427 20:34:53.269695       1 client.go:354] scheme "" not registered, fallback to default scheme
+I0427 20:34:53.269729       1 asm_amd64.s:1337] ccResolverWrapper: sending new addresses to cc: [{127.0.0.1:2379 0  <nil>}]
+I0427 20:34:53.269791       1 asm_amd64.s:1337] balancerWrapper: got update addr from Notify: [{127.0.0.1:2379 <nil>}]
+I0427 20:34:53.275938       1 asm_amd64.s:1337] balancerWrapper: got update addr from Notify: [{127.0.0.1:2379 <nil>}]
+I0427 20:34:53.277396       1 client.go:354] parsed scheme: ""
+I0427 20:34:53.277410       1 client.go:354] scheme "" not registered, fallback to default scheme
+I0427 20:34:53.277434       1 asm_amd64.s:1337] ccResolverWrapper: sending new addresses to cc: [{127.0.0.1:2379 0  <nil>}]
+I0427 20:34:53.277460       1 asm_amd64.s:1337] balancerWrapper: got update addr from Notify: [{127.0.0.1:2379 <nil>}]
+I0427 20:34:53.283964       1 asm_amd64.s:1337] balancerWrapper: got update addr from Notify: [{127.0.0.1:2379 <nil>}]
+E0427 20:35:01.779042       1 oidc.go:232] oidc authenticator: initializing plugin: Get https://dex.127.0.0.1.nip.io/.well-known/openid-configuration: dial tcp 127.0.0.1:443: connect: connection refused
+I0427 20:35:06.394128       1 client.go:354] parsed scheme: ""
+I0427 20:35:06.394152       1 client.go:354] scheme "" not registered, fallback to default scheme
+I0427 20:35:06.394187       1 asm_amd64.s:1337] ccResolverWrapper: sending new addresses to cc: [{127.0.0.1:2379 0  <nil>}]
+I0427 20:35:06.394256       1 asm_amd64.s:1337] balancerWrapper: got update addr from Notify: [{127.0.0.1:2379 <nil>}]
+I0427 20:35:06.401765       1 asm_amd64.s:1337] balancerWrapper: got update addr from Notify: [{127.0.0.1:2379 <nil>}]
+E0427 20:35:11.673188       1 oidc.go:232] oidc authenticator: initializing plugin: Get https://dex.127.0.0.1.nip.io/.well-known/openid-configuration: dial tcp 127.0.0.1:443: connect: connection refused
+E0427 20:35:21.677216       1 oidc.go:232] oidc authenticator: initializing plugin: Get https://dex.127.0.0.1.nip.io/.well-known/openid-configuration: dial tcp 127.0.0.1:443: connect: connection refused
+E0427 20:35:31.674926       1 oidc.go:232] oidc authenticator: initializing plugin: Get https://dex.127.0.0.1.nip.io/.well-known/openid-configuration: dial tcp 127.0.0.1:443: connect: connection refused
+I0427 20:35:34.053269       1 controller.go:606] quota admission added evaluator for: ingresses.networking.k8s.io
+I0427 20:35:34.061542       1 controller.go:606] quota admission added evaluator for: certificates.cert-manager.io
+I0427 20:35:34.299340       1 controller.go:606] quota admission added evaluator for: certificaterequests.cert-manager.io
+E0427 20:35:41.779396       1 oidc.go:232] oidc authenticator: initializing plugin: Get https://dex.127.0.0.1.nip.io/.well-known/openid-configuration: dial tcp 127.0.0.1:443: connect: connection refused
+I0427 20:35:45.653083       1 controller.go:606] quota admission added evaluator for: ingresses.extensions
+E0427 20:35:51.676529       1 oidc.go:232] oidc authenticator: initializing plugin: Get https://dex.127.0.0.1.nip.io/.well-known/openid-configuration: x509: certificate is valid for ingress.local, not dex.127.0.0.1.nip.io
+I0427 20:35:53.755496       1 client.go:354] parsed scheme: ""
+I0427 20:35:53.755521       1 client.go:354] scheme "" not registered, fallback to default scheme
+I0427 20:35:53.755562       1 asm_amd64.s:1337] ccResolverWrapper: sending new addresses to cc: [{127.0.0.1:2379 0  <nil>}]
+I0427 20:35:53.755617       1 asm_amd64.s:1337] balancerWrapper: got update addr from Notify: [{127.0.0.1:2379 <nil>}]
+I0427 20:35:53.763265       1 asm_amd64.s:1337] balancerWrapper: got update addr from Notify: [{127.0.0.1:2379 <nil>}]
+E0427 20:36:02.675088       1 oidc.go:232] oidc authenticator: initializing plugin: Get https://dex.127.0.0.1.nip.io/.well-known/openid-configuration: EOF
+I0427 20:36:10.111245       1 client.go:354] parsed scheme: ""
+I0427 20:36:10.111311       1 client.go:354] scheme "" not registered, fallback to default scheme
+I0427 20:36:10.111354       1 asm_amd64.s:1337] ccResolverWrapper: sending new addresses to cc: [{127.0.0.1:2379 0  <nil>}]
+I0427 20:36:10.111397       1 asm_amd64.s:1337] balancerWrapper: got update addr from Notify: [{127.0.0.1:2379 <nil>}]
+I0427 20:36:10.118287       1 asm_amd64.s:1337] balancerWrapper: got update addr from Notify: [{127.0.0.1:2379 <nil>}]
+I0427 20:36:10.121387       1 client.go:354] parsed scheme: ""
+I0427 20:36:10.121424       1 client.go:354] scheme "" not registered, fallback to default scheme
+I0427 20:36:10.121461       1 asm_amd64.s:1337] ccResolverWrapper: sending new addresses to cc: [{127.0.0.1:2379 0  <nil>}]
+I0427 20:36:10.121527       1 asm_amd64.s:1337] balancerWrapper: got update addr from Notify: [{127.0.0.1:2379 <nil>}]
+I0427 20:36:10.128948       1 asm_amd64.s:1337] balancerWrapper: got update addr from Notify: [{127.0.0.1:2379 <nil>}]
+I0427 20:36:10.129902       1 controller.go:606] quota admission added evaluator for: authrequests.dex.coreos.com
+I0427 20:36:10.135003       1 client.go:354] parsed scheme: ""
+I0427 20:36:10.135021       1 client.go:354] scheme "" not registered, fallback to default scheme
+I0427 20:36:10.135065       1 asm_amd64.s:1337] ccResolverWrapper: sending new addresses to cc: [{127.0.0.1:2379 0  <nil>}]
+I0427 20:36:10.135103       1 asm_amd64.s:1337] balancerWrapper: got update addr from Notify: [{127.0.0.1:2379 <nil>}]
+I0427 20:36:10.141435       1 asm_amd64.s:1337] balancerWrapper: got update addr from Notify: [{127.0.0.1:2379 <nil>}]
+I0427 20:36:10.372353       1 controller.go:606] quota admission added evaluator for: signingkeies.dex.coreos.com
+I0427 20:36:10.490630       1 client.go:354] parsed scheme: ""
+I0427 20:36:10.490699       1 client.go:354] scheme "" not registered, fallback to default scheme
+I0427 20:36:10.490769       1 asm_amd64.s:1337] ccResolverWrapper: sending new addresses to cc: [{127.0.0.1:2379 0  <nil>}]
+I0427 20:36:10.490816       1 asm_amd64.s:1337] balancerWrapper: got update addr from Notify: [{127.0.0.1:2379 <nil>}]
+I0427 20:36:10.498618       1 asm_amd64.s:1337] balancerWrapper: got update addr from Notify: [{127.0.0.1:2379 <nil>}]
+I0427 20:36:10.502434       1 client.go:354] parsed scheme: ""
+I0427 20:36:10.502450       1 client.go:354] scheme "" not registered, fallback to default scheme
+I0427 20:36:10.502479       1 asm_amd64.s:1337] ccResolverWrapper: sending new addresses to cc: [{127.0.0.1:2379 0  <nil>}]
+I0427 20:36:10.502507       1 asm_amd64.s:1337] balancerWrapper: got update addr from Notify: [{127.0.0.1:2379 <nil>}]
+I0427 20:36:10.508469       1 asm_amd64.s:1337] balancerWrapper: got update addr from Notify: [{127.0.0.1:2379 <nil>}]
+I0427 20:36:10.512496       1 client.go:354] parsed scheme: ""
+I0427 20:36:10.512511       1 client.go:354] scheme "" not registered, fallback to default scheme
+I0427 20:36:10.512533       1 asm_amd64.s:1337] ccResolverWrapper: sending new addresses to cc: [{127.0.0.1:2379 0  <nil>}]
+I0427 20:36:10.512560       1 asm_amd64.s:1337] balancerWrapper: got update addr from Notify: [{127.0.0.1:2379 <nil>}]
+I0427 20:36:10.518593       1 asm_amd64.s:1337] balancerWrapper: got update addr from Notify: [{127.0.0.1:2379 <nil>}]
+I0427 20:36:10.520730       1 client.go:354] parsed scheme: ""
+I0427 20:36:10.520743       1 client.go:354] scheme "" not registered, fallback to default scheme
+I0427 20:36:10.520771       1 asm_amd64.s:1337] ccResolverWrapper: sending new addresses to cc: [{127.0.0.1:2379 0  <nil>}]
+I0427 20:36:10.520842       1 asm_amd64.s:1337] balancerWrapper: got update addr from Notify: [{127.0.0.1:2379 <nil>}]
+I0427 20:36:10.527634       1 asm_amd64.s:1337] balancerWrapper: got update addr from Notify: [{127.0.0.1:2379 <nil>}]
+I0427 20:36:10.529931       1 client.go:354] parsed scheme: ""
+I0427 20:36:10.529945       1 client.go:354] scheme "" not registered, fallback to default scheme
+I0427 20:36:10.529966       1 asm_amd64.s:1337] ccResolverWrapper: sending new addresses to cc: [{127.0.0.1:2379 0  <nil>}]
+I0427 20:36:10.529995       1 asm_amd64.s:1337] balancerWrapper: got update addr from Notify: [{127.0.0.1:2379 <nil>}]
+I0427 20:36:10.536221       1 asm_amd64.s:1337] balancerWrapper: got update addr from Notify: [{127.0.0.1:2379 <nil>}]
+I0427 20:36:26.933709       1 client.go:354] parsed scheme: ""
+I0427 20:36:26.933730       1 client.go:354] scheme "" not registered, fallback to default scheme
+I0427 20:36:26.933764       1 asm_amd64.s:1337] ccResolverWrapper: sending new addresses to cc: [{127.0.0.1:2379 0  <nil>}]
+I0427 20:36:26.933847       1 asm_amd64.s:1337] balancerWrapper: got update addr from Notify: [{127.0.0.1:2379 <nil>}]
+I0427 20:36:26.940165       1 asm_amd64.s:1337] balancerWrapper: got update addr from Notify: [{127.0.0.1:2379 <nil>}]
+I0427 20:36:26.944064       1 controller.go:606] quota admission added evaluator for: operatorconfigurations.acid.zalan.do
+I0427 20:36:28.534369       1 controller.go:606] quota admission added evaluator for: poddisruptionbudgets.policy
+I0427 20:36:30.937301       1 controller.go:606] quota admission added evaluator for: statefulsets.apps
+I0427 20:36:34.700244       1 client.go:354] parsed scheme: ""
+I0427 20:36:34.700265       1 client.go:354] scheme "" not registered, fallback to default scheme
+I0427 20:36:34.700299       1 asm_amd64.s:1337] ccResolverWrapper: sending new addresses to cc: [{127.0.0.1:2379 0  <nil>}]
+I0427 20:36:34.700339       1 asm_amd64.s:1337] balancerWrapper: got update addr from Notify: [{127.0.0.1:2379 <nil>}]
+I0427 20:36:34.706836       1 asm_amd64.s:1337] balancerWrapper: got update addr from Notify: [{127.0.0.1:2379 <nil>}]
+I0427 20:36:38.000487       1 client.go:354] parsed scheme: ""
+I0427 20:36:38.000509       1 client.go:354] scheme "" not registered, fallback to default scheme
+I0427 20:36:38.000538       1 asm_amd64.s:1337] ccResolverWrapper: sending new addresses to cc: [{127.0.0.1:2379 0  <nil>}]
+I0427 20:36:38.000582       1 asm_amd64.s:1337] balancerWrapper: got update addr from Notify: [{127.0.0.1:2379 <nil>}]
+I0427 20:36:38.008113       1 asm_amd64.s:1337] balancerWrapper: got update addr from Notify: [{127.0.0.1:2379 <nil>}]
+I0427 20:38:07.804113       1 client.go:354] parsed scheme: ""
+I0427 20:38:07.804132       1 client.go:354] scheme "" not registered, fallback to default scheme
+I0427 20:38:07.804181       1 asm_amd64.s:1337] ccResolverWrapper: sending new addresses to cc: [{127.0.0.1:2379 0  <nil>}]
+I0427 20:38:07.804258       1 asm_amd64.s:1337] balancerWrapper: got update addr from Notify: [{127.0.0.1:2379 <nil>}]
+I0427 20:38:07.811923       1 asm_amd64.s:1337] balancerWrapper: got update addr from Notify: [{127.0.0.1:2379 <nil>}]
+W0427 20:38:08.210823       1 cacher.go:154] Terminating all watchers from cacher *unstructured.Unstructured
+I0427 20:38:08.212480       1 client.go:354] parsed scheme: ""
+I0427 20:38:08.212499       1 client.go:354] scheme "" not registered, fallback to default scheme
+I0427 20:38:08.212538       1 asm_amd64.s:1337] ccResolverWrapper: sending new addresses to cc: [{127.0.0.1:2379 0  <nil>}]
+I0427 20:38:08.212613       1 asm_amd64.s:1337] balancerWrapper: got update addr from Notify: [{127.0.0.1:2379 <nil>}]
+I0427 20:38:08.219544       1 asm_amd64.s:1337] balancerWrapper: got update addr from Notify: [{127.0.0.1:2379 <nil>}]
+W0427 20:38:08.610760       1 cacher.go:154] Terminating all watchers from cacher *unstructured.Unstructured
+W0427 20:38:26.578979       1 dispatcher.go:105] Failed calling webhook, failing open validating-webhook.openpolicyagent.org: failed calling webhook "validating-webhook.openpolicyagent.org": Post https://opa.opa.svc:443/?timeout=30s: dial tcp 10.105.225.96:443: connect: connection refused
+E0427 20:38:26.579017       1 dispatcher.go:106] failed calling webhook "validating-webhook.openpolicyagent.org": Post https://opa.opa.svc:443/?timeout=30s: dial tcp 10.105.225.96:443: connect: connection refused
+I0427 20:38:26.580323       1 trace.go:81] Trace[645175898]: "Create /apis/crd.projectcalico.org/v1/ipamhandles" (started: 2020-04-27 20:38:25.551296369 +0000 UTC m=+254.521298838) (total time: 1.02898101s):
+Trace[645175898]: [1.02890048s] [1.028691239s] Object stored in database
+W0427 20:38:26.770903       1 dispatcher.go:105] Failed calling webhook, failing open validating-webhook.openpolicyagent.org: failed calling webhook "validating-webhook.openpolicyagent.org": Post https://opa.opa.svc:443/?timeout=30s: dial tcp 10.105.225.96:443: connect: connection refused
+E0427 20:38:26.770939       1 dispatcher.go:106] failed calling webhook "validating-webhook.openpolicyagent.org": Post https://opa.opa.svc:443/?timeout=30s: dial tcp 10.105.225.96:443: connect: connection refused
+I0427 20:38:26.771098       1 trace.go:81] Trace[679865734]: "Create /apis/authorization.k8s.io/v1beta1/subjectaccessreviews" (started: 2020-04-27 20:38:25.746270115 +0000 UTC m=+254.716272590) (total time: 1.024809163s):
+Trace[679865734]: [1.024744903s] [1.024580138s] Object stored in database
+W0427 20:38:27.602980       1 dispatcher.go:105] Failed calling webhook, failing open validating-webhook.openpolicyagent.org: failed calling webhook "validating-webhook.openpolicyagent.org": Post https://opa.opa.svc:443/?timeout=30s: dial tcp 10.105.225.96:443: connect: connection refused
+E0427 20:38:27.603018       1 dispatcher.go:106] failed calling webhook "validating-webhook.openpolicyagent.org": Post https://opa.opa.svc:443/?timeout=30s: dial tcp 10.105.225.96:443: connect: connection refused
+I0427 20:38:27.604888       1 trace.go:81] Trace[229137796]: "GuaranteedUpdate etcd3: *unstructured.Unstructured" (started: 2020-04-27 20:38:26.582297706 +0000 UTC m=+255.552300193) (total time: 1.022558967s):
+Trace[229137796]: [1.020949895s] [1.020807433s] Transaction prepared
+I0427 20:38:27.605499       1 trace.go:81] Trace[1402280434]: "Update /apis/crd.projectcalico.org/v1/ipamblocks/100-200-82-0-26" (started: 2020-04-27 20:38:26.581880798 +0000 UTC m=+255.551883318) (total time: 1.023586281s):
+Trace[1402280434]: [1.023029135s] [1.022683232s] Object stored in database
+W0427 20:38:28.626958       1 dispatcher.go:105] Failed calling webhook, failing open validating-webhook.openpolicyagent.org: failed calling webhook "validating-webhook.openpolicyagent.org": Post https://opa.opa.svc:443/?timeout=30s: dial tcp 10.105.225.96:443: connect: connection refused
+E0427 20:38:28.626994       1 dispatcher.go:106] failed calling webhook "validating-webhook.openpolicyagent.org": Post https://opa.opa.svc:443/?timeout=30s: dial tcp 10.105.225.96:443: connect: connection refused
+I0427 20:38:28.630956       1 trace.go:81] Trace[1262420802]: "Create /apis/apiextensions.k8s.io/v1beta1/customresourcedefinitions" (started: 2020-04-27 20:38:27.611288773 +0000 UTC m=+256.581291265) (total time: 1.019614895s):
+Trace[1262420802]: [1.018567132s] [1.017840977s] Object stored in database
+W0427 20:38:29.650941       1 dispatcher.go:105] Failed calling webhook, failing open validating-webhook.openpolicyagent.org: failed calling webhook "validating-webhook.openpolicyagent.org": Post https://opa.opa.svc:443/?timeout=30s: dial tcp 10.105.225.96:443: connect: connection refused
+E0427 20:38:29.650985       1 dispatcher.go:106] failed calling webhook "validating-webhook.openpolicyagent.org": Post https://opa.opa.svc:443/?timeout=30s: dial tcp 10.105.225.96:443: connect: connection refused
+W0427 20:38:29.650941       1 dispatcher.go:105] Failed calling webhook, failing open validating-webhook.openpolicyagent.org: failed calling webhook "validating-webhook.openpolicyagent.org": Post https://opa.opa.svc:443/?timeout=30s: dial tcp 10.105.225.96:443: connect: connection refused
+E0427 20:38:29.651051       1 dispatcher.go:106] failed calling webhook "validating-webhook.openpolicyagent.org": Post https://opa.opa.svc:443/?timeout=30s: dial tcp 10.105.225.96:443: connect: connection refused
+I0427 20:38:29.652210       1 trace.go:81] Trace[419786400]: "Create /apis/apiregistration.k8s.io/v1/apiservices" (started: 2020-04-27 20:38:28.631570982 +0000 UTC m=+257.601573460) (total time: 1.020614973s):
+Trace[419786400]: [1.020566055s] [1.020383211s] Object stored in database
+I0427 20:38:29.654147       1 trace.go:81] Trace[1483307238]: "Create /apis/apiextensions.k8s.io/v1beta1/customresourcedefinitions" (started: 2020-04-27 20:38:28.634122499 +0000 UTC m=+257.604125009) (total time: 1.020001997s):
+Trace[1483307238]: [1.019864855s] [1.019334323s] Object stored in database
+W0427 20:38:30.674927       1 dispatcher.go:105] Failed calling webhook, failing open validating-webhook.openpolicyagent.org: failed calling webhook "validating-webhook.openpolicyagent.org": Post https://opa.opa.svc:443/?timeout=30s: dial tcp 10.105.225.96:443: connect: connection refused
+E0427 20:38:30.674965       1 dispatcher.go:106] failed calling webhook "validating-webhook.openpolicyagent.org": Post https://opa.opa.svc:443/?timeout=30s: dial tcp 10.105.225.96:443: connect: connection refused
+I0427 20:38:30.676533       1 trace.go:81] Trace[1936109496]: "Create /apis/apiextensions.k8s.io/v1beta1/customresourcedefinitions" (started: 2020-04-27 20:38:29.658307428 +0000 UTC m=+258.628309912) (total time: 1.018194222s):
+Trace[1936109496]: [1.018059838s] [1.017754178s] Object stored in database
+W0427 20:38:31.698959       1 dispatcher.go:105] Failed calling webhook, failing open validating-webhook.openpolicyagent.org: failed calling webhook "validating-webhook.openpolicyagent.org": Post https://opa.opa.svc:443/?timeout=30s: dial tcp 10.105.225.96:443: connect: connection refused
+E0427 20:38:31.698994       1 dispatcher.go:106] failed calling webhook "validating-webhook.openpolicyagent.org": Post https://opa.opa.svc:443/?timeout=30s: dial tcp 10.105.225.96:443: connect: connection refused
+I0427 20:38:31.700737       1 trace.go:81] Trace[193738202]: "Create /apis/apiextensions.k8s.io/v1beta1/customresourcedefinitions" (started: 2020-04-27 20:38:30.677850829 +0000 UTC m=+259.647853348) (total time: 1.02285846s):
+Trace[193738202]: [1.022695229s] [1.022474154s] Object stored in database
+I0427 20:38:32.729275       1 trace.go:81] Trace[717765123]: "Create /apis/apiextensions.k8s.io/v1beta1/customresourcedefinitions" (started: 2020-04-27 20:38:31.702260397 +0000 UTC m=+260.672262950) (total time: 1.026986988s):
+Trace[717765123]: [1.02666868s] [1.026108768s] Object stored in database
+I0427 20:38:33.332021       1 client.go:354] parsed scheme: ""
+I0427 20:38:33.332042       1 client.go:354] scheme "" not registered, fallback to default scheme
+I0427 20:38:33.332079       1 asm_amd64.s:1337] ccResolverWrapper: sending new addresses to cc: [{127.0.0.1:2379 0  <nil>}]
+I0427 20:38:33.332133       1 asm_amd64.s:1337] balancerWrapper: got update addr from Notify: [{127.0.0.1:2379 <nil>}]
+I0427 20:38:33.339779       1 asm_amd64.s:1337] balancerWrapper: got update addr from Notify: [{127.0.0.1:2379 <nil>}]
+I0427 20:38:33.340982       1 controller.go:606] quota admission added evaluator for: backupstoragelocations.velero.io
+I0427 20:38:33.531924       1 client.go:354] parsed scheme: ""
+I0427 20:38:33.531952       1 client.go:354] scheme "" not registered, fallback to default scheme
+I0427 20:38:33.531993       1 asm_amd64.s:1337] ccResolverWrapper: sending new addresses to cc: [{127.0.0.1:2379 0  <nil>}]
+I0427 20:38:33.532036       1 asm_amd64.s:1337] balancerWrapper: got update addr from Notify: [{127.0.0.1:2379 <nil>}]
+I0427 20:38:33.539932       1 asm_amd64.s:1337] balancerWrapper: got update addr from Notify: [{127.0.0.1:2379 <nil>}]
+I0427 20:38:33.540984       1 controller.go:606] quota admission added evaluator for: volumesnapshotlocations.velero.io
+I0427 20:38:39.162965       1 controller.go:606] quota admission added evaluator for: postgresqls.acid.zalan.do
+I0427 20:38:40.757415       1 client.go:354] parsed scheme: ""
+I0427 20:38:40.757441       1 client.go:354] scheme "" not registered, fallback to default scheme
+I0427 20:38:40.757476       1 asm_amd64.s:1337] ccResolverWrapper: sending new addresses to cc: [{127.0.0.1:2379 0  <nil>}]
+I0427 20:38:40.757515       1 asm_amd64.s:1337] balancerWrapper: got update addr from Notify: [{127.0.0.1:2379 <nil>}]
+I0427 20:38:40.764793       1 asm_amd64.s:1337] balancerWrapper: got update addr from Notify: [{127.0.0.1:2379 <nil>}]
+I0427 20:38:40.766460       1 client.go:354] parsed scheme: ""
+I0427 20:38:40.766478       1 client.go:354] scheme "" not registered, fallback to default scheme
+I0427 20:38:40.766518       1 asm_amd64.s:1337] ccResolverWrapper: sending new addresses to cc: [{127.0.0.1:2379 0  <nil>}]
+I0427 20:38:40.766563       1 asm_amd64.s:1337] balancerWrapper: got update addr from Notify: [{127.0.0.1:2379 <nil>}]
+I0427 20:38:40.773284       1 asm_amd64.s:1337] balancerWrapper: got update addr from Notify: [{127.0.0.1:2379 <nil>}]
+I0427 20:38:40.774206       1 client.go:354] parsed scheme: ""
+I0427 20:38:40.774226       1 client.go:354] scheme "" not registered, fallback to default scheme
+I0427 20:38:40.774257       1 asm_amd64.s:1337] ccResolverWrapper: sending new addresses to cc: [{127.0.0.1:2379 0  <nil>}]
+I0427 20:38:40.774332       1 asm_amd64.s:1337] balancerWrapper: got update addr from Notify: [{127.0.0.1:2379 <nil>}]
+I0427 20:38:40.812935       1 asm_amd64.s:1337] balancerWrapper: got update addr from Notify: [{127.0.0.1:2379 <nil>}]
+I0427 20:38:40.813933       1 client.go:354] parsed scheme: ""
+I0427 20:38:40.813952       1 client.go:354] scheme "" not registered, fallback to default scheme
+I0427 20:38:40.813992       1 asm_amd64.s:1337] ccResolverWrapper: sending new addresses to cc: [{127.0.0.1:2379 0  <nil>}]
+I0427 20:38:40.814039       1 asm_amd64.s:1337] balancerWrapper: got update addr from Notify: [{127.0.0.1:2379 <nil>}]
+I0427 20:38:40.820546       1 asm_amd64.s:1337] balancerWrapper: got update addr from Notify: [{127.0.0.1:2379 <nil>}]
+I0427 20:38:40.821780       1 client.go:354] parsed scheme: ""
+I0427 20:38:40.821795       1 client.go:354] scheme "" not registered, fallback to default scheme
+I0427 20:38:40.821824       1 asm_amd64.s:1337] ccResolverWrapper: sending new addresses to cc: [{127.0.0.1:2379 0  <nil>}]
+I0427 20:38:40.821889       1 asm_amd64.s:1337] balancerWrapper: got update addr from Notify: [{127.0.0.1:2379 <nil>}]
+I0427 20:38:40.828798       1 asm_amd64.s:1337] balancerWrapper: got update addr from Notify: [{127.0.0.1:2379 <nil>}]
+I0427 20:38:40.829961       1 client.go:354] parsed scheme: ""
+I0427 20:38:40.829994       1 client.go:354] scheme "" not registered, fallback to default scheme
+I0427 20:38:40.830023       1 asm_amd64.s:1337] ccResolverWrapper: sending new addresses to cc: [{127.0.0.1:2379 0  <nil>}]
+I0427 20:38:40.830058       1 asm_amd64.s:1337] balancerWrapper: got update addr from Notify: [{127.0.0.1:2379 <nil>}]
+I0427 20:38:40.836940       1 asm_amd64.s:1337] balancerWrapper: got update addr from Notify: [{127.0.0.1:2379 <nil>}]
+I0427 20:38:40.838224       1 client.go:354] parsed scheme: ""
+I0427 20:38:40.838240       1 client.go:354] scheme "" not registered, fallback to default scheme
+I0427 20:38:40.838268       1 asm_amd64.s:1337] ccResolverWrapper: sending new addresses to cc: [{127.0.0.1:2379 0  <nil>}]
+I0427 20:38:40.838307       1 asm_amd64.s:1337] balancerWrapper: got update addr from Notify: [{127.0.0.1:2379 <nil>}]
+I0427 20:38:40.847701       1 asm_amd64.s:1337] balancerWrapper: got update addr from Notify: [{127.0.0.1:2379 <nil>}]
+I0427 20:38:40.848820       1 client.go:354] parsed scheme: ""
+I0427 20:38:40.848836       1 client.go:354] scheme "" not registered, fallback to default scheme
+I0427 20:38:40.848862       1 asm_amd64.s:1337] ccResolverWrapper: sending new addresses to cc: [{127.0.0.1:2379 0  <nil>}]
+I0427 20:38:40.848896       1 asm_amd64.s:1337] balancerWrapper: got update addr from Notify: [{127.0.0.1:2379 <nil>}]
+I0427 20:38:40.855429       1 asm_amd64.s:1337] balancerWrapper: got update addr from Notify: [{127.0.0.1:2379 <nil>}]
+I0427 20:38:40.856633       1 client.go:354] parsed scheme: ""
+I0427 20:38:40.856653       1 client.go:354] scheme "" not registered, fallback to default scheme
+I0427 20:38:40.856683       1 asm_amd64.s:1337] ccResolverWrapper: sending new addresses to cc: [{127.0.0.1:2379 0  <nil>}]
+I0427 20:38:40.856724       1 asm_amd64.s:1337] balancerWrapper: got update addr from Notify: [{127.0.0.1:2379 <nil>}]
+I0427 20:38:40.863303       1 asm_amd64.s:1337] balancerWrapper: got update addr from Notify: [{127.0.0.1:2379 <nil>}]
+I0427 20:38:40.865229       1 client.go:354] parsed scheme: ""
+I0427 20:38:40.865246       1 client.go:354] scheme "" not registered, fallback to default scheme
+I0427 20:38:40.865274       1 asm_amd64.s:1337] ccResolverWrapper: sending new addresses to cc: [{127.0.0.1:2379 0  <nil>}]
+I0427 20:38:40.865323       1 asm_amd64.s:1337] balancerWrapper: got update addr from Notify: [{127.0.0.1:2379 <nil>}]
+I0427 20:38:40.871752       1 asm_amd64.s:1337] balancerWrapper: got update addr from Notify: [{127.0.0.1:2379 <nil>}]
+I0427 20:38:40.872756       1 client.go:354] parsed scheme: ""
+I0427 20:38:40.872778       1 client.go:354] scheme "" not registered, fallback to default scheme
+I0427 20:38:40.872807       1 asm_amd64.s:1337] ccResolverWrapper: sending new addresses to cc: [{127.0.0.1:2379 0  <nil>}]
+I0427 20:38:40.872853       1 asm_amd64.s:1337] balancerWrapper: got update addr from Notify: [{127.0.0.1:2379 <nil>}]
+I0427 20:38:40.880122       1 asm_amd64.s:1337] balancerWrapper: got update addr from Notify: [{127.0.0.1:2379 <nil>}]
+I0427 20:38:40.881182       1 client.go:354] parsed scheme: ""
+I0427 20:38:40.881200       1 client.go:354] scheme "" not registered, fallback to default scheme
+I0427 20:38:40.881230       1 asm_amd64.s:1337] ccResolverWrapper: sending new addresses to cc: [{127.0.0.1:2379 0  <nil>}]
+I0427 20:38:40.881280       1 asm_amd64.s:1337] balancerWrapper: got update addr from Notify: [{127.0.0.1:2379 <nil>}]
+I0427 20:38:40.889322       1 asm_amd64.s:1337] balancerWrapper: got update addr from Notify: [{127.0.0.1:2379 <nil>}]
+I0427 20:38:40.890408       1 client.go:354] parsed scheme: ""
+I0427 20:38:40.890426       1 client.go:354] scheme "" not registered, fallback to default scheme
+I0427 20:38:40.890453       1 asm_amd64.s:1337] ccResolverWrapper: sending new addresses to cc: [{127.0.0.1:2379 0  <nil>}]
+I0427 20:38:40.890501       1 asm_amd64.s:1337] balancerWrapper: got update addr from Notify: [{127.0.0.1:2379 <nil>}]
+I0427 20:38:40.896956       1 asm_amd64.s:1337] balancerWrapper: got update addr from Notify: [{127.0.0.1:2379 <nil>}]
+I0427 20:38:40.898123       1 client.go:354] parsed scheme: ""
+I0427 20:38:40.898139       1 client.go:354] scheme "" not registered, fallback to default scheme
+I0427 20:38:40.898179       1 asm_amd64.s:1337] ccResolverWrapper: sending new addresses to cc: [{127.0.0.1:2379 0  <nil>}]
+I0427 20:38:40.898212       1 asm_amd64.s:1337] balancerWrapper: got update addr from Notify: [{127.0.0.1:2379 <nil>}]
+I0427 20:38:40.905261       1 asm_amd64.s:1337] balancerWrapper: got update addr from Notify: [{127.0.0.1:2379 <nil>}]
+I0427 20:38:40.906335       1 client.go:354] parsed scheme: ""
+I0427 20:38:40.906353       1 client.go:354] scheme "" not registered, fallback to default scheme
+I0427 20:38:40.906387       1 asm_amd64.s:1337] ccResolverWrapper: sending new addresses to cc: [{127.0.0.1:2379 0  <nil>}]
+I0427 20:38:40.906425       1 asm_amd64.s:1337] balancerWrapper: got update addr from Notify: [{127.0.0.1:2379 <nil>}]
+I0427 20:38:40.914780       1 asm_amd64.s:1337] balancerWrapper: got update addr from Notify: [{127.0.0.1:2379 <nil>}]
+I0427 20:38:40.916163       1 client.go:354] parsed scheme: ""
+I0427 20:38:40.916175       1 client.go:354] scheme "" not registered, fallback to default scheme
+I0427 20:38:40.916199       1 asm_amd64.s:1337] ccResolverWrapper: sending new addresses to cc: [{127.0.0.1:2379 0  <nil>}]
+I0427 20:38:40.916263       1 asm_amd64.s:1337] balancerWrapper: got update addr from Notify: [{127.0.0.1:2379 <nil>}]
+I0427 20:38:40.922550       1 asm_amd64.s:1337] balancerWrapper: got update addr from Notify: [{127.0.0.1:2379 <nil>}]
+I0427 20:38:40.923560       1 client.go:354] parsed scheme: ""
+I0427 20:38:40.923574       1 client.go:354] scheme "" not registered, fallback to default scheme
+I0427 20:38:40.923595       1 asm_amd64.s:1337] ccResolverWrapper: sending new addresses to cc: [{127.0.0.1:2379 0  <nil>}]
+I0427 20:38:40.923622       1 asm_amd64.s:1337] balancerWrapper: got update addr from Notify: [{127.0.0.1:2379 <nil>}]
+I0427 20:38:40.929689       1 asm_amd64.s:1337] balancerWrapper: got update addr from Notify: [{127.0.0.1:2379 <nil>}]
+I0427 20:38:40.930644       1 client.go:354] parsed scheme: ""
+I0427 20:38:40.930664       1 client.go:354] scheme "" not registered, fallback to default scheme
+I0427 20:38:40.930690       1 asm_amd64.s:1337] ccResolverWrapper: sending new addresses to cc: [{127.0.0.1:2379 0  <nil>}]
+I0427 20:38:40.930762       1 asm_amd64.s:1337] balancerWrapper: got update addr from Notify: [{127.0.0.1:2379 <nil>}]
+I0427 20:38:40.936962       1 asm_amd64.s:1337] balancerWrapper: got update addr from Notify: [{127.0.0.1:2379 <nil>}]
+I0427 20:39:53.018682       1 controller.go:606] quota admission added evaluator for: servicemonitors.monitoring.coreos.com
+I0427 20:40:11.258332       1 client.go:354] parsed scheme: ""
+I0427 20:40:11.258352       1 client.go:354] scheme "" not registered, fallback to default scheme
+I0427 20:40:11.258389       1 asm_amd64.s:1337] ccResolverWrapper: sending new addresses to cc: [{127.0.0.1:2379 0  <nil>}]
+I0427 20:40:11.258422       1 asm_amd64.s:1337] balancerWrapper: got update addr from Notify: [{127.0.0.1:2379 <nil>}]
+I0427 20:40:11.264788       1 asm_amd64.s:1337] balancerWrapper: got update addr from Notify: [{127.0.0.1:2379 <nil>}]
+I0427 20:40:11.267795       1 controller.go:606] quota admission added evaluator for: alertmanagers.monitoring.coreos.com
+I0427 20:40:11.859996       1 client.go:354] parsed scheme: ""
+I0427 20:40:11.860020       1 client.go:354] scheme "" not registered, fallback to default scheme
+I0427 20:40:11.860047       1 asm_amd64.s:1337] ccResolverWrapper: sending new addresses to cc: [{127.0.0.1:2379 0  <nil>}]
+I0427 20:40:11.860109       1 asm_amd64.s:1337] balancerWrapper: got update addr from Notify: [{127.0.0.1:2379 <nil>}]
+I0427 20:40:11.867316       1 asm_amd64.s:1337] balancerWrapper: got update addr from Notify: [{127.0.0.1:2379 <nil>}]
+I0427 20:40:12.057740       1 controller.go:606] quota admission added evaluator for: prometheuses.monitoring.coreos.com
+I0427 20:40:13.056555       1 client.go:354] parsed scheme: ""
+I0427 20:40:13.056578       1 client.go:354] scheme "" not registered, fallback to default scheme
+I0427 20:40:13.056621       1 asm_amd64.s:1337] ccResolverWrapper: sending new addresses to cc: [{127.0.0.1:2379 0  <nil>}]
+I0427 20:40:13.056671       1 asm_amd64.s:1337] balancerWrapper: got update addr from Notify: [{127.0.0.1:2379 <nil>}]
+I0427 20:40:13.066355       1 asm_amd64.s:1337] balancerWrapper: got update addr from Notify: [{127.0.0.1:2379 <nil>}]
+I0427 20:40:13.256802       1 controller.go:606] quota admission added evaluator for: grafanas.integreatly.org
+I0427 20:40:13.456426       1 client.go:354] parsed scheme: ""
+I0427 20:40:13.456452       1 client.go:354] scheme "" not registered, fallback to default scheme
+I0427 20:40:13.456498       1 asm_amd64.s:1337] ccResolverWrapper: sending new addresses to cc: [{127.0.0.1:2379 0  <nil>}]
+I0427 20:40:13.456547       1 asm_amd64.s:1337] balancerWrapper: got update addr from Notify: [{127.0.0.1:2379 <nil>}]
+I0427 20:40:13.464222       1 asm_amd64.s:1337] balancerWrapper: got update addr from Notify: [{127.0.0.1:2379 <nil>}]
+I0427 20:40:13.667583       1 controller.go:606] quota admission added evaluator for: grafanadatasources.integreatly.org
+I0427 20:40:13.712407       1 client.go:354] parsed scheme: ""
+I0427 20:40:13.712435       1 client.go:354] scheme "" not registered, fallback to default scheme
+I0427 20:40:13.712469       1 asm_amd64.s:1337] ccResolverWrapper: sending new addresses to cc: [{127.0.0.1:2379 0  <nil>}]
+I0427 20:40:13.712510       1 asm_amd64.s:1337] balancerWrapper: got update addr from Notify: [{127.0.0.1:2379 <nil>}]
+I0427 20:40:13.718996       1 asm_amd64.s:1337] balancerWrapper: got update addr from Notify: [{127.0.0.1:2379 <nil>}]
+I0427 20:40:13.720297       1 client.go:354] parsed scheme: ""
+I0427 20:40:13.720317       1 client.go:354] scheme "" not registered, fallback to default scheme
+I0427 20:40:13.720351       1 asm_amd64.s:1337] ccResolverWrapper: sending new addresses to cc: [{127.0.0.1:2379 0  <nil>}]
+I0427 20:40:13.720397       1 asm_amd64.s:1337] balancerWrapper: got update addr from Notify: [{127.0.0.1:2379 <nil>}]
+I0427 20:40:13.728814       1 asm_amd64.s:1337] balancerWrapper: got update addr from Notify: [{127.0.0.1:2379 <nil>}]
+I0427 20:40:13.730116       1 client.go:354] parsed scheme: ""
+I0427 20:40:13.730134       1 client.go:354] scheme "" not registered, fallback to default scheme
+I0427 20:40:13.730166       1 asm_amd64.s:1337] ccResolverWrapper: sending new addresses to cc: [{127.0.0.1:2379 0  <nil>}]
+I0427 20:40:13.730205       1 asm_amd64.s:1337] balancerWrapper: got update addr from Notify: [{127.0.0.1:2379 <nil>}]
+I0427 20:40:13.736719       1 asm_amd64.s:1337] balancerWrapper: got update addr from Notify: [{127.0.0.1:2379 <nil>}]
+I0427 20:40:13.741102       1 client.go:354] parsed scheme: ""
+I0427 20:40:13.741124       1 client.go:354] scheme "" not registered, fallback to default scheme
+I0427 20:40:13.741163       1 asm_amd64.s:1337] ccResolverWrapper: sending new addresses to cc: [{127.0.0.1:2379 0  <nil>}]
+I0427 20:40:13.741664       1 asm_amd64.s:1337] balancerWrapper: got update addr from Notify: [{127.0.0.1:2379 <nil>}]
+I0427 20:40:13.749578       1 asm_amd64.s:1337] balancerWrapper: got update addr from Notify: [{127.0.0.1:2379 <nil>}]
+I0427 20:40:13.755381       1 client.go:354] parsed scheme: ""
+I0427 20:40:13.755401       1 client.go:354] scheme "" not registered, fallback to default scheme
+I0427 20:40:13.755435       1 asm_amd64.s:1337] ccResolverWrapper: sending new addresses to cc: [{127.0.0.1:2379 0  <nil>}]
+I0427 20:40:13.755477       1 asm_amd64.s:1337] balancerWrapper: got update addr from Notify: [{127.0.0.1:2379 <nil>}]
+I0427 20:40:13.764419       1 asm_amd64.s:1337] balancerWrapper: got update addr from Notify: [{127.0.0.1:2379 <nil>}]
+I0427 20:40:13.771880       1 client.go:354] parsed scheme: ""
+I0427 20:40:13.771953       1 client.go:354] scheme "" not registered, fallback to default scheme
+I0427 20:40:13.772000       1 asm_amd64.s:1337] ccResolverWrapper: sending new addresses to cc: [{127.0.0.1:2379 0  <nil>}]
+I0427 20:40:13.772048       1 asm_amd64.s:1337] balancerWrapper: got update addr from Notify: [{127.0.0.1:2379 <nil>}]
+I0427 20:40:13.780532       1 asm_amd64.s:1337] balancerWrapper: got update addr from Notify: [{127.0.0.1:2379 <nil>}]
+I0427 20:40:14.056603       1 controller.go:606] quota admission added evaluator for: grafanadashboards.integreatly.org
+I0427 20:40:17.651797       1 controller.go:107] OpenAPI AggregationController: Processing item v1beta1.metrics.k8s.io
+W0427 20:40:17.651837       1 handler_proxy.go:91] no RequestInfo found in the context
+E0427 20:40:17.651863       1 controller.go:114] loading OpenAPI spec for "v1beta1.metrics.k8s.io" failed with: failed to retrieve openAPI spec, http error: ResponseCode: 503, Body: service unavailable
+, Header: map[Content-Type:[text/plain; charset=utf-8] X-Content-Type-Options:[nosniff]]
+I0427 20:40:17.651872       1 controller.go:127] OpenAPI AggregationController: action for item v1beta1.metrics.k8s.io: Rate Limited Requeue.
+I0427 20:40:20.266489       1 controller.go:107] OpenAPI AggregationController: Processing item v1beta1.metrics.k8s.io
+W0427 20:40:20.266568       1 handler_proxy.go:91] no RequestInfo found in the context
+E0427 20:40:20.266602       1 controller.go:114] loading OpenAPI spec for "v1beta1.metrics.k8s.io" failed with: failed to retrieve openAPI spec, http error: ResponseCode: 503, Body: service unavailable
+, Header: map[Content-Type:[text/plain; charset=utf-8] X-Content-Type-Options:[nosniff]]
+I0427 20:40:20.266612       1 controller.go:127] OpenAPI AggregationController: action for item v1beta1.metrics.k8s.io: Rate Limited Requeue.
+I0427 20:40:25.669714       1 controller.go:606] quota admission added evaluator for: prometheusrules.monitoring.coreos.com
+I0427 20:40:27.605491       1 controller.go:107] OpenAPI AggregationController: Processing item v1beta1.metrics.k8s.io
+E0427 20:40:27.609024       1 controller.go:114] loading OpenAPI spec for "v1beta1.metrics.k8s.io" failed with: OpenAPI spec does not exist
+I0427 20:40:27.609054       1 controller.go:127] OpenAPI AggregationController: action for item v1beta1.metrics.k8s.io: Rate Limited Requeue.
+I0427 20:40:51.692408       1 client.go:354] parsed scheme: ""
+I0427 20:40:51.692426       1 client.go:354] scheme "" not registered, fallback to default scheme
+I0427 20:40:51.692457       1 asm_amd64.s:1337] ccResolverWrapper: sending new addresses to cc: [{127.0.0.1:2379 0  <nil>}]
+I0427 20:40:51.692508       1 asm_amd64.s:1337] balancerWrapper: got update addr from Notify: [{127.0.0.1:2379 <nil>}]
+I0427 20:40:51.702806       1 asm_amd64.s:1337] balancerWrapper: got update addr from Notify: [{127.0.0.1:2379 <nil>}]
+I0427 20:41:00.810143       1 trace.go:81] Trace[113382036]: "Delete /api/v1/namespaces/harbor/pods/harbor-jobservice-79d5dcb5b8-n74px" (started: 2020-04-27 20:41:00.292497412 +0000 UTC m=+409.262499898) (total time: 517.616337ms):
+Trace[113382036]: [517.342617ms] [517.211072ms] Object deleted from database
+I0427 20:41:27.609286       1 controller.go:107] OpenAPI AggregationController: Processing item v1beta1.metrics.k8s.io
+E0427 20:41:27.612689       1 controller.go:114] loading OpenAPI spec for "v1beta1.metrics.k8s.io" failed with: OpenAPI spec does not exist
+I0427 20:41:27.612708       1 controller.go:127] OpenAPI AggregationController: action for item v1beta1.metrics.k8s.io: Rate Limited Requeue.
+I0427 20:43:27.612892       1 controller.go:107] OpenAPI AggregationController: Processing item v1beta1.metrics.k8s.io
+E0427 20:43:27.616608       1 controller.go:114] loading OpenAPI spec for "v1beta1.metrics.k8s.io" failed with: OpenAPI spec does not exist
+I0427 20:43:27.616632       1 controller.go:127] OpenAPI AggregationController: action for item v1beta1.metrics.k8s.io: Rate Limited Requeue.
+I0427 20:43:34.401456       1 controller.go:606] quota admission added evaluator for: backups.velero.io
+W0427 20:43:35.139825       1 dispatcher.go:115] rejected by webhook "validating-webhook.openpolicyagent.org": &errors.StatusError{ErrStatus:v1.Status{TypeMeta:v1.TypeMeta{Kind:"", APIVersion:""}, ListMeta:v1.ListMeta{SelfLink:"", ResourceVersion:"", Continue:"", RemainingItemCount:(*int64)(nil)}, Status:"Failure", Message:"admission webhook \"validating-webhook.openpolicyagent.org\" denied the request: resource limits cpu OR memory are not set: resource_limits=\"{\\\"memory\\\": \\\"500Mi\\\"}\"", Reason:"resource limits cpu OR memory are not set: resource_limits=\"{\\\"memory\\\": \\\"500Mi\\\"}\"", Details:(*v1.StatusDetails)(nil), Code:400}}
+W0427 20:43:35.400219       1 dispatcher.go:115] rejected by webhook "validating-webhook.openpolicyagent.org": &errors.StatusError{ErrStatus:v1.Status{TypeMeta:v1.TypeMeta{Kind:"", APIVersion:""}, ListMeta:v1.ListMeta{SelfLink:"", ResourceVersion:"", Continue:"", RemainingItemCount:(*int64)(nil)}, Status:"Failure", Message:"admission webhook \"validating-webhook.openpolicyagent.org\" denied the request: resource limits cpu OR memory are not set: resource_limits=\"{\\\"cpu\\\": \\\"800m\\\"}\"", Reason:"resource limits cpu OR memory are not set: resource_limits=\"{\\\"cpu\\\": \\\"800m\\\"}\"", Details:(*v1.StatusDetails)(nil), Code:400}}
+I0427 20:43:35.552580       1 controller.go:606] quota admission added evaluator for: authcodes.dex.coreos.com
+I0427 20:43:35.582248       1 controller.go:606] quota admission added evaluator for: refreshtokens.dex.coreos.com
+I0427 20:43:35.586474       1 controller.go:606] quota admission added evaluator for: offlinesessionses.dex.coreos.com
+W0427 20:43:35.635740       1 dispatcher.go:115] rejected by webhook "validating-webhook.openpolicyagent.org": &errors.StatusError{ErrStatus:v1.Status{TypeMeta:v1.TypeMeta{Kind:"", APIVersion:""}, ListMeta:v1.ListMeta{SelfLink:"", ResourceVersion:"", Continue:"", RemainingItemCount:(*int64)(nil)}, Status:"Failure", Message:"admission webhook \"validating-webhook.openpolicyagent.org\" denied the request: resource limits OR requests are not set: resources=\"{}\"", Reason:"resource limits OR requests are not set: resources=\"{}\"", Details:(*v1.StatusDetails)(nil), Code:400}}
+W0427 20:43:35.893049       1 dispatcher.go:115] rejected by webhook "validating-webhook.openpolicyagent.org": &errors.StatusError{ErrStatus:v1.Status{TypeMeta:v1.TypeMeta{Kind:"", APIVersion:""}, ListMeta:v1.ListMeta{SelfLink:"", ResourceVersion:"", Continue:"", RemainingItemCount:(*int64)(nil)}, Status:"Failure", Message:"admission webhook \"validating-webhook.openpolicyagent.org\" denied the request: readiness probe is not set, liveness  probe is not set, resource limits OR requests are not set: resources=\"{}\"", Reason:"readiness probe is not set, liveness  probe is not set, resource limits OR requests are not set: resources=\"{}\"", Details:(*v1.StatusDetails)(nil), Code:400}}
+W0427 20:43:36.088749       1 dispatcher.go:115] rejected by webhook "validating-webhook.openpolicyagent.org": &errors.StatusError{ErrStatus:v1.Status{TypeMeta:v1.TypeMeta{Kind:"", APIVersion:""}, ListMeta:v1.ListMeta{SelfLink:"", ResourceVersion:"", Continue:"", RemainingItemCount:(*int64)(nil)}, Status:"Failure", Message:"admission webhook \"validating-webhook.openpolicyagent.org\" denied the request: resource limits OR requests are not set: resources=\"{}\"", Reason:"resource limits OR requests are not set: resources=\"{}\"", Details:(*v1.StatusDetails)(nil), Code:400}}
+W0427 20:43:36.292355       1 dispatcher.go:115] rejected by webhook "validating-webhook.openpolicyagent.org": &errors.StatusError{ErrStatus:v1.Status{TypeMeta:v1.TypeMeta{Kind:"", APIVersion:""}, ListMeta:v1.ListMeta{SelfLink:"", ResourceVersion:"", Continue:"", RemainingItemCount:(*int64)(nil)}, Status:"Failure", Message:"admission webhook \"validating-webhook.openpolicyagent.org\" denied the request: resource limits OR requests are not set: resources=\"{}\"", Reason:"resource limits OR requests are not set: resources=\"{}\"", Details:(*v1.StatusDetails)(nil), Code:400}}
+W0427 20:43:36.621210       1 dispatcher.go:115] rejected by webhook "validating-webhook.openpolicyagent.org": &errors.StatusError{ErrStatus:v1.Status{TypeMeta:v1.TypeMeta{Kind:"", APIVersion:""}, ListMeta:v1.ListMeta{SelfLink:"", ResourceVersion:"", Continue:"", RemainingItemCount:(*int64)(nil)}, Status:"Failure", Message:"admission webhook \"validating-webhook.openpolicyagent.org\" denied the request: resource limits OR requests are not set: resources=\"{}\"", Reason:"resource limits OR requests are not set: resources=\"{}\"", Details:(*v1.StatusDetails)(nil), Code:400}}
+W0427 20:43:36.852986       1 dispatcher.go:115] rejected by webhook "validating-webhook.openpolicyagent.org": &errors.StatusError{ErrStatus:v1.Status{TypeMeta:v1.TypeMeta{Kind:"", APIVersion:""}, ListMeta:v1.ListMeta{SelfLink:"", ResourceVersion:"", Continue:"", RemainingItemCount:(*int64)(nil)}, Status:"Failure", Message:"admission webhook \"validating-webhook.openpolicyagent.org\" denied the request: resource limits OR requests are not set: resources=\"{\\\"requests\\\": {\\\"memory\\\": \\\"600Mi\\\"}}\", resource requests cpu OR memory are not set: resource_requests=\"{\\\"memory\\\": \\\"600Mi\\\"}\"", Reason:"resource limits OR requests are not set: resources=\"{\\\"requests\\\": {\\\"memory\\\": \\\"600Mi\\\"}}\", resource requests cpu OR memory are not set: resource_requests=\"{\\\"memory\\\": \\\"600Mi\\\"}\"", Details:(*v1.StatusDetails)(nil), Code:400}}
+W0427 20:43:37.061337       1 dispatcher.go:115] rejected by webhook "validating-webhook.openpolicyagent.org": &errors.StatusError{ErrStatus:v1.Status{TypeMeta:v1.TypeMeta{Kind:"", APIVersion:""}, ListMeta:v1.ListMeta{SelfLink:"", ResourceVersion:"", Continue:"", RemainingItemCount:(*int64)(nil)}, Status:"Failure", Message:"admission webhook \"validating-webhook.openpolicyagent.org\" denied the request: resource limits OR requests are not set: resources=\"{\\\"requests\\\": {\\\"cpu\\\": \\\"600m\\\"}}\", resource requests cpu OR memory are not set: resource_requests=\"{\\\"cpu\\\": \\\"600m\\\"}\"", Reason:"resource limits OR requests are not set: resources=\"{\\\"requests\\\": {\\\"cpu\\\": \\\"600m\\\"}}\", resource requests cpu OR memory are not set: resource_requests=\"{\\\"cpu\\\": \\\"600m\\\"}\"", Details:(*v1.StatusDetails)(nil), Code:400}}
+W0427 20:43:37.257205       1 dispatcher.go:115] rejected by webhook "validating-webhook.openpolicyagent.org": &errors.StatusError{ErrStatus:v1.Status{TypeMeta:v1.TypeMeta{Kind:"", APIVersion:""}, ListMeta:v1.ListMeta{SelfLink:"", ResourceVersion:"", Continue:"", RemainingItemCount:(*int64)(nil)}, Status:"Failure", Message:"admission webhook \"validating-webhook.openpolicyagent.org\" denied the request: readiness probe is not set, liveness  probe is not set, resource limits OR requests are not set: resources=\"{}\"", Reason:"readiness probe is not set, liveness  probe is not set, resource limits OR requests are not set: resources=\"{}\"", Details:(*v1.StatusDetails)(nil), Code:400}}
+W0427 20:43:37.448803       1 dispatcher.go:115] rejected by webhook "validating-webhook.openpolicyagent.org": &errors.StatusError{ErrStatus:v1.Status{TypeMeta:v1.TypeMeta{Kind:"", APIVersion:""}, ListMeta:v1.ListMeta{SelfLink:"", ResourceVersion:"", Continue:"", RemainingItemCount:(*int64)(nil)}, Status:"Failure", Message:"admission webhook \"validating-webhook.openpolicyagent.org\" denied the request: readiness probe is not set, liveness  probe is not set, resource limits OR requests are not set: resources=\"{}\"", Reason:"readiness probe is not set, liveness  probe is not set, resource limits OR requests are not set: resources=\"{}\"", Details:(*v1.StatusDetails)(nil), Code:400}}
+W0427 20:43:37.658973       1 dispatcher.go:115] rejected by webhook "validating-webhook.openpolicyagent.org": &errors.StatusError{ErrStatus:v1.Status{TypeMeta:v1.TypeMeta{Kind:"", APIVersion:""}, ListMeta:v1.ListMeta{SelfLink:"", ResourceVersion:"", Continue:"", RemainingItemCount:(*int64)(nil)}, Status:"Failure", Message:"admission webhook \"validating-webhook.openpolicyagent.org\" denied the request: invalid ingress host \"signin.acmecorp.com\" (conflicts with opa-test-production/sample-ingress)", Reason:"invalid ingress host \"signin.acmecorp.com\" (conflicts with opa-test-production/sample-ingress)", Details:(*v1.StatusDetails)(nil), Code:400}}
+W0427 20:43:37.861972       1 dispatcher.go:115] rejected by webhook "validating-webhook.openpolicyagent.org": &errors.StatusError{ErrStatus:v1.Status{TypeMeta:v1.TypeMeta{Kind:"", APIVersion:""}, ListMeta:v1.ListMeta{SelfLink:"", ResourceVersion:"", Continue:"", RemainingItemCount:(*int64)(nil)}, Status:"Failure", Message:"admission webhook \"validating-webhook.openpolicyagent.org\" denied the request: invalid ingress host \"signin.acmecorp.com\", invalid ingress host \"signin.acmecorp.com\" (conflicts with opa-test-production/sample-ingress)", Reason:"invalid ingress host \"signin.acmecorp.com\", invalid ingress host \"signin.acmecorp.com\" (conflicts with opa-test-production/sample-ingress)", Details:(*v1.StatusDetails)(nil), Code:400}}
+W0427 20:43:38.083804       1 dispatcher.go:115] rejected by webhook "validating-webhook.openpolicyagent.org": &errors.StatusError{ErrStatus:v1.Status{TypeMeta:v1.TypeMeta{Kind:"", APIVersion:""}, ListMeta:v1.ListMeta{SelfLink:"", ResourceVersion:"", Continue:"", RemainingItemCount:(*int64)(nil)}, Status:"Failure", Message:"admission webhook \"validating-webhook.openpolicyagent.org\" denied the request: Must specify label: company and service", Reason:"Must specify label: company and service", Details:(*v1.StatusDetails)(nil), Code:400}}
+W0427 20:43:38.271477       1 dispatcher.go:115] rejected by webhook "validating-webhook.openpolicyagent.org": &errors.StatusError{ErrStatus:v1.Status{TypeMeta:v1.TypeMeta{Kind:"", APIVersion:""}, ListMeta:v1.ListMeta{SelfLink:"", ResourceVersion:"", Continue:"", RemainingItemCount:(*int64)(nil)}, Status:"Failure", Message:"admission webhook \"validating-webhook.openpolicyagent.org\" denied the request: Company name \"company-z\" does not exist", Reason:"Company name \"company-z\" does not exist", Details:(*v1.StatusDetails)(nil), Code:400}}
+W0427 20:43:38.474639       1 dispatcher.go:115] rejected by webhook "validating-webhook.openpolicyagent.org": &errors.StatusError{ErrStatus:v1.Status{TypeMeta:v1.TypeMeta{Kind:"", APIVersion:""}, ListMeta:v1.ListMeta{SelfLink:"", ResourceVersion:"", Continue:"", RemainingItemCount:(*int64)(nil)}, Status:"Failure", Message:"admission webhook \"validating-webhook.openpolicyagent.org\" denied the request: Service \"Company-Y-Service-One\" not found for company \"company-x\"", Reason:"Service \"Company-Y-Service-One\" not found for company \"company-x\"", Details:(*v1.StatusDetails)(nil), Code:400}}
+W0427 20:43:38.685786       1 dispatcher.go:115] rejected by webhook "validating-webhook.openpolicyagent.org": &errors.StatusError{ErrStatus:v1.Status{TypeMeta:v1.TypeMeta{Kind:"", APIVersion:""}, ListMeta:v1.ListMeta{SelfLink:"", ResourceVersion:"", Continue:"", RemainingItemCount:(*int64)(nil)}, Status:"Failure", Message:"admission webhook \"validating-webhook.openpolicyagent.org\" denied the request: readiness probe is not set, liveness  probe is not set, resource limits OR requests are not set: resources=\"{}\"", Reason:"readiness probe is not set, liveness  probe is not set, resource limits OR requests are not set: resources=\"{}\"", Details:(*v1.StatusDetails)(nil), Code:400}}
+W0427 20:43:38.995793       1 dispatcher.go:115] rejected by webhook "validating-webhook.openpolicyagent.org": &errors.StatusError{ErrStatus:v1.Status{TypeMeta:v1.TypeMeta{Kind:"", APIVersion:""}, ListMeta:v1.ListMeta{SelfLink:"", ResourceVersion:"", Continue:"", RemainingItemCount:(*int64)(nil)}, Status:"Failure", Message:"admission webhook \"validating-webhook.openpolicyagent.org\" denied the request: readiness probe is not set, liveness  probe is not set, resource limits OR requests are not set: resources=\"{}\"", Reason:"readiness probe is not set, liveness  probe is not set, resource limits OR requests are not set: resources=\"{}\"", Details:(*v1.StatusDetails)(nil), Code:400}}
+W0427 20:43:39.432245       1 dispatcher.go:115] rejected by webhook "validating-webhook.openpolicyagent.org": &errors.StatusError{ErrStatus:v1.Status{TypeMeta:v1.TypeMeta{Kind:"", APIVersion:""}, ListMeta:v1.ListMeta{SelfLink:"", ResourceVersion:"", Continue:"", RemainingItemCount:(*int64)(nil)}, Status:"Failure", Message:"admission webhook \"validating-webhook.openpolicyagent.org\" denied the request: readiness probe is not set, liveness  probe is not set, resource limits cpu OR memory are not set: resource_limits=\"{\\\"memory\\\": \\\"200Mi\\\"}\"", Reason:"readiness probe is not set, liveness  probe is not set, resource limits cpu OR memory are not set: resource_limits=\"{\\\"memory\\\": \\\"200Mi\\\"}\"", Details:(*v1.StatusDetails)(nil), Code:400}}
+W0427 20:43:39.655029       1 dispatcher.go:115] rejected by webhook "validating-webhook.openpolicyagent.org": &errors.StatusError{ErrStatus:v1.Status{TypeMeta:v1.TypeMeta{Kind:"", APIVersion:""}, ListMeta:v1.ListMeta{SelfLink:"", ResourceVersion:"", Continue:"", RemainingItemCount:(*int64)(nil)}, Status:"Failure", Message:"admission webhook \"validating-webhook.openpolicyagent.org\" denied the request: readiness probe is not set, liveness  probe is not set, resource limits OR requests are not set: resources=\"{}\"", Reason:"readiness probe is not set, liveness  probe is not set, resource limits OR requests are not set: resources=\"{}\"", Details:(*v1.StatusDetails)(nil), Code:400}}
+I0427 20:43:39.868548       1 controller.go:606] quota admission added evaluator for: deployments.extensions
+I0427 20:43:43.463338       1 controller.go:606] quota admission added evaluator for: sealedsecrets.bitnami.com
+I0427 20:44:15.949081       1 controller.go:107] OpenAPI AggregationController: Processing item v1beta1.metrics.k8s.io
+E0427 20:44:15.952395       1 controller.go:114] loading OpenAPI spec for "v1beta1.metrics.k8s.io" failed with: OpenAPI spec does not exist
+I0427 20:44:15.952414       1 controller.go:127] OpenAPI AggregationController: action for item v1beta1.metrics.k8s.io: Rate Limited Requeue.
+I0427 20:45:15.952663       1 controller.go:107] OpenAPI AggregationController: Processing item v1beta1.metrics.k8s.io
+E0427 20:45:15.955890       1 controller.go:114] loading OpenAPI spec for "v1beta1.metrics.k8s.io" failed with: OpenAPI spec does not exist
+I0427 20:45:15.955915       1 controller.go:127] OpenAPI AggregationController: action for item v1beta1.metrics.k8s.io: Rate Limited Requeue.

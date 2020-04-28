@@ -1,0 +1,18 @@
+2020-04-27T20:40:55Z [INFO] [/replication/adapter/native/adapter.go:42]: the factory for adapter docker-registry registered
+2020-04-27T20:40:55Z [INFO] [/replication/adapter/harbor/adapter.go:40]: the factory for adapter harbor registered
+2020-04-27T20:40:55Z [INFO] [/replication/adapter/dockerhub/adapter.go:25]: Factory for adapter docker-hub registered
+2020-04-27T20:40:55Z [INFO] [/replication/adapter/huawei/huawei_adapter.go:27]: the factory of Huawei adapter was registered
+2020-04-27T20:40:55Z [INFO] [/replication/adapter/googlegcr/adapter.go:29]: the factory for adapter google-gcr registered
+2020-04-27T20:40:55Z [INFO] [/replication/adapter/awsecr/adapter.go:47]: the factory for adapter aws-ecr registered
+2020-04-27T20:40:55Z [INFO] [/replication/adapter/azurecr/adapter.go:15]: Factory for adapter azure-acr registered
+2020-04-27T20:40:55Z [INFO] [/replication/adapter/aliacr/adapter.go:26]: the factory for adapter ali-acr registered
+2020-04-27T20:40:55Z [INFO] [/replication/adapter/jfrog/adapter.go:30]: the factory of jfrog artifactory adapter was registered
+2020-04-27T20:40:55Z [INFO] [/replication/adapter/quayio/adapter.go:34]: the factory of Quay.io adapter was registered
+2020-04-27T20:40:55Z [INFO] [/replication/adapter/helmhub/adapter.go:30]: the factory for adapter helm-hub registered
+2020-04-27T20:40:55Z [INFO] [/replication/adapter/gitlab/adapter.go:19]: the factory for adapter gitlab registered
+2020-04-27T20:40:55Z [INFO] [/common/config/store/driver/rest.go:24]: get configuration from url: http://harbor-core/api/internal/configurations
+2020-04-27T20:43:05Z [ERROR] [/common/config/store/driver/rest.go:27]: Failed on load rest config err:Get http://harbor-core/api/internal/configurations: dial tcp 10.96.59.88:80: connect: connection timed out, url:http://harbor-core/api/internal/configurations
+2020-04-27T20:43:05Z [ERROR] [/jobservice/job/impl/context.go:73]: Job context initialization error: failed to load rest config
+2020-04-27T20:43:14Z [INFO] [/common/config/store/driver/rest.go:24]: get configuration from url: http://harbor-core/api/internal/configurations
+2020-04-27T20:43:14Z [INFO] [/common/dao/base.go:84]: Registering database: type-PostgreSQL host-postgres-harbor.postgres-operator.svc.cluster.local port-5432 databse-registry sslmode-"disable"
+2020-04-27T20:43:14Z [INFO] [/common/dao/base.go:89]: Register database completed

@@ -1,0 +1,10 @@
+LAST SEEN                      Count  TYPE    REASON                   OBJECT                        MESSAGE
+2020-04-27 20:34:58 +0000 UTC  2      Normal  KeyPairVerified          ClusterIssuer/default-issuer  Signing CA verified
+2020-04-27 20:35:28 +0000 UTC  2      Normal  KeyPairVerified          ClusterIssuer/ingress-ca      Signing CA verified
+2020-04-27 20:34:00 +0000 UTC  1      Normal  Starting                 Node/kind-control-plane       Starting kubelet.
+2020-04-27 20:34:00 +0000 UTC  9      Normal  NodeHasSufficientMemory  Node/kind-control-plane       Node kind-control-plane status is now: NodeHasSufficientMemory
+2020-04-27 20:34:00 +0000 UTC  7      Normal  NodeHasNoDiskPressure    Node/kind-control-plane       Node kind-control-plane status is now: NodeHasNoDiskPressure
+2020-04-27 20:34:00 +0000 UTC  7      Normal  NodeHasSufficientPID     Node/kind-control-plane       Node kind-control-plane status is now: NodeHasSufficientPID
+2020-04-27 20:34:00 +0000 UTC  1      Normal  NodeAllocatableEnforced  Node/kind-control-plane       Updated Node Allocatable limit across pods
+2020-04-27 20:34:35 +0000 UTC  1      Normal  RegisteredNode           Node/kind-control-plane       Node kind-control-plane event: Registered Node kind-control-plane in Controller
+2020-04-27 20:34:37 +0000 UTC  1      Normal  Starting                 Node/kind-control-plane       Starting kube-proxy.

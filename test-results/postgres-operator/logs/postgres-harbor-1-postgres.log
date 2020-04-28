@@ -1,0 +1,177 @@
+2020-04-27 20:39:06,523 - bootstrapping - INFO - Figuring out my environment (Google? AWS? Openstack? Local?)
+2020-04-27 20:39:06,534 - bootstrapping - INFO - Looks like your running google
+2020-04-27 20:39:06,558 - bootstrapping - INFO - Configuring pam-oauth2
+2020-04-27 20:39:06,558 - bootstrapping - INFO - No PAM_OAUTH2 configuration was specified, skipping
+2020-04-27 20:39:06,558 - bootstrapping - INFO - Configuring certificate
+2020-04-27 20:39:06,558 - bootstrapping - INFO - Generating ssl certificate
+2020-04-27 20:39:06,634 - bootstrapping - INFO - Configuring crontab
+2020-04-27 20:39:06,641 - bootstrapping - INFO - Configuring bootstrap
+2020-04-27 20:39:06,641 - bootstrapping - INFO - Configuring renice
+2020-04-27 20:39:06,643 - bootstrapping - INFO - Skipping creation of renice cron job due to lack of permissions
+2020-04-27 20:39:06,643 - bootstrapping - INFO - Configuring standby-cluster
+2020-04-27 20:39:06,643 - bootstrapping - INFO - Configuring pgqd
+2020-04-27 20:39:06,644 - bootstrapping - INFO - Configuring log
+2020-04-27 20:39:06,644 - bootstrapping - INFO - Configuring patroni
+2020-04-27 20:39:06,651 - bootstrapping - INFO - Writing to file /home/postgres/postgres.yml
+2020-04-27 20:39:06,651 - bootstrapping - INFO - Configuring wal-e
+2020-04-27 20:39:06,651 - bootstrapping - INFO - Writing to file /run/etc/wal-e.d/env/WALE_S3_PREFIX
+2020-04-27 20:39:06,651 - bootstrapping - INFO - Writing to file /run/etc/wal-e.d/env/WALG_S3_PREFIX
+2020-04-27 20:39:06,651 - bootstrapping - INFO - Writing to file /run/etc/wal-e.d/env/AWS_ACCESS_KEY_ID
+2020-04-27 20:39:06,652 - bootstrapping - INFO - Writing to file /run/etc/wal-e.d/env/AWS_SECRET_ACCESS_KEY
+2020-04-27 20:39:06,652 - bootstrapping - INFO - Writing to file /run/etc/wal-e.d/env/WALE_S3_ENDPOINT
+2020-04-27 20:39:06,652 - bootstrapping - INFO - Writing to file /run/etc/wal-e.d/env/AWS_ENDPOINT
+2020-04-27 20:39:06,652 - bootstrapping - INFO - Writing to file /run/etc/wal-e.d/env/WALG_DISABLE_S3_SSE
+2020-04-27 20:39:06,652 - bootstrapping - INFO - Writing to file /run/etc/wal-e.d/env/AWS_S3_FORCE_PATH_STYLE
+2020-04-27 20:39:06,652 - bootstrapping - INFO - Writing to file /run/etc/wal-e.d/env/WALG_DOWNLOAD_CONCURRENCY
+2020-04-27 20:39:06,652 - bootstrapping - INFO - Writing to file /run/etc/wal-e.d/env/WALG_UPLOAD_CONCURRENCY
+2020-04-27 20:39:06,652 - bootstrapping - INFO - Writing to file /run/etc/wal-e.d/env/USE_WALG_BACKUP
+2020-04-27 20:39:06,652 - bootstrapping - INFO - Writing to file /run/etc/wal-e.d/env/USE_WALG_RESTORE
+2020-04-27 20:39:06,653 - bootstrapping - INFO - Writing to file /run/etc/wal-e.d/env/WALE_LOG_DESTINATION
+2020-04-27 20:39:06,653 - bootstrapping - INFO - Writing to file /run/etc/wal-e.d/env/BACKUP_NUM_TO_RETAIN
+2020-04-27 20:39:06,653 - bootstrapping - INFO - Writing to file /run/etc/wal-e.d/env/TMPDIR
+2020-04-27 20:39:06,653 - bootstrapping - INFO - Configuring pgbouncer
+2020-04-27 20:39:06,653 - bootstrapping - INFO - No PGBOUNCER_CONFIGURATION was specified, skipping
+2020-04-27 20:39:08,013 INFO: No PostgreSQL configuration items changed, nothing to reload.
+2020-04-27 20:39:08,015 INFO: Lock owner: postgres-harbor-0; I am postgres-harbor-1
+2020-04-27 20:39:08,113 INFO: trying to bootstrap from leader 'postgres-harbor-0'
+Can not find any backups
+2020-04-27 20:39:10,351 ERROR: Error creating replica using method wal_e: envdir /run/etc/wal-e.d/env bash /scripts/wale_restore.sh exited with code=1
+2020-04-27 20:39:18,015 INFO: Lock owner: postgres-harbor-0; I am postgres-harbor-1
+2020-04-27 20:39:18,063 INFO: bootstrap from leader 'postgres-harbor-0' in progress
+2020-04-27 20:39:28,015 INFO: Lock owner: postgres-harbor-0; I am postgres-harbor-1
+2020-04-27 20:39:28,015 INFO: bootstrap from leader 'postgres-harbor-0' in progress
+2020-04-27 20:39:38,015 INFO: Lock owner: postgres-harbor-0; I am postgres-harbor-1
+2020-04-27 20:39:38,015 INFO: bootstrap from leader 'postgres-harbor-0' in progress
+1024+0 records in
+1024+0 records out
+16777216 bytes (17 MB, 16 MiB) copied, 0.00959468 s, 1.7 GB/s
+NOTICE:  all required WAL segments have been archived
+2020-04-27 20:39:42,655 INFO: replica has been created using basebackup_fast_xlog
+2020-04-27 20:39:42,656 INFO: bootstrapped from leader 'postgres-harbor-0'
+2020-04-27 20:39:42 UTC [173]: [1-1] 5ea7430e.ad 0     LOG:  Auto detecting pg_stat_kcache.linux_hz parameter...
+2020-04-27 20:39:42 UTC [173]: [2-1] 5ea7430e.ad 0     LOG:  pg_stat_kcache.linux_hz is set to 1000000
+2020-04-27 20:39:42 UTC [173]: [3-1] 5ea7430e.ad 0     LOG:  starting PostgreSQL 12.2 (Ubuntu 12.2-2.pgdg18.04+1) on x86_64-pc-linux-gnu, compiled by gcc (Ubuntu 7.4.0-1ubuntu1~18.04.1) 7.4.0, 64-bit
+2020-04-27 20:39:42 UTC [173]: [4-1] 5ea7430e.ad 0     LOG:  listening on IPv4 address "0.0.0.0", port 5432
+2020-04-27 20:39:42 UTC [173]: [5-1] 5ea7430e.ad 0     LOG:  listening on IPv6 address "::", port 5432
+2020-04-27 20:39:42 UTC [173]: [6-1] 5ea7430e.ad 0     LOG:  listening on Unix socket "/var/run/postgresql/.s.PGSQL.5432"
+2020-04-27 20:39:42,879 INFO: postmaster pid=173
+2020-04-27 20:39:42 UTC [173]: [7-1] 5ea7430e.ad 0     LOG:  redirecting log output to logging collector process
+2020-04-27 20:39:42 UTC [173]: [8-1] 5ea7430e.ad 0     HINT:  Future log output will appear in directory "../pg_log".
+/var/run/postgresql:5432 - rejecting connections
+/var/run/postgresql:5432 - rejecting connections
+/var/run/postgresql:5432 - accepting connections
+2020-04-27 20:39:43,926 INFO: Lock owner: postgres-harbor-0; I am postgres-harbor-1
+2020-04-27 20:39:43,926 INFO: does not have lock
+2020-04-27 20:39:43,926 INFO: establishing a new patroni connection to the postgres cluster
+2020-04-27 20:39:44,003 INFO: no action.  i am a secondary and i am following a leader
+2020-04-27 20:39:53,924 INFO: Lock owner: postgres-harbor-0; I am postgres-harbor-1
+2020-04-27 20:39:53,924 INFO: does not have lock
+2020-04-27 20:39:53,973 INFO: no action.  i am a secondary and i am following a leader
+2020-04-27 20:40:03,924 INFO: Lock owner: postgres-harbor-0; I am postgres-harbor-1
+2020-04-27 20:40:03,924 INFO: does not have lock
+2020-04-27 20:40:03,971 INFO: no action.  i am a secondary and i am following a leader
+2020-04-27 20:40:13,924 INFO: Lock owner: postgres-harbor-0; I am postgres-harbor-1
+2020-04-27 20:40:13,924 INFO: does not have lock
+2020-04-27 20:40:13,971 INFO: no action.  i am a secondary and i am following a leader
+2020-04-27 20:40:23,924 INFO: Lock owner: postgres-harbor-0; I am postgres-harbor-1
+2020-04-27 20:40:23,924 INFO: does not have lock
+2020-04-27 20:40:23,972 INFO: no action.  i am a secondary and i am following a leader
+2020-04-27 20:40:33,924 INFO: Lock owner: postgres-harbor-0; I am postgres-harbor-1
+2020-04-27 20:40:33,924 INFO: does not have lock
+2020-04-27 20:40:33,973 INFO: no action.  i am a secondary and i am following a leader
+2020-04-27 20:40:43,924 INFO: Lock owner: postgres-harbor-0; I am postgres-harbor-1
+2020-04-27 20:40:43,924 INFO: does not have lock
+2020-04-27 20:40:43,974 INFO: no action.  i am a secondary and i am following a leader
+2020-04-27 20:40:53,924 INFO: Lock owner: postgres-harbor-0; I am postgres-harbor-1
+2020-04-27 20:40:53,924 INFO: does not have lock
+2020-04-27 20:40:53,975 INFO: no action.  i am a secondary and i am following a leader
+2020-04-27 20:41:03,943 INFO: Lock owner: postgres-harbor-0; I am postgres-harbor-1
+2020-04-27 20:41:03,943 INFO: does not have lock
+2020-04-27 20:41:03,995 INFO: no action.  i am a secondary and i am following a leader
+2020-04-27 20:41:13,926 INFO: Lock owner: postgres-harbor-0; I am postgres-harbor-1
+2020-04-27 20:41:13,926 INFO: does not have lock
+2020-04-27 20:41:13,975 INFO: no action.  i am a secondary and i am following a leader
+2020-04-27 20:41:23,924 INFO: Lock owner: postgres-harbor-0; I am postgres-harbor-1
+2020-04-27 20:41:23,925 INFO: does not have lock
+2020-04-27 20:41:23,976 INFO: no action.  i am a secondary and i am following a leader
+2020-04-27 20:41:33,924 INFO: Lock owner: postgres-harbor-0; I am postgres-harbor-1
+2020-04-27 20:41:33,924 INFO: does not have lock
+2020-04-27 20:41:33,925 INFO: no action.  i am a secondary and i am following a leader
+2020-04-27 20:41:43,924 INFO: Lock owner: postgres-harbor-0; I am postgres-harbor-1
+2020-04-27 20:41:43,924 INFO: does not have lock
+2020-04-27 20:41:43,971 INFO: no action.  i am a secondary and i am following a leader
+2020-04-27 20:41:53,924 INFO: Lock owner: postgres-harbor-0; I am postgres-harbor-1
+2020-04-27 20:41:53,924 INFO: does not have lock
+2020-04-27 20:41:53,925 INFO: no action.  i am a secondary and i am following a leader
+2020-04-27 20:42:03,924 INFO: Lock owner: postgres-harbor-0; I am postgres-harbor-1
+2020-04-27 20:42:03,924 INFO: does not have lock
+2020-04-27 20:42:03,976 INFO: no action.  i am a secondary and i am following a leader
+2020-04-27 20:42:13,924 INFO: Lock owner: postgres-harbor-0; I am postgres-harbor-1
+2020-04-27 20:42:13,924 INFO: does not have lock
+2020-04-27 20:42:13,972 INFO: no action.  i am a secondary and i am following a leader
+2020-04-27 20:42:23,924 INFO: Lock owner: postgres-harbor-0; I am postgres-harbor-1
+2020-04-27 20:42:23,924 INFO: does not have lock
+2020-04-27 20:42:23,925 INFO: no action.  i am a secondary and i am following a leader
+2020-04-27 20:42:33,924 INFO: Lock owner: postgres-harbor-0; I am postgres-harbor-1
+2020-04-27 20:42:33,924 INFO: does not have lock
+2020-04-27 20:42:33,970 INFO: no action.  i am a secondary and i am following a leader
+2020-04-27 20:42:43,924 INFO: Lock owner: postgres-harbor-0; I am postgres-harbor-1
+2020-04-27 20:42:43,924 INFO: does not have lock
+2020-04-27 20:42:43,925 INFO: no action.  i am a secondary and i am following a leader
+2020-04-27 20:42:53,924 INFO: Lock owner: postgres-harbor-0; I am postgres-harbor-1
+2020-04-27 20:42:53,924 INFO: does not have lock
+2020-04-27 20:42:53,925 INFO: no action.  i am a secondary and i am following a leader
+2020-04-27 20:43:03,924 INFO: Lock owner: postgres-harbor-0; I am postgres-harbor-1
+2020-04-27 20:43:03,924 INFO: does not have lock
+2020-04-27 20:43:03,925 INFO: no action.  i am a secondary and i am following a leader
+2020-04-27 20:43:13,924 INFO: Lock owner: postgres-harbor-0; I am postgres-harbor-1
+2020-04-27 20:43:13,924 INFO: does not have lock
+2020-04-27 20:43:13,972 INFO: no action.  i am a secondary and i am following a leader
+2020-04-27 20:43:23,924 INFO: Lock owner: postgres-harbor-0; I am postgres-harbor-1
+2020-04-27 20:43:23,924 INFO: does not have lock
+2020-04-27 20:43:23,925 INFO: no action.  i am a secondary and i am following a leader
+2020-04-27 20:43:33,924 INFO: Lock owner: postgres-harbor-0; I am postgres-harbor-1
+2020-04-27 20:43:33,924 INFO: does not have lock
+2020-04-27 20:43:33,925 INFO: no action.  i am a secondary and i am following a leader
+2020-04-27 20:43:43,924 INFO: Lock owner: postgres-harbor-0; I am postgres-harbor-1
+2020-04-27 20:43:43,924 INFO: does not have lock
+2020-04-27 20:43:43,925 INFO: no action.  i am a secondary and i am following a leader
+2020-04-27 20:43:53,924 INFO: Lock owner: postgres-harbor-0; I am postgres-harbor-1
+2020-04-27 20:43:53,924 INFO: does not have lock
+2020-04-27 20:43:53,925 INFO: no action.  i am a secondary and i am following a leader
+2020-04-27 20:44:03,924 INFO: Lock owner: postgres-harbor-0; I am postgres-harbor-1
+2020-04-27 20:44:03,924 INFO: does not have lock
+2020-04-27 20:44:03,925 INFO: no action.  i am a secondary and i am following a leader
+2020-04-27 20:44:13,924 INFO: Lock owner: postgres-harbor-0; I am postgres-harbor-1
+2020-04-27 20:44:13,924 INFO: does not have lock
+2020-04-27 20:44:13,925 INFO: no action.  i am a secondary and i am following a leader
+2020-04-27 20:44:23,924 INFO: Lock owner: postgres-harbor-0; I am postgres-harbor-1
+2020-04-27 20:44:23,924 INFO: does not have lock
+2020-04-27 20:44:23,925 INFO: no action.  i am a secondary and i am following a leader
+2020-04-27 20:44:33,924 INFO: Lock owner: postgres-harbor-0; I am postgres-harbor-1
+2020-04-27 20:44:33,924 INFO: does not have lock
+2020-04-27 20:44:33,925 INFO: no action.  i am a secondary and i am following a leader
+2020-04-27 20:44:43,924 INFO: Lock owner: postgres-harbor-0; I am postgres-harbor-1
+2020-04-27 20:44:43,924 INFO: does not have lock
+2020-04-27 20:44:43,925 INFO: no action.  i am a secondary and i am following a leader
+2020-04-27 20:44:53,924 INFO: Lock owner: postgres-harbor-0; I am postgres-harbor-1
+2020-04-27 20:44:53,924 INFO: does not have lock
+2020-04-27 20:44:53,925 INFO: no action.  i am a secondary and i am following a leader
+2020-04-27 20:45:03,924 INFO: Lock owner: postgres-harbor-0; I am postgres-harbor-1
+2020-04-27 20:45:03,924 INFO: does not have lock
+2020-04-27 20:45:03,970 INFO: no action.  i am a secondary and i am following a leader
+2020-04-27 20:45:13,924 INFO: Lock owner: postgres-harbor-0; I am postgres-harbor-1
+2020-04-27 20:45:13,924 INFO: does not have lock
+2020-04-27 20:45:13,973 INFO: no action.  i am a secondary and i am following a leader
+2020-04-27 20:45:23,924 INFO: Lock owner: postgres-harbor-0; I am postgres-harbor-1
+2020-04-27 20:45:23,924 INFO: does not have lock
+2020-04-27 20:45:23,925 INFO: no action.  i am a secondary and i am following a leader
+2020-04-27 20:45:33,924 INFO: Lock owner: postgres-harbor-0; I am postgres-harbor-1
+2020-04-27 20:45:33,924 INFO: does not have lock
+2020-04-27 20:45:33,925 INFO: no action.  i am a secondary and i am following a leader
+2020-04-27 20:45:43,924 INFO: Lock owner: postgres-harbor-0; I am postgres-harbor-1
+2020-04-27 20:45:43,924 INFO: does not have lock
+2020-04-27 20:45:43,925 INFO: no action.  i am a secondary and i am following a leader
+2020-04-27 20:45:53,924 INFO: Lock owner: postgres-harbor-0; I am postgres-harbor-1
+2020-04-27 20:45:53,924 INFO: does not have lock
+2020-04-27 20:45:53,925 INFO: no action.  i am a secondary and i am following a leader

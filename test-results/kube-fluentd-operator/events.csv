@@ -1,0 +1,21 @@
+LAST SEEN                      Count  TYPE    REASON            OBJECT                                      MESSAGE
+2020-04-27 20:38:38 +0000 UTC  1      Normal  Scheduled         Pod/kube-fluentd-operator-log-router-4ll45  Successfully assigned kube-fluentd-operator/kube-fluentd-operator-log-router-4ll45 to kind-control-plane
+2020-04-27 20:38:39 +0000 UTC  1      Normal  Pulling           Pod/kube-fluentd-operator-log-router-4ll45  Pulling image "jvassev/kube-fluentd-operator:v1.11.0"
+2020-04-27 20:38:47 +0000 UTC  1      Normal  Pulled            Pod/kube-fluentd-operator-log-router-4ll45  Successfully pulled image "jvassev/kube-fluentd-operator:v1.11.0"
+2020-04-27 20:38:49 +0000 UTC  1      Normal  Created           Pod/kube-fluentd-operator-log-router-4ll45  Created container fluentd
+2020-04-27 20:38:49 +0000 UTC  1      Normal  Started           Pod/kube-fluentd-operator-log-router-4ll45  Started container fluentd
+2020-04-27 20:38:49 +0000 UTC  1      Normal  Pulled            Pod/kube-fluentd-operator-log-router-4ll45  Container image "jvassev/kube-fluentd-operator:v1.11.0" already present on machine
+2020-04-27 20:38:49 +0000 UTC  1      Normal  Created           Pod/kube-fluentd-operator-log-router-4ll45  Created container reloader
+2020-04-27 20:38:49 +0000 UTC  1      Normal  Started           Pod/kube-fluentd-operator-log-router-4ll45  Started container reloader
+2020-04-27 20:40:50 +0000 UTC  1      Normal  Killing           Pod/kube-fluentd-operator-log-router-4ll45  Stopping container fluentd
+2020-04-27 20:40:50 +0000 UTC  1      Normal  Killing           Pod/kube-fluentd-operator-log-router-4ll45  Stopping container reloader
+2020-04-27 20:41:23 +0000 UTC  1      Normal  Scheduled         Pod/kube-fluentd-operator-log-router-jq6s7  Successfully assigned kube-fluentd-operator/kube-fluentd-operator-log-router-jq6s7 to kind-control-plane
+2020-04-27 20:41:25 +0000 UTC  1      Normal  Pulled            Pod/kube-fluentd-operator-log-router-jq6s7  Container image "jvassev/kube-fluentd-operator:v1.11.0" already present on machine
+2020-04-27 20:41:25 +0000 UTC  1      Normal  Created           Pod/kube-fluentd-operator-log-router-jq6s7  Created container fluentd
+2020-04-27 20:41:25 +0000 UTC  1      Normal  Started           Pod/kube-fluentd-operator-log-router-jq6s7  Started container fluentd
+2020-04-27 20:41:25 +0000 UTC  1      Normal  Pulled            Pod/kube-fluentd-operator-log-router-jq6s7  Container image "jvassev/kube-fluentd-operator:v1.11.0" already present on machine
+2020-04-27 20:41:25 +0000 UTC  1      Normal  Created           Pod/kube-fluentd-operator-log-router-jq6s7  Created container reloader
+2020-04-27 20:41:26 +0000 UTC  1      Normal  Started           Pod/kube-fluentd-operator-log-router-jq6s7  Started container reloader
+2020-04-27 20:38:38 +0000 UTC  1      Normal  SuccessfulCreate  DaemonSet/kube-fluentd-operator-log-router  Created pod: kube-fluentd-operator-log-router-4ll45
+2020-04-27 20:40:50 +0000 UTC  1      Normal  SuccessfulDelete  DaemonSet/kube-fluentd-operator-log-router  Deleted pod: kube-fluentd-operator-log-router-4ll45
+2020-04-27 20:41:23 +0000 UTC  1      Normal  SuccessfulCreate  DaemonSet/kube-fluentd-operator-log-router  Created pod: kube-fluentd-operator-log-router-jq6s7

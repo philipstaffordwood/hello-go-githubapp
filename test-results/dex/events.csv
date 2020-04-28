@@ -1,0 +1,63 @@
+LAST SEEN                      Count  TYPE     REASON             OBJECT                                 MESSAGE
+2020-04-27 20:41:11 +0000 UTC  1      Normal   Scheduled          Pod/dex-74cbcf9f4f-d2442               Successfully assigned dex/dex-74cbcf9f4f-d2442 to kind-control-plane
+2020-04-27 20:41:12 +0000 UTC  1      Normal   Pulled             Pod/dex-74cbcf9f4f-d2442               Container image "quay.io/dexidp/dex:v2.17.0" already present on machine
+2020-04-27 20:41:12 +0000 UTC  1      Normal   Created            Pod/dex-74cbcf9f4f-d2442               Created container dex
+2020-04-27 20:41:12 +0000 UTC  1      Normal   Started            Pod/dex-74cbcf9f4f-d2442               Started container dex
+2020-04-27 20:40:54 +0000 UTC  1      Normal   Scheduled          Pod/dex-74cbcf9f4f-l2dk2               Successfully assigned dex/dex-74cbcf9f4f-l2dk2 to kind-control-plane
+2020-04-27 20:40:55 +0000 UTC  1      Normal   Pulled             Pod/dex-74cbcf9f4f-l2dk2               Container image "quay.io/dexidp/dex:v2.17.0" already present on machine
+2020-04-27 20:40:55 +0000 UTC  1      Normal   Created            Pod/dex-74cbcf9f4f-l2dk2               Created container dex
+2020-04-27 20:40:56 +0000 UTC  1      Normal   Started            Pod/dex-74cbcf9f4f-l2dk2               Started container dex
+2020-04-27 20:41:01 +0000 UTC  1      Normal   Scheduled          Pod/dex-74cbcf9f4f-rm4hs               Successfully assigned dex/dex-74cbcf9f4f-rm4hs to kind-control-plane
+2020-04-27 20:41:02 +0000 UTC  1      Normal   Pulled             Pod/dex-74cbcf9f4f-rm4hs               Container image "quay.io/dexidp/dex:v2.17.0" already present on machine
+2020-04-27 20:41:02 +0000 UTC  1      Normal   Created            Pod/dex-74cbcf9f4f-rm4hs               Created container dex
+2020-04-27 20:41:03 +0000 UTC  1      Normal   Started            Pod/dex-74cbcf9f4f-rm4hs               Started container dex
+2020-04-27 20:40:54 +0000 UTC  1      Normal   SuccessfulCreate   ReplicaSet/dex-74cbcf9f4f              Created pod: dex-74cbcf9f4f-l2dk2
+2020-04-27 20:41:01 +0000 UTC  1      Normal   SuccessfulCreate   ReplicaSet/dex-74cbcf9f4f              Created pod: dex-74cbcf9f4f-rm4hs
+2020-04-27 20:41:11 +0000 UTC  1      Normal   SuccessfulCreate   ReplicaSet/dex-74cbcf9f4f              Created pod: dex-74cbcf9f4f-d2442
+2020-04-27 20:35:54 +0000 UTC  1      Normal   Scheduled          Pod/dex-756bb5f8c4-h64bv               Successfully assigned dex/dex-756bb5f8c4-h64bv to kind-control-plane
+2020-04-27 20:35:55 +0000 UTC  1      Normal   Pulling            Pod/dex-756bb5f8c4-h64bv               Pulling image "quay.io/dexidp/dex:v2.17.0"
+2020-04-27 20:36:09 +0000 UTC  1      Normal   Pulled             Pod/dex-756bb5f8c4-h64bv               Successfully pulled image "quay.io/dexidp/dex:v2.17.0"
+2020-04-27 20:36:09 +0000 UTC  1      Normal   Created            Pod/dex-756bb5f8c4-h64bv               Created container dex
+2020-04-27 20:36:10 +0000 UTC  1      Normal   Started            Pod/dex-756bb5f8c4-h64bv               Started container dex
+2020-04-27 20:41:01 +0000 UTC  1      Normal   Killing            Pod/dex-756bb5f8c4-h64bv               Stopping container dex
+2020-04-27 20:35:54 +0000 UTC  1      Normal   Scheduled          Pod/dex-756bb5f8c4-hzpfs               Successfully assigned dex/dex-756bb5f8c4-hzpfs to kind-control-plane
+2020-04-27 20:35:55 +0000 UTC  1      Normal   Pulling            Pod/dex-756bb5f8c4-hzpfs               Pulling image "quay.io/dexidp/dex:v2.17.0"
+2020-04-27 20:36:10 +0000 UTC  1      Normal   Pulled             Pod/dex-756bb5f8c4-hzpfs               Successfully pulled image "quay.io/dexidp/dex:v2.17.0"
+2020-04-27 20:36:10 +0000 UTC  1      Normal   Created            Pod/dex-756bb5f8c4-hzpfs               Created container dex
+2020-04-27 20:36:10 +0000 UTC  1      Normal   Started            Pod/dex-756bb5f8c4-hzpfs               Started container dex
+2020-04-27 20:41:23 +0000 UTC  1      Normal   Killing            Pod/dex-756bb5f8c4-hzpfs               Stopping container dex
+2020-04-27 20:35:54 +0000 UTC  1      Normal   Scheduled          Pod/dex-756bb5f8c4-qsv26               Successfully assigned dex/dex-756bb5f8c4-qsv26 to kind-control-plane
+2020-04-27 20:35:55 +0000 UTC  1      Normal   Pulling            Pod/dex-756bb5f8c4-qsv26               Pulling image "quay.io/dexidp/dex:v2.17.0"
+2020-04-27 20:36:10 +0000 UTC  1      Normal   Pulled             Pod/dex-756bb5f8c4-qsv26               Successfully pulled image "quay.io/dexidp/dex:v2.17.0"
+2020-04-27 20:36:10 +0000 UTC  1      Normal   Created            Pod/dex-756bb5f8c4-qsv26               Created container dex
+2020-04-27 20:36:10 +0000 UTC  1      Normal   Started            Pod/dex-756bb5f8c4-qsv26               Started container dex
+2020-04-27 20:41:11 +0000 UTC  1      Normal   Killing            Pod/dex-756bb5f8c4-qsv26               Stopping container dex
+2020-04-27 20:35:53 +0000 UTC  8      Warning  FailedCreate       ReplicaSet/dex-756bb5f8c4              Error creating: pods "dex-756bb5f8c4-" is forbidden: error looking up service account dex/dex: serviceaccount "dex" not found
+2020-04-27 20:35:54 +0000 UTC  1      Normal   SuccessfulCreate   ReplicaSet/dex-756bb5f8c4              Created pod: dex-756bb5f8c4-h64bv
+2020-04-27 20:35:54 +0000 UTC  1      Normal   SuccessfulCreate   ReplicaSet/dex-756bb5f8c4              Created pod: dex-756bb5f8c4-hzpfs
+2020-04-27 20:35:54 +0000 UTC  1      Normal   SuccessfulCreate   ReplicaSet/dex-756bb5f8c4              Created pod: dex-756bb5f8c4-qsv26
+2020-04-27 20:41:01 +0000 UTC  1      Normal   SuccessfulDelete   ReplicaSet/dex-756bb5f8c4              Deleted pod: dex-756bb5f8c4-h64bv
+2020-04-27 20:41:11 +0000 UTC  1      Normal   SuccessfulDelete   ReplicaSet/dex-756bb5f8c4              Deleted pod: dex-756bb5f8c4-qsv26
+2020-04-27 20:41:23 +0000 UTC  1      Normal   SuccessfulDelete   ReplicaSet/dex-756bb5f8c4              Deleted pod: dex-756bb5f8c4-hzpfs
+2020-04-27 20:40:50 +0000 UTC  1      Normal   Scheduled          Pod/dex-79bcf475c9-6jcx6               Successfully assigned dex/dex-79bcf475c9-6jcx6 to kind-control-plane
+2020-04-27 20:40:52 +0000 UTC  1      Normal   Pulled             Pod/dex-79bcf475c9-6jcx6               Container image "quay.io/dexidp/dex:v2.17.0" already present on machine
+2020-04-27 20:40:52 +0000 UTC  1      Normal   Created            Pod/dex-79bcf475c9-6jcx6               Created container dex
+2020-04-27 20:40:52 +0000 UTC  1      Normal   Started            Pod/dex-79bcf475c9-6jcx6               Started container dex
+2020-04-27 20:40:54 +0000 UTC  1      Normal   Killing            Pod/dex-79bcf475c9-6jcx6               Stopping container dex
+2020-04-27 20:40:50 +0000 UTC  1      Normal   SuccessfulCreate   ReplicaSet/dex-79bcf475c9              Created pod: dex-79bcf475c9-6jcx6
+2020-04-27 20:40:53 +0000 UTC  1      Normal   SuccessfulDelete   ReplicaSet/dex-79bcf475c9              Deleted pod: dex-79bcf475c9-6jcx6
+2020-04-27 20:35:53 +0000 UTC  1      Normal   CREATE             Ingress/dex-ing                        Ingress dex/dex-ing
+2020-04-27 20:35:53 +0000 UTC  1      Normal   CreateCertificate  Ingress/dex-ing                        Successfully created Certificate "dex-tls"
+2020-04-27 20:35:53 +0000 UTC  1      Normal   CertificateIssued  CertificateRequest/dex-tls-3658351222  Certificate fetched from issuer successfully
+2020-04-27 20:35:53 +0000 UTC  1      Normal   GeneratedKey       Certificate/dex-tls                    Generated a new private key
+2020-04-27 20:35:53 +0000 UTC  1      Normal   Requested          Certificate/dex-tls                    Created new CertificateRequest resource "dex-tls-3658351222"
+2020-04-27 20:35:53 +0000 UTC  1      Normal   Issued             Certificate/dex-tls                    Certificate issued successfully
+2020-04-27 20:35:52 +0000 UTC  1      Normal   ScalingReplicaSet  Deployment/dex                         Scaled up replica set dex-756bb5f8c4 to 3
+2020-04-27 20:40:50 +0000 UTC  1      Normal   ScalingReplicaSet  Deployment/dex                         Scaled up replica set dex-79bcf475c9 to 1
+2020-04-27 20:40:53 +0000 UTC  1      Normal   ScalingReplicaSet  Deployment/dex                         Scaled down replica set dex-79bcf475c9 to 0
+2020-04-27 20:40:54 +0000 UTC  1      Normal   ScalingReplicaSet  Deployment/dex                         Scaled up replica set dex-74cbcf9f4f to 1
+2020-04-27 20:41:01 +0000 UTC  1      Normal   ScalingReplicaSet  Deployment/dex                         Scaled down replica set dex-756bb5f8c4 to 2
+2020-04-27 20:41:01 +0000 UTC  1      Normal   ScalingReplicaSet  Deployment/dex                         Scaled up replica set dex-74cbcf9f4f to 2
+2020-04-27 20:41:11 +0000 UTC  1      Normal   ScalingReplicaSet  Deployment/dex                         Scaled down replica set dex-756bb5f8c4 to 1
+2020-04-27 20:41:11 +0000 UTC  1      Normal   ScalingReplicaSet  Deployment/dex                         Scaled up replica set dex-74cbcf9f4f to 3
+2020-04-27 20:41:23 +0000 UTC  1      Normal   ScalingReplicaSet  Deployment/dex                         Scaled down replica set dex-756bb5f8c4 to 0

@@ -1,0 +1,5 @@
+ts=2020-04-27T20:40:39.087660638Z caller=main.go:85 msg="Starting prometheus-config-reloader version '0.36.0'."
+level=error ts=2020-04-27T20:40:39.089362755Z caller=runutil.go:95 msg="function failed. Retrying in next tick" err="trigger reload: reload request failed: Post http://localhost:9090/-/reload: dial tcp [::1]:9090: connect: connection refused"
+level=info ts=2020-04-27T20:40:44.157046298Z caller=reloader.go:286 msg="Prometheus reload triggered" cfg_in=/etc/prometheus/config/prometheus.yaml.gz cfg_out=/etc/prometheus/config_out/prometheus.env.yaml rule_dirs=
+level=info ts=2020-04-27T20:40:44.157118387Z caller=reloader.go:154 msg="started watching config file and non-recursively rule dirs for changes" cfg=/etc/prometheus/config/prometheus.yaml.gz out=/etc/prometheus/config_out/prometheus.env.yaml dirs=
+level=info ts=2020-04-27T20:40:44.207240716Z caller=reloader.go:286 msg="Prometheus reload triggered" cfg_in=/etc/prometheus/config/prometheus.yaml.gz cfg_out=/etc/prometheus/config_out/prometheus.env.yaml rule_dirs=

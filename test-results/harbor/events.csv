@@ -1,0 +1,201 @@
+LAST SEEN                      Count  TYPE     REASON                 OBJECT                                        MESSAGE
+2020-04-27 20:39:55 +0000 UTC  1      Normal   WaitForFirstConsumer   PersistentVolumeClaim/data-harbor-redis-0     waiting for first consumer to be created before binding
+2020-04-27 20:39:55 +0000 UTC  2      Normal   ExternalProvisioning   PersistentVolumeClaim/data-harbor-redis-0     waiting for a volume to be created, either by external provisioner "rancher.io/local-path" or manually created by system administrator
+2020-04-27 20:39:55 +0000 UTC  1      Normal   Provisioning           PersistentVolumeClaim/data-harbor-redis-0     External provisioner is provisioning volume for claim "harbor/data-harbor-redis-0"
+2020-04-27 20:39:59 +0000 UTC  1      Normal   ProvisioningSucceeded  PersistentVolumeClaim/data-harbor-redis-0     Successfully provisioned volume pvc-6758ea9e-a557-47a9-bae0-6500c83ec7b3
+2020-04-27 20:40:53 +0000 UTC  1      Normal   Scheduled              Pod/harbor-chartmuseum-54bd7fd995-dfk9b       Successfully assigned harbor/harbor-chartmuseum-54bd7fd995-dfk9b to kind-control-plane
+2020-04-27 20:40:54 +0000 UTC  1      Normal   Pulled                 Pod/harbor-chartmuseum-54bd7fd995-dfk9b       Container image "goharbor/chartmuseum-photon:v0.9.0-v1.10.0" already present on machine
+2020-04-27 20:40:54 +0000 UTC  1      Normal   Created                Pod/harbor-chartmuseum-54bd7fd995-dfk9b       Created container chartmuseum
+2020-04-27 20:40:55 +0000 UTC  1      Normal   Started                Pod/harbor-chartmuseum-54bd7fd995-dfk9b       Started container chartmuseum
+2020-04-27 20:40:53 +0000 UTC  1      Normal   SuccessfulCreate       ReplicaSet/harbor-chartmuseum-54bd7fd995      Created pod: harbor-chartmuseum-54bd7fd995-dfk9b
+2020-04-27 20:40:49 +0000 UTC  1      Normal   Scheduled              Pod/harbor-chartmuseum-5767fb7559-hjg78       Successfully assigned harbor/harbor-chartmuseum-5767fb7559-hjg78 to kind-control-plane
+2020-04-27 20:40:51 +0000 UTC  1      Normal   Pulled                 Pod/harbor-chartmuseum-5767fb7559-hjg78       Container image "goharbor/chartmuseum-photon:v0.9.0-v1.10.0" already present on machine
+2020-04-27 20:40:51 +0000 UTC  1      Warning  Failed                 Pod/harbor-chartmuseum-5767fb7559-hjg78       Error: cannot find volume "chartmuseum-data" to mount into container "chartmuseum"
+2020-04-27 20:42:54 +0000 UTC  1      Warning  FailedMount            Pod/harbor-chartmuseum-5767fb7559-hjg78       Unable to mount volumes for pod "harbor-chartmuseum-5767fb7559-hjg78_harbor(ee888327-5059-4368-bc84-2f58e88de429)": timeout expired waiting for volumes to attach or mount for pod "harbor"/"harbor-chartmuseum-5767fb7559-hjg78". list of unmounted volumes=[chartmuseum-data default-token-8cbmp]. list of unattached volumes=[chartmuseum-data default-token-8cbmp]
+2020-04-27 20:40:49 +0000 UTC  1      Normal   SuccessfulCreate       ReplicaSet/harbor-chartmuseum-5767fb7559      Created pod: harbor-chartmuseum-5767fb7559-hjg78
+2020-04-27 20:40:50 +0000 UTC  1      Normal   SuccessfulDelete       ReplicaSet/harbor-chartmuseum-5767fb7559      Deleted pod: harbor-chartmuseum-5767fb7559-hjg78
+2020-04-27 20:39:53 +0000 UTC  1      Normal   Scheduled              Pod/harbor-chartmuseum-5c7c945479-dhhxg       Successfully assigned harbor/harbor-chartmuseum-5c7c945479-dhhxg to kind-control-plane
+2020-04-27 20:39:54 +0000 UTC  1      Normal   Pulling                Pod/harbor-chartmuseum-5c7c945479-dhhxg       Pulling image "goharbor/chartmuseum-photon:v0.9.0-v1.10.0"
+2020-04-27 20:39:56 +0000 UTC  1      Normal   Pulled                 Pod/harbor-chartmuseum-5c7c945479-dhhxg       Successfully pulled image "goharbor/chartmuseum-photon:v0.9.0-v1.10.0"
+2020-04-27 20:39:57 +0000 UTC  1      Normal   Created                Pod/harbor-chartmuseum-5c7c945479-dhhxg       Created container chartmuseum
+2020-04-27 20:39:57 +0000 UTC  1      Normal   Started                Pod/harbor-chartmuseum-5c7c945479-dhhxg       Started container chartmuseum
+2020-04-27 20:41:09 +0000 UTC  1      Normal   Killing                Pod/harbor-chartmuseum-5c7c945479-dhhxg       Stopping container chartmuseum
+2020-04-27 20:39:53 +0000 UTC  1      Normal   SuccessfulCreate       ReplicaSet/harbor-chartmuseum-5c7c945479      Created pod: harbor-chartmuseum-5c7c945479-dhhxg
+2020-04-27 20:41:09 +0000 UTC  1      Normal   SuccessfulDelete       ReplicaSet/harbor-chartmuseum-5c7c945479      Deleted pod: harbor-chartmuseum-5c7c945479-dhhxg
+2020-04-27 20:40:51 +0000 UTC  1      Normal   Scheduled              Pod/harbor-chartmuseum-69568c8dd8-w5f2m       Successfully assigned harbor/harbor-chartmuseum-69568c8dd8-w5f2m to kind-control-plane
+2020-04-27 20:40:52 +0000 UTC  1      Normal   Pulled                 Pod/harbor-chartmuseum-69568c8dd8-w5f2m       Container image "goharbor/chartmuseum-photon:v0.9.0-v1.10.0" already present on machine
+2020-04-27 20:40:52 +0000 UTC  1      Normal   Created                Pod/harbor-chartmuseum-69568c8dd8-w5f2m       Created container chartmuseum
+2020-04-27 20:40:53 +0000 UTC  1      Normal   Started                Pod/harbor-chartmuseum-69568c8dd8-w5f2m       Started container chartmuseum
+2020-04-27 20:42:11 +0000 UTC  1      Normal   Killing                Pod/harbor-chartmuseum-69568c8dd8-w5f2m       Stopping container chartmuseum
+2020-04-27 20:40:51 +0000 UTC  1      Normal   SuccessfulCreate       ReplicaSet/harbor-chartmuseum-69568c8dd8      Created pod: harbor-chartmuseum-69568c8dd8-w5f2m
+2020-04-27 20:40:52 +0000 UTC  1      Normal   SuccessfulDelete       ReplicaSet/harbor-chartmuseum-69568c8dd8      Deleted pod: harbor-chartmuseum-69568c8dd8-w5f2m
+2020-04-27 20:39:53 +0000 UTC  1      Normal   ScalingReplicaSet      Deployment/harbor-chartmuseum                 Scaled up replica set harbor-chartmuseum-5c7c945479 to 1
+2020-04-27 20:40:49 +0000 UTC  1      Normal   ScalingReplicaSet      Deployment/harbor-chartmuseum                 Scaled up replica set harbor-chartmuseum-5767fb7559 to 1
+2020-04-27 20:40:50 +0000 UTC  1      Normal   ScalingReplicaSet      Deployment/harbor-chartmuseum                 Scaled down replica set harbor-chartmuseum-5767fb7559 to 0
+2020-04-27 20:40:51 +0000 UTC  1      Normal   ScalingReplicaSet      Deployment/harbor-chartmuseum                 Scaled up replica set harbor-chartmuseum-69568c8dd8 to 1
+2020-04-27 20:40:52 +0000 UTC  1      Normal   ScalingReplicaSet      Deployment/harbor-chartmuseum                 Scaled down replica set harbor-chartmuseum-69568c8dd8 to 0
+2020-04-27 20:40:53 +0000 UTC  1      Normal   ScalingReplicaSet      Deployment/harbor-chartmuseum                 Scaled up replica set harbor-chartmuseum-54bd7fd995 to 1
+2020-04-27 20:41:09 +0000 UTC  1      Normal   ScalingReplicaSet      Deployment/harbor-chartmuseum                 Scaled down replica set harbor-chartmuseum-5c7c945479 to 0
+2020-04-27 20:40:51 +0000 UTC  1      Normal   Scheduled              Pod/harbor-clair-57d49f7bb9-9frw2             Successfully assigned harbor/harbor-clair-57d49f7bb9-9frw2 to kind-control-plane
+2020-04-27 20:40:53 +0000 UTC  1      Normal   Pulled                 Pod/harbor-clair-57d49f7bb9-9frw2             Container image "goharbor/clair-photon:v2.1.1-v1.10.0" already present on machine
+2020-04-27 20:40:53 +0000 UTC  1      Normal   Created                Pod/harbor-clair-57d49f7bb9-9frw2             Created container clair
+2020-04-27 20:40:53 +0000 UTC  1      Normal   Started                Pod/harbor-clair-57d49f7bb9-9frw2             Started container clair
+2020-04-27 20:40:53 +0000 UTC  1      Normal   Pulled                 Pod/harbor-clair-57d49f7bb9-9frw2             Container image "goharbor/clair-adapter-photon:v1.0.1-v1.10.0" already present on machine
+2020-04-27 20:40:54 +0000 UTC  1      Normal   Created                Pod/harbor-clair-57d49f7bb9-9frw2             Created container adapter
+2020-04-27 20:40:54 +0000 UTC  1      Normal   Started                Pod/harbor-clair-57d49f7bb9-9frw2             Started container adapter
+2020-04-27 20:40:51 +0000 UTC  1      Normal   SuccessfulCreate       ReplicaSet/harbor-clair-57d49f7bb9            Created pod: harbor-clair-57d49f7bb9-9frw2
+2020-04-27 20:39:53 +0000 UTC  1      Normal   Scheduled              Pod/harbor-clair-7c4b8d964d-b6tl2             Successfully assigned harbor/harbor-clair-7c4b8d964d-b6tl2 to kind-control-plane
+2020-04-27 20:39:54 +0000 UTC  1      Normal   Pulling                Pod/harbor-clair-7c4b8d964d-b6tl2             Pulling image "goharbor/clair-photon:v2.1.1-v1.10.0"
+2020-04-27 20:40:00 +0000 UTC  1      Normal   Pulled                 Pod/harbor-clair-7c4b8d964d-b6tl2             Successfully pulled image "goharbor/clair-photon:v2.1.1-v1.10.0"
+2020-04-27 20:40:00 +0000 UTC  1      Normal   Created                Pod/harbor-clair-7c4b8d964d-b6tl2             Created container clair
+2020-04-27 20:40:00 +0000 UTC  1      Normal   Started                Pod/harbor-clair-7c4b8d964d-b6tl2             Started container clair
+2020-04-27 20:40:00 +0000 UTC  1      Normal   Pulling                Pod/harbor-clair-7c4b8d964d-b6tl2             Pulling image "goharbor/clair-adapter-photon:v1.0.1-v1.10.0"
+2020-04-27 20:40:09 +0000 UTC  1      Normal   Pulled                 Pod/harbor-clair-7c4b8d964d-b6tl2             Successfully pulled image "goharbor/clair-adapter-photon:v1.0.1-v1.10.0"
+2020-04-27 20:40:10 +0000 UTC  1      Normal   Created                Pod/harbor-clair-7c4b8d964d-b6tl2             Created container adapter
+2020-04-27 20:40:10 +0000 UTC  1      Normal   Started                Pod/harbor-clair-7c4b8d964d-b6tl2             Started container adapter
+2020-04-27 20:41:33 +0000 UTC  1      Normal   Killing                Pod/harbor-clair-7c4b8d964d-b6tl2             Stopping container clair
+2020-04-27 20:41:33 +0000 UTC  1      Normal   Killing                Pod/harbor-clair-7c4b8d964d-b6tl2             Stopping container adapter
+2020-04-27 20:39:53 +0000 UTC  1      Normal   SuccessfulCreate       ReplicaSet/harbor-clair-7c4b8d964d            Created pod: harbor-clair-7c4b8d964d-b6tl2
+2020-04-27 20:41:33 +0000 UTC  1      Normal   SuccessfulDelete       ReplicaSet/harbor-clair-7c4b8d964d            Deleted pod: harbor-clair-7c4b8d964d-b6tl2
+2020-04-27 20:39:53 +0000 UTC  1      Normal   ScalingReplicaSet      Deployment/harbor-clair                       Scaled up replica set harbor-clair-7c4b8d964d to 1
+2020-04-27 20:40:51 +0000 UTC  1      Normal   ScalingReplicaSet      Deployment/harbor-clair                       Scaled up replica set harbor-clair-57d49f7bb9 to 1
+2020-04-27 20:41:33 +0000 UTC  1      Normal   ScalingReplicaSet      Deployment/harbor-clair                       Scaled down replica set harbor-clair-7c4b8d964d to 0
+2020-04-27 20:40:50 +0000 UTC  1      Normal   Scheduled              Pod/harbor-core-66984fbf7-nm4dn               Successfully assigned harbor/harbor-core-66984fbf7-nm4dn to kind-control-plane
+2020-04-27 20:40:51 +0000 UTC  1      Normal   Pulled                 Pod/harbor-core-66984fbf7-nm4dn               Container image "goharbor/harbor-core:v1.10.0" already present on machine
+2020-04-27 20:40:52 +0000 UTC  1      Normal   Created                Pod/harbor-core-66984fbf7-nm4dn               Created container core
+2020-04-27 20:40:52 +0000 UTC  1      Normal   Started                Pod/harbor-core-66984fbf7-nm4dn               Started container core
+2020-04-27 20:41:27 +0000 UTC  1      Normal   Killing                Pod/harbor-core-66984fbf7-nm4dn               Stopping container core
+2020-04-27 20:40:50 +0000 UTC  1      Normal   SuccessfulCreate       ReplicaSet/harbor-core-66984fbf7              Created pod: harbor-core-66984fbf7-nm4dn
+2020-04-27 20:41:27 +0000 UTC  1      Normal   SuccessfulDelete       ReplicaSet/harbor-core-66984fbf7              Deleted pod: harbor-core-66984fbf7-nm4dn
+2020-04-27 20:39:54 +0000 UTC  1      Normal   Scheduled              Pod/harbor-core-67db5f485c-gmgm5              Successfully assigned harbor/harbor-core-67db5f485c-gmgm5 to kind-control-plane
+2020-04-27 20:39:55 +0000 UTC  1      Normal   Pulling                Pod/harbor-core-67db5f485c-gmgm5              Pulling image "goharbor/harbor-core:v1.10.0"
+2020-04-27 20:40:03 +0000 UTC  1      Normal   Pulled                 Pod/harbor-core-67db5f485c-gmgm5              Successfully pulled image "goharbor/harbor-core:v1.10.0"
+2020-04-27 20:40:03 +0000 UTC  1      Normal   Created                Pod/harbor-core-67db5f485c-gmgm5              Created container core
+2020-04-27 20:40:03 +0000 UTC  1      Normal   Started                Pod/harbor-core-67db5f485c-gmgm5              Started container core
+2020-04-27 20:40:40 +0000 UTC  2      Warning  Unhealthy              Pod/harbor-core-67db5f485c-gmgm5              Readiness probe failed: Get http://100.200.82.35:8080/api/ping: dial tcp 100.200.82.35:8080: connect: connection refused
+2020-04-27 20:40:50 +0000 UTC  1      Normal   Killing                Pod/harbor-core-67db5f485c-gmgm5              Stopping container core
+2020-04-27 20:39:54 +0000 UTC  1      Normal   SuccessfulCreate       ReplicaSet/harbor-core-67db5f485c             Created pod: harbor-core-67db5f485c-gmgm5
+2020-04-27 20:40:50 +0000 UTC  1      Normal   SuccessfulDelete       ReplicaSet/harbor-core-67db5f485c             Deleted pod: harbor-core-67db5f485c-gmgm5
+2020-04-27 20:40:54 +0000 UTC  1      Normal   Scheduled              Pod/harbor-core-69fc9d9868-vcwjm              Successfully assigned harbor/harbor-core-69fc9d9868-vcwjm to kind-control-plane
+2020-04-27 20:40:55 +0000 UTC  1      Normal   Pulled                 Pod/harbor-core-69fc9d9868-vcwjm              Container image "goharbor/harbor-core:v1.10.0" already present on machine
+2020-04-27 20:40:55 +0000 UTC  1      Normal   Created                Pod/harbor-core-69fc9d9868-vcwjm              Created container core
+2020-04-27 20:40:56 +0000 UTC  1      Normal   Started                Pod/harbor-core-69fc9d9868-vcwjm              Started container core
+2020-04-27 20:40:54 +0000 UTC  1      Normal   SuccessfulCreate       ReplicaSet/harbor-core-69fc9d9868             Created pod: harbor-core-69fc9d9868-vcwjm
+2020-04-27 20:40:49 +0000 UTC  1      Normal   Scheduled              Pod/harbor-core-754b5d7d65-gl9ns              Successfully assigned harbor/harbor-core-754b5d7d65-gl9ns to kind-control-plane
+2020-04-27 20:40:51 +0000 UTC  1      Normal   Pulled                 Pod/harbor-core-754b5d7d65-gl9ns              Container image "goharbor/harbor-core:v1.10.0" already present on machine
+2020-04-27 20:40:52 +0000 UTC  1      Normal   Created                Pod/harbor-core-754b5d7d65-gl9ns              Created container core
+2020-04-27 20:40:52 +0000 UTC  1      Normal   Started                Pod/harbor-core-754b5d7d65-gl9ns              Started container core
+2020-04-27 20:40:54 +0000 UTC  1      Normal   Killing                Pod/harbor-core-754b5d7d65-gl9ns              Stopping container core
+2020-04-27 20:40:49 +0000 UTC  1      Normal   SuccessfulCreate       ReplicaSet/harbor-core-754b5d7d65             Created pod: harbor-core-754b5d7d65-gl9ns
+2020-04-27 20:40:53 +0000 UTC  1      Normal   SuccessfulDelete       ReplicaSet/harbor-core-754b5d7d65             Deleted pod: harbor-core-754b5d7d65-gl9ns
+2020-04-27 20:39:54 +0000 UTC  1      Normal   ScalingReplicaSet      Deployment/harbor-core                        Scaled up replica set harbor-core-67db5f485c to 1
+2020-04-27 20:40:49 +0000 UTC  1      Normal   ScalingReplicaSet      Deployment/harbor-core                        Scaled up replica set harbor-core-754b5d7d65 to 1
+2020-04-27 20:40:50 +0000 UTC  1      Normal   ScalingReplicaSet      Deployment/harbor-core                        Scaled down replica set harbor-core-67db5f485c to 0
+2020-04-27 20:40:50 +0000 UTC  1      Normal   ScalingReplicaSet      Deployment/harbor-core                        Scaled up replica set harbor-core-66984fbf7 to 1
+2020-04-27 20:40:53 +0000 UTC  1      Normal   ScalingReplicaSet      Deployment/harbor-core                        Scaled down replica set harbor-core-754b5d7d65 to 0
+2020-04-27 20:40:54 +0000 UTC  1      Normal   ScalingReplicaSet      Deployment/harbor-core                        Scaled up replica set harbor-core-69fc9d9868 to 1
+2020-04-27 20:41:27 +0000 UTC  1      Normal   ScalingReplicaSet      Deployment/harbor-core                        Scaled down replica set harbor-core-66984fbf7 to 0
+2020-04-27 20:39:56 +0000 UTC  1      Normal   CertificateIssued      CertificateRequest/harbor-ingress-1582325746  Certificate fetched from issuer successfully
+2020-04-27 20:39:56 +0000 UTC  1      Normal   CREATE                 Ingress/harbor-ingress                        Ingress harbor/harbor-ingress
+2020-04-27 20:39:56 +0000 UTC  1      Normal   CreateCertificate      Ingress/harbor-ingress                        Successfully created Certificate "harbor-ingress"
+2020-04-27 20:39:56 +0000 UTC  1      Normal   Requested              Certificate/harbor-ingress                    Created new CertificateRequest resource "harbor-ingress-1582325746"
+2020-04-27 20:39:56 +0000 UTC  1      Normal   Issued                 Certificate/harbor-ingress                    Certificate issued successfully
+2020-04-27 20:40:53 +0000 UTC  1      Normal   Scheduled              Pod/harbor-jobservice-58484476cb-9tvlv        Successfully assigned harbor/harbor-jobservice-58484476cb-9tvlv to kind-control-plane
+2020-04-27 20:40:54 +0000 UTC  1      Normal   Pulled                 Pod/harbor-jobservice-58484476cb-9tvlv        Container image "goharbor/harbor-jobservice:v1.10.0" already present on machine
+2020-04-27 20:40:54 +0000 UTC  1      Normal   Created                Pod/harbor-jobservice-58484476cb-9tvlv        Created container jobservice
+2020-04-27 20:40:55 +0000 UTC  1      Normal   Started                Pod/harbor-jobservice-58484476cb-9tvlv        Started container jobservice
+2020-04-27 20:43:08 +0000 UTC  12     Warning  Unhealthy              Pod/harbor-jobservice-58484476cb-9tvlv        Readiness probe failed: Get http://100.200.82.18:8080/api/v1/stats: dial tcp 100.200.82.18:8080: connect: connection refused
+2020-04-27 20:40:53 +0000 UTC  1      Normal   SuccessfulCreate       ReplicaSet/harbor-jobservice-58484476cb       Created pod: harbor-jobservice-58484476cb-9tvlv
+2020-04-27 20:40:49 +0000 UTC  1      Normal   Scheduled              Pod/harbor-jobservice-776cc785b8-pd4kp        Successfully assigned harbor/harbor-jobservice-776cc785b8-pd4kp to kind-control-plane
+2020-04-27 20:40:51 +0000 UTC  1      Normal   Pulled                 Pod/harbor-jobservice-776cc785b8-pd4kp        Container image "goharbor/harbor-jobservice:v1.10.0" already present on machine
+2020-04-27 20:40:51 +0000 UTC  1      Normal   Created                Pod/harbor-jobservice-776cc785b8-pd4kp        Created container jobservice
+2020-04-27 20:40:51 +0000 UTC  1      Normal   Started                Pod/harbor-jobservice-776cc785b8-pd4kp        Started container jobservice
+2020-04-27 20:40:54 +0000 UTC  1      Normal   Killing                Pod/harbor-jobservice-776cc785b8-pd4kp        Stopping container jobservice
+2020-04-27 20:40:49 +0000 UTC  1      Normal   SuccessfulCreate       ReplicaSet/harbor-jobservice-776cc785b8       Created pod: harbor-jobservice-776cc785b8-pd4kp
+2020-04-27 20:40:52 +0000 UTC  1      Normal   SuccessfulDelete       ReplicaSet/harbor-jobservice-776cc785b8       Deleted pod: harbor-jobservice-776cc785b8-pd4kp
+2020-04-27 20:39:54 +0000 UTC  1      Normal   Scheduled              Pod/harbor-jobservice-79d5dcb5b8-n74px        Successfully assigned harbor/harbor-jobservice-79d5dcb5b8-n74px to kind-control-plane
+2020-04-27 20:39:55 +0000 UTC  1      Normal   Pulling                Pod/harbor-jobservice-79d5dcb5b8-n74px        Pulling image "goharbor/harbor-jobservice:v1.10.0"
+2020-04-27 20:40:05 +0000 UTC  1      Normal   Pulled                 Pod/harbor-jobservice-79d5dcb5b8-n74px        Successfully pulled image "goharbor/harbor-jobservice:v1.10.0"
+2020-04-27 20:40:06 +0000 UTC  1      Normal   Created                Pod/harbor-jobservice-79d5dcb5b8-n74px        Created container jobservice
+2020-04-27 20:40:06 +0000 UTC  1      Normal   Started                Pod/harbor-jobservice-79d5dcb5b8-n74px        Started container jobservice
+2020-04-27 20:40:47 +0000 UTC  3      Warning  Unhealthy              Pod/harbor-jobservice-79d5dcb5b8-n74px        Readiness probe failed: Get http://100.200.82.36:8080/api/v1/stats: dial tcp 100.200.82.36:8080: connect: connection refused
+2020-04-27 20:40:50 +0000 UTC  1      Normal   Killing                Pod/harbor-jobservice-79d5dcb5b8-n74px        Stopping container jobservice
+2020-04-27 20:39:54 +0000 UTC  1      Normal   SuccessfulCreate       ReplicaSet/harbor-jobservice-79d5dcb5b8       Created pod: harbor-jobservice-79d5dcb5b8-n74px
+2020-04-27 20:40:50 +0000 UTC  1      Normal   SuccessfulDelete       ReplicaSet/harbor-jobservice-79d5dcb5b8       Deleted pod: harbor-jobservice-79d5dcb5b8-n74px
+2020-04-27 20:40:51 +0000 UTC  1      Normal   Scheduled              Pod/harbor-jobservice-7bf98c7c9-fdqdc         Successfully assigned harbor/harbor-jobservice-7bf98c7c9-fdqdc to kind-control-plane
+2020-04-27 20:40:52 +0000 UTC  1      Normal   Pulled                 Pod/harbor-jobservice-7bf98c7c9-fdqdc         Container image "goharbor/harbor-jobservice:v1.10.0" already present on machine
+2020-04-27 20:40:52 +0000 UTC  1      Normal   Created                Pod/harbor-jobservice-7bf98c7c9-fdqdc         Created container jobservice
+2020-04-27 20:40:53 +0000 UTC  1      Normal   Started                Pod/harbor-jobservice-7bf98c7c9-fdqdc         Started container jobservice
+2020-04-27 20:43:06 +0000 UTC  12     Warning  Unhealthy              Pod/harbor-jobservice-7bf98c7c9-fdqdc         Readiness probe failed: Get http://100.200.82.61:8080/api/v1/stats: dial tcp 100.200.82.61:8080: connect: connection refused
+2020-04-27 20:43:18 +0000 UTC  1      Normal   Killing                Pod/harbor-jobservice-7bf98c7c9-fdqdc         Stopping container jobservice
+2020-04-27 20:40:51 +0000 UTC  1      Normal   SuccessfulCreate       ReplicaSet/harbor-jobservice-7bf98c7c9        Created pod: harbor-jobservice-7bf98c7c9-fdqdc
+2020-04-27 20:43:18 +0000 UTC  1      Normal   SuccessfulDelete       ReplicaSet/harbor-jobservice-7bf98c7c9        Deleted pod: harbor-jobservice-7bf98c7c9-fdqdc
+2020-04-27 20:39:54 +0000 UTC  1      Normal   ScalingReplicaSet      Deployment/harbor-jobservice                  Scaled up replica set harbor-jobservice-79d5dcb5b8 to 1
+2020-04-27 20:40:49 +0000 UTC  1      Normal   ScalingReplicaSet      Deployment/harbor-jobservice                  Scaled up replica set harbor-jobservice-776cc785b8 to 1
+2020-04-27 20:40:50 +0000 UTC  1      Normal   ScalingReplicaSet      Deployment/harbor-jobservice                  Scaled down replica set harbor-jobservice-79d5dcb5b8 to 0
+2020-04-27 20:40:51 +0000 UTC  1      Normal   ScalingReplicaSet      Deployment/harbor-jobservice                  Scaled up replica set harbor-jobservice-7bf98c7c9 to 1
+2020-04-27 20:40:52 +0000 UTC  1      Normal   ScalingReplicaSet      Deployment/harbor-jobservice                  Scaled down replica set harbor-jobservice-776cc785b8 to 0
+2020-04-27 20:40:53 +0000 UTC  1      Normal   ScalingReplicaSet      Deployment/harbor-jobservice                  Scaled up replica set harbor-jobservice-58484476cb to 1
+2020-04-27 20:43:18 +0000 UTC  1      Normal   ScalingReplicaSet      Deployment/harbor-jobservice                  Scaled down replica set harbor-jobservice-7bf98c7c9 to 0
+2020-04-27 20:39:55 +0000 UTC  1      Normal   Scheduled              Pod/harbor-portal-6dbd9fcd57-k5kf7            Successfully assigned harbor/harbor-portal-6dbd9fcd57-k5kf7 to kind-control-plane
+2020-04-27 20:39:56 +0000 UTC  1      Normal   Pulling                Pod/harbor-portal-6dbd9fcd57-k5kf7            Pulling image "goharbor/harbor-portal:v1.10.0"
+2020-04-27 20:40:06 +0000 UTC  1      Normal   Pulled                 Pod/harbor-portal-6dbd9fcd57-k5kf7            Successfully pulled image "goharbor/harbor-portal:v1.10.0"
+2020-04-27 20:40:06 +0000 UTC  1      Normal   Created                Pod/harbor-portal-6dbd9fcd57-k5kf7            Created container portal
+2020-04-27 20:40:07 +0000 UTC  1      Normal   Started                Pod/harbor-portal-6dbd9fcd57-k5kf7            Started container portal
+2020-04-27 20:39:55 +0000 UTC  1      Normal   SuccessfulCreate       ReplicaSet/harbor-portal-6dbd9fcd57           Created pod: harbor-portal-6dbd9fcd57-k5kf7
+2020-04-27 20:39:55 +0000 UTC  1      Normal   ScalingReplicaSet      Deployment/harbor-portal                      Scaled up replica set harbor-portal-6dbd9fcd57 to 1
+2020-04-27 20:40:00 +0000 UTC  1      Normal   Scheduled              Pod/harbor-redis-0                            Successfully assigned harbor/harbor-redis-0 to kind-control-plane
+2020-04-27 20:40:01 +0000 UTC  1      Normal   Pulling                Pod/harbor-redis-0                            Pulling image "goharbor/redis-photon:v1.10.0"
+2020-04-27 20:40:13 +0000 UTC  1      Normal   Pulled                 Pod/harbor-redis-0                            Successfully pulled image "goharbor/redis-photon:v1.10.0"
+2020-04-27 20:40:13 +0000 UTC  1      Normal   Created                Pod/harbor-redis-0                            Created container redis
+2020-04-27 20:40:14 +0000 UTC  1      Normal   Started                Pod/harbor-redis-0                            Started container redis
+2020-04-27 20:39:55 +0000 UTC  1      Normal   SuccessfulCreate       StatefulSet/harbor-redis                      create Claim data-harbor-redis-0 Pod harbor-redis-0 in StatefulSet harbor-redis success
+2020-04-27 20:39:55 +0000 UTC  1      Normal   SuccessfulCreate       StatefulSet/harbor-redis                      create Pod harbor-redis-0 in StatefulSet harbor-redis successful
+2020-04-27 20:40:51 +0000 UTC  1      Normal   Scheduled              Pod/harbor-registry-5464446f6c-z6gt5          Successfully assigned harbor/harbor-registry-5464446f6c-z6gt5 to kind-control-plane
+2020-04-27 20:40:53 +0000 UTC  1      Normal   Pulled                 Pod/harbor-registry-5464446f6c-z6gt5          Container image "goharbor/registry-photon:v2.7.1-patch-2819-2553-v1.10.0" already present on machine
+2020-04-27 20:40:53 +0000 UTC  1      Normal   Created                Pod/harbor-registry-5464446f6c-z6gt5          Created container registry
+2020-04-27 20:40:53 +0000 UTC  1      Normal   Started                Pod/harbor-registry-5464446f6c-z6gt5          Started container registry
+2020-04-27 20:40:53 +0000 UTC  1      Normal   Pulled                 Pod/harbor-registry-5464446f6c-z6gt5          Container image "goharbor/harbor-registryctl:v1.10.0" already present on machine
+2020-04-27 20:40:53 +0000 UTC  1      Normal   Created                Pod/harbor-registry-5464446f6c-z6gt5          Created container registryctl
+2020-04-27 20:40:54 +0000 UTC  1      Normal   Started                Pod/harbor-registry-5464446f6c-z6gt5          Started container registryctl
+2020-04-27 20:42:10 +0000 UTC  1      Normal   Killing                Pod/harbor-registry-5464446f6c-z6gt5          Stopping container registry
+2020-04-27 20:42:10 +0000 UTC  1      Normal   Killing                Pod/harbor-registry-5464446f6c-z6gt5          Stopping container registryctl
+2020-04-27 20:40:51 +0000 UTC  1      Normal   SuccessfulCreate       ReplicaSet/harbor-registry-5464446f6c         Created pod: harbor-registry-5464446f6c-z6gt5
+2020-04-27 20:40:53 +0000 UTC  1      Normal   SuccessfulDelete       ReplicaSet/harbor-registry-5464446f6c         Deleted pod: harbor-registry-5464446f6c-z6gt5
+2020-04-27 20:39:55 +0000 UTC  1      Normal   Scheduled              Pod/harbor-registry-586657484d-cknls          Successfully assigned harbor/harbor-registry-586657484d-cknls to kind-control-plane
+2020-04-27 20:39:58 +0000 UTC  1      Normal   Pulling                Pod/harbor-registry-586657484d-cknls          Pulling image "goharbor/registry-photon:v2.7.1-patch-2819-2553-v1.10.0"
+2020-04-27 20:40:08 +0000 UTC  1      Normal   Pulled                 Pod/harbor-registry-586657484d-cknls          Successfully pulled image "goharbor/registry-photon:v2.7.1-patch-2819-2553-v1.10.0"
+2020-04-27 20:40:08 +0000 UTC  1      Normal   Created                Pod/harbor-registry-586657484d-cknls          Created container registry
+2020-04-27 20:40:08 +0000 UTC  1      Normal   Started                Pod/harbor-registry-586657484d-cknls          Started container registry
+2020-04-27 20:40:08 +0000 UTC  1      Normal   Pulling                Pod/harbor-registry-586657484d-cknls          Pulling image "goharbor/harbor-registryctl:v1.10.0"
+2020-04-27 20:40:17 +0000 UTC  1      Normal   Pulled                 Pod/harbor-registry-586657484d-cknls          Successfully pulled image "goharbor/harbor-registryctl:v1.10.0"
+2020-04-27 20:40:18 +0000 UTC  1      Normal   Created                Pod/harbor-registry-586657484d-cknls          Created container registryctl
+2020-04-27 20:40:18 +0000 UTC  1      Normal   Started                Pod/harbor-registry-586657484d-cknls          Started container registryctl
+2020-04-27 20:41:13 +0000 UTC  1      Normal   Killing                Pod/harbor-registry-586657484d-cknls          Stopping container registry
+2020-04-27 20:41:13 +0000 UTC  1      Normal   Killing                Pod/harbor-registry-586657484d-cknls          Stopping container registryctl
+2020-04-27 20:39:55 +0000 UTC  1      Normal   SuccessfulCreate       ReplicaSet/harbor-registry-586657484d         Created pod: harbor-registry-586657484d-cknls
+2020-04-27 20:41:13 +0000 UTC  1      Normal   SuccessfulDelete       ReplicaSet/harbor-registry-586657484d         Deleted pod: harbor-registry-586657484d-cknls
+2020-04-27 20:40:49 +0000 UTC  1      Normal   Scheduled              Pod/harbor-registry-844b574bdf-gnz8d          Successfully assigned harbor/harbor-registry-844b574bdf-gnz8d to kind-control-plane
+2020-04-27 20:40:51 +0000 UTC  1      Normal   Pulled                 Pod/harbor-registry-844b574bdf-gnz8d          Container image "goharbor/registry-photon:v2.7.1-patch-2819-2553-v1.10.0" already present on machine
+2020-04-27 20:40:51 +0000 UTC  1      Normal   Created                Pod/harbor-registry-844b574bdf-gnz8d          Created container registry
+2020-04-27 20:40:52 +0000 UTC  1      Normal   Started                Pod/harbor-registry-844b574bdf-gnz8d          Started container registry
+2020-04-27 20:40:52 +0000 UTC  1      Normal   Pulled                 Pod/harbor-registry-844b574bdf-gnz8d          Container image "goharbor/harbor-registryctl:v1.10.0" already present on machine
+2020-04-27 20:40:52 +0000 UTC  1      Normal   Created                Pod/harbor-registry-844b574bdf-gnz8d          Created container registryctl
+2020-04-27 20:40:52 +0000 UTC  1      Normal   Started                Pod/harbor-registry-844b574bdf-gnz8d          Started container registryctl
+2020-04-27 20:40:49 +0000 UTC  1      Normal   SuccessfulCreate       ReplicaSet/harbor-registry-844b574bdf         Created pod: harbor-registry-844b574bdf-gnz8d
+2020-04-27 20:40:50 +0000 UTC  1      Normal   SuccessfulDelete       ReplicaSet/harbor-registry-844b574bdf         Deleted pod: harbor-registry-844b574bdf-gnz8d
+2020-04-27 20:40:54 +0000 UTC  1      Normal   Scheduled              Pod/harbor-registry-c98dbc647-l22dg           Successfully assigned harbor/harbor-registry-c98dbc647-l22dg to kind-control-plane
+2020-04-27 20:40:55 +0000 UTC  1      Normal   Pulled                 Pod/harbor-registry-c98dbc647-l22dg           Container image "goharbor/registry-photon:v2.7.1-patch-2819-2553-v1.10.0" already present on machine
+2020-04-27 20:40:55 +0000 UTC  1      Normal   Created                Pod/harbor-registry-c98dbc647-l22dg           Created container registry
+2020-04-27 20:40:55 +0000 UTC  1      Normal   Started                Pod/harbor-registry-c98dbc647-l22dg           Started container registry
+2020-04-27 20:40:55 +0000 UTC  1      Normal   Pulled                 Pod/harbor-registry-c98dbc647-l22dg           Container image "goharbor/harbor-registryctl:v1.10.0" already present on machine
+2020-04-27 20:40:56 +0000 UTC  1      Normal   Created                Pod/harbor-registry-c98dbc647-l22dg           Created container registryctl
+2020-04-27 20:40:56 +0000 UTC  1      Normal   Started                Pod/harbor-registry-c98dbc647-l22dg           Started container registryctl
+2020-04-27 20:40:54 +0000 UTC  1      Normal   SuccessfulCreate       ReplicaSet/harbor-registry-c98dbc647          Created pod: harbor-registry-c98dbc647-l22dg
+2020-04-27 20:39:55 +0000 UTC  1      Normal   ScalingReplicaSet      Deployment/harbor-registry                    Scaled up replica set harbor-registry-586657484d to 1
+2020-04-27 20:40:49 +0000 UTC  1      Normal   ScalingReplicaSet      Deployment/harbor-registry                    Scaled up replica set harbor-registry-844b574bdf to 1
+2020-04-27 20:40:50 +0000 UTC  1      Normal   ScalingReplicaSet      Deployment/harbor-registry                    Scaled down replica set harbor-registry-844b574bdf to 0
+2020-04-27 20:40:51 +0000 UTC  1      Normal   ScalingReplicaSet      Deployment/harbor-registry                    Scaled up replica set harbor-registry-5464446f6c to 1
+2020-04-27 20:40:53 +0000 UTC  1      Normal   ScalingReplicaSet      Deployment/harbor-registry                    Scaled down replica set harbor-registry-5464446f6c to 0
+2020-04-27 20:40:54 +0000 UTC  1      Normal   ScalingReplicaSet      Deployment/harbor-registry                    Scaled up replica set harbor-registry-c98dbc647 to 1
+2020-04-27 20:41:13 +0000 UTC  1      Normal   ScalingReplicaSet      Deployment/harbor-registry                    Scaled down replica set harbor-registry-586657484d to 0

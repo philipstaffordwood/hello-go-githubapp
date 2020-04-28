@@ -1,0 +1,735 @@
+apiVersion: v1
+items:
+- items:
+  - apiVersion: v1
+    kind: Pod
+    metadata:
+      annotations:
+        cni.projectcalico.org/podIP: 100.200.82.12/32
+      creationTimestamp: "2020-04-27T20:35:49Z"
+      generateName: minio-69f8f4cd59-
+      labels:
+        app: minio
+        pod-template-hash: 69f8f4cd59
+      name: minio-69f8f4cd59-czlqm
+      namespace: minio
+      ownerReferences:
+      - apiVersion: apps/v1
+        blockOwnerDeletion: true
+        controller: true
+        kind: ReplicaSet
+        name: minio-69f8f4cd59
+        uid: 1626702f-71e6-4d08-b15d-368ec55fdbf7
+      resourceVersion: "1455"
+      selfLink: /api/v1/namespaces/minio/pods/minio-69f8f4cd59-czlqm
+      uid: f6d1cb9c-c268-4a0d-a287-2434077671f5
+    spec:
+      containers:
+      - args:
+        - server
+        - /data
+        env:
+        - name: MINIO_ACCESS_KEY
+          value: minio
+        - name: MINIO_SECRET_KEY
+          value: minio123
+        - name: MINIO_KMS_MASTER_KEY
+          value: minio-demo-key:6368616e676520746869732070617373776f726420746f206120736563726574
+        image: minio/minio:RELEASE.2020-03-06T22-23-56Z
+        imagePullPolicy: IfNotPresent
+        livenessProbe:
+          failureThreshold: 3
+          httpGet:
+            path: /minio/health/live
+            port: 9000
+            scheme: HTTP
+          initialDelaySeconds: 10
+          periodSeconds: 10
+          successThreshold: 1
+          timeoutSeconds: 1
+        name: minio
+        ports:
+        - containerPort: 9000
+          protocol: TCP
+        readinessProbe:
+          failureThreshold: 3
+          httpGet:
+            path: /minio/health/ready
+            port: 9000
+            scheme: HTTP
+          initialDelaySeconds: 10
+          periodSeconds: 10
+          successThreshold: 1
+          timeoutSeconds: 1
+        resources:
+          limits:
+            cpu: 500m
+            memory: 500Mi
+          requests:
+            cpu: 100m
+            memory: 50Mi
+        terminationMessagePath: /dev/termination-log
+        terminationMessagePolicy: File
+        volumeMounts:
+        - mountPath: /data
+          name: data
+        - mountPath: /var/run/secrets/kubernetes.io/serviceaccount
+          name: default-token-rx2l9
+          readOnly: true
+      dnsPolicy: ClusterFirst
+      enableServiceLinks: true
+      nodeName: kind-control-plane
+      priority: 0
+      restartPolicy: Always
+      schedulerName: default-scheduler
+      securityContext: {}
+      serviceAccount: default
+      serviceAccountName: default
+      terminationGracePeriodSeconds: 30
+      tolerations:
+      - effect: NoExecute
+        key: node.kubernetes.io/not-ready
+        operator: Exists
+        tolerationSeconds: 300
+      - effect: NoExecute
+        key: node.kubernetes.io/unreachable
+        operator: Exists
+        tolerationSeconds: 300
+      volumes:
+      - emptyDir: {}
+        name: data
+      - name: default-token-rx2l9
+        secret:
+          defaultMode: 420
+          secretName: default-token-rx2l9
+    status:
+      conditions:
+      - lastProbeTime: null
+        lastTransitionTime: "2020-04-27T20:35:49Z"
+        status: "True"
+        type: Initialized
+      - lastProbeTime: null
+        lastTransitionTime: "2020-04-27T20:36:13Z"
+        status: "True"
+        type: Ready
+      - lastProbeTime: null
+        lastTransitionTime: "2020-04-27T20:36:13Z"
+        status: "True"
+        type: ContainersReady
+      - lastProbeTime: null
+        lastTransitionTime: "2020-04-27T20:35:49Z"
+        status: "True"
+        type: PodScheduled
+      containerStatuses:
+      - containerID: containerd://199b13d0f80d83fcffbbe07f6ccdf74db3f7357bf495db6561faec128671d0fa
+        image: docker.io/minio/minio:RELEASE.2020-03-06T22-23-56Z
+        imageID: docker.io/minio/minio@sha256:7c45f7e85a3b6a606052ea4e083ad7c9e4ff194d14e5e2e6c7fc8d8ea32d4ac0
+        lastState: {}
+        name: minio
+        ready: true
+        restartCount: 0
+        state:
+          running:
+            startedAt: "2020-04-27T20:35:56Z"
+      hostIP: 172.17.0.2
+      phase: Running
+      podIP: 100.200.82.12
+      qosClass: Burstable
+      startTime: "2020-04-27T20:35:49Z"
+  metadata: {}
+- items:
+  - apiVersion: v1
+    kind: ServiceAccount
+    metadata:
+      creationTimestamp: "2020-04-27T20:35:48Z"
+      name: default
+      namespace: minio
+      resourceVersion: "1144"
+      selfLink: /api/v1/namespaces/minio/serviceaccounts/default
+      uid: 09bbcd72-faf5-45af-a01a-ffc9d9ee07bc
+    secrets:
+    - name: default-token-rx2l9
+  metadata: {}
+- items:
+  - apiVersion: v1
+    kind: Service
+    metadata:
+      creationTimestamp: "2020-04-27T20:35:49Z"
+      name: minio
+      namespace: minio
+      resourceVersion: "1169"
+      selfLink: /api/v1/namespaces/minio/services/minio
+      uid: 357148b4-16d4-47b8-8f99-5e5c0a32e541
+    spec:
+      clusterIP: 10.102.228.91
+      ports:
+      - port: 9000
+        protocol: TCP
+        targetPort: 9000
+      selector:
+        app: minio
+      sessionAffinity: None
+      type: ClusterIP
+    status:
+      loadBalancer: {}
+  metadata: {}
+- items:
+  - apiVersion: apps/v1
+    kind: Deployment
+    metadata:
+      annotations:
+        deployment.kubernetes.io/revision: "1"
+      creationTimestamp: "2020-04-27T20:35:49Z"
+      generation: 2
+      name: minio
+      namespace: minio
+      resourceVersion: "2237"
+      selfLink: /apis/apps/v1/namespaces/minio/deployments/minio
+      uid: 860c1c9c-283f-484d-bb49-d19261d28aae
+    spec:
+      progressDeadlineSeconds: 600
+      replicas: 1
+      revisionHistoryLimit: 10
+      selector:
+        matchLabels:
+          app: minio
+      strategy:
+        type: Recreate
+      template:
+        metadata:
+          creationTimestamp: null
+          labels:
+            app: minio
+        spec:
+          containers:
+          - args:
+            - server
+            - /data
+            env:
+            - name: MINIO_ACCESS_KEY
+              value: minio
+            - name: MINIO_SECRET_KEY
+              value: minio123
+            - name: MINIO_KMS_MASTER_KEY
+              value: minio-demo-key:6368616e676520746869732070617373776f726420746f206120736563726574
+            image: minio/minio:RELEASE.2020-03-06T22-23-56Z
+            imagePullPolicy: IfNotPresent
+            livenessProbe:
+              failureThreshold: 3
+              httpGet:
+                path: /minio/health/live
+                port: 9000
+                scheme: HTTP
+              initialDelaySeconds: 10
+              periodSeconds: 10
+              successThreshold: 1
+              timeoutSeconds: 1
+            name: minio
+            ports:
+            - containerPort: 9000
+              protocol: TCP
+            readinessProbe:
+              failureThreshold: 3
+              httpGet:
+                path: /minio/health/ready
+                port: 9000
+                scheme: HTTP
+              initialDelaySeconds: 10
+              periodSeconds: 10
+              successThreshold: 1
+              timeoutSeconds: 1
+            resources:
+              limits:
+                cpu: 500m
+                memory: 500Mi
+              requests:
+                cpu: 100m
+                memory: 50Mi
+            terminationMessagePath: /dev/termination-log
+            terminationMessagePolicy: File
+            volumeMounts:
+            - mountPath: /data
+              name: data
+          dnsPolicy: ClusterFirst
+          restartPolicy: Always
+          schedulerName: default-scheduler
+          securityContext: {}
+          terminationGracePeriodSeconds: 30
+          volumes:
+          - emptyDir: {}
+            name: data
+    status:
+      availableReplicas: 1
+      conditions:
+      - lastTransitionTime: "2020-04-27T20:36:13Z"
+        lastUpdateTime: "2020-04-27T20:36:13Z"
+        message: Deployment has minimum availability.
+        reason: MinimumReplicasAvailable
+        status: "True"
+        type: Available
+      - lastTransitionTime: "2020-04-27T20:35:49Z"
+        lastUpdateTime: "2020-04-27T20:36:13Z"
+        message: ReplicaSet "minio-69f8f4cd59" has successfully progressed.
+        reason: NewReplicaSetAvailable
+        status: "True"
+        type: Progressing
+      observedGeneration: 2
+      readyReplicas: 1
+      replicas: 1
+      updatedReplicas: 1
+  metadata: {}
+- items:
+  - apiVersion: apps/v1
+    kind: ReplicaSet
+    metadata:
+      annotations:
+        deployment.kubernetes.io/desired-replicas: "1"
+        deployment.kubernetes.io/max-replicas: "1"
+        deployment.kubernetes.io/revision: "1"
+      creationTimestamp: "2020-04-27T20:35:49Z"
+      generation: 1
+      labels:
+        app: minio
+        pod-template-hash: 69f8f4cd59
+      name: minio-69f8f4cd59
+      namespace: minio
+      ownerReferences:
+      - apiVersion: apps/v1
+        blockOwnerDeletion: true
+        controller: true
+        kind: Deployment
+        name: minio
+        uid: 860c1c9c-283f-484d-bb49-d19261d28aae
+      resourceVersion: "1456"
+      selfLink: /apis/apps/v1/namespaces/minio/replicasets/minio-69f8f4cd59
+      uid: 1626702f-71e6-4d08-b15d-368ec55fdbf7
+    spec:
+      replicas: 1
+      selector:
+        matchLabels:
+          app: minio
+          pod-template-hash: 69f8f4cd59
+      template:
+        metadata:
+          creationTimestamp: null
+          labels:
+            app: minio
+            pod-template-hash: 69f8f4cd59
+        spec:
+          containers:
+          - args:
+            - server
+            - /data
+            env:
+            - name: MINIO_ACCESS_KEY
+              value: minio
+            - name: MINIO_SECRET_KEY
+              value: minio123
+            - name: MINIO_KMS_MASTER_KEY
+              value: minio-demo-key:6368616e676520746869732070617373776f726420746f206120736563726574
+            image: minio/minio:RELEASE.2020-03-06T22-23-56Z
+            imagePullPolicy: IfNotPresent
+            livenessProbe:
+              failureThreshold: 3
+              httpGet:
+                path: /minio/health/live
+                port: 9000
+                scheme: HTTP
+              initialDelaySeconds: 10
+              periodSeconds: 10
+              successThreshold: 1
+              timeoutSeconds: 1
+            name: minio
+            ports:
+            - containerPort: 9000
+              protocol: TCP
+            readinessProbe:
+              failureThreshold: 3
+              httpGet:
+                path: /minio/health/ready
+                port: 9000
+                scheme: HTTP
+              initialDelaySeconds: 10
+              periodSeconds: 10
+              successThreshold: 1
+              timeoutSeconds: 1
+            resources:
+              limits:
+                cpu: 500m
+                memory: 500Mi
+              requests:
+                cpu: 100m
+                memory: 50Mi
+            terminationMessagePath: /dev/termination-log
+            terminationMessagePolicy: File
+            volumeMounts:
+            - mountPath: /data
+              name: data
+          dnsPolicy: ClusterFirst
+          restartPolicy: Always
+          schedulerName: default-scheduler
+          securityContext: {}
+          terminationGracePeriodSeconds: 30
+          volumes:
+          - emptyDir: {}
+            name: data
+    status:
+      availableReplicas: 1
+      fullyLabeledReplicas: 1
+      observedGeneration: 1
+      readyReplicas: 1
+      replicas: 1
+  metadata: {}
+- items:
+  - apiVersion: cert-manager.io/v1alpha2
+    kind: CertificateRequest
+    metadata:
+      annotations:
+        cert-manager.io/certificate-name: minio-tls
+        cert-manager.io/private-key-secret-name: minio-tls
+      creationTimestamp: "2020-04-27T20:35:50Z"
+      generation: 1
+      name: minio-tls-2930958712
+      namespace: minio
+      ownerReferences:
+      - apiVersion: cert-manager.io/v1alpha2
+        blockOwnerDeletion: true
+        controller: true
+        kind: Certificate
+        name: minio-tls
+        uid: 815de654-49bb-4e62-ba8b-73da3429a960
+      resourceVersion: "1196"
+      selfLink: /apis/cert-manager.io/v1alpha2/namespaces/minio/certificaterequests/minio-tls-2930958712
+      uid: 1ed1945f-cf41-4bc0-b2d2-5d2451dabe23
+    spec:
+      csr: LS0tLS1CRUdJTiBDRVJUSUZJQ0FURSBSRVFVRVNULS0tLS0KTUlJQ2tEQ0NBWGdDQVFBd0Z6RVZNQk1HQTFVRUNoTU1ZMlZ5ZEMxdFlXNWhaMlZ5TUlJQklqQU5CZ2txaGtpRwo5dzBCQVFFRkFBT0NBUThBTUlJQkNnS0NBUUVBdzc5UW9pTmJ4MVd5TC9XeGlQbWFQYXlrZXFEVWd5dWc2L3FjCk5JUFhxODhJUS9sendNY2EzTFM5SHNiN05sZzRYNTVONWVOSG5Ca25VRlV0aHQ3NHVBQ0dhblhEV2pVSDM1RDgKb0QyLzhnd2JDL3hNbkhyNnZxajB6eTc3NExBMjBXODB5eCtQeUd2ZDZrZk9MZ2p3RmNwNFdtaXhVUGxhNEMzcQpFU2p5QVRpMG43RHR5NWNjRFlBRmkxM0NuakR4WXp3RDRpQnZGZnNWK1V1L2xBYzRtUGFPemhpWDR4MDRkbE5UCnAwQ1QyanlSQkRqRm93SVhSaTB5NHUzNXdiT2pjSjBmM0twK1k5QTdoNTM1QmNpSjU2eE9ic09VMzNnS0dhdy8KQmk3Y1VzVzFDUFM1YjFWYWRWQWJaNkhLQWNWR3hraWFEQVZXcEswZytsTis1RFRjNlFJREFRQUJvRFF3TWdZSgpLb1pJaHZjTkFRa09NU1V3SXpBaEJnTlZIUkVFR2pBWWdoWnRhVzVwYnk0eE1qY3VNQzR3TGpFdWJtbHdMbWx2Ck1BMEdDU3FHU0liM0RRRUJDd1VBQTRJQkFRQUNTbVd6MmNVeDMxc0lRcmlKeDVUSUwvVFBmQUJsaXlMR285YTEKZG9tNlJ0enRMVXY1YWd3RVBCZGl3STk0eFQ1REZwejNSR3IvOUFlVXE1MmM2SzZFcXI4Um52OHpZVmJVWU9pUApOUnc1NWdVS2FRcHZiOXA5VUV3OU51djRsY3lHR1FWazk1cWt2eHRNWFdPVFdWbGRtbTN0NHpsb2tuRTVPeUNGClJLMmxkZG42dHJvTGswcEtvOEk4Z1hVaGdxdXY0c0pIQlRreEM4bVdVTDRQdTMyQWt3RWNWeVNhUE9vNkpkN3kKcVN5aW5Bd3BOTzhMOHNudUN5MFZoNi80YjBoNzdueEFkbmVKTmRBR3FmV0tPb25vQXQ2TVlIZ0F0cDNybVE0cwpwRjNoRGF6V3hHOEcwbjRKMk14aS8xandCZVpwQUxmM0hadE41Qjk2ekRxWDFLMEgKLS0tLS1FTkQgQ0VSVElGSUNBVEUgUkVRVUVTVC0tLS0tCg==
+      issuerRef:
+        group: cert-manager.io
+        kind: ClusterIssuer
+        name: ingress-ca
+    status:
+      ca: LS0tLS1CRUdJTiBDRVJUSUZJQ0FURS0tLS0tCk1JSUMwakNDQWJxZ0F3SUJBZ0lJTTJrUWVscjYycTh3RFFZSktvWklodmNOQVFFTEJRQXdGVEVUTUJFR0ExVUUKQXhNS2FXNW5jbVZ6Y3kxallUQWVGdzB5TURBME1qY3lNREU0TURaYUZ3MHlNVEEwTWpZeU1ETXpNRFphTUJVeApFekFSQmdOVkJBTVRDbWx1WjNKbGMzTXRZMkV3Z2dFaU1BMEdDU3FHU0liM0RRRUJBUVVBQTRJQkR3QXdnZ0VLCkFvSUJBUUR6SXdlRnFIYktoRjNCWUdDaTFCOXAwNmNOVU1Hc2MyMm9lWVcvYmlqZmkvMWRRR3ViOHVBRnNPVG4KMTBHc0EvbzZxd25MS1BtT2k1U3Y3MzVlRGpPMThxSXMwcUhrdkVmbG8xVXdKZGw2Y3ZVU1ZDYTNlbStsU28xUwpEY1dxeDJuRlFjUVgxOEluc2dLYnhQZGY5UE5uQkM4QnE0L2ZPQTRoM1BBNTJEUHQxVGFCODNZZFhMdVNnMzZUCmUwTWI3ZnNadDRGZDMxWTArK0kxQklLc0dWWk0rejQxVlYrcWlucFpsTkZhQ0F4d2VwTnJPMGhXOUoxRlh0akYKTSsrYVR5bHNCQlJmV1FRcFFIZXAvME4vSzBZNDVPeURQVmdJNWp5a2d1VzM0aFZJRGYya3ViYldXMmJObVpIUAorVUI1MkZxSFpRemxWU1ZYMWhiSVI2Wm5lZzMzQWdNQkFBR2pKakFrTUE0R0ExVWREd0VCL3dRRUF3SUNwREFTCkJnTlZIUk1CQWY4RUNEQUdBUUgvQWdFQU1BMEdDU3FHU0liM0RRRUJDd1VBQTRJQkFRQ2Ura0VsWlZrZEdvVGcKVkVOQkhERGJYMkY5N0FmRDFMcjlaWTVlMHFORVJlZnpvSElJdGJrN00reXk3QTRLNzJkcHBzdlYya0ZtMXhZcApnd1o1OGZKWGtSSk5XQjlOMjNIcHVJUXdzZmVFTkpBYk8yL1UrWEZVdnBZMitaazQ5bE5oUEZWZFBjcS9nTXdSCkQ2Y2hWckF6L3NvLzh2V0h3WDREOTBQL01vd0dWQ2F4aENEWVZDRGt1WERKeGdwdnEvSDlQaXU3YlNYUjd1TVEKb3Z4V0QxN1BuN2xmdXFSbitjT2xmMVdmTXlQUmJXNHY1bGVjb0J0SGdZUkhsMG9PVU5SVXdJTHIydkkrczkzTwpjMmVPQ3dLZU9iWGllSUU3RjRGVWs2cGNUdjFBbDRjRXlzK2IyVWFxek96SndlY3J0ZUh5Z2ZTYjBWVE1mL3BwCmEzd3hZV0VDCi0tLS0tRU5EIENFUlRJRklDQVRFLS0tLS0K
+      certificate: LS0tLS1CRUdJTiBDRVJUSUZJQ0FURS0tLS0tCk1JSUREekNDQWZlZ0F3SUJBZ0lSQVA5bThrakNkL0RPNDJLTnhtMjRpT1V3RFFZSktvWklodmNOQVFFTEJRQXcKRlRFVE1CRUdBMVVFQXhNS2FXNW5jbVZ6Y3kxallUQWVGdzB5TURBME1qY3lNRE0xTlRCYUZ3MHlNREEzTWpZeQpNRE0xTlRCYU1CY3hGVEFUQmdOVkJBb1RER05sY25RdGJXRnVZV2RsY2pDQ0FTSXdEUVlKS29aSWh2Y05BUUVCCkJRQURnZ0VQQURDQ0FRb0NnZ0VCQU1PL1VLSWpXOGRWc2kvMXNZajVtajJzcEhxZzFJTXJvT3Y2bkRTRDE2dlAKQ0VQNWM4REhHdHkwdlI3Ryt6WllPRitlVGVYalI1d1pKMUJWTFliZStMZ0FobXAxdzFvMUI5K1EvS0E5di9JTQpHd3Y4VEp4NityNm85TTh1KytDd050RnZOTXNmajhocjNlcEh6aTRJOEJYS2VGcG9zVkQ1V3VBdDZoRW84Z0U0CnRKK3c3Y3VYSEEyQUJZdGR3cDR3OFdNOEErSWdieFg3RmZsTHY1UUhPSmoyanM0WWwrTWRPSFpUVTZkQWs5bzgKa1FRNHhhTUNGMFl0TXVMdCtjR3pvM0NkSDl5cWZtUFFPNGVkK1FYSWllZXNUbTdEbE45NENobXNQd1l1M0ZMRgp0UWowdVc5VlduVlFHMmVoeWdIRlJzWkltZ3dGVnFTdElQcFRmdVEwM09rQ0F3RUFBYU5ZTUZZd0RnWURWUjBQCkFRSC9CQVFEQWdXZ01CTUdBMVVkSlFRTU1Bb0dDQ3NHQVFVRkJ3TUJNQXdHQTFVZEV3RUIvd1FDTUFBd0lRWUQKVlIwUkJCb3dHSUlXYldsdWFXOHVNVEkzTGpBdU1DNHhMbTVwY0M1cGJ6QU5CZ2txaGtpRzl3MEJBUXNGQUFPQwpBUUVBRm4rbmh6SEF0UC9OSndFbU9aa0EwUWhZdW0rTEt4ZzNMYVF2RjVMazBMRitnU244cGdKdWlLNFFpNUt1Cm9OWjZmNzhEV2ljaU1DNzR4UVl1eWtPL2dxY2s2STc1d3MwUmduZnFxdVhDQVNTTU1xWk5zcVdadzdTMEFXUGkKUWE0NStQeHVkYVV6ckhXZnpQNlBFL0NxQng4STQrekl6R3B4cXFHYlNscTA2SkZuamtLQk53VTlmYWZhWE9TdgpaMFgzM25OaXVlTEhLWVlZd1A0YlVBaVR3S2F3WExvSzVtc1hGbjZSRmpDUDQzQmQwYkxsdXAvM1RWK0FRUUNoCmFQUG5lcVRTT3BoMFpmVGVDU1FwNEhtazZ2S3hvN0U1WjJqLzlyRVhKRFdqNXhjUlg1dm90Vk9reDhZcGFLVzIKbXdLZzNoVDJUZDNOejBnNGhFUnZqZ0RPU0E9PQotLS0tLUVORCBDRVJUSUZJQ0FURS0tLS0tCg==
+      conditions:
+      - lastTransitionTime: "2020-04-27T20:35:50Z"
+        message: Certificate fetched from issuer successfully
+        reason: Issued
+        status: "True"
+        type: Ready
+  metadata: {}
+- items:
+  - apiVersion: cert-manager.io/v1alpha2
+    kind: Certificate
+    metadata:
+      creationTimestamp: "2020-04-27T20:35:50Z"
+      generation: 1
+      name: minio-tls
+      namespace: minio
+      ownerReferences:
+      - apiVersion: extensions/v1beta1
+        blockOwnerDeletion: true
+        controller: true
+        kind: Ingress
+        name: minio
+        uid: 25ecf3a6-5604-4790-9eb2-1e32fda0925f
+      resourceVersion: "1199"
+      selfLink: /apis/cert-manager.io/v1alpha2/namespaces/minio/certificates/minio-tls
+      uid: 815de654-49bb-4e62-ba8b-73da3429a960
+    spec:
+      dnsNames:
+      - minio.127.0.0.1.nip.io
+      issuerRef:
+        group: cert-manager.io
+        kind: ClusterIssuer
+        name: ingress-ca
+      secretName: minio-tls
+    status:
+      conditions:
+      - lastTransitionTime: "2020-04-27T20:35:50Z"
+        message: Certificate is up to date and has not expired
+        reason: Ready
+        status: "True"
+        type: Ready
+      notAfter: "2020-07-26T20:35:50Z"
+  metadata: {}
+- items:
+  - apiVersion: extensions/v1beta1
+    kind: Deployment
+    metadata:
+      annotations:
+        deployment.kubernetes.io/revision: "1"
+      creationTimestamp: "2020-04-27T20:35:49Z"
+      generation: 2
+      name: minio
+      namespace: minio
+      resourceVersion: "2237"
+      selfLink: /apis/extensions/v1beta1/namespaces/minio/deployments/minio
+      uid: 860c1c9c-283f-484d-bb49-d19261d28aae
+    spec:
+      progressDeadlineSeconds: 600
+      replicas: 1
+      revisionHistoryLimit: 10
+      selector:
+        matchLabels:
+          app: minio
+      strategy:
+        type: Recreate
+      template:
+        metadata:
+          creationTimestamp: null
+          labels:
+            app: minio
+        spec:
+          containers:
+          - args:
+            - server
+            - /data
+            env:
+            - name: MINIO_ACCESS_KEY
+              value: minio
+            - name: MINIO_SECRET_KEY
+              value: minio123
+            - name: MINIO_KMS_MASTER_KEY
+              value: minio-demo-key:6368616e676520746869732070617373776f726420746f206120736563726574
+            image: minio/minio:RELEASE.2020-03-06T22-23-56Z
+            imagePullPolicy: IfNotPresent
+            livenessProbe:
+              failureThreshold: 3
+              httpGet:
+                path: /minio/health/live
+                port: 9000
+                scheme: HTTP
+              initialDelaySeconds: 10
+              periodSeconds: 10
+              successThreshold: 1
+              timeoutSeconds: 1
+            name: minio
+            ports:
+            - containerPort: 9000
+              protocol: TCP
+            readinessProbe:
+              failureThreshold: 3
+              httpGet:
+                path: /minio/health/ready
+                port: 9000
+                scheme: HTTP
+              initialDelaySeconds: 10
+              periodSeconds: 10
+              successThreshold: 1
+              timeoutSeconds: 1
+            resources:
+              limits:
+                cpu: 500m
+                memory: 500Mi
+              requests:
+                cpu: 100m
+                memory: 50Mi
+            terminationMessagePath: /dev/termination-log
+            terminationMessagePolicy: File
+            volumeMounts:
+            - mountPath: /data
+              name: data
+          dnsPolicy: ClusterFirst
+          restartPolicy: Always
+          schedulerName: default-scheduler
+          securityContext: {}
+          terminationGracePeriodSeconds: 30
+          volumes:
+          - emptyDir: {}
+            name: data
+    status:
+      availableReplicas: 1
+      conditions:
+      - lastTransitionTime: "2020-04-27T20:36:13Z"
+        lastUpdateTime: "2020-04-27T20:36:13Z"
+        message: Deployment has minimum availability.
+        reason: MinimumReplicasAvailable
+        status: "True"
+        type: Available
+      - lastTransitionTime: "2020-04-27T20:35:49Z"
+        lastUpdateTime: "2020-04-27T20:36:13Z"
+        message: ReplicaSet "minio-69f8f4cd59" has successfully progressed.
+        reason: NewReplicaSetAvailable
+        status: "True"
+        type: Progressing
+      observedGeneration: 2
+      readyReplicas: 1
+      replicas: 1
+      updatedReplicas: 1
+  metadata: {}
+- items:
+  - apiVersion: extensions/v1beta1
+    kind: Ingress
+    metadata:
+      annotations:
+        kubernetes.io/tls-acme: "true"
+      creationTimestamp: "2020-04-27T20:35:50Z"
+      generation: 1
+      name: minio
+      namespace: minio
+      resourceVersion: "1179"
+      selfLink: /apis/extensions/v1beta1/namespaces/minio/ingresses/minio
+      uid: 25ecf3a6-5604-4790-9eb2-1e32fda0925f
+    spec:
+      rules:
+      - host: minio.127.0.0.1.nip.io
+        http:
+          paths:
+          - backend:
+              serviceName: minio
+              servicePort: 9000
+      tls:
+      - hosts:
+        - minio.127.0.0.1.nip.io
+        secretName: minio-tls
+    status:
+      loadBalancer: {}
+  metadata: {}
+- items:
+  - apiVersion: extensions/v1beta1
+    kind: ReplicaSet
+    metadata:
+      annotations:
+        deployment.kubernetes.io/desired-replicas: "1"
+        deployment.kubernetes.io/max-replicas: "1"
+        deployment.kubernetes.io/revision: "1"
+      creationTimestamp: "2020-04-27T20:35:49Z"
+      generation: 1
+      labels:
+        app: minio
+        pod-template-hash: 69f8f4cd59
+      name: minio-69f8f4cd59
+      namespace: minio
+      ownerReferences:
+      - apiVersion: apps/v1
+        blockOwnerDeletion: true
+        controller: true
+        kind: Deployment
+        name: minio
+        uid: 860c1c9c-283f-484d-bb49-d19261d28aae
+      resourceVersion: "1456"
+      selfLink: /apis/extensions/v1beta1/namespaces/minio/replicasets/minio-69f8f4cd59
+      uid: 1626702f-71e6-4d08-b15d-368ec55fdbf7
+    spec:
+      replicas: 1
+      selector:
+        matchLabels:
+          app: minio
+          pod-template-hash: 69f8f4cd59
+      template:
+        metadata:
+          creationTimestamp: null
+          labels:
+            app: minio
+            pod-template-hash: 69f8f4cd59
+        spec:
+          containers:
+          - args:
+            - server
+            - /data
+            env:
+            - name: MINIO_ACCESS_KEY
+              value: minio
+            - name: MINIO_SECRET_KEY
+              value: minio123
+            - name: MINIO_KMS_MASTER_KEY
+              value: minio-demo-key:6368616e676520746869732070617373776f726420746f206120736563726574
+            image: minio/minio:RELEASE.2020-03-06T22-23-56Z
+            imagePullPolicy: IfNotPresent
+            livenessProbe:
+              failureThreshold: 3
+              httpGet:
+                path: /minio/health/live
+                port: 9000
+                scheme: HTTP
+              initialDelaySeconds: 10
+              periodSeconds: 10
+              successThreshold: 1
+              timeoutSeconds: 1
+            name: minio
+            ports:
+            - containerPort: 9000
+              protocol: TCP
+            readinessProbe:
+              failureThreshold: 3
+              httpGet:
+                path: /minio/health/ready
+                port: 9000
+                scheme: HTTP
+              initialDelaySeconds: 10
+              periodSeconds: 10
+              successThreshold: 1
+              timeoutSeconds: 1
+            resources:
+              limits:
+                cpu: 500m
+                memory: 500Mi
+              requests:
+                cpu: 100m
+                memory: 50Mi
+            terminationMessagePath: /dev/termination-log
+            terminationMessagePolicy: File
+            volumeMounts:
+            - mountPath: /data
+              name: data
+          dnsPolicy: ClusterFirst
+          restartPolicy: Always
+          schedulerName: default-scheduler
+          securityContext: {}
+          terminationGracePeriodSeconds: 30
+          volumes:
+          - emptyDir: {}
+            name: data
+    status:
+      availableReplicas: 1
+      fullyLabeledReplicas: 1
+      observedGeneration: 1
+      readyReplicas: 1
+      replicas: 1
+  metadata: {}
+- items:
+  - apiVersion: metrics.k8s.io/v1beta1
+    containers:
+    - name: minio
+      usage:
+        cpu: 8m
+        memory: 34256Ki
+    kind: PodMetrics
+    metadata:
+      creationTimestamp: "2020-04-27T20:46:12Z"
+      name: minio-69f8f4cd59-czlqm
+      namespace: minio
+      selfLink: /apis/metrics.k8s.io/v1beta1/namespaces/minio/pods/minio-69f8f4cd59-czlqm
+    timestamp: "2020-04-27T20:46:12Z"
+    window: 5m0s
+  metadata: {}
+- items:
+  - apiVersion: networking.k8s.io/v1beta1
+    kind: Ingress
+    metadata:
+      annotations:
+        kubernetes.io/tls-acme: "true"
+      creationTimestamp: "2020-04-27T20:35:50Z"
+      generation: 1
+      name: minio
+      namespace: minio
+      resourceVersion: "1179"
+      selfLink: /apis/networking.k8s.io/v1beta1/namespaces/minio/ingresses/minio
+      uid: 25ecf3a6-5604-4790-9eb2-1e32fda0925f
+    spec:
+      rules:
+      - host: minio.127.0.0.1.nip.io
+        http:
+          paths:
+          - backend:
+              serviceName: minio
+              servicePort: 9000
+      tls:
+      - hosts:
+        - minio.127.0.0.1.nip.io
+        secretName: minio-tls
+    status:
+      loadBalancer: {}
+  metadata: {}
+kind: List
+metadata: {}

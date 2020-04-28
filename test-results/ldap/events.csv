@@ -1,0 +1,8 @@
+LAST SEEN                      Count  TYPE    REASON             OBJECT                          MESSAGE
+2020-04-27 20:35:51 +0000 UTC  1      Normal  Scheduled          Pod/apacheds-56c656465d-zf4gm   Successfully assigned ldap/apacheds-56c656465d-zf4gm to kind-control-plane
+2020-04-27 20:35:52 +0000 UTC  1      Normal  Pulling            Pod/apacheds-56c656465d-zf4gm   Pulling image "quay.io/toni0/apacheds:2.0.0_AM25_1"
+2020-04-27 20:36:06 +0000 UTC  1      Normal  Pulled             Pod/apacheds-56c656465d-zf4gm   Successfully pulled image "quay.io/toni0/apacheds:2.0.0_AM25_1"
+2020-04-27 20:36:09 +0000 UTC  1      Normal  Created            Pod/apacheds-56c656465d-zf4gm   Created container apacheds
+2020-04-27 20:36:09 +0000 UTC  1      Normal  Started            Pod/apacheds-56c656465d-zf4gm   Started container apacheds
+2020-04-27 20:35:51 +0000 UTC  1      Normal  SuccessfulCreate   ReplicaSet/apacheds-56c656465d  Created pod: apacheds-56c656465d-zf4gm
+2020-04-27 20:35:51 +0000 UTC  1      Normal  ScalingReplicaSet  Deployment/apacheds             Scaled up replica set apacheds-56c656465d to 1

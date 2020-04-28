@@ -1,0 +1,9 @@
+LAST SEEN                      Count  TYPE     REASON            OBJECT                        MESSAGE
+2020-04-27 20:38:34 +0000 UTC  1      Normal   Scheduled         Pod/elastic-operator-0        Successfully assigned elastic-system/elastic-operator-0 to kind-control-plane
+2020-04-27 20:38:35 +0000 UTC  2      Warning  FailedMount       Pod/elastic-operator-0        MountVolume.SetUp failed for volume "cert" : secret "elastic-webhook-server-cert" not found
+2020-04-27 20:38:37 +0000 UTC  1      Normal   Pulling           Pod/elastic-operator-0        Pulling image "docker.elastic.co/eck/eck-operator:1.0.1"
+2020-04-27 20:38:39 +0000 UTC  1      Normal   Pulled            Pod/elastic-operator-0        Successfully pulled image "docker.elastic.co/eck/eck-operator:1.0.1"
+2020-04-27 20:38:39 +0000 UTC  1      Normal   Created           Pod/elastic-operator-0        Created container manager
+2020-04-27 20:38:40 +0000 UTC  1      Normal   Started           Pod/elastic-operator-0        Started container manager
+2020-04-27 20:38:34 +0000 UTC  7      Warning  FailedCreate      StatefulSet/elastic-operator  create Pod elastic-operator-0 in StatefulSet elastic-operator failed error: pods "elastic-operator-0" is forbidden: error looking up service account elastic-system/elastic-operator: serviceaccount "elastic-operator" not found
+2020-04-27 20:38:34 +0000 UTC  1      Normal   SuccessfulCreate  StatefulSet/elastic-operator  create Pod elastic-operator-0 in StatefulSet elastic-operator successful

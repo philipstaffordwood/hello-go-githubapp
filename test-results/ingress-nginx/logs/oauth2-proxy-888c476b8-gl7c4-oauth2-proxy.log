@@ -1,0 +1,4 @@
+[2020/04/27 20:35:44] [oauthproxy.go:231] mapping path "/dev/null" => file system "/dev/null"
+[2020/04/27 20:35:44] [oauthproxy.go:259] OAuthProxy configured for OpenID Connect Client ID: kubernetes
+[2020/04/27 20:35:44] [oauthproxy.go:265] Cookie settings: name:_oauth2_proxy secure(https):true httponly:true expiry:168h0m0s domain:.127.0.0.1.nip.io path:/ samesite: refresh:disabled
+[2020/04/27 20:35:44] [http.go:92] HTTP: listening on 0.0.0.0:4180

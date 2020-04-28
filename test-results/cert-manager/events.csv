@@ -1,0 +1,22 @@
+LAST SEEN                      Count  TYPE    REASON             OBJECT                                         MESSAGE
+2020-04-27 20:34:47 +0000 UTC  1      Normal  Scheduled          Pod/cert-manager-67b8bfbfb4-9wsv9              Successfully assigned cert-manager/cert-manager-67b8bfbfb4-9wsv9 to kind-control-plane
+2020-04-27 20:34:48 +0000 UTC  1      Normal  Pulling            Pod/cert-manager-67b8bfbfb4-9wsv9              Pulling image "quay.io/jetstack/cert-manager-controller:v0.12.0"
+2020-04-27 20:34:52 +0000 UTC  1      Normal  Pulled             Pod/cert-manager-67b8bfbfb4-9wsv9              Successfully pulled image "quay.io/jetstack/cert-manager-controller:v0.12.0"
+2020-04-27 20:34:52 +0000 UTC  1      Normal  Created            Pod/cert-manager-67b8bfbfb4-9wsv9              Created container cert-manager
+2020-04-27 20:34:53 +0000 UTC  1      Normal  Started            Pod/cert-manager-67b8bfbfb4-9wsv9              Started container cert-manager
+2020-04-27 20:34:47 +0000 UTC  1      Normal  SuccessfulCreate   ReplicaSet/cert-manager-67b8bfbfb4             Created pod: cert-manager-67b8bfbfb4-9wsv9
+2020-04-27 20:34:47 +0000 UTC  1      Normal  Scheduled          Pod/cert-manager-cainjector-5cc6f8695f-6zdn6   Successfully assigned cert-manager/cert-manager-cainjector-5cc6f8695f-6zdn6 to kind-control-plane
+2020-04-27 20:34:48 +0000 UTC  1      Normal  Pulling            Pod/cert-manager-cainjector-5cc6f8695f-6zdn6   Pulling image "quay.io/jetstack/cert-manager-cainjector:v0.12.0"
+2020-04-27 20:34:49 +0000 UTC  1      Normal  Pulled             Pod/cert-manager-cainjector-5cc6f8695f-6zdn6   Successfully pulled image "quay.io/jetstack/cert-manager-cainjector:v0.12.0"
+2020-04-27 20:34:50 +0000 UTC  1      Normal  Created            Pod/cert-manager-cainjector-5cc6f8695f-6zdn6   Created container cainjector
+2020-04-27 20:34:50 +0000 UTC  1      Normal  Started            Pod/cert-manager-cainjector-5cc6f8695f-6zdn6   Started container cainjector
+2020-04-27 20:34:47 +0000 UTC  1      Normal  SuccessfulCreate   ReplicaSet/cert-manager-cainjector-5cc6f8695f  Created pod: cert-manager-cainjector-5cc6f8695f-6zdn6
+2020-04-27 20:34:47 +0000 UTC  1      Normal  ScalingReplicaSet  Deployment/cert-manager-cainjector             Scaled up replica set cert-manager-cainjector-5cc6f8695f to 1
+2020-04-27 20:34:58 +0000 UTC  1      Normal  Scheduled          Pod/cert-manager-webhook-c48868f6f-fs987       Successfully assigned cert-manager/cert-manager-webhook-c48868f6f-fs987 to kind-control-plane
+2020-04-27 20:34:59 +0000 UTC  1      Normal  Pulling            Pod/cert-manager-webhook-c48868f6f-fs987       Pulling image "quay.io/jetstack/cert-manager-webhook:v0.12.0"
+2020-04-27 20:35:00 +0000 UTC  1      Normal  Pulled             Pod/cert-manager-webhook-c48868f6f-fs987       Successfully pulled image "quay.io/jetstack/cert-manager-webhook:v0.12.0"
+2020-04-27 20:35:00 +0000 UTC  1      Normal  Created            Pod/cert-manager-webhook-c48868f6f-fs987       Created container cert-manager
+2020-04-27 20:35:00 +0000 UTC  1      Normal  Started            Pod/cert-manager-webhook-c48868f6f-fs987       Started container cert-manager
+2020-04-27 20:34:58 +0000 UTC  1      Normal  SuccessfulCreate   ReplicaSet/cert-manager-webhook-c48868f6f      Created pod: cert-manager-webhook-c48868f6f-fs987
+2020-04-27 20:34:58 +0000 UTC  1      Normal  ScalingReplicaSet  Deployment/cert-manager-webhook                Scaled up replica set cert-manager-webhook-c48868f6f to 1
+2020-04-27 20:34:47 +0000 UTC  1      Normal  ScalingReplicaSet  Deployment/cert-manager                        Scaled up replica set cert-manager-67b8bfbfb4 to 1

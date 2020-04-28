@@ -1,0 +1,68 @@
+bootstrap_expect > 0: expecting 3 servers
+==> Starting Consul agent...
+           Version: 'v1.7.1'
+           Node ID: '49fbb1e6-b023-76c2-b9f1-bc6ab2c0653d'
+         Node name: 'consul-server-2'
+        Datacenter: 'vault' (Segment: '<all>')
+            Server: true (Bootstrap: false)
+       Client Addr: [0.0.0.0] (HTTP: 8500, HTTPS: -1, gRPC: -1, DNS: 8600)
+      Cluster Addr: 100.200.82.23 (LAN: 8301, WAN: 8302)
+           Encrypt: Gossip: false, TLS-Outgoing: false, TLS-Incoming: false, Auto-Encrypt-TLS: false
+
+==> Log data will now stream in as it occurs:
+
+    2020-04-27T20:36:41.340Z [INFO]  agent.server.raft: initial configuration: index=0 servers=[]
+    2020-04-27T20:36:41.341Z [WARN]  agent.server.memberlist.wan: memberlist: Binding to public address without encryption!
+    2020-04-27T20:36:41.341Z [INFO]  agent.server.serf.wan: serf: EventMemberJoin: consul-server-2.vault 100.200.82.23
+    2020-04-27T20:36:41.341Z [INFO]  agent.server.raft: entering follower state: follower="Node at 100.200.82.23:8300 [Follower]" leader=
+    2020-04-27T20:36:41.341Z [WARN]  agent.server.memberlist.lan: memberlist: Binding to public address without encryption!
+    2020-04-27T20:36:41.341Z [INFO]  agent.server.serf.lan: serf: EventMemberJoin: consul-server-2 100.200.82.23
+    2020-04-27T20:36:41.342Z [INFO]  agent.server: Adding LAN server: server="consul-server-2 (Addr: tcp/100.200.82.23:8300) (DC: vault)"
+    2020-04-27T20:36:41.342Z [INFO]  agent.server: Handled event for server in area: event=member-join server=consul-server-2.vault area=wan
+    2020-04-27T20:36:41.342Z [INFO]  agent: Started DNS server: address=0.0.0.0:8600 network=udp
+    2020-04-27T20:36:41.342Z [INFO]  agent: Started DNS server: address=0.0.0.0:8600 network=tcp
+    2020-04-27T20:36:41.342Z [INFO]  agent: Started HTTP server: address=[::]:8500 network=tcp
+    2020-04-27T20:36:41.342Z [INFO]  agent: Retry join is supported for the following discovery methods: cluster=LAN discovery_methods="aliyun aws azure digitalocean gce k8s linode mdns os packet scaleway softlayer tencentcloud triton vsphere"
+    2020-04-27T20:36:41.342Z [INFO]  agent: Joining cluster...: cluster=LAN
+    2020-04-27T20:36:41.342Z [INFO]  agent: (LAN) joining: lan_addresses=[consul-server-0.consul-server.vault.svc, consul-server-1.consul-server.vault.svc, consul-server-2.consul-server.vault.svc]
+    2020-04-27T20:36:41.343Z [INFO]  agent: started state syncer
+==> Consul agent running!
+    2020-04-27T20:36:41.345Z [WARN]  agent.server.memberlist.lan: memberlist: Failed to resolve consul-server-0.consul-server.vault.svc: lookup consul-server-0.consul-server.vault.svc on 10.96.0.10:53: no such host
+    2020-04-27T20:36:41.347Z [WARN]  agent.server.memberlist.lan: memberlist: Failed to resolve consul-server-1.consul-server.vault.svc: lookup consul-server-1.consul-server.vault.svc on 10.96.0.10:53: no such host
+    2020-04-27T20:36:41.381Z [WARN]  agent.server.memberlist.lan: memberlist: Failed to resolve consul-server-2.consul-server.vault.svc: lookup consul-server-2.consul-server.vault.svc on 10.96.0.10:53: no such host
+    2020-04-27T20:36:41.381Z [WARN]  agent: (LAN) couldn't join: number_of_nodes=0 error="3 errors occurred:
+	* Failed to resolve consul-server-0.consul-server.vault.svc: lookup consul-server-0.consul-server.vault.svc on 10.96.0.10:53: no such host
+	* Failed to resolve consul-server-1.consul-server.vault.svc: lookup consul-server-1.consul-server.vault.svc on 10.96.0.10:53: no such host
+	* Failed to resolve consul-server-2.consul-server.vault.svc: lookup consul-server-2.consul-server.vault.svc on 10.96.0.10:53: no such host
+
+"
+    2020-04-27T20:36:41.381Z [WARN]  agent: Join cluster failed, will retry: cluster=LAN retry_interval=30s error=<nil>
+    2020-04-27T20:36:42.841Z [ERROR] agent: Newer Consul version available: new_version=1.7.2 current_version=1.7.1
+    2020-04-27T20:36:48.582Z [ERROR] agent.anti_entropy: failed to sync remote state: error="No cluster leader"
+    2020-04-27T20:36:48.623Z [WARN]  agent.server.raft: no known peers, aborting election
+    2020-04-27T20:36:51.981Z [ERROR] agent.http: Request error: method=GET url=/v1/kv/vault/core/migration from=100.200.82.21:33410 error="No cluster leader"
+    2020-04-27T20:37:00.997Z [ERROR] agent.http: Request error: method=GET url=/v1/kv/vault/core/migration from=100.200.82.21:33544 error="No cluster leader"
+    2020-04-27T20:37:04.759Z [ERROR] agent: Coordinate update error: error="No cluster leader"
+    2020-04-27T20:37:10.071Z [ERROR] agent.http: Request error: method=GET url=/v1/kv/vault/core/migration from=100.200.82.21:33690 error="No cluster leader"
+    2020-04-27T20:37:11.381Z [INFO]  agent: (LAN) joining: lan_addresses=[consul-server-0.consul-server.vault.svc, consul-server-1.consul-server.vault.svc, consul-server-2.consul-server.vault.svc]
+    2020-04-27T20:37:11.383Z [INFO]  agent.server.serf.lan: serf: EventMemberJoin: consul-server-1 100.200.82.22
+    2020-04-27T20:37:11.383Z [INFO]  agent.server.serf.lan: serf: EventMemberJoin: consul-server-0 100.200.82.24
+    2020-04-27T20:37:11.383Z [INFO]  agent.server: Adding LAN server: server="consul-server-1 (Addr: tcp/100.200.82.22:8300) (DC: vault)"
+    2020-04-27T20:37:11.386Z [INFO]  agent.server: Found expected number of peers, attempting bootstrap: peers=100.200.82.23:8300,100.200.82.22:8300,100.200.82.24:8300
+    2020-04-27T20:37:11.390Z [INFO]  agent.server: Adding LAN server: server="consul-server-0 (Addr: tcp/100.200.82.24:8300) (DC: vault)"
+    2020-04-27T20:37:11.391Z [INFO]  agent.server.serf.wan: serf: EventMemberJoin: consul-server-0.vault 100.200.82.24
+    2020-04-27T20:37:11.391Z [INFO]  agent.server: Handled event for server in area: event=member-join server=consul-server-0.vault area=wan
+    2020-04-27T20:37:11.391Z [INFO]  agent.server.serf.wan: serf: EventMemberJoin: consul-server-1.vault 100.200.82.22
+    2020-04-27T20:37:11.391Z [INFO]  agent.server: Handled event for server in area: event=member-join server=consul-server-1.vault area=wan
+    2020-04-27T20:37:11.423Z [INFO]  agent: (LAN) joined: number_of_nodes=3
+    2020-04-27T20:37:11.423Z [INFO]  agent: Join cluster completed. Synced with initial agents: cluster=LAN num_agents=3
+    2020-04-27T20:37:13.356Z [INFO]  agent.server: New leader elected: payload=consul-server-0
+    2020-04-27T20:37:13.375Z [INFO]  agent: Synced node info
+    2020-04-27T20:37:13.553Z [INFO]  agent: Synced service: service=vault:100.200.82.21:8200
+    2020-04-27T20:37:13.559Z [INFO]  agent: Synced check: check=vault:100.200.82.21:8200:vault-sealed-check
+    2020-04-27T20:37:15.822Z [INFO]  agent: Synced check: check=vault:100.200.82.21:8200:vault-sealed-check
+    2020-04-27T20:37:15.956Z [INFO]  agent: Synced service: service=vault:100.200.82.21:8200
+    2020-04-27T20:37:15.962Z [INFO]  agent: Synced check: check=vault:100.200.82.21:8200:vault-sealed-check
+    2020-04-27T20:43:52.149Z [INFO]  snapshot: creating new snapshot: path=/consul/data/raft/snapshots/2-112-1588020232149.tmp
+    2020-04-27T20:43:52.156Z [INFO]  agent.server.raft: copied to local snapshot: bytes=21849
+    2020-04-27T20:43:52.158Z [INFO]  agent.server.raft: Installed remote snapshot

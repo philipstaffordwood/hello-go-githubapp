@@ -1,0 +1,200 @@
+Starting ApacheDS - default...
+Waiting for LDAP to be available 
+ldap_sasl_bind(SIMPLE): Can't contact LDAP server (-1)
+LDAP not up yet... retrying... (0/20)
+ldap_sasl_bind(SIMPLE): Can't contact LDAP server (-1)
+LDAP not up yet... retrying... (1/20)
+ldap_sasl_bind(SIMPLE): Can't contact LDAP server (-1)
+LDAP not up yet... retrying... (2/20)
+ldap_sasl_bind(SIMPLE): Can't contact LDAP server (-1)
+LDAP not up yet... retrying... (3/20)
+ldap_sasl_bind(SIMPLE): Can't contact LDAP server (-1)
+LDAP not up yet... retrying... (4/20)
+# extended LDIF
+#
+# LDAPv3
+# base <> (default) with scope subtree
+# filter: ou=system
+# requesting: ALL
+#
+
+# system
+dn: ou=system
+objectClass: top
+objectClass: organizationalUnit
+objectClass: extensibleObject
+ou: system
+
+# search result
+search: 2
+result: 0 Success
+
+# numResponses: 2
+# numEntries: 1
+Bootstraping Apache DS with Data from /bootstrap/users.ldif
+ldap_initialize( ldap://localhost:10389 )
+add objectclass:
+	metaSchema
+	top
+add cn:
+	microsoft
+adding new entry "cn=microsoft, ou=schema"
+modify complete
+
+add objectclass:
+	organizationalUnit
+	top
+add ou:
+	attributetypes
+adding new entry "ou=attributetypes, cn=microsoft, ou=schema"
+modify complete
+
+add objectclass:
+	metaAttributeType
+	metaTop
+	top
+add m-oid:
+	1.2.840.113556.1.4.221
+add m-name:
+	sAMAccountName
+add m-equality:
+	caseIgnoreMatch
+add m-syntax:
+	1.3.6.1.4.1.1466.115.121.1.15
+add m-singleValue:
+	TRUE
+adding new entry "m-oid=1.2.840.113556.1.4.221, ou=attributetypes, cn=microsoft, ou=schema"
+modify complete
+
+add objectclass:
+	metaAttributeType
+	metaTop
+	top
+add m-oid:
+	1.2.840.113556.1.4.222
+add m-name:
+	memberOf
+add m-equality:
+	caseIgnoreMatch
+add m-syntax:
+	1.3.6.1.4.1.1466.115.121.1.15
+add m-singleValue:
+	FALSE
+adding new entry "m-oid=1.2.840.113556.1.4.222, ou=attributetypes, cn=microsoft, ou=schema"
+modify complete
+
+add objectclass:
+	metaAttributeType
+	metaTop
+	top
+add m-oid:
+	1.2.840.113556.1.4.223
+add m-name:
+	objectCategory
+add m-equality:
+	caseIgnoreMatch
+add m-syntax:
+	1.3.6.1.4.1.1466.115.121.1.15
+add m-singleValue:
+	TRUE
+adding new entry "m-oid=1.2.840.113556.1.4.223, ou=attributetypes, cn=microsoft, ou=schema"
+modify complete
+
+add objectclass:
+	organizationalUnit
+	top
+add ou:
+	objectClasses
+adding new entry "ou=objectclasses, cn=microsoft, ou=schema"
+modify complete
+
+add objectclass:
+	metaObjectClass
+	metaTop
+	top
+add m-oid:
+	1.2.840.113556.1.5.6
+add m-name:
+	simulatedMicrosoftSecurityPrincipal
+add m-supObjectClass:
+	top
+add m-typeObjectClass:
+	AUXILIARY
+add m-must:
+	sAMAccountName
+	objectCategory
+add m-may:
+	memberOf
+adding new entry "m-oid=1.2.840.113556.1.5.6, ou=objectclasses, cn=microsoft, ou=schema"
+modify complete
+
+add objectClass:
+	organizationalUnit
+	top
+add ou:
+	users
+adding new entry "ou=users,dc=example,dc=com"
+modify complete
+
+add objectClass:
+	top
+	person
+	inetOrgPerson
+	simulatedMicrosoftSecurityPrincipal
+add objectCategory:
+	User
+add cn:
+	Test User
+add sn:
+	test
+add uid:
+	test
+add sAMAccountName:
+	test
+add userPassword:
+	secret
+add memberOf:
+	admin
+add mail:
+	test@example.com
+add displayName:
+	John
+adding new entry "uid=test,ou=users,dc=example,dc=com"
+modify complete
+
+add objectclass:
+	top
+	organizationalUnit
+add ou:
+	roles
+adding new entry "ou=roles,dc=example,dc=com"
+modify complete
+
+add objectClass:
+	top
+	groupOfNames
+add cn:
+	admin
+add member:
+	uid=test,ou=users,dc=example,dc=com
+adding new entry "cn=admin,ou=roles,dc=example,dc=com"
+modify complete
+
+add objectclass:
+	top
+	organizationalunit
+add ou:
+	groups
+adding new entry "ou=groups,dc=example,dc=com"
+modify complete
+
+add objectClass:
+	top
+	groupOfNames
+add cn:
+	Kubernetes
+add member:
+	uid=test,ou=users,dc=example,dc=com
+adding new entry "cn=k8s,ou=groups,dc=example,dc=com"
+modify complete
+

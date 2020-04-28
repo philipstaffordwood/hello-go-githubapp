@@ -1,0 +1,265 @@
+-------------------------------------------------------------------------------
+NGINX Ingress controller
+  Release:       0.25.1
+  Build:         git-5179893a9
+  Repository:    https://github.com/kubernetes/ingress-nginx/
+  nginx version: openresty/1.15.8.1
+
+-------------------------------------------------------------------------------
+
+W0427 20:35:43.326898       8 flags.go:221] SSL certificate chain completion is disabled (--enable-ssl-chain-completion=false)
+nginx version: openresty/1.15.8.1
+W0427 20:35:43.329559       8 client_config.go:541] Neither --kubeconfig nor --master was specified.  Using the inClusterConfig.  This might not work.
+I0427 20:35:43.329712       8 main.go:183] Creating API client for https://10.96.0.1:443
+I0427 20:35:43.334562       8 main.go:227] Running in Kubernetes cluster version v1.15 (v1.15.7) - git (clean) commit 6c143d35bb11d74970e7bc0b6c45b6bfdffc0bd4 - platform linux/amd64
+I0427 20:35:43.499030       8 main.go:102] Created fake certificate with PemFileName: /etc/ingress-controller/ssl/default-fake-certificate.pem
+W0427 20:35:43.514301       8 configmap.go:339] unexpected error merging defaults: 1 error(s) decoding:
+
+* cannot parse 'disable-access-log' as bool: strconv.ParseBool: parsing "<no value>": invalid syntax
+W0427 20:35:43.515524       8 configmap.go:339] unexpected error merging defaults: 1 error(s) decoding:
+
+* cannot parse 'disable-access-log' as bool: strconv.ParseBool: parsing "<no value>": invalid syntax
+I0427 20:35:43.520528       8 nginx.go:274] Starting NGINX Ingress controller
+I0427 20:35:43.526191       8 event.go:258] Event(v1.ObjectReference{Kind:"ConfigMap", Namespace:"ingress-nginx", Name:"nginx-configuration", UID:"81d8fc6f-859e-4677-bb41-eb968e854f7c", APIVersion:"v1", ResourceVersion:"837", FieldPath:""}): type: 'Normal' reason: 'CREATE' ConfigMap ingress-nginx/nginx-configuration
+W0427 20:35:43.531946       8 configmap.go:339] unexpected error merging defaults: 1 error(s) decoding:
+
+* cannot parse 'disable-access-log' as bool: strconv.ParseBool: parsing "<no value>": invalid syntax
+W0427 20:35:43.534259       8 configmap.go:339] unexpected error merging defaults: 1 error(s) decoding:
+
+* cannot parse 'disable-access-log' as bool: strconv.ParseBool: parsing "<no value>": invalid syntax
+I0427 20:35:43.534634       8 event.go:258] Event(v1.ObjectReference{Kind:"ConfigMap", Namespace:"ingress-nginx", Name:"tcp-services", UID:"3a3d1e92-6419-45da-807b-dbe3b6a62f97", APIVersion:"v1", ResourceVersion:"839", FieldPath:""}): type: 'Normal' reason: 'CREATE' ConfigMap ingress-nginx/tcp-services
+I0427 20:35:43.534806       8 event.go:258] Event(v1.ObjectReference{Kind:"ConfigMap", Namespace:"ingress-nginx", Name:"udp-services", UID:"6664bfca-8f98-45c6-ab03-78a75bd52a52", APIVersion:"v1", ResourceVersion:"840", FieldPath:""}): type: 'Normal' reason: 'CREATE' ConfigMap ingress-nginx/udp-services
+I0427 20:35:44.623332       8 event.go:258] Event(v1.ObjectReference{Kind:"Ingress", Namespace:"ingress-nginx", Name:"oauth2-proxy", UID:"9886832c-134f-44bd-92f4-6027edd89777", APIVersion:"networking.k8s.io/v1beta1", ResourceVersion:"895", FieldPath:""}): type: 'Normal' reason: 'CREATE' Ingress ingress-nginx/oauth2-proxy
+I0427 20:35:44.624205       8 backend_ssl.go:66] Adding Secret "ingress-nginx/oauth2-tls" to the local store
+I0427 20:35:44.721066       8 nginx.go:760] Starting TLS proxy for SSL Passthrough
+I0427 20:35:44.721133       8 nginx.go:318] Starting NGINX process
+I0427 20:35:44.721261       8 leaderelection.go:235] attempting to acquire leader lease  ingress-nginx/ingress-controller-leader-nginx...
+I0427 20:35:44.721715       8 controller.go:133] Configuration changes detected, backend reload required.
+I0427 20:35:44.727730       8 leaderelection.go:245] successfully acquired lease ingress-nginx/ingress-controller-leader-nginx
+I0427 20:35:44.727753       8 status.go:86] new leader elected: nginx-ingress-controller-49lz4
+I0427 20:35:44.802237       8 controller.go:149] Backend successfully reloaded.
+I0427 20:35:44.802298       8 controller.go:158] Initial sync, sleeping for 1 second.
+E0427 20:35:45.552786       8 checker.go:57] healthcheck error: 500
+W0427 20:35:45.663697       8 backend_ssl.go:46] Error obtaining X.509 certificate: no object matching key "kube-system/dashboard-tls" in local store
+I0427 20:35:45.663741       8 event.go:258] Event(v1.ObjectReference{Kind:"Ingress", Namespace:"kube-system", Name:"dashboard-ing", UID:"96daeb72-df4c-4caa-8faf-b4b895a90219", APIVersion:"networking.k8s.io/v1beta1", ResourceVersion:"1068", FieldPath:""}): type: 'Normal' reason: 'CREATE' Ingress kube-system/dashboard-ing
+I0427 20:35:45.968414       8 store.go:422] secret kube-system/dashboard-tls was added and it is used in ingress annotations. Parsing...
+W0427 20:35:45.968783       8 backend_ssl.go:46] Error obtaining X.509 certificate: unexpected error creating SSL Cert: no certificate PEM data found, make sure certificate content starts with 'BEGIN CERTIFICATE'
+I0427 20:35:46.054945       8 store.go:449] secret kube-system/dashboard-tls was updated and it is used in ingress annotations. Parsing...
+I0427 20:35:46.062241       8 backend_ssl.go:66] Adding Secret "kube-system/dashboard-tls" to the local store
+W0427 20:35:48.543701       8 controller.go:878] Service "kube-system/kubernetes-dashboard" does not have any active Endpoint.
+I0427 20:35:48.543905       8 controller.go:133] Configuration changes detected, backend reload required.
+I0427 20:35:48.627458       8 controller.go:149] Backend successfully reloaded.
+W0427 20:35:50.054680       8 backend_ssl.go:46] Error obtaining X.509 certificate: no object matching key "minio/minio-tls" in local store
+I0427 20:35:50.054916       8 event.go:258] Event(v1.ObjectReference{Kind:"Ingress", Namespace:"minio", Name:"minio", UID:"25ecf3a6-5604-4790-9eb2-1e32fda0925f", APIVersion:"networking.k8s.io/v1beta1", ResourceVersion:"1179", FieldPath:""}): type: 'Normal' reason: 'CREATE' Ingress minio/minio
+I0427 20:35:50.343574       8 store.go:422] secret minio/minio-tls was added and it is used in ingress annotations. Parsing...
+W0427 20:35:50.343865       8 backend_ssl.go:46] Error obtaining X.509 certificate: unexpected error creating SSL Cert: no certificate PEM data found, make sure certificate content starts with 'BEGIN CERTIFICATE'
+I0427 20:35:50.374227       8 store.go:449] secret minio/minio-tls was updated and it is used in ingress annotations. Parsing...
+I0427 20:35:50.375403       8 backend_ssl.go:66] Adding Secret "minio/minio-tls" to the local store
+W0427 20:35:51.877230       8 controller.go:878] Service "minio/minio" does not have any active Endpoint.
+I0427 20:35:51.877378       8 controller.go:133] Configuration changes detected, backend reload required.
+I0427 20:35:52.016344       8 controller.go:149] Backend successfully reloaded.
+W0427 20:35:53.653886       8 backend_ssl.go:46] Error obtaining X.509 certificate: no object matching key "dex/dex-tls" in local store
+I0427 20:35:53.654301       8 event.go:258] Event(v1.ObjectReference{Kind:"Ingress", Namespace:"dex", Name:"dex-ing", UID:"5b0378b3-c964-4d86-9b9e-910b090cc4f4", APIVersion:"networking.k8s.io/v1beta1", ResourceVersion:"1264", FieldPath:""}): type: 'Normal' reason: 'CREATE' Ingress dex/dex-ing
+I0427 20:35:53.732937       8 store.go:422] secret dex/dex-tls was added and it is used in ingress annotations. Parsing...
+W0427 20:35:53.733277       8 backend_ssl.go:46] Error obtaining X.509 certificate: unexpected error creating SSL Cert: no certificate PEM data found, make sure certificate content starts with 'BEGIN CERTIFICATE'
+I0427 20:35:53.767416       8 store.go:449] secret dex/dex-tls was updated and it is used in ingress annotations. Parsing...
+I0427 20:35:53.768398       8 backend_ssl.go:66] Adding Secret "dex/dex-tls" to the local store
+127.0.0.1 - [127.0.0.1] - - [27/Apr/2020:20:35:55 +0000] "GET / HTTP/1.1" 503 203 "-" "Go-http-client/1.1" 103 0.000 [minio-minio-9000] [] - - - - 9af91a49e35d0e4617dda1a2b57ecbc6
+W0427 20:35:55.210580       8 controller.go:878] Service "minio/minio" does not have any active Endpoint.
+W0427 20:35:55.210614       8 controller.go:878] Service "dex/dex" does not have any active Endpoint.
+I0427 20:35:55.210769       8 controller.go:133] Configuration changes detected, backend reload required.
+I0427 20:35:55.297673       8 controller.go:149] Backend successfully reloaded.
+W0427 20:35:58.544489       8 controller.go:878] Service "minio/minio" does not have any active Endpoint.
+W0427 20:35:58.544529       8 controller.go:878] Service "dex/dex" does not have any active Endpoint.
+127.0.0.1 - [127.0.0.1] - - [27/Apr/2020:20:36:00 +0000] "GET / HTTP/1.1" 503 203 "-" "Go-http-client/1.1" 103 0.000 [minio-minio-9000] [] - - - - a190ea2d0b82dfd1c64a02c6193b4000
+W0427 20:36:01.877252       8 controller.go:878] Service "minio/minio" does not have any active Endpoint.
+W0427 20:36:01.877284       8 controller.go:878] Service "dex/dex" does not have any active Endpoint.
+W0427 20:36:05.210542       8 controller.go:878] Service "minio/minio" does not have any active Endpoint.
+W0427 20:36:05.210571       8 controller.go:878] Service "dex/dex" does not have any active Endpoint.
+127.0.0.1 - [127.0.0.1] - - [27/Apr/2020:20:36:05 +0000] "GET / HTTP/1.1" 503 203 "-" "Go-http-client/1.1" 103 0.000 [minio-minio-9000] [] - - - - 7f28575b09d42ac549f7aaa95f26c3c3
+W0427 20:36:09.712246       8 controller.go:878] Service "minio/minio" does not have any active Endpoint.
+W0427 20:36:09.712297       8 controller.go:878] Service "dex/dex" does not have any active Endpoint.
+127.0.0.1 - [127.0.0.1] - - [27/Apr/2020:20:36:10 +0000] "GET / HTTP/1.1" 503 203 "-" "Go-http-client/1.1" 103 0.000 [minio-minio-9000] [] - - - - 583b2734fd7184ba0c50d5c04997ba41
+W0427 20:36:13.045743       8 controller.go:878] Service "minio/minio" does not have any active Endpoint.
+127.0.0.1 - [127.0.0.1] - - [27/Apr/2020:20:36:15 +0000] "GET / HTTP/1.1" 503 203 "-" "Go-http-client/1.1" 103 0.000 [minio-minio-9000] [] - - - - c6ae4ba3d98e3c18c530f926ac99f544
+127.0.0.1 - [127.0.0.1] - - [27/Apr/2020:20:36:20 +0000] "GET / HTTP/1.1" 403 226 "-" "Go-http-client/1.1" 103 0.001 [minio-minio-9000] [] 100.200.82.12:9000 226 0.000 403 a8307d302d1b17c3bcff7928a9aa5952
+172.17.0.1 - [172.17.0.1] - - [27/Apr/2020:20:36:20 +0000] "GET /postgres-backups-test/?location= HTTP/1.1" 308 177 "-" "MinIO (linux; amd64) minio-go/v6.0.44" 485 0.000 [minio-minio-9000] [] - - - - 943b01f495866d8de5331c8397c9899a
+127.0.0.1 - [127.0.0.1] - - [27/Apr/2020:20:36:20 +0000] "GET /postgres-backups-test/?location= HTTP/1.1" 404 259 "http://minio.127.0.0.1.nip.io/postgres-backups-test/?location=" "MinIO (linux; amd64) minio-go/v6.0.44" 566 0.001 [minio-minio-9000] [] 100.200.82.12:9000 315 0.000 404 98c4787f6bb0109d369999bfded2c890
+127.0.0.1 - [127.0.0.1] - - [27/Apr/2020:20:36:20 +0000] "PUT /postgres-backups-test/ HTTP/1.1" 200 0 "-" "MinIO (linux; amd64) minio-go/v6.0.44" 698 0.001 [minio-minio-9000] [] 100.200.82.12:9000 0 0.000 200 7b33c888b92347b838b4719ded1d7c62
+172.17.0.1 - [172.17.0.1] - - [27/Apr/2020:20:36:28 +0000] "GET /consul-backups/?location= HTTP/1.1" 308 177 "-" "MinIO (linux; amd64) minio-go/v6.0.44" 478 0.000 [minio-minio-9000] [] - - - - 8ad50ae5f33aad2670e193d7c2e03157
+127.0.0.1 - [127.0.0.1] - - [27/Apr/2020:20:36:28 +0000] "GET /consul-backups/?location= HTTP/1.1" 404 254 "http://minio.127.0.0.1.nip.io/consul-backups/?location=" "MinIO (linux; amd64) minio-go/v6.0.44" 552 0.001 [minio-minio-9000] [] 100.200.82.12:9000 301 0.000 404 83e7215c6de603b5b344d9a4e83cec53
+127.0.0.1 - [127.0.0.1] - - [27/Apr/2020:20:36:28 +0000] "PUT /consul-backups/ HTTP/1.1" 200 0 "-" "MinIO (linux; amd64) minio-go/v6.0.44" 691 0.001 [minio-minio-9000] [] 100.200.82.12:9000 0 0.000 200 01f5639e840ecc8c9d76da93bd44b691
+I0427 20:36:34.135677       8 event.go:258] Event(v1.ObjectReference{Kind:"Ingress", Namespace:"vault", Name:"vault", UID:"9723c666-1028-4276-a355-e02487f08e83", APIVersion:"networking.k8s.io/v1beta1", ResourceVersion:"1682", FieldPath:""}): type: 'Normal' reason: 'CREATE' Ingress vault/vault
+I0427 20:36:34.136907       8 backend_ssl.go:66] Adding Secret "vault/vault-tls" to the local store
+I0427 20:36:34.174227       8 store.go:449] secret vault/vault-tls was updated and it is used in ingress annotations. Parsing...
+I0427 20:36:34.176222       8 backend_ssl.go:58] Updating Secret "vault/vault-tls" in the local store
+W0427 20:36:34.416752       8 controller.go:878] Service "vault/vault-ui" does not have any active Endpoint.
+I0427 20:36:34.416886       8 controller.go:133] Configuration changes detected, backend reload required.
+I0427 20:36:34.492287       8 controller.go:149] Backend successfully reloaded.
+W0427 20:36:34.535550       8 backend_ssl.go:46] Error obtaining X.509 certificate: no object matching key "vault/consul-tls" in local store
+I0427 20:36:34.535977       8 event.go:258] Event(v1.ObjectReference{Kind:"Ingress", Namespace:"vault", Name:"consul", UID:"470fa6e3-6452-4610-a678-56dcf2594155", APIVersion:"networking.k8s.io/v1beta1", ResourceVersion:"1712", FieldPath:""}): type: 'Normal' reason: 'CREATE' Ingress vault/consul
+I0427 20:36:34.855990       8 store.go:422] secret vault/consul-tls was added and it is used in ingress annotations. Parsing...
+W0427 20:36:34.856646       8 backend_ssl.go:46] Error obtaining X.509 certificate: unexpected error creating SSL Cert: no certificate PEM data found, make sure certificate content starts with 'BEGIN CERTIFICATE'
+I0427 20:36:34.882685       8 store.go:449] secret vault/consul-tls was updated and it is used in ingress annotations. Parsing...
+I0427 20:36:34.883815       8 backend_ssl.go:66] Adding Secret "vault/consul-tls" to the local store
+W0427 20:36:37.750071       8 controller.go:878] Service "vault/vault-ui" does not have any active Endpoint.
+W0427 20:36:37.750100       8 controller.go:878] Service "vault/consul-server" does not have any active Endpoint.
+I0427 20:36:37.750216       8 controller.go:133] Configuration changes detected, backend reload required.
+I0427 20:36:37.823427       8 controller.go:149] Backend successfully reloaded.
+W0427 20:36:41.083479       8 controller.go:878] Service "vault/consul-server" does not have any active Endpoint.
+127.0.0.1 - [127.0.0.1] - - [27/Apr/2020:20:37:15 +0000] "GET /v1/sys/mounts HTTP/2.0" 400 102 "-" "Go-http-client/2.0" 104 0.012 [vault-vault-ui-8200] [] 100.200.82.21:8200 102 0.008 400 65d530b41cd5343f9a28e1fc70575df5
+172.17.0.1 - [172.17.0.1] - - [27/Apr/2020:20:38:06 +0000] "GET /postgres-backups-test/?location= HTTP/1.1" 308 177 "-" "MinIO (linux; amd64) minio-go/v6.0.44" 485 0.000 [minio-minio-9000] [] - - - - febdea7aafdc1e6e6e27469cb44d3080
+127.0.0.1 - [127.0.0.1] - - [27/Apr/2020:20:38:06 +0000] "GET /postgres-backups-test/?location= HTTP/1.1" 200 128 "http://minio.127.0.0.1.nip.io/postgres-backups-test/?location=" "MinIO (linux; amd64) minio-go/v6.0.44" 566 0.001 [minio-minio-9000] [] 100.200.82.12:9000 128 0.000 200 a9e3a333b1c9992bf8f5b06b6ec03dec
+127.0.0.1 - [127.0.0.1] - - [27/Apr/2020:20:38:06 +0000] "HEAD /postgres-backups-test/ HTTP/1.1" 200 0 "-" "MinIO (linux; amd64) minio-go/v6.0.44" 453 0.001 [minio-minio-9000] [] 100.200.82.12:9000 0 0.000 200 9eccf24e04053894a858a915aaf97e47
+172.17.0.1 - [172.17.0.1] - - [27/Apr/2020:20:38:13 +0000] "GET /consul-backups/?location= HTTP/1.1" 308 177 "-" "MinIO (linux; amd64) minio-go/v6.0.44" 478 0.000 [minio-minio-9000] [] - - - - d6e392bc07fa52b091d434b57e4a48fe
+127.0.0.1 - [127.0.0.1] - - [27/Apr/2020:20:38:13 +0000] "GET /consul-backups/?location= HTTP/1.1" 200 128 "http://minio.127.0.0.1.nip.io/consul-backups/?location=" "MinIO (linux; amd64) minio-go/v6.0.44" 552 0.018 [minio-minio-9000] [] 100.200.82.12:9000 128 0.020 200 a9f5bf7b8df0c59f4c1a6d12e31aee4a
+127.0.0.1 - [127.0.0.1] - - [27/Apr/2020:20:38:13 +0000] "HEAD /consul-backups/ HTTP/1.1" 200 0 "-" "MinIO (linux; amd64) minio-go/v6.0.44" 446 0.001 [minio-minio-9000] [] 100.200.82.12:9000 0 0.000 200 13915b889c8191a6aabae72d3c98d538
+172.17.0.1 - [172.17.0.1] - - [27/Apr/2020:20:38:26 +0000] "GET /velero/?location= HTTP/1.1" 308 177 "-" "MinIO (linux; amd64) minio-go/v6.0.44" 470 0.000 [minio-minio-9000] [] - - - - 56cfac1322f619e32f829fcd6bc6f002
+127.0.0.1 - [127.0.0.1] - - [27/Apr/2020:20:38:26 +0000] "GET /velero/?location= HTTP/1.1" 404 247 "http://minio.127.0.0.1.nip.io/velero/?location=" "MinIO (linux; amd64) minio-go/v6.0.44" 536 0.001 [minio-minio-9000] [] 100.200.82.12:9000 285 0.000 404 ce012d4e91deb77cbc4cff8bd865609e
+127.0.0.1 - [127.0.0.1] - - [27/Apr/2020:20:38:26 +0000] "PUT /velero/ HTTP/1.1" 200 0 "-" "MinIO (linux; amd64) minio-go/v6.0.44" 683 0.000 [minio-minio-9000] [] 100.200.82.12:9000 0 0.000 200 753b45dc493e08a1253f07d3119dbe76
+I0427 20:39:56.220850       8 backend_ssl.go:66] Adding Secret "harbor/harbor-ingress" to the local store
+I0427 20:39:56.221244       8 event.go:258] Event(v1.ObjectReference{Kind:"Ingress", Namespace:"harbor", Name:"harbor-ingress", UID:"760712d7-3191-44e9-a8e6-0fa92610eeb5", APIVersion:"networking.k8s.io/v1beta1", ResourceVersion:"3200", FieldPath:""}): type: 'Normal' reason: 'CREATE' Ingress harbor/harbor-ingress
+I0427 20:39:56.254396       8 store.go:449] secret harbor/harbor-ingress was updated and it is used in ingress annotations. Parsing...
+I0427 20:39:56.263815       8 backend_ssl.go:58] Updating Secret "harbor/harbor-ingress" in the local store
+W0427 20:39:56.913149       8 controller.go:878] Service "harbor/harbor-portal" does not have any active Endpoint.
+W0427 20:39:56.913192       8 controller.go:878] Service "harbor/harbor-core" does not have any active Endpoint.
+I0427 20:39:56.913351       8 controller.go:133] Configuration changes detected, backend reload required.
+I0427 20:39:57.074610       8 controller.go:149] Backend successfully reloaded.
+W0427 20:40:00.246433       8 controller.go:878] Service "harbor/harbor-portal" does not have any active Endpoint.
+W0427 20:40:00.246470       8 controller.go:878] Service "harbor/harbor-core" does not have any active Endpoint.
+W0427 20:40:03.580518       8 controller.go:878] Service "harbor/harbor-portal" does not have any active Endpoint.
+W0427 20:40:03.580560       8 controller.go:878] Service "harbor/harbor-core" does not have any active Endpoint.
+W0427 20:40:06.913121       8 controller.go:878] Service "harbor/harbor-portal" does not have any active Endpoint.
+W0427 20:40:06.913153       8 controller.go:878] Service "harbor/harbor-core" does not have any active Endpoint.
+W0427 20:40:10.246430       8 controller.go:878] Service "harbor/harbor-portal" does not have any active Endpoint.
+W0427 20:40:10.246467       8 controller.go:878] Service "harbor/harbor-core" does not have any active Endpoint.
+W0427 20:40:13.579805       8 controller.go:878] Service "harbor/harbor-core" does not have any active Endpoint.
+I0427 20:40:14.458048       8 event.go:258] Event(v1.ObjectReference{Kind:"Ingress", Namespace:"monitoring", Name:"prometheus", UID:"e94797be-619a-4317-a091-395304bb954b", APIVersion:"networking.k8s.io/v1beta1", ResourceVersion:"3482", FieldPath:""}): type: 'Normal' reason: 'CREATE' Ingress monitoring/prometheus
+W0427 20:40:14.458208       8 backend_ssl.go:46] Error obtaining X.509 certificate: no object matching key "monitoring/prometheus-tls" in local store
+I0427 20:40:14.525386       8 store.go:422] secret monitoring/prometheus-tls was added and it is used in ingress annotations. Parsing...
+W0427 20:40:14.525876       8 backend_ssl.go:46] Error obtaining X.509 certificate: unexpected error creating SSL Cert: no certificate PEM data found, make sure certificate content starts with 'BEGIN CERTIFICATE'
+I0427 20:40:14.551584       8 store.go:449] secret monitoring/prometheus-tls was updated and it is used in ingress annotations. Parsing...
+I0427 20:40:14.552419       8 backend_ssl.go:66] Adding Secret "monitoring/prometheus-tls" to the local store
+I0427 20:40:14.858287       8 event.go:258] Event(v1.ObjectReference{Kind:"Ingress", Namespace:"monitoring", Name:"grafana", UID:"7952f7e5-3d68-447f-95b3-ffc2c264db2b", APIVersion:"networking.k8s.io/v1beta1", ResourceVersion:"3497", FieldPath:""}): type: 'Normal' reason: 'CREATE' Ingress monitoring/grafana
+W0427 20:40:14.858390       8 backend_ssl.go:46] Error obtaining X.509 certificate: no object matching key "monitoring/grafana-tls" in local store
+I0427 20:40:15.258122       8 event.go:258] Event(v1.ObjectReference{Kind:"Ingress", Namespace:"monitoring", Name:"alertmanager", UID:"12652c82-6c8d-425e-8dab-7970af48d6c3", APIVersion:"networking.k8s.io/v1beta1", ResourceVersion:"3501", FieldPath:""}): type: 'Normal' reason: 'CREATE' Ingress monitoring/alertmanager
+W0427 20:40:15.258460       8 backend_ssl.go:46] Error obtaining X.509 certificate: no object matching key "monitoring/alertmanager-tls" in local store
+I0427 20:40:15.329147       8 store.go:422] secret monitoring/alertmanager-tls was added and it is used in ingress annotations. Parsing...
+W0427 20:40:15.329531       8 backend_ssl.go:46] Error obtaining X.509 certificate: unexpected error creating SSL Cert: no certificate PEM data found, make sure certificate content starts with 'BEGIN CERTIFICATE'
+I0427 20:40:15.357314       8 store.go:449] secret monitoring/alertmanager-tls was updated and it is used in ingress annotations. Parsing...
+I0427 20:40:15.358293       8 backend_ssl.go:66] Adding Secret "monitoring/alertmanager-tls" to the local store
+I0427 20:40:15.686088       8 store.go:422] secret monitoring/grafana-tls was added and it is used in ingress annotations. Parsing...
+W0427 20:40:15.686356       8 backend_ssl.go:46] Error obtaining X.509 certificate: unexpected error creating SSL Cert: no certificate PEM data found, make sure certificate content starts with 'BEGIN CERTIFICATE'
+I0427 20:40:16.266654       8 store.go:449] secret monitoring/grafana-tls was updated and it is used in ingress annotations. Parsing...
+I0427 20:40:16.267595       8 backend_ssl.go:66] Adding Secret "monitoring/grafana-tls" to the local store
+W0427 20:40:16.913252       8 controller.go:878] Service "harbor/harbor-core" does not have any active Endpoint.
+W0427 20:40:16.913285       8 controller.go:781] Error obtaining Endpoints for Service "monitoring/grafana-service": no object matching key "monitoring/grafana-service" in local store
+W0427 20:40:16.913304       8 controller.go:878] Service "monitoring/prometheus-k8s" does not have any active Endpoint.
+W0427 20:40:16.913342       8 controller.go:878] Service "monitoring/alertmanager-main" does not have any active Endpoint.
+I0427 20:40:16.913667       8 controller.go:133] Configuration changes detected, backend reload required.
+I0427 20:40:17.055746       8 controller.go:149] Backend successfully reloaded.
+W0427 20:40:20.246503       8 controller.go:878] Service "harbor/harbor-core" does not have any active Endpoint.
+W0427 20:40:20.246538       8 controller.go:878] Service "monitoring/prometheus-k8s" does not have any active Endpoint.
+W0427 20:40:20.246549       8 controller.go:781] Error obtaining Endpoints for Service "monitoring/grafana-service": no object matching key "monitoring/grafana-service" in local store
+W0427 20:40:20.246568       8 controller.go:878] Service "monitoring/alertmanager-main" does not have any active Endpoint.
+W0427 20:40:23.579821       8 controller.go:878] Service "harbor/harbor-core" does not have any active Endpoint.
+W0427 20:40:23.579858       8 controller.go:878] Service "monitoring/prometheus-k8s" does not have any active Endpoint.
+W0427 20:40:23.579868       8 controller.go:781] Error obtaining Endpoints for Service "monitoring/grafana-service": no object matching key "monitoring/grafana-service" in local store
+W0427 20:40:23.579884       8 controller.go:878] Service "monitoring/alertmanager-main" does not have any active Endpoint.
+W0427 20:40:26.913169       8 controller.go:878] Service "harbor/harbor-core" does not have any active Endpoint.
+W0427 20:40:26.913207       8 controller.go:878] Service "monitoring/prometheus-k8s" does not have any active Endpoint.
+W0427 20:40:26.913220       8 controller.go:781] Error obtaining Endpoints for Service "monitoring/grafana-service": no object matching key "monitoring/grafana-service" in local store
+W0427 20:40:30.246562       8 controller.go:878] Service "harbor/harbor-core" does not have any active Endpoint.
+W0427 20:40:30.246822       8 controller.go:878] Service "monitoring/prometheus-k8s" does not have any active Endpoint.
+W0427 20:40:30.246911       8 controller.go:878] Service "monitoring/grafana-service" does not have any active Endpoint.
+I0427 20:40:30.247485       8 controller.go:133] Configuration changes detected, backend reload required.
+I0427 20:40:30.376882       8 controller.go:149] Backend successfully reloaded.
+W0427 20:40:33.579818       8 controller.go:878] Service "harbor/harbor-core" does not have any active Endpoint.
+W0427 20:40:33.579856       8 controller.go:878] Service "monitoring/prometheus-k8s" does not have any active Endpoint.
+W0427 20:40:33.579871       8 controller.go:878] Service "monitoring/grafana-service" does not have any active Endpoint.
+W0427 20:40:36.913181       8 controller.go:878] Service "harbor/harbor-core" does not have any active Endpoint.
+W0427 20:40:36.913221       8 controller.go:878] Service "monitoring/grafana-service" does not have any active Endpoint.
+W0427 20:40:36.913234       8 controller.go:878] Service "monitoring/prometheus-k8s" does not have any active Endpoint.
+W0427 20:40:40.246459       8 controller.go:878] Service "harbor/harbor-core" does not have any active Endpoint.
+W0427 20:40:40.246489       8 controller.go:878] Service "monitoring/prometheus-k8s" does not have any active Endpoint.
+W0427 20:40:40.246501       8 controller.go:878] Service "monitoring/grafana-service" does not have any active Endpoint.
+W0427 20:40:43.579868       8 controller.go:878] Service "harbor/harbor-core" does not have any active Endpoint.
+W0427 20:40:43.579909       8 controller.go:878] Service "monitoring/prometheus-k8s" does not have any active Endpoint.
+W0427 20:40:43.579923       8 controller.go:878] Service "monitoring/grafana-service" does not have any active Endpoint.
+172.17.0.1 - [172.17.0.1] - - [27/Apr/2020:20:40:44 +0000] "GET /thanos/?location= HTTP/1.1" 308 177 "-" "MinIO (linux; amd64) minio-go/v6.0.44" 470 0.000 [minio-minio-9000] [] - - - - b7a8ba67107b0e994ef7030a70e14c16
+127.0.0.1 - [127.0.0.1] - - [27/Apr/2020:20:40:44 +0000] "GET /thanos/?location= HTTP/1.1" 404 247 "http://minio.127.0.0.1.nip.io/thanos/?location=" "MinIO (linux; amd64) minio-go/v6.0.44" 536 0.002 [minio-minio-9000] [] 100.200.82.12:9000 285 0.004 404 cca6a9cf32acfca92df4b52185309119
+127.0.0.1 - [127.0.0.1] - - [27/Apr/2020:20:40:44 +0000] "PUT /thanos/ HTTP/1.1" 200 0 "-" "MinIO (linux; amd64) minio-go/v6.0.44" 683 0.017 [minio-minio-9000] [] 100.200.82.12:9000 0 0.016 200 73d15d9ed0a79ed6ba171bfcdd1c64e6
+W0427 20:40:45.260024       8 backend_ssl.go:46] Error obtaining X.509 certificate: no object matching key "monitoring/thanos-sidecar-tls" in local store
+I0427 20:40:45.260436       8 event.go:258] Event(v1.ObjectReference{Kind:"Ingress", Namespace:"monitoring", Name:"thanos-sidecar", UID:"bd22d10e-e3b8-41e6-a8a2-4f5513a62509", APIVersion:"networking.k8s.io/v1beta1", ResourceVersion:"4133", FieldPath:""}): type: 'Normal' reason: 'CREATE' Ingress monitoring/thanos-sidecar
+I0427 20:40:45.786850       8 store.go:422] secret monitoring/thanos-sidecar-tls was added and it is used in ingress annotations. Parsing...
+W0427 20:40:45.787237       8 backend_ssl.go:46] Error obtaining X.509 certificate: unexpected error creating SSL Cert: no certificate PEM data found, make sure certificate content starts with 'BEGIN CERTIFICATE'
+I0427 20:40:45.826378       8 store.go:449] secret monitoring/thanos-sidecar-tls was updated and it is used in ingress annotations. Parsing...
+I0427 20:40:45.829175       8 backend_ssl.go:66] Adding Secret "monitoring/thanos-sidecar-tls" to the local store
+W0427 20:40:46.913218       8 controller.go:878] Service "harbor/harbor-core" does not have any active Endpoint.
+W0427 20:40:46.913312       8 controller.go:878] Service "monitoring/prometheus-k8s" does not have any active Endpoint.
+W0427 20:40:46.913342       8 controller.go:878] Service "monitoring/grafana-service" does not have any active Endpoint.
+W0427 20:40:46.913413       8 controller.go:878] Service "monitoring/thanos-sidecar" does not have any active Endpoint.
+I0427 20:40:46.913696       8 controller.go:133] Configuration changes detected, backend reload required.
+I0427 20:40:47.147031       8 controller.go:149] Backend successfully reloaded.
+W0427 20:40:50.246423       8 controller.go:878] Service "harbor/harbor-core" does not have any active Endpoint.
+W0427 20:40:50.246464       8 controller.go:878] Service "monitoring/prometheus-k8s" does not have any active Endpoint.
+W0427 20:40:50.246480       8 controller.go:878] Service "monitoring/grafana-service" does not have any active Endpoint.
+W0427 20:40:50.246942       8 controller.go:878] Service "monitoring/thanos-sidecar" does not have any active Endpoint.
+W0427 20:40:53.581530       8 controller.go:878] Service "harbor/harbor-core" does not have any active Endpoint.
+W0427 20:40:53.581575       8 controller.go:878] Service "monitoring/grafana-service" does not have any active Endpoint.
+172.17.0.1 - [172.17.0.1] - - [27/Apr/2020:20:40:56 +0000] "GET /bundles/?location= HTTP/1.1" 308 177 "-" "MinIO (linux; amd64) minio-go/v6.0.44" 471 0.000 [minio-minio-9000] [] - - - - 77fe84b9ce27b5db08e0bdb5f5b1becc
+127.0.0.1 - [127.0.0.1] - - [27/Apr/2020:20:40:56 +0000] "GET /bundles/?location= HTTP/1.1" 404 248 "http://minio.127.0.0.1.nip.io/bundles/?location=" "MinIO (linux; amd64) minio-go/v6.0.44" 538 0.001 [minio-minio-9000] [] 100.200.82.12:9000 287 0.000 404 2cf6ec1efc34a5e18771b5ecbe1705e6
+127.0.0.1 - [127.0.0.1] - - [27/Apr/2020:20:40:56 +0000] "PUT /bundles/ HTTP/1.1" 200 0 "-" "MinIO (linux; amd64) minio-go/v6.0.44" 684 0.001 [minio-minio-9000] [] 100.200.82.12:9000 0 0.000 200 54b0d199941c49219561065f592605aa
+127.0.0.1 - [127.0.0.1] - - [27/Apr/2020:20:40:56 +0000] "PUT /bundles/automobile.tar.gz HTTP/1.1" 200 0 "-" "MinIO (linux; amd64) minio-go/v6.0.44" 1051 0.005 [minio-minio-9000] [] 100.200.82.12:9000 0 0.004 200 96b02681abfad973368b0f56d3400dfc
+127.0.0.1 - [127.0.0.1] - - [27/Apr/2020:20:40:56 +0000] "PUT /bundles/?policy= HTTP/1.1" 204 0 "-" "MinIO (linux; amd64) minio-go/v6.0.44" 605 0.002 [minio-minio-9000] [] 100.200.82.12:9000 0 0.004 204 d6e087a3775112d1349a26bba979d14e
+127.0.0.1 - [127.0.0.1] - - [27/Apr/2020:20:40:56 +0000] "GET / HTTP/1.1" 403 226 "-" "Go-http-client/1.1" 103 0.001 [minio-minio-9000] [] 100.200.82.12:9000 226 0.000 403 1ac194ee89eddfe9e466dbde95070133
+127.0.0.1 - [127.0.0.1] - - [27/Apr/2020:20:40:56 +0000] "GET /api/v1/targets HTTP/2.0" 200 29347 "-" "Go-http-client/2.0" 56 0.031 [monitoring-prometheus-k8s-9090] [] 100.200.82.49:9090 29457 0.032 200 e608edbd0dec159591b8b99b3f3c63e4
+W0427 20:40:56.913122       8 controller.go:878] Service "harbor/harbor-core" does not have any active Endpoint.
+W0427 20:40:56.913153       8 controller.go:878] Service "monitoring/grafana-service" does not have any active Endpoint.
+127.0.0.1 - [127.0.0.1] - - [27/Apr/2020:20:40:56 +0000] "GET /api/v1/alerts HTTP/2.0" 200 70 "-" "Go-http-client/2.0" 17 0.001 [monitoring-prometheus-k8s-9090] [] 100.200.82.49:9090 70 0.004 200 ae81c763a3d04ca15ba3c6007ba55bf3
+W0427 20:41:00.246495       8 controller.go:878] Service "harbor/harbor-core" does not have any active Endpoint.
+W0427 20:41:00.246535       8 controller.go:878] Service "monitoring/grafana-service" does not have any active Endpoint.
+W0427 20:41:03.579831       8 controller.go:878] Service "harbor/harbor-core" does not have any active Endpoint.
+W0427 20:41:03.579887       8 controller.go:878] Service "monitoring/grafana-service" does not have any active Endpoint.
+W0427 20:41:06.913144       8 controller.go:878] Service "harbor/harbor-core" does not have any active Endpoint.
+W0427 20:41:06.913191       8 controller.go:878] Service "monitoring/grafana-service" does not have any active Endpoint.
+W0427 20:41:10.246455       8 controller.go:878] Service "harbor/harbor-core" does not have any active Endpoint.
+W0427 20:41:13.579883       8 controller.go:878] Service "harbor/harbor-core" does not have any active Endpoint.
+W0427 20:41:16.913174       8 controller.go:878] Service "harbor/harbor-core" does not have any active Endpoint.
+W0427 20:41:20.246467       8 controller.go:878] Service "harbor/harbor-core" does not have any active Endpoint.
+W0427 20:41:20.246515       8 controller.go:878] Service "monitoring/grafana-service" does not have any active Endpoint.
+W0427 20:41:23.579866       8 controller.go:878] Service "harbor/harbor-core" does not have any active Endpoint.
+W0427 20:41:23.579913       8 controller.go:878] Service "monitoring/grafana-service" does not have any active Endpoint.
+W0427 20:41:26.913210       8 controller.go:878] Service "monitoring/grafana-service" does not have any active Endpoint.
+W0427 20:41:30.246547       8 controller.go:878] Service "monitoring/grafana-service" does not have any active Endpoint.
+W0427 20:41:33.579833       8 controller.go:878] Service "monitoring/grafana-service" does not have any active Endpoint.
+W0427 20:41:36.913119       8 controller.go:878] Service "monitoring/grafana-service" does not have any active Endpoint.
+W0427 20:41:40.246479       8 controller.go:878] Service "monitoring/grafana-service" does not have any active Endpoint.
+127.0.0.1 - [127.0.0.1] - - [27/Apr/2020:20:43:34 +0000] "GET / HTTP/1.1" 403 226 "-" "Go-http-client/1.1" 103 0.002 [minio-minio-9000] [] 100.200.82.12:9000 226 0.004 403 f1a049da844b47a42136e18dec3fc51b
+127.0.0.1 - [127.0.0.1] - - [27/Apr/2020:20:43:34 +0000] "GET /api/v1/targets HTTP/1.1" 200 29191 "-" "Go-http-client/1.1" 122 0.036 [monitoring-prometheus-k8s-9090] [] 100.200.82.49:9090 29240 0.036 200 722ec768ef508b8344bbd1828ecb87ca
+127.0.0.1 - [127.0.0.1] - - [27/Apr/2020:20:43:34 +0000] "GET /api/v1/alerts HTTP/1.1" 200 1201 "-" "Go-http-client/1.1" 121 0.002 [monitoring-prometheus-k8s-9090] [] 100.200.82.48:9090 1201 0.000 200 7788c78ff6317af6f04bf67f62d4ddf7
+I0427 20:43:34.901264       8 event.go:258] Event(v1.ObjectReference{Kind:"Ingress", Namespace:"opa-test-production", Name:"sample-ingress", UID:"866b44c4-8275-4a5a-8fd8-09a2ab398605", APIVersion:"networking.k8s.io/v1beta1", ResourceVersion:"6007", FieldPath:""}): type: 'Normal' reason: 'CREATE' Ingress opa-test-production/sample-ingress
+W0427 20:43:37.807987       8 controller.go:781] Error obtaining Endpoints for Service "opa-test-production/nginx": no object matching key "opa-test-production/nginx" in local store
+I0427 20:43:37.808216       8 controller.go:133] Configuration changes detected, backend reload required.
+I0427 20:43:37.909296       8 controller.go:149] Backend successfully reloaded.
+I0427 20:43:40.612856       8 event.go:258] Event(v1.ObjectReference{Kind:"Ingress", Namespace:"opa-test-production", Name:"sample-ingress", UID:"866b44c4-8275-4a5a-8fd8-09a2ab398605", APIVersion:"networking.k8s.io/v1beta1", ResourceVersion:"6149", FieldPath:""}): type: 'Normal' reason: 'DELETE' Ingress opa-test-production/sample-ingress
+E0427 20:43:40.615184       8 event.go:240] Server rejected event '&v1.Event{TypeMeta:v1.TypeMeta{Kind:"", APIVersion:""}, ObjectMeta:v1.ObjectMeta{Name:"sample-ingress.1609c7fa19c1fc14", GenerateName:"", Namespace:"opa-test-production", SelfLink:"", UID:"", ResourceVersion:"", Generation:0, CreationTimestamp:v1.Time{Time:time.Time{wall:0x0, ext:0, loc:(*time.Location)(nil)}}, DeletionTimestamp:(*v1.Time)(nil), DeletionGracePeriodSeconds:(*int64)(nil), Labels:map[string]string(nil), Annotations:map[string]string(nil), OwnerReferences:[]v1.OwnerReference(nil), Finalizers:[]string(nil), ClusterName:"", ManagedFields:[]v1.ManagedFieldsEntry(nil)}, InvolvedObject:v1.ObjectReference{Kind:"Ingress", Namespace:"opa-test-production", Name:"sample-ingress", UID:"866b44c4-8275-4a5a-8fd8-09a2ab398605", APIVersion:"networking.k8s.io/v1beta1", ResourceVersion:"6149", FieldPath:""}, Reason:"DELETE", Message:"Ingress opa-test-production/sample-ingress", Source:v1.EventSource{Component:"nginx-ingress-controller", Host:""}, FirstTimestamp:v1.Time{Time:time.Time{wall:0xbfa1eedf24852414, ext:477297176443, loc:(*time.Location)(0x26a7b20)}}, LastTimestamp:v1.Time{Time:time.Time{wall:0xbfa1eedf24852414, ext:477297176443, loc:(*time.Location)(0x26a7b20)}}, Count:1, Type:"Normal", EventTime:v1.MicroTime{Time:time.Time{wall:0x0, ext:0, loc:(*time.Location)(nil)}}, Series:(*v1.EventSeries)(nil), Action:"", Related:(*v1.ObjectReference)(nil), ReportingController:"", ReportingInstance:""}': 'events "sample-ingress.1609c7fa19c1fc14" is forbidden: unable to create new content in namespace opa-test-production because it is being terminated' (will not retry!)
+I0427 20:43:41.141534       8 controller.go:133] Configuration changes detected, backend reload required.
+I0427 20:43:41.303811       8 controller.go:149] Backend successfully reloaded.
+127.0.0.1 - [127.0.0.1] - - [27/Apr/2020:20:43:50 +0000] "GET /consul-backups?marker=consul%2Fbackups%2Fvault%2Fconsul-server%2F2020-04-27_20-43-34&max-keys=500 HTTP/1.1" 200 458 "-" "aws-sdk-go/1.29.25 (go1.13.10; linux; amd64)" 556 0.002 [minio-minio-9000] [] 100.200.82.12:9000 691 0.004 200 db35a78947c7b5da7c90e7f5a85fbcf6
+127.0.0.1 - [127.0.0.1] - - [27/Apr/2020:20:44:09 +0000] "GET /postgres-backups-test?marker=postgres-7b8z59%2Fwal%2Fbasebackups_005&max-keys=500 HTTP/1.1" 200 1791 "-" "aws-sdk-go/1.29.25 (go1.13.10; linux; amd64)" 540 0.003 [minio-minio-9000] [] 100.200.82.12:9000 13002 0.004 200 0bd5b8871d8999da8bb21255ed52ae6e
+127.0.0.1 - [127.0.0.1] - - [27/Apr/2020:20:44:09 +0000] "GET /postgres-backups-test?marker=postgres-7b8z59%2Fwal%2Fwal_005&max-keys=500 HTTP/1.1" 200 1595 "-" "aws-sdk-go/1.29.25 (go1.13.10; linux; amd64)" 532 0.002 [minio-minio-9000] [] 100.200.82.12:9000 10984 0.000 200 af68d725fbedc00d7e39654b9044d263
+127.0.0.1 - [127.0.0.1] - - [27/Apr/2020:20:44:14 +0000] "GET /postgres-backups-test?marker=postgres-7b8z59%2Fwal%2Fbasebackups_005&max-keys=500 HTTP/1.1" 200 1791 "-" "aws-sdk-go/1.29.25 (go1.13.10; linux; amd64)" 540 0.003 [minio-minio-9000] [] 100.200.82.12:9000 13002 0.000 200 a9fd87aed9ccafcafad5fbfc47dba1fe
+127.0.0.1 - [127.0.0.1] - - [27/Apr/2020:20:44:14 +0000] "GET /postgres-backups-test?marker=postgres-7b8z59%2Fwal%2Fwal_005&max-keys=500 HTTP/1.1" 200 1595 "-" "aws-sdk-go/1.29.25 (go1.13.10; linux; amd64)" 532 0.002 [minio-minio-9000] [] 100.200.82.12:9000 10984 0.000 200 5fc0cf82bc297c19770f0e4dece63d36
+127.0.0.1 - [127.0.0.1] - - [27/Apr/2020:20:44:19 +0000] "GET /postgres-backups-test?marker=postgres-7b8z59%2Fwal%2Fbasebackups_005&max-keys=500 HTTP/1.1" 200 1791 "-" "aws-sdk-go/1.29.25 (go1.13.10; linux; amd64)" 540 0.003 [minio-minio-9000] [] 100.200.82.12:9000 13002 0.000 200 675db61253f4f7a90492eed8afdba3b2
+127.0.0.1 - [127.0.0.1] - - [27/Apr/2020:20:44:19 +0000] "GET /postgres-backups-test?marker=postgres-7b8z59%2Fwal%2Fwal_005&max-keys=500 HTTP/1.1" 200 1595 "-" "aws-sdk-go/1.29.25 (go1.13.10; linux; amd64)" 532 0.011 [minio-minio-9000] [] 100.200.82.12:9000 10984 0.012 200 94dc4b125fe137b431b17840a93a675f
+127.0.0.1 - [127.0.0.1] - - [27/Apr/2020:20:44:24 +0000] "GET /postgres-backups-test?marker=postgres-7b8z59%2Fwal%2Fbasebackups_005&max-keys=500 HTTP/1.1" 200 1791 "-" "aws-sdk-go/1.29.25 (go1.13.10; linux; amd64)" 540 0.003 [minio-minio-9000] [] 100.200.82.12:9000 13002 0.004 200 265cfc361058c6c858e6a34209ba5895
+127.0.0.1 - [127.0.0.1] - - [27/Apr/2020:20:44:24 +0000] "GET /postgres-backups-test?marker=postgres-7b8z59%2Fwal%2Fwal_005&max-keys=500 HTTP/1.1" 200 1595 "-" "aws-sdk-go/1.29.25 (go1.13.10; linux; amd64)" 532 0.002 [minio-minio-9000] [] 100.200.82.12:9000 10984 0.004 200 ea9908af5141e04f234be937d23ada47
+127.0.0.1 - [127.0.0.1] - - [27/Apr/2020:20:44:29 +0000] "GET /postgres-backups-test?marker=postgres-7b8z59%2Fwal%2Fbasebackups_005&max-keys=500 HTTP/1.1" 200 1791 "-" "aws-sdk-go/1.29.25 (go1.13.10; linux; amd64)" 540 0.002 [minio-minio-9000] [] 100.200.82.12:9000 13002 0.000 200 dd0dcdcf99da546eea0a8669fdb73748
+127.0.0.1 - [127.0.0.1] - - [27/Apr/2020:20:44:29 +0000] "GET /postgres-backups-test?marker=postgres-7b8z59%2Fwal%2Fwal_005&max-keys=500 HTTP/1.1" 200 1595 "-" "aws-sdk-go/1.29.25 (go1.13.10; linux; amd64)" 532 0.002 [minio-minio-9000] [] 100.200.82.12:9000 10984 0.000 200 88346711b0c52c5378b88d2303da8632
+127.0.0.1 - [127.0.0.1] - - [27/Apr/2020:20:44:34 +0000] "GET /postgres-backups-test?marker=postgres-7b8z59%2Fwal%2Fbasebackups_005&max-keys=500 HTTP/1.1" 200 1791 "-" "aws-sdk-go/1.29.25 (go1.13.10; linux; amd64)" 540 0.002 [minio-minio-9000] [] 100.200.82.12:9000 13002 0.004 200 51f72014549360f7a87d7d668910a65b
+127.0.0.1 - [127.0.0.1] - - [27/Apr/2020:20:44:34 +0000] "GET /postgres-backups-test?marker=postgres-7b8z59%2Fwal%2Fwal_005&max-keys=500 HTTP/1.1" 200 1595 "-" "aws-sdk-go/1.29.25 (go1.13.10; linux; amd64)" 532 0.075 [minio-minio-9000] [] 100.200.82.12:9000 10984 0.076 200 fde1f499468ded14e61610373e645234
+127.0.0.1 - [127.0.0.1] - - [27/Apr/2020:20:44:39 +0000] "GET /postgres-backups-test?marker=postgres-7b8z59%2Fwal%2Fbasebackups_005&max-keys=500 HTTP/1.1" 200 1791 "-" "aws-sdk-go/1.29.25 (go1.13.10; linux; amd64)" 540 0.003 [minio-minio-9000] [] 100.200.82.12:9000 13002 0.004 200 7e1d10a2c65a832fa492459c6bd56fd1
+127.0.0.1 - [127.0.0.1] - - [27/Apr/2020:20:44:39 +0000] "GET /postgres-backups-test?marker=postgres-7b8z59%2Fwal%2Fwal_005&max-keys=500 HTTP/1.1" 200 1595 "-" "aws-sdk-go/1.29.25 (go1.13.10; linux; amd64)" 532 0.003 [minio-minio-9000] [] 100.200.82.12:9000 10984 0.000 200 fc0e191abfe5167f47a357da1e5126f4
+127.0.0.1 - [127.0.0.1] - - [27/Apr/2020:20:44:44 +0000] "GET /postgres-backups-test?marker=postgres-7b8z59%2Fwal%2Fbasebackups_005&max-keys=500 HTTP/1.1" 200 2091 "-" "aws-sdk-go/1.29.25 (go1.13.10; linux; amd64)" 540 0.003 [minio-minio-9000] [] 100.200.82.12:9000 16126 0.004 200 5b45794a835b7c6f3ff2a84d06dd638b
+127.0.0.1 - [127.0.0.1] - - [27/Apr/2020:20:44:44 +0000] "GET /postgres-backups-test?marker=postgres-7b8z59%2Fwal%2Fwal_005&max-keys=500 HTTP/1.1" 200 1702 "-" "aws-sdk-go/1.29.25 (go1.13.10; linux; amd64)" 532 0.083 [minio-minio-9000] [] 100.200.82.12:9000 12097 0.084 200 10c126a76fccf905fb750f907a5df064

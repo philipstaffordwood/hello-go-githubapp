@@ -1,0 +1,1061 @@
+apiVersion: v1
+items:
+- items:
+  - apiVersion: v1
+    data:
+      elasticsearch.conf: |
+        @type elasticsearch
+        @log_level warn
+        include_tag_key true
+        ssl_version TLSv1_2
+        host "#{ENV['FLUENT_ELASTICSEARCH_HOST']}"
+        port "#{ENV['FLUENT_ELASTICSEARCH_PORT']}"
+        path "#{ENV['FLUENT_ELASTICSEARCH_PATH']}"
+        scheme "#{ENV['FLUENT_ELASTICSEARCH_SCHEME'] || 'https'}"
+        ssl_verify "#{ENV['FLUENT_ELASTICSEARCH_SSL_VERIFY'] || 'false'}"
+        user "#{ENV['FLUENT_ELASTICSEARCH_USER']}"
+        password "#{ENV['FLUENT_ELASTICSEARCH_PASSWORD']}"
+        reload_connections "#{ENV['FLUENT_ELASTICSEARCH_RELOAD_CONNECTIONS'] || 'true'}"
+        logstash_prefix "#{ENV['FLUENT_ELASTICSEARCH_LOGSTASH_PREFIX'] || 'logstash'}"
+        logstash_format true
+        type_name fluentd
+        buffer_chunk_limit "#{ENV['FLUENT_ELASTICSEARCH_BUFFER_CHUNK_LIMIT_SIZE'] || '512M'}"
+        buffer_queue_limit "#{ENV['FLUENT_ELASTICSEARCH_BUFFER_QUEUE_LIMIT_LENGTH'] || '32'}"
+        flush_interval "#{ENV['FLUENT_ELASTICSEARCH_BUFFER_FLUSH_INTERVAL'] || '5s'}"
+        max_retry_wait "#{ENV['FLUENT_ELASTICSEARCH_BUFFER_RETRY_MAX_INTERVAL'] || '30'}"
+        num_threads "#{ENV['FLUENT_ELASTICSEARCH_BUFFER_FLUSH_THREAD_COUNT'] || '8'}"
+    kind: ConfigMap
+    metadata:
+      creationTimestamp: "2020-04-27T20:38:36Z"
+      name: fluentd-extra
+      namespace: kube-fluentd-operator
+      resourceVersion: "2580"
+      selfLink: /api/v1/namespaces/kube-fluentd-operator/configmaps/fluentd-extra
+      uid: aa5f5af3-5228-4a8a-a5f9-b5bf121441b7
+  metadata: {}
+- items:
+  - apiVersion: v1
+    kind: Pod
+    metadata:
+      annotations:
+        cni.projectcalico.org/podIP: 100.200.82.58/32
+      creationTimestamp: "2020-04-27T20:41:23Z"
+      generateName: kube-fluentd-operator-log-router-
+      labels:
+        app: kube-fluentd-operator
+        controller-revision-hash: 68786b6b84
+        pod-template-generation: "3"
+      name: kube-fluentd-operator-log-router-jq6s7
+      namespace: kube-fluentd-operator
+      ownerReferences:
+      - apiVersion: apps/v1
+        blockOwnerDeletion: true
+        controller: true
+        kind: DaemonSet
+        name: kube-fluentd-operator-log-router
+        uid: 37f7251e-dad9-4329-9583-38bf82619c0a
+      resourceVersion: "5270"
+      selfLink: /api/v1/namespaces/kube-fluentd-operator/pods/kube-fluentd-operator-log-router-jq6s7
+      uid: 8a924cdc-3667-480e-a6f3-c3e10d157a1d
+    spec:
+      affinity:
+        nodeAffinity:
+          requiredDuringSchedulingIgnoredDuringExecution:
+            nodeSelectorTerms:
+            - matchFields:
+              - key: metadata.name
+                operator: In
+                values:
+                - kind-control-plane
+      containers:
+      - env:
+        - name: FLUENT_ELASTICSEARCH_HOST
+          valueFrom:
+            secretKeyRef:
+              key: FLUENT_ELASTICSEARCH_HOST
+              name: fluentd
+        - name: FLUENT_ELASTICSEARCH_PORT
+          valueFrom:
+            secretKeyRef:
+              key: FLUENT_ELASTICSEARCH_PORT
+              name: fluentd
+        - name: FLUENT_ELASTICSEARCH_USER
+          valueFrom:
+            secretKeyRef:
+              key: FLUENT_ELASTICSEARCH_USER
+              name: fluentd
+        - name: FLUENT_ELASTICSEARCH_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              key: FLUENT_ELASTICSEARCH_PASSWORD
+              name: fluentd
+        - name: FLUENT_ELASTICSEARCH_SCHEME
+          valueFrom:
+            secretKeyRef:
+              key: FLUENT_ELASTICSEARCH_SCHEME
+              name: fluentd
+        - name: FLUENT_ELASTICSEARCH_SSL_VERIFY
+          valueFrom:
+            secretKeyRef:
+              key: FLUENT_ELASTICSEARCH_SSL_VERIFY
+              name: fluentd
+        - name: K8S_NODE_NAME
+          valueFrom:
+            fieldRef:
+              apiVersion: v1
+              fieldPath: spec.nodeName
+        - name: STAKATER_FLUENTD_EXTRA_CONFIGMAP
+          value: 62d8e247e5f59456b514acfe1af775e8305d1705
+        - name: STAKATER_FLUENTD_SECRET
+          value: ee61325fd4922ff16c8e356ab2005fdf3d1ca7a8
+        image: jvassev/kube-fluentd-operator:v1.11.0
+        imagePullPolicy: IfNotPresent
+        name: fluentd
+        resources: {}
+        terminationMessagePath: /dev/termination-log
+        terminationMessagePolicy: File
+        volumeMounts:
+        - mountPath: /etc/fluentd/config.d
+          name: fluentextra
+        - mountPath: /fluentd/etc
+          name: fluentconf
+        - mountPath: /var/log
+          name: varlog
+        - mountPath: /var/lib/kubelet
+          name: kubeletroot
+          readOnly: true
+        - mountPath: /var/lib/docker/containers
+          name: varlibdockercontainers
+          readOnly: true
+        - mountPath: /var/run/secrets/kubernetes.io/serviceaccount
+          name: kube-fluentd-operator-log-router-token-m2ckp
+          readOnly: true
+      - command:
+        - /bin/config-reloader
+        - --datasource=default
+        - --interval=45
+        - --log-level=warn
+        - --output-dir=/fluentd/etc
+        - --templates-dir=/templates
+        - --prometheus-enabled
+        - --id=kube-fluentd-operator-log-router
+        - --meta-key=meta
+        - --meta-values=cluster=test
+        - --fluentd-binary
+        - /usr/local/bundle/bin/fluentd -p /fluentd/plugins
+        - --kubelet-root
+        - /var/lib/kubelet
+        image: jvassev/kube-fluentd-operator:v1.11.0
+        imagePullPolicy: IfNotPresent
+        name: reloader
+        resources: {}
+        terminationMessagePath: /dev/termination-log
+        terminationMessagePolicy: File
+        volumeMounts:
+        - mountPath: /fluentd/etc
+          name: fluentconf
+        - mountPath: /var/run/secrets/kubernetes.io/serviceaccount
+          name: kube-fluentd-operator-log-router-token-m2ckp
+          readOnly: true
+      dnsPolicy: ClusterFirst
+      enableServiceLinks: true
+      nodeName: kind-control-plane
+      priority: 0
+      restartPolicy: Always
+      schedulerName: default-scheduler
+      securityContext: {}
+      serviceAccount: kube-fluentd-operator-log-router
+      serviceAccountName: kube-fluentd-operator-log-router
+      terminationGracePeriodSeconds: 30
+      tolerations:
+      - effect: NoExecute
+        key: node.kubernetes.io/not-ready
+        operator: Exists
+      - effect: NoExecute
+        key: node.kubernetes.io/unreachable
+        operator: Exists
+      - effect: NoSchedule
+        key: node.kubernetes.io/disk-pressure
+        operator: Exists
+      - effect: NoSchedule
+        key: node.kubernetes.io/memory-pressure
+        operator: Exists
+      - effect: NoSchedule
+        key: node.kubernetes.io/pid-pressure
+        operator: Exists
+      - effect: NoSchedule
+        key: node.kubernetes.io/unschedulable
+        operator: Exists
+      volumes:
+      - emptyDir: {}
+        name: fluentconf
+      - configMap:
+          defaultMode: 420
+          name: fluentd-extra
+          optional: true
+        name: fluentextra
+      - hostPath:
+          path: /var/lib/kubelet
+          type: ""
+        name: kubeletroot
+      - hostPath:
+          path: /var/log
+          type: ""
+        name: varlog
+      - hostPath:
+          path: /var/lib/docker/containers
+          type: ""
+        name: varlibdockercontainers
+      - name: kube-fluentd-operator-log-router-token-m2ckp
+        secret:
+          defaultMode: 420
+          secretName: kube-fluentd-operator-log-router-token-m2ckp
+    status:
+      conditions:
+      - lastProbeTime: null
+        lastTransitionTime: "2020-04-27T20:41:23Z"
+        status: "True"
+        type: Initialized
+      - lastProbeTime: null
+        lastTransitionTime: "2020-04-27T20:41:26Z"
+        status: "True"
+        type: Ready
+      - lastProbeTime: null
+        lastTransitionTime: "2020-04-27T20:41:26Z"
+        status: "True"
+        type: ContainersReady
+      - lastProbeTime: null
+        lastTransitionTime: "2020-04-27T20:41:23Z"
+        status: "True"
+        type: PodScheduled
+      containerStatuses:
+      - containerID: containerd://068242ab041bf0d2e8dd406421c029d7e509986cedb8086f31796cbe9975f014
+        image: docker.io/jvassev/kube-fluentd-operator:v1.11.0
+        imageID: docker.io/jvassev/kube-fluentd-operator@sha256:e589767d4b40bab6e3efc8f6f78526117919e900e29976017078e69c4ae36fa9
+        lastState: {}
+        name: fluentd
+        ready: true
+        restartCount: 0
+        state:
+          running:
+            startedAt: "2020-04-27T20:41:25Z"
+      - containerID: containerd://5c6e3b394fe3f66a327bfd870ed743d7b52eca72a006dfa6ca7059c70cf0f667
+        image: docker.io/jvassev/kube-fluentd-operator:v1.11.0
+        imageID: docker.io/jvassev/kube-fluentd-operator@sha256:e589767d4b40bab6e3efc8f6f78526117919e900e29976017078e69c4ae36fa9
+        lastState: {}
+        name: reloader
+        ready: true
+        restartCount: 0
+        state:
+          running:
+            startedAt: "2020-04-27T20:41:26Z"
+      hostIP: 172.17.0.2
+      phase: Running
+      podIP: 100.200.82.58
+      qosClass: BestEffort
+      startTime: "2020-04-27T20:41:23Z"
+  metadata: {}
+- items:
+  - apiVersion: v1
+    kind: ServiceAccount
+    metadata:
+      creationTimestamp: "2020-04-27T20:38:35Z"
+      name: default
+      namespace: kube-fluentd-operator
+      resourceVersion: "2575"
+      selfLink: /api/v1/namespaces/kube-fluentd-operator/serviceaccounts/default
+      uid: 75bcb555-436c-400e-ac72-ea42a7cd74f8
+    secrets:
+    - name: default-token-ncz54
+  - apiVersion: v1
+    kind: ServiceAccount
+    metadata:
+      creationTimestamp: "2020-04-27T20:38:36Z"
+      labels:
+        app: kube-fluentd-operator
+      name: kube-fluentd-operator-log-router
+      namespace: kube-fluentd-operator
+      resourceVersion: "2586"
+      selfLink: /api/v1/namespaces/kube-fluentd-operator/serviceaccounts/kube-fluentd-operator-log-router
+      uid: f8d3853e-82a4-4958-b632-143b25575be8
+    secrets:
+    - name: kube-fluentd-operator-log-router-token-m2ckp
+  metadata: {}
+- items:
+  - apiVersion: v1
+    kind: Service
+    metadata:
+      annotations:
+        prometheus.io/port: "24231"
+        prometheus.io/scrape: "true"
+      creationTimestamp: "2020-04-27T20:38:38Z"
+      labels:
+        app: kube-fluentd-operator
+      name: kube-fluentd-operator
+      namespace: kube-fluentd-operator
+      resourceVersion: "2610"
+      selfLink: /api/v1/namespaces/kube-fluentd-operator/services/kube-fluentd-operator
+      uid: fd568930-8d71-4eb5-bc25-796af3063738
+    spec:
+      clusterIP: 10.106.60.184
+      ports:
+      - name: prometheus
+        port: 24231
+        protocol: TCP
+        targetPort: prometheus
+      selector:
+        app: kube-fluentd-operator
+      sessionAffinity: None
+      type: ClusterIP
+    status:
+      loadBalancer: {}
+  metadata: {}
+- items:
+  - apiVersion: apps/v1
+    data:
+      spec:
+        template:
+          $patch: replace
+          metadata:
+            creationTimestamp: null
+            labels:
+              app: kube-fluentd-operator
+          spec:
+            containers:
+            - env:
+              - name: FLUENT_ELASTICSEARCH_HOST
+                valueFrom:
+                  secretKeyRef:
+                    key: FLUENT_ELASTICSEARCH_HOST
+                    name: fluentd
+              - name: FLUENT_ELASTICSEARCH_PORT
+                valueFrom:
+                  secretKeyRef:
+                    key: FLUENT_ELASTICSEARCH_PORT
+                    name: fluentd
+              - name: FLUENT_ELASTICSEARCH_USER
+                valueFrom:
+                  secretKeyRef:
+                    key: FLUENT_ELASTICSEARCH_USER
+                    name: fluentd
+              - name: FLUENT_ELASTICSEARCH_PASSWORD
+                valueFrom:
+                  secretKeyRef:
+                    key: FLUENT_ELASTICSEARCH_PASSWORD
+                    name: fluentd
+              - name: FLUENT_ELASTICSEARCH_SCHEME
+                valueFrom:
+                  secretKeyRef:
+                    key: FLUENT_ELASTICSEARCH_SCHEME
+                    name: fluentd
+              - name: FLUENT_ELASTICSEARCH_SSL_VERIFY
+                valueFrom:
+                  secretKeyRef:
+                    key: FLUENT_ELASTICSEARCH_SSL_VERIFY
+                    name: fluentd
+              - name: K8S_NODE_NAME
+                valueFrom:
+                  fieldRef:
+                    apiVersion: v1
+                    fieldPath: spec.nodeName
+              image: jvassev/kube-fluentd-operator:v1.11.0
+              imagePullPolicy: IfNotPresent
+              name: fluentd
+              resources: {}
+              terminationMessagePath: /dev/termination-log
+              terminationMessagePolicy: File
+              volumeMounts:
+              - mountPath: /etc/fluentd/config.d
+                name: fluentextra
+              - mountPath: /fluentd/etc
+                name: fluentconf
+              - mountPath: /var/log
+                name: varlog
+              - mountPath: /var/lib/kubelet
+                name: kubeletroot
+                readOnly: true
+              - mountPath: /var/lib/docker/containers
+                name: varlibdockercontainers
+                readOnly: true
+            - command:
+              - /bin/config-reloader
+              - --datasource=default
+              - --interval=45
+              - --log-level=warn
+              - --output-dir=/fluentd/etc
+              - --templates-dir=/templates
+              - --prometheus-enabled
+              - --id=kube-fluentd-operator-log-router
+              - --meta-key=meta
+              - --meta-values=cluster=test
+              - --fluentd-binary
+              - /usr/local/bundle/bin/fluentd -p /fluentd/plugins
+              - --kubelet-root
+              - /var/lib/kubelet
+              image: jvassev/kube-fluentd-operator:v1.11.0
+              imagePullPolicy: IfNotPresent
+              name: reloader
+              resources: {}
+              terminationMessagePath: /dev/termination-log
+              terminationMessagePolicy: File
+              volumeMounts:
+              - mountPath: /fluentd/etc
+                name: fluentconf
+            dnsPolicy: ClusterFirst
+            restartPolicy: Always
+            schedulerName: default-scheduler
+            securityContext: {}
+            serviceAccount: kube-fluentd-operator-log-router
+            serviceAccountName: kube-fluentd-operator-log-router
+            terminationGracePeriodSeconds: 30
+            volumes:
+            - emptyDir: {}
+              name: fluentconf
+            - configMap:
+                defaultMode: 420
+                name: fluentd-extra
+                optional: true
+              name: fluentextra
+            - hostPath:
+                path: /var/lib/kubelet
+                type: ""
+              name: kubeletroot
+            - hostPath:
+                path: /var/log
+                type: ""
+              name: varlog
+            - hostPath:
+                path: /var/lib/docker/containers
+                type: ""
+              name: varlibdockercontainers
+    kind: ControllerRevision
+    metadata:
+      annotations:
+        deprecated.daemonset.template.generation: "1"
+        reload/all: "true"
+      creationTimestamp: "2020-04-27T20:38:38Z"
+      labels:
+        app: kube-fluentd-operator
+        controller-revision-hash: 5fdd9846b5
+      name: kube-fluentd-operator-log-router-5fdd9846b5
+      namespace: kube-fluentd-operator
+      ownerReferences:
+      - apiVersion: apps/v1
+        blockOwnerDeletion: true
+        controller: true
+        kind: DaemonSet
+        name: kube-fluentd-operator-log-router
+        uid: 37f7251e-dad9-4329-9583-38bf82619c0a
+      resourceVersion: "2601"
+      selfLink: /apis/apps/v1/namespaces/kube-fluentd-operator/controllerrevisions/kube-fluentd-operator-log-router-5fdd9846b5
+      uid: 9bc18041-7d6a-4d4d-9be2-68783cec4687
+    revision: 1
+  - apiVersion: apps/v1
+    data:
+      spec:
+        template:
+          $patch: replace
+          metadata:
+            creationTimestamp: null
+            labels:
+              app: kube-fluentd-operator
+          spec:
+            containers:
+            - env:
+              - name: FLUENT_ELASTICSEARCH_HOST
+                valueFrom:
+                  secretKeyRef:
+                    key: FLUENT_ELASTICSEARCH_HOST
+                    name: fluentd
+              - name: FLUENT_ELASTICSEARCH_PORT
+                valueFrom:
+                  secretKeyRef:
+                    key: FLUENT_ELASTICSEARCH_PORT
+                    name: fluentd
+              - name: FLUENT_ELASTICSEARCH_USER
+                valueFrom:
+                  secretKeyRef:
+                    key: FLUENT_ELASTICSEARCH_USER
+                    name: fluentd
+              - name: FLUENT_ELASTICSEARCH_PASSWORD
+                valueFrom:
+                  secretKeyRef:
+                    key: FLUENT_ELASTICSEARCH_PASSWORD
+                    name: fluentd
+              - name: FLUENT_ELASTICSEARCH_SCHEME
+                valueFrom:
+                  secretKeyRef:
+                    key: FLUENT_ELASTICSEARCH_SCHEME
+                    name: fluentd
+              - name: FLUENT_ELASTICSEARCH_SSL_VERIFY
+                valueFrom:
+                  secretKeyRef:
+                    key: FLUENT_ELASTICSEARCH_SSL_VERIFY
+                    name: fluentd
+              - name: K8S_NODE_NAME
+                valueFrom:
+                  fieldRef:
+                    apiVersion: v1
+                    fieldPath: spec.nodeName
+              - name: STAKATER_FLUENTD_EXTRA_CONFIGMAP
+                value: 62d8e247e5f59456b514acfe1af775e8305d1705
+              image: jvassev/kube-fluentd-operator:v1.11.0
+              imagePullPolicy: IfNotPresent
+              name: fluentd
+              resources: {}
+              terminationMessagePath: /dev/termination-log
+              terminationMessagePolicy: File
+              volumeMounts:
+              - mountPath: /etc/fluentd/config.d
+                name: fluentextra
+              - mountPath: /fluentd/etc
+                name: fluentconf
+              - mountPath: /var/log
+                name: varlog
+              - mountPath: /var/lib/kubelet
+                name: kubeletroot
+                readOnly: true
+              - mountPath: /var/lib/docker/containers
+                name: varlibdockercontainers
+                readOnly: true
+            - command:
+              - /bin/config-reloader
+              - --datasource=default
+              - --interval=45
+              - --log-level=warn
+              - --output-dir=/fluentd/etc
+              - --templates-dir=/templates
+              - --prometheus-enabled
+              - --id=kube-fluentd-operator-log-router
+              - --meta-key=meta
+              - --meta-values=cluster=test
+              - --fluentd-binary
+              - /usr/local/bundle/bin/fluentd -p /fluentd/plugins
+              - --kubelet-root
+              - /var/lib/kubelet
+              image: jvassev/kube-fluentd-operator:v1.11.0
+              imagePullPolicy: IfNotPresent
+              name: reloader
+              resources: {}
+              terminationMessagePath: /dev/termination-log
+              terminationMessagePolicy: File
+              volumeMounts:
+              - mountPath: /fluentd/etc
+                name: fluentconf
+            dnsPolicy: ClusterFirst
+            restartPolicy: Always
+            schedulerName: default-scheduler
+            securityContext: {}
+            serviceAccount: kube-fluentd-operator-log-router
+            serviceAccountName: kube-fluentd-operator-log-router
+            terminationGracePeriodSeconds: 30
+            volumes:
+            - emptyDir: {}
+              name: fluentconf
+            - configMap:
+                defaultMode: 420
+                name: fluentd-extra
+                optional: true
+              name: fluentextra
+            - hostPath:
+                path: /var/lib/kubelet
+                type: ""
+              name: kubeletroot
+            - hostPath:
+                path: /var/log
+                type: ""
+              name: varlog
+            - hostPath:
+                path: /var/lib/docker/containers
+                type: ""
+              name: varlibdockercontainers
+    kind: ControllerRevision
+    metadata:
+      annotations:
+        deprecated.daemonset.template.generation: "2"
+        reload/all: "true"
+      creationTimestamp: "2020-04-27T20:40:50Z"
+      labels:
+        app: kube-fluentd-operator
+        controller-revision-hash: 66f5d74c6c
+      name: kube-fluentd-operator-log-router-66f5d74c6c
+      namespace: kube-fluentd-operator
+      ownerReferences:
+      - apiVersion: apps/v1
+        blockOwnerDeletion: true
+        controller: true
+        kind: DaemonSet
+        name: kube-fluentd-operator-log-router
+        uid: 37f7251e-dad9-4329-9583-38bf82619c0a
+      resourceVersion: "4340"
+      selfLink: /apis/apps/v1/namespaces/kube-fluentd-operator/controllerrevisions/kube-fluentd-operator-log-router-66f5d74c6c
+      uid: 9b705666-6ceb-4806-8424-323d53dc1b43
+    revision: 2
+  - apiVersion: apps/v1
+    data:
+      spec:
+        template:
+          $patch: replace
+          metadata:
+            creationTimestamp: null
+            labels:
+              app: kube-fluentd-operator
+          spec:
+            containers:
+            - env:
+              - name: FLUENT_ELASTICSEARCH_HOST
+                valueFrom:
+                  secretKeyRef:
+                    key: FLUENT_ELASTICSEARCH_HOST
+                    name: fluentd
+              - name: FLUENT_ELASTICSEARCH_PORT
+                valueFrom:
+                  secretKeyRef:
+                    key: FLUENT_ELASTICSEARCH_PORT
+                    name: fluentd
+              - name: FLUENT_ELASTICSEARCH_USER
+                valueFrom:
+                  secretKeyRef:
+                    key: FLUENT_ELASTICSEARCH_USER
+                    name: fluentd
+              - name: FLUENT_ELASTICSEARCH_PASSWORD
+                valueFrom:
+                  secretKeyRef:
+                    key: FLUENT_ELASTICSEARCH_PASSWORD
+                    name: fluentd
+              - name: FLUENT_ELASTICSEARCH_SCHEME
+                valueFrom:
+                  secretKeyRef:
+                    key: FLUENT_ELASTICSEARCH_SCHEME
+                    name: fluentd
+              - name: FLUENT_ELASTICSEARCH_SSL_VERIFY
+                valueFrom:
+                  secretKeyRef:
+                    key: FLUENT_ELASTICSEARCH_SSL_VERIFY
+                    name: fluentd
+              - name: K8S_NODE_NAME
+                valueFrom:
+                  fieldRef:
+                    apiVersion: v1
+                    fieldPath: spec.nodeName
+              - name: STAKATER_FLUENTD_EXTRA_CONFIGMAP
+                value: 62d8e247e5f59456b514acfe1af775e8305d1705
+              - name: STAKATER_FLUENTD_SECRET
+                value: ee61325fd4922ff16c8e356ab2005fdf3d1ca7a8
+              image: jvassev/kube-fluentd-operator:v1.11.0
+              imagePullPolicy: IfNotPresent
+              name: fluentd
+              resources: {}
+              terminationMessagePath: /dev/termination-log
+              terminationMessagePolicy: File
+              volumeMounts:
+              - mountPath: /etc/fluentd/config.d
+                name: fluentextra
+              - mountPath: /fluentd/etc
+                name: fluentconf
+              - mountPath: /var/log
+                name: varlog
+              - mountPath: /var/lib/kubelet
+                name: kubeletroot
+                readOnly: true
+              - mountPath: /var/lib/docker/containers
+                name: varlibdockercontainers
+                readOnly: true
+            - command:
+              - /bin/config-reloader
+              - --datasource=default
+              - --interval=45
+              - --log-level=warn
+              - --output-dir=/fluentd/etc
+              - --templates-dir=/templates
+              - --prometheus-enabled
+              - --id=kube-fluentd-operator-log-router
+              - --meta-key=meta
+              - --meta-values=cluster=test
+              - --fluentd-binary
+              - /usr/local/bundle/bin/fluentd -p /fluentd/plugins
+              - --kubelet-root
+              - /var/lib/kubelet
+              image: jvassev/kube-fluentd-operator:v1.11.0
+              imagePullPolicy: IfNotPresent
+              name: reloader
+              resources: {}
+              terminationMessagePath: /dev/termination-log
+              terminationMessagePolicy: File
+              volumeMounts:
+              - mountPath: /fluentd/etc
+                name: fluentconf
+            dnsPolicy: ClusterFirst
+            restartPolicy: Always
+            schedulerName: default-scheduler
+            securityContext: {}
+            serviceAccount: kube-fluentd-operator-log-router
+            serviceAccountName: kube-fluentd-operator-log-router
+            terminationGracePeriodSeconds: 30
+            volumes:
+            - emptyDir: {}
+              name: fluentconf
+            - configMap:
+                defaultMode: 420
+                name: fluentd-extra
+                optional: true
+              name: fluentextra
+            - hostPath:
+                path: /var/lib/kubelet
+                type: ""
+              name: kubeletroot
+            - hostPath:
+                path: /var/log
+                type: ""
+              name: varlog
+            - hostPath:
+                path: /var/lib/docker/containers
+                type: ""
+              name: varlibdockercontainers
+    kind: ControllerRevision
+    metadata:
+      annotations:
+        deprecated.daemonset.template.generation: "3"
+        reload/all: "true"
+      creationTimestamp: "2020-04-27T20:40:51Z"
+      labels:
+        app: kube-fluentd-operator
+        controller-revision-hash: 68786b6b84
+      name: kube-fluentd-operator-log-router-68786b6b84
+      namespace: kube-fluentd-operator
+      ownerReferences:
+      - apiVersion: apps/v1
+        blockOwnerDeletion: true
+        controller: true
+        kind: DaemonSet
+        name: kube-fluentd-operator-log-router
+        uid: 37f7251e-dad9-4329-9583-38bf82619c0a
+      resourceVersion: "4448"
+      selfLink: /apis/apps/v1/namespaces/kube-fluentd-operator/controllerrevisions/kube-fluentd-operator-log-router-68786b6b84
+      uid: 80c8732a-41bc-4fb5-a6c1-fdb4ed33c201
+    revision: 3
+  metadata: {}
+- items:
+  - apiVersion: apps/v1
+    kind: DaemonSet
+    metadata:
+      annotations:
+        deprecated.daemonset.template.generation: "3"
+        reload/all: "true"
+      creationTimestamp: "2020-04-27T20:38:38Z"
+      generation: 3
+      labels:
+        app: kube-fluentd-operator
+      name: kube-fluentd-operator-log-router
+      namespace: kube-fluentd-operator
+      resourceVersion: "5271"
+      selfLink: /apis/apps/v1/namespaces/kube-fluentd-operator/daemonsets/kube-fluentd-operator-log-router
+      uid: 37f7251e-dad9-4329-9583-38bf82619c0a
+    spec:
+      revisionHistoryLimit: 10
+      selector:
+        matchLabels:
+          app: kube-fluentd-operator
+      template:
+        metadata:
+          creationTimestamp: null
+          labels:
+            app: kube-fluentd-operator
+        spec:
+          containers:
+          - env:
+            - name: FLUENT_ELASTICSEARCH_HOST
+              valueFrom:
+                secretKeyRef:
+                  key: FLUENT_ELASTICSEARCH_HOST
+                  name: fluentd
+            - name: FLUENT_ELASTICSEARCH_PORT
+              valueFrom:
+                secretKeyRef:
+                  key: FLUENT_ELASTICSEARCH_PORT
+                  name: fluentd
+            - name: FLUENT_ELASTICSEARCH_USER
+              valueFrom:
+                secretKeyRef:
+                  key: FLUENT_ELASTICSEARCH_USER
+                  name: fluentd
+            - name: FLUENT_ELASTICSEARCH_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  key: FLUENT_ELASTICSEARCH_PASSWORD
+                  name: fluentd
+            - name: FLUENT_ELASTICSEARCH_SCHEME
+              valueFrom:
+                secretKeyRef:
+                  key: FLUENT_ELASTICSEARCH_SCHEME
+                  name: fluentd
+            - name: FLUENT_ELASTICSEARCH_SSL_VERIFY
+              valueFrom:
+                secretKeyRef:
+                  key: FLUENT_ELASTICSEARCH_SSL_VERIFY
+                  name: fluentd
+            - name: K8S_NODE_NAME
+              valueFrom:
+                fieldRef:
+                  apiVersion: v1
+                  fieldPath: spec.nodeName
+            - name: STAKATER_FLUENTD_EXTRA_CONFIGMAP
+              value: 62d8e247e5f59456b514acfe1af775e8305d1705
+            - name: STAKATER_FLUENTD_SECRET
+              value: ee61325fd4922ff16c8e356ab2005fdf3d1ca7a8
+            image: jvassev/kube-fluentd-operator:v1.11.0
+            imagePullPolicy: IfNotPresent
+            name: fluentd
+            resources: {}
+            terminationMessagePath: /dev/termination-log
+            terminationMessagePolicy: File
+            volumeMounts:
+            - mountPath: /etc/fluentd/config.d
+              name: fluentextra
+            - mountPath: /fluentd/etc
+              name: fluentconf
+            - mountPath: /var/log
+              name: varlog
+            - mountPath: /var/lib/kubelet
+              name: kubeletroot
+              readOnly: true
+            - mountPath: /var/lib/docker/containers
+              name: varlibdockercontainers
+              readOnly: true
+          - command:
+            - /bin/config-reloader
+            - --datasource=default
+            - --interval=45
+            - --log-level=warn
+            - --output-dir=/fluentd/etc
+            - --templates-dir=/templates
+            - --prometheus-enabled
+            - --id=kube-fluentd-operator-log-router
+            - --meta-key=meta
+            - --meta-values=cluster=test
+            - --fluentd-binary
+            - /usr/local/bundle/bin/fluentd -p /fluentd/plugins
+            - --kubelet-root
+            - /var/lib/kubelet
+            image: jvassev/kube-fluentd-operator:v1.11.0
+            imagePullPolicy: IfNotPresent
+            name: reloader
+            resources: {}
+            terminationMessagePath: /dev/termination-log
+            terminationMessagePolicy: File
+            volumeMounts:
+            - mountPath: /fluentd/etc
+              name: fluentconf
+          dnsPolicy: ClusterFirst
+          restartPolicy: Always
+          schedulerName: default-scheduler
+          securityContext: {}
+          serviceAccount: kube-fluentd-operator-log-router
+          serviceAccountName: kube-fluentd-operator-log-router
+          terminationGracePeriodSeconds: 30
+          volumes:
+          - emptyDir: {}
+            name: fluentconf
+          - configMap:
+              defaultMode: 420
+              name: fluentd-extra
+              optional: true
+            name: fluentextra
+          - hostPath:
+              path: /var/lib/kubelet
+              type: ""
+            name: kubeletroot
+          - hostPath:
+              path: /var/log
+              type: ""
+            name: varlog
+          - hostPath:
+              path: /var/lib/docker/containers
+              type: ""
+            name: varlibdockercontainers
+      updateStrategy:
+        rollingUpdate:
+          maxUnavailable: 1
+        type: RollingUpdate
+    status:
+      currentNumberScheduled: 1
+      desiredNumberScheduled: 1
+      numberAvailable: 1
+      numberMisscheduled: 0
+      numberReady: 1
+      observedGeneration: 3
+      updatedNumberScheduled: 1
+  metadata: {}
+- items:
+  - apiVersion: extensions/v1beta1
+    kind: DaemonSet
+    metadata:
+      annotations:
+        reload/all: "true"
+      creationTimestamp: "2020-04-27T20:38:38Z"
+      generation: 3
+      labels:
+        app: kube-fluentd-operator
+      name: kube-fluentd-operator-log-router
+      namespace: kube-fluentd-operator
+      resourceVersion: "5271"
+      selfLink: /apis/extensions/v1beta1/namespaces/kube-fluentd-operator/daemonsets/kube-fluentd-operator-log-router
+      uid: 37f7251e-dad9-4329-9583-38bf82619c0a
+    spec:
+      revisionHistoryLimit: 10
+      selector:
+        matchLabels:
+          app: kube-fluentd-operator
+      template:
+        metadata:
+          creationTimestamp: null
+          labels:
+            app: kube-fluentd-operator
+        spec:
+          containers:
+          - env:
+            - name: FLUENT_ELASTICSEARCH_HOST
+              valueFrom:
+                secretKeyRef:
+                  key: FLUENT_ELASTICSEARCH_HOST
+                  name: fluentd
+            - name: FLUENT_ELASTICSEARCH_PORT
+              valueFrom:
+                secretKeyRef:
+                  key: FLUENT_ELASTICSEARCH_PORT
+                  name: fluentd
+            - name: FLUENT_ELASTICSEARCH_USER
+              valueFrom:
+                secretKeyRef:
+                  key: FLUENT_ELASTICSEARCH_USER
+                  name: fluentd
+            - name: FLUENT_ELASTICSEARCH_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  key: FLUENT_ELASTICSEARCH_PASSWORD
+                  name: fluentd
+            - name: FLUENT_ELASTICSEARCH_SCHEME
+              valueFrom:
+                secretKeyRef:
+                  key: FLUENT_ELASTICSEARCH_SCHEME
+                  name: fluentd
+            - name: FLUENT_ELASTICSEARCH_SSL_VERIFY
+              valueFrom:
+                secretKeyRef:
+                  key: FLUENT_ELASTICSEARCH_SSL_VERIFY
+                  name: fluentd
+            - name: K8S_NODE_NAME
+              valueFrom:
+                fieldRef:
+                  apiVersion: v1
+                  fieldPath: spec.nodeName
+            - name: STAKATER_FLUENTD_EXTRA_CONFIGMAP
+              value: 62d8e247e5f59456b514acfe1af775e8305d1705
+            - name: STAKATER_FLUENTD_SECRET
+              value: ee61325fd4922ff16c8e356ab2005fdf3d1ca7a8
+            image: jvassev/kube-fluentd-operator:v1.11.0
+            imagePullPolicy: IfNotPresent
+            name: fluentd
+            resources: {}
+            terminationMessagePath: /dev/termination-log
+            terminationMessagePolicy: File
+            volumeMounts:
+            - mountPath: /etc/fluentd/config.d
+              name: fluentextra
+            - mountPath: /fluentd/etc
+              name: fluentconf
+            - mountPath: /var/log
+              name: varlog
+            - mountPath: /var/lib/kubelet
+              name: kubeletroot
+              readOnly: true
+            - mountPath: /var/lib/docker/containers
+              name: varlibdockercontainers
+              readOnly: true
+          - command:
+            - /bin/config-reloader
+            - --datasource=default
+            - --interval=45
+            - --log-level=warn
+            - --output-dir=/fluentd/etc
+            - --templates-dir=/templates
+            - --prometheus-enabled
+            - --id=kube-fluentd-operator-log-router
+            - --meta-key=meta
+            - --meta-values=cluster=test
+            - --fluentd-binary
+            - /usr/local/bundle/bin/fluentd -p /fluentd/plugins
+            - --kubelet-root
+            - /var/lib/kubelet
+            image: jvassev/kube-fluentd-operator:v1.11.0
+            imagePullPolicy: IfNotPresent
+            name: reloader
+            resources: {}
+            terminationMessagePath: /dev/termination-log
+            terminationMessagePolicy: File
+            volumeMounts:
+            - mountPath: /fluentd/etc
+              name: fluentconf
+          dnsPolicy: ClusterFirst
+          restartPolicy: Always
+          schedulerName: default-scheduler
+          securityContext: {}
+          serviceAccount: kube-fluentd-operator-log-router
+          serviceAccountName: kube-fluentd-operator-log-router
+          terminationGracePeriodSeconds: 30
+          volumes:
+          - emptyDir: {}
+            name: fluentconf
+          - configMap:
+              defaultMode: 420
+              name: fluentd-extra
+              optional: true
+            name: fluentextra
+          - hostPath:
+              path: /var/lib/kubelet
+              type: ""
+            name: kubeletroot
+          - hostPath:
+              path: /var/log
+              type: ""
+            name: varlog
+          - hostPath:
+              path: /var/lib/docker/containers
+              type: ""
+            name: varlibdockercontainers
+      templateGeneration: 3
+      updateStrategy:
+        rollingUpdate:
+          maxUnavailable: 1
+        type: RollingUpdate
+    status:
+      currentNumberScheduled: 1
+      desiredNumberScheduled: 1
+      numberAvailable: 1
+      numberMisscheduled: 0
+      numberReady: 1
+      observedGeneration: 3
+      updatedNumberScheduled: 1
+  metadata: {}
+- items:
+  - apiVersion: metrics.k8s.io/v1beta1
+    containers:
+    - name: fluentd
+      usage:
+        cpu: 3m
+        memory: 180824Ki
+    - name: reloader
+      usage:
+        cpu: 4m
+        memory: 24984Ki
+    kind: PodMetrics
+    metadata:
+      creationTimestamp: "2020-04-27T20:46:08Z"
+      name: kube-fluentd-operator-log-router-jq6s7
+      namespace: kube-fluentd-operator
+      selfLink: /apis/metrics.k8s.io/v1beta1/namespaces/kube-fluentd-operator/pods/kube-fluentd-operator-log-router-jq6s7
+    timestamp: "2020-04-27T20:46:08Z"
+    window: 5m0s
+  metadata: {}
+kind: List
+metadata: {}

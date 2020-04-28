@@ -1,0 +1,101 @@
+2020-04-27 20:34:11.236445 I | etcdmain: etcd Version: 3.3.10
+2020-04-27 20:34:11.236501 I | etcdmain: Git SHA: 27fc7e2
+2020-04-27 20:34:11.236506 I | etcdmain: Go Version: go1.10.4
+2020-04-27 20:34:11.236510 I | etcdmain: Go OS/Arch: linux/amd64
+2020-04-27 20:34:11.236514 I | etcdmain: setting maximum number of CPUs to 8, total number of available CPUs is 8
+2020-04-27 20:34:11.236573 I | embed: peerTLS: cert = /etc/kubernetes/pki/etcd/peer.crt, key = /etc/kubernetes/pki/etcd/peer.key, ca = , trusted-ca = /etc/kubernetes/pki/etcd/ca.crt, client-cert-auth = true, crl-file = 
+2020-04-27 20:34:11.237196 I | embed: listening for peers on https://172.17.0.2:2380
+2020-04-27 20:34:11.237244 I | embed: listening for client requests on 127.0.0.1:2379
+2020-04-27 20:34:11.237263 I | embed: listening for client requests on 172.17.0.2:2379
+2020-04-27 20:34:11.240396 I | etcdserver: name = kind-control-plane
+2020-04-27 20:34:11.240414 I | etcdserver: data dir = /var/lib/etcd
+2020-04-27 20:34:11.240420 I | etcdserver: member dir = /var/lib/etcd/member
+2020-04-27 20:34:11.240424 I | etcdserver: heartbeat = 100ms
+2020-04-27 20:34:11.240427 I | etcdserver: election = 1000ms
+2020-04-27 20:34:11.240430 I | etcdserver: snapshot count = 10000
+2020-04-27 20:34:11.240437 I | etcdserver: advertise client URLs = https://172.17.0.2:2379
+2020-04-27 20:34:11.240446 I | etcdserver: initial advertise peer URLs = https://172.17.0.2:2380
+2020-04-27 20:34:11.240453 I | etcdserver: initial cluster = kind-control-plane=https://172.17.0.2:2380
+2020-04-27 20:34:11.243481 I | etcdserver: starting member b8e14bda2255bc24 in cluster 38b0e74a458e7a1f
+2020-04-27 20:34:11.243513 I | raft: b8e14bda2255bc24 became follower at term 0
+2020-04-27 20:34:11.243528 I | raft: newRaft b8e14bda2255bc24 [peers: [], term: 0, commit: 0, applied: 0, lastindex: 0, lastterm: 0]
+2020-04-27 20:34:11.243533 I | raft: b8e14bda2255bc24 became follower at term 1
+2020-04-27 20:34:11.247556 W | auth: simple token is not cryptographically signed
+2020-04-27 20:34:11.250219 I | etcdserver: starting server... [version: 3.3.10, cluster version: to_be_decided]
+2020-04-27 20:34:11.250513 I | etcdserver: b8e14bda2255bc24 as single-node; fast-forwarding 9 ticks (election ticks 10)
+2020-04-27 20:34:11.250818 I | etcdserver/membership: added member b8e14bda2255bc24 [https://172.17.0.2:2380] to cluster 38b0e74a458e7a1f
+2020-04-27 20:34:11.252121 I | embed: ClientTLS: cert = /etc/kubernetes/pki/etcd/server.crt, key = /etc/kubernetes/pki/etcd/server.key, ca = , trusted-ca = /etc/kubernetes/pki/etcd/ca.crt, client-cert-auth = true, crl-file = 
+2020-04-27 20:34:11.252277 I | embed: listening for metrics on http://0.0.0.0:2381
+2020-04-27 20:34:12.243791 I | raft: b8e14bda2255bc24 is starting a new election at term 1
+2020-04-27 20:34:12.243832 I | raft: b8e14bda2255bc24 became candidate at term 2
+2020-04-27 20:34:12.243851 I | raft: b8e14bda2255bc24 received MsgVoteResp from b8e14bda2255bc24 at term 2
+2020-04-27 20:34:12.243862 I | raft: b8e14bda2255bc24 became leader at term 2
+2020-04-27 20:34:12.243867 I | raft: raft.node: b8e14bda2255bc24 elected leader b8e14bda2255bc24 at term 2
+2020-04-27 20:34:12.244095 I | etcdserver: published {Name:kind-control-plane ClientURLs:[https://172.17.0.2:2379]} to cluster 38b0e74a458e7a1f
+2020-04-27 20:34:12.244116 I | embed: ready to serve client requests
+2020-04-27 20:34:12.244187 I | etcdserver: setting up the initial cluster version to 3.3
+2020-04-27 20:34:12.244233 I | embed: ready to serve client requests
+2020-04-27 20:34:12.244870 N | etcdserver/membership: set the initial cluster version to 3.3
+2020-04-27 20:34:12.244924 I | etcdserver/api: enabled capabilities for version 3.3
+2020-04-27 20:34:12.246708 I | embed: serving client requests on 127.0.0.1:2379
+2020-04-27 20:34:12.246847 I | embed: serving client requests on 172.17.0.2:2379
+proto: no coders for int
+proto: no encoder for ValueSize int [GetProperties]
+2020-04-27 20:34:36.394474 W | etcdserver: read-only range request "key:\"/registry/namespaces/default\" " with result "range_response_count:1 size:172" took too long (144.189518ms) to execute
+2020-04-27 20:34:45.556785 W | etcdserver: request "header:<ID:13557085836346044294 username:\"kube-apiserver-etcd-client\" auth_revision:1 > txn:<compare:<target:MOD key:\"/registry/clusterrolebindings/cert-manager-controller-ingress-shim\" mod_revision:0 > success:<request_put:<key:\"/registry/clusterrolebindings/cert-manager-controller-ingress-shim\" value_size:397 >> failure:<>>" with result "size:16" took too long (172.885348ms) to execute
+2020-04-27 20:35:35.147717 W | etcdserver: request "header:<ID:13557085836346045164 username:\"kube-apiserver-etcd-client\" auth_revision:1 > txn:<compare:<target:MOD key:\"/registry/roles/quack/quack\" mod_revision:0 > success:<request_put:<key:\"/registry/roles/quack/quack\" value_size:143 >> failure:<>>" with result "size:16" took too long (295.108241ms) to execute
+2020-04-27 20:35:35.147860 W | etcdserver: read-only range request "key:\"/registry/leases/kube-node-lease/kind-control-plane\" " with result "range_response_count:1 size:327" took too long (113.872027ms) to execute
+2020-04-27 20:35:42.382868 W | etcdserver: read-only range request "key:\"/registry/limitranges/local-path-storage/\" range_end:\"/registry/limitranges/local-path-storage0\" " with result "range_response_count:0 size:5" took too long (192.348724ms) to execute
+2020-04-27 20:35:42.382923 W | etcdserver: request "header:<ID:13557085836346045320 username:\"kube-apiserver-etcd-client\" auth_revision:1 > txn:<compare:<target:MOD key:\"/registry/events/local-path-storage/local-path-provisioner.1609c78aba644022\" mod_revision:0 > success:<request_put:<key:\"/registry/events/local-path-storage/local-path-provisioner.1609c78aba644022\" value_size:403 lease:4333713799491269149 >> failure:<>>" with result "size:16" took too long (103.198919ms) to execute
+2020-04-27 20:35:42.592910 W | etcdserver: read-only range request "key:\"/registry/storageclasses/local-path\" " with result "range_response_count:0 size:5" took too long (340.919366ms) to execute
+2020-04-27 20:35:42.664760 W | etcdserver: read-only range request "key:\"/registry/deployments/local-path-storage/local-path-provisioner\" " with result "range_response_count:1 size:1086" took too long (279.300003ms) to execute
+2020-04-27 20:35:42.893857 W | etcdserver: read-only range request "key:\"/registry/services/endpoints/kube-system/kube-controller-manager\" " with result "range_response_count:1 size:458" took too long (283.689772ms) to execute
+2020-04-27 20:35:43.110700 W | etcdserver: read-only range request "key:\"/registry/configmaps/kube-system/cert-manager-cainjector-leader-election-core\" " with result "range_response_count:1 size:514" took too long (312.127851ms) to execute
+2020-04-27 20:35:43.110877 W | etcdserver: read-only range request "key:\"/registry/configmaps/local-path-storage/local-path-config\" " with result "range_response_count:0 size:5" took too long (442.576419ms) to execute
+2020-04-27 20:35:43.110967 W | etcdserver: read-only range request "key:\"/registry/configmaps/kube-system/cert-manager-cainjector-leader-election\" " with result "range_response_count:1 size:504" took too long (311.230814ms) to execute
+2020-04-27 20:35:43.140380 W | etcdserver: read-only range request "key:\"/registry/pods/local-path-storage/local-path-provisioner-5cf74d94c6-blqm9\" " with result "range_response_count:1 size:1408" took too long (258.845712ms) to execute
+2020-04-27 20:35:52.107218 W | etcdserver: request "header:<ID:13557085836346045750 username:\"kube-apiserver-etcd-client\" auth_revision:1 > txn:<compare:<target:MOD key:\"/registry/crd.projectcalico.org/ipamblocks/100-200-82-0-26\" mod_revision:1177 > success:<request_put:<key:\"/registry/crd.projectcalico.org/ipamblocks/100-200-82-0-26\" value_size:3745 >> failure:<request_range:<key:\"/registry/crd.projectcalico.org/ipamblocks/100-200-82-0-26\" > >>" with result "size:16" took too long (114.105153ms) to execute
+2020-04-27 20:35:52.323057 W | etcdserver: read-only range request "key:\"/registry/crd.projectcalico.org/ipamconfigs/default\" " with result "range_response_count:0 size:5" took too long (211.977298ms) to execute
+2020-04-27 20:35:52.333337 W | etcdserver: read-only range request "key:\"/registry/clusterroles\" range_end:\"/registry/clusterrolet\" count_only:true " with result "range_response_count:0 size:7" took too long (154.413339ms) to execute
+2020-04-27 20:35:56.449175 W | etcdserver: read-only range request "key:\"/registry/services/endpoints/kube-system/kube-scheduler\" " with result "range_response_count:1 size:440" took too long (110.115842ms) to execute
+2020-04-27 20:35:59.944845 W | etcdserver: read-only range request "key:\"/registry/configmaps/ingress-nginx/ingress-controller-leader-nginx\" " with result "range_response_count:1 size:445" took too long (106.558754ms) to execute
+2020-04-27 20:36:07.422760 W | etcdserver: request "header:<ID:13557085836346046122 username:\"kube-apiserver-etcd-client\" auth_revision:1 > txn:<compare:<target:MOD key:\"/registry/configmaps/kube-system/cert-manager-cainjector-leader-election\" mod_revision:1372 > success:<request_put:<key:\"/registry/configmaps/kube-system/cert-manager-cainjector-leader-election\" value_size:409 >> failure:<request_range:<key:\"/registry/configmaps/kube-system/cert-manager-cainjector-leader-election\" > >>" with result "size:16" took too long (178.905775ms) to execute
+2020-04-27 20:36:38.114991 W | etcdserver: read-only range request "key:\"/registry/acid.zalan.do/postgresqls/\" range_end:\"/registry/acid.zalan.do/postgresqls0\" limit:500 " with result "range_response_count:0 size:5" took too long (106.119286ms) to execute
+2020-04-27 20:36:38.115114 W | etcdserver: read-only range request "key:\"/registry/acid.zalan.do/postgresqls/\" range_end:\"/registry/acid.zalan.do/postgresqls0\" limit:10000 " with result "range_response_count:0 size:5" took too long (106.391564ms) to execute
+2020-04-27 20:36:38.115152 W | etcdserver: read-only range request "key:\"/registry/acid.zalan.do/postgresqls\" range_end:\"/registry/acid.zalan.do/postgresqlt\" count_only:true " with result "range_response_count:0 size:5" took too long (106.418874ms) to execute
+2020-04-27 20:38:48.001498 W | etcdserver: request "header:<ID:13557085836346049541 username:\"kube-apiserver-etcd-client\" auth_revision:1 > txn:<compare:<target:MOD key:\"/registry/configmaps/kube-system/cert-manager-cainjector-leader-election-core\" mod_revision:2719 > success:<request_put:<key:\"/registry/configmaps/kube-system/cert-manager-cainjector-leader-election-core\" value_size:414 >> failure:<request_range:<key:\"/registry/configmaps/kube-system/cert-manager-cainjector-leader-election-core\" > >>" with result "size:16" took too long (105.750762ms) to execute
+2020-04-27 20:38:51.441324 W | etcdserver: read-only range request "key:\"/registry/ingress\" range_end:\"/registry/ingrest\" count_only:true " with result "range_response_count:0 size:7" took too long (167.935176ms) to execute
+2020-04-27 20:38:51.490340 W | etcdserver: read-only range request "key:\"/registry/daemonsets\" range_end:\"/registry/daemonsett\" count_only:true " with result "range_response_count:0 size:7" took too long (111.020936ms) to execute
+2020-04-27 20:39:00.226445 W | etcdserver: request "header:<ID:13557085836346049697 username:\"kube-apiserver-etcd-client\" auth_revision:1 > txn:<compare:<target:MOD key:\"/registry/configmaps/kube-system/cert-manager-cainjector-leader-election\" mod_revision:2792 > success:<request_put:<key:\"/registry/configmaps/kube-system/cert-manager-cainjector-leader-election\" value_size:409 >> failure:<request_range:<key:\"/registry/configmaps/kube-system/cert-manager-cainjector-leader-election\" > >>" with result "size:16" took too long (115.047349ms) to execute
+2020-04-27 20:39:00.226649 W | etcdserver: read-only range request "key:\"/registry/configmaps/ingress-nginx/ingress-controller-leader-nginx\" " with result "range_response_count:1 size:445" took too long (109.817155ms) to execute
+2020-04-27 20:39:00.598835 W | etcdserver: read-only range request "key:\"/registry/statefulsets/postgres-operator/\" range_end:\"/registry/statefulsets/postgres-operator0\" " with result "range_response_count:1 size:2823" took too long (253.194048ms) to execute
+2020-04-27 20:39:00.598968 W | etcdserver: read-only range request "key:\"/registry/pods\" range_end:\"/registry/podt\" count_only:true " with result "range_response_count:0 size:7" took too long (215.958798ms) to execute
+2020-04-27 20:39:01.243203 W | etcdserver: read-only range request "key:\"/registry/apiregistration.k8s.io/apiservices\" range_end:\"/registry/apiregistration.k8s.io/apiservicet\" count_only:true " with result "range_response_count:0 size:7" took too long (104.089694ms) to execute
+2020-04-27 20:39:57.441896 W | etcdserver: read-only range request "key:\"/registry/services/endpoints/kube-system/kube-scheduler\" " with result "range_response_count:1 size:441" took too long (383.166901ms) to execute
+2020-04-27 20:39:57.442035 W | etcdserver: request "header:<ID:13557085836346050766 username:\"kube-apiserver-etcd-client\" auth_revision:1 > txn:<compare:<target:MOD key:\"/registry/apiextensions.k8s.io/customresourcedefinitions/podmonitors.monitoring.coreos.com\" mod_revision:3221 > success:<request_put:<key:\"/registry/apiextensions.k8s.io/customresourcedefinitions/podmonitors.monitoring.coreos.com\" value_size:8935 >> failure:<request_range:<key:\"/registry/apiextensions.k8s.io/customresourcedefinitions/podmonitors.monitoring.coreos.com\" > >>" with result "size:16" took too long (181.077718ms) to execute
+2020-04-27 20:39:57.443049 W | etcdserver: read-only range request "key:\"/registry/pods/local-path-storage/create-pvc-6758ea9e-a557-47a9-bae0-6500c83ec7b3\" " with result "range_response_count:1 size:774" took too long (206.140813ms) to execute
+2020-04-27 20:39:57.443350 W | etcdserver: read-only range request "key:\"/registry/apiextensions.k8s.io/customresourcedefinitions/prometheuses.monitoring.coreos.com\" " with result "range_response_count:0 size:5" took too long (224.767965ms) to execute
+2020-04-27 20:39:57.443498 W | etcdserver: read-only range request "key:\"/registry/services/endpoints/local-path-storage/rancher.io-local-path\" " with result "range_response_count:1 size:489" took too long (142.26007ms) to execute
+2020-04-27 20:39:59.556801 W | etcdserver: request "header:<ID:13557085836346050873 username:\"kube-apiserver-etcd-client\" auth_revision:1 > txn:<compare:<target:MOD key:\"/registry/services/endpoints/monitoring/prometheus-operator\" mod_revision:0 > success:<request_put:<key:\"/registry/services/endpoints/monitoring/prometheus-operator\" value_size:324 >> failure:<>>" with result "size:16" took too long (127.875092ms) to execute
+2020-04-27 20:39:59.557001 W | etcdserver: read-only range request "key:\"/registry/services/endpoints/kube-system/kube-scheduler\" " with result "range_response_count:1 size:441" took too long (101.725405ms) to execute
+2020-04-27 20:40:24.274561 W | etcdserver: read-only range request "key:\"/registry/services/endpoints/local-path-storage/rancher.io-local-path\" " with result "range_response_count:1 size:490" took too long (293.400896ms) to execute
+2020-04-27 20:40:24.274634 W | etcdserver: read-only range request "key:\"/registry/persistentvolumeclaims/postgres-operator/pgdata-postgres-harbor-1\" " with result "range_response_count:1 size:744" took too long (208.757503ms) to execute
+2020-04-27 20:40:24.274682 W | etcdserver: read-only range request "key:\"/registry/jobs/\" range_end:\"/registry/jobs0\" limit:500 " with result "range_response_count:0 size:5" took too long (122.052635ms) to execute
+2020-04-27 20:40:24.274850 W | etcdserver: read-only range request "key:\"/registry/services/endpoints/kube-system/kube-controller-manager\" " with result "range_response_count:1 size:459" took too long (139.917426ms) to execute
+2020-04-27 20:40:24.275788 W | etcdserver: read-only range request "key:\"/registry/crd.projectcalico.org/clusterinformations/default\" " with result "range_response_count:1 size:563" took too long (147.46691ms) to execute
+2020-04-27 20:40:42.582114 W | etcdserver: read-only range request "key:\"/registry/pods/monitoring/prometheus-k8s-0\" " with result "range_response_count:1 size:7666" took too long (100.826267ms) to execute
+2020-04-27 20:40:44.731007 W | etcdserver: read-only range request "key:\"/registry/configmaps/kube-system/cert-manager-cainjector-leader-election\" " with result "range_response_count:1 size:505" took too long (143.067071ms) to execute
+2020-04-27 20:41:00.497532 W | etcdserver: read-only range request "key:\"/registry/pods/harbor/harbor-jobservice-79d5dcb5b8-n74px\" " with result "range_response_count:1 size:2358" took too long (204.387596ms) to execute
+2020-04-27 20:41:00.809527 W | etcdserver: read-only range request "key:\"/registry/dex.coreos.com/signingkeies\" range_end:\"/registry/dex.coreos.com/signingkeiet\" count_only:true " with result "range_response_count:0 size:7" took too long (191.989292ms) to execute
+2020-04-27 20:41:02.682840 W | etcdserver: read-only range request "key:\"/registry/crd.projectcalico.org/ipamhandles/k8s-pod-network.74bb6810d44b51bfcf5236569b27b6a056289a0c3f121b04cbbcb79e2b07c37d\" " with result "range_response_count:0 size:5" took too long (201.846005ms) to execute
+2020-04-27 20:41:02.682901 W | etcdserver: read-only range request "key:\"/registry/pods/platform-system/filebeat-4fj5w\" " with result "range_response_count:1 size:1764" took too long (190.112054ms) to execute
+2020-04-27 20:41:02.682917 W | etcdserver: read-only range request "key:\"/registry/secrets/gitops-e2e-test/flux-git-deploy-platform-cli\" " with result "range_response_count:1 size:252" took too long (132.484872ms) to execute
+2020-04-27 20:41:02.683024 W | etcdserver: read-only range request "key:\"/registry/crd.projectcalico.org/clusterinformations/default\" " with result "range_response_count:1 size:563" took too long (159.436213ms) to execute
+2020-04-27 20:41:05.847442 W | etcdserver: read-only range request "key:\"/registry/crd.projectcalico.org/ipamconfigs/default\" " with result "range_response_count:0 size:5" took too long (196.032233ms) to execute
+2020-04-27 20:41:06.128310 W | etcdserver: request "header:<ID:13557085836346055346 username:\"kube-apiserver-etcd-client\" auth_revision:1 > txn:<compare:<target:MOD key:\"/registry/crd.projectcalico.org/ipamblocks/100-200-82-0-26\" mod_revision:4908 > success:<request_put:<key:\"/registry/crd.projectcalico.org/ipamblocks/100-200-82-0-26\" value_size:12621 >> failure:<request_range:<key:\"/registry/crd.projectcalico.org/ipamblocks/100-200-82-0-26\" > >>" with result "size:16" took too long (143.269076ms) to execute
+2020-04-27 20:41:06.141023 W | etcdserver: read-only range request "key:\"/registry/services/endpoints/kube-system/kube-scheduler\" " with result "range_response_count:1 size:441" took too long (135.795761ms) to execute
+2020-04-27 20:41:06.424938 W | etcdserver: read-only range request "key:\"/registry/namespaces/default\" " with result "range_response_count:1 size:217" took too long (164.977678ms) to execute
+2020-04-27 20:41:06.425072 W | etcdserver: read-only range request "key:\"/registry/persistentvolumes/pvc-1a62c55d-c34e-4cb5-91b2-06c40be68d0b\" " with result "range_response_count:1 size:669" took too long (131.798851ms) to execute
+2020-04-27 20:41:06.574155 W | etcdserver: read-only range request "key:\"/registry/services/endpoints/default/kubernetes\" " with result "range_response_count:1 size:213" took too long (109.216421ms) to execute
+2020-04-27 20:44:12.258879 I | mvcc: store.index: compact 2896
+2020-04-27 20:44:12.262614 I | mvcc: finished scheduled compaction at 2896 (took 2.630695ms)

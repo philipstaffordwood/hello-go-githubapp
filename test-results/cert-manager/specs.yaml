@@ -1,0 +1,1627 @@
+apiVersion: v1
+items:
+- items:
+  - apiVersion: v1
+    kind: Pod
+    metadata:
+      annotations:
+        cni.projectcalico.org/podIP: 100.200.82.3/32
+        prometheus.io/path: /metrics
+        prometheus.io/port: "9402"
+        prometheus.io/scrape: "true"
+      creationTimestamp: "2020-04-27T20:34:47Z"
+      generateName: cert-manager-67b8bfbfb4-
+      labels:
+        app: cert-manager
+        app.kubernetes.io/instance: cert-manager
+        app.kubernetes.io/name: cert-manager
+        pod-template-hash: 67b8bfbfb4
+      name: cert-manager-67b8bfbfb4-9wsv9
+      namespace: cert-manager
+      ownerReferences:
+      - apiVersion: apps/v1
+        blockOwnerDeletion: true
+        controller: true
+        kind: ReplicaSet
+        name: cert-manager-67b8bfbfb4
+        uid: 948e9517-4e3b-457a-84db-4443e15810ff
+      resourceVersion: "663"
+      selfLink: /api/v1/namespaces/cert-manager/pods/cert-manager-67b8bfbfb4-9wsv9
+      uid: fb6bfcf9-fb43-4a54-b562-52481b0bcfb5
+    spec:
+      containers:
+      - args:
+        - --v=2
+        - --cluster-resource-namespace=$(POD_NAMESPACE)
+        - --default-issuer-name=ingress-ca
+        - --default-issuer-kind=ClusterIssuer
+        - --default-issuer-group=cert-manager.io
+        - --leader-election-namespace=kube-system
+        - --webhook-namespace=$(POD_NAMESPACE)
+        - --webhook-ca-secret=cert-manager-webhook-ca
+        - --webhook-serving-secret=cert-manager-webhook-tls
+        - --webhook-dns-names=cert-manager-webhook,cert-manager-webhook.cert-manager,cert-manager-webhook.cert-manager.svc
+        env:
+        - name: POD_NAMESPACE
+          valueFrom:
+            fieldRef:
+              apiVersion: v1
+              fieldPath: metadata.namespace
+        image: quay.io/jetstack/cert-manager-controller:v0.12.0
+        imagePullPolicy: IfNotPresent
+        name: cert-manager
+        ports:
+        - containerPort: 9402
+          protocol: TCP
+        resources:
+          requests:
+            cpu: 10m
+            memory: 32Mi
+        terminationMessagePath: /dev/termination-log
+        terminationMessagePolicy: File
+        volumeMounts:
+        - mountPath: /var/run/secrets/kubernetes.io/serviceaccount
+          name: cert-manager-token-snrhf
+          readOnly: true
+      dnsPolicy: ClusterFirst
+      enableServiceLinks: true
+      nodeName: kind-control-plane
+      priority: 0
+      restartPolicy: Always
+      schedulerName: default-scheduler
+      securityContext: {}
+      serviceAccount: cert-manager
+      serviceAccountName: cert-manager
+      terminationGracePeriodSeconds: 30
+      tolerations:
+      - effect: NoExecute
+        key: node.kubernetes.io/not-ready
+        operator: Exists
+        tolerationSeconds: 300
+      - effect: NoExecute
+        key: node.kubernetes.io/unreachable
+        operator: Exists
+        tolerationSeconds: 300
+      volumes:
+      - name: cert-manager-token-snrhf
+        secret:
+          defaultMode: 420
+          secretName: cert-manager-token-snrhf
+    status:
+      conditions:
+      - lastProbeTime: null
+        lastTransitionTime: "2020-04-27T20:34:47Z"
+        status: "True"
+        type: Initialized
+      - lastProbeTime: null
+        lastTransitionTime: "2020-04-27T20:34:53Z"
+        status: "True"
+        type: Ready
+      - lastProbeTime: null
+        lastTransitionTime: "2020-04-27T20:34:53Z"
+        status: "True"
+        type: ContainersReady
+      - lastProbeTime: null
+        lastTransitionTime: "2020-04-27T20:34:47Z"
+        status: "True"
+        type: PodScheduled
+      containerStatuses:
+      - containerID: containerd://9b53204739191c965825a0e897951fc575b4fe52e110dddda67e3a23ebb19f0a
+        image: quay.io/jetstack/cert-manager-controller:v0.12.0
+        imageID: quay.io/jetstack/cert-manager-controller@sha256:eab95c0d67dfe5a0b0474e71a255e809965d2d000018a3f84df1d5ef27b12164
+        lastState: {}
+        name: cert-manager
+        ready: true
+        restartCount: 0
+        state:
+          running:
+            startedAt: "2020-04-27T20:34:53Z"
+      hostIP: 172.17.0.2
+      phase: Running
+      podIP: 100.200.82.3
+      qosClass: Burstable
+      startTime: "2020-04-27T20:34:47Z"
+  - apiVersion: v1
+    kind: Pod
+    metadata:
+      annotations:
+        cni.projectcalico.org/podIP: 100.200.82.0/32
+      creationTimestamp: "2020-04-27T20:34:47Z"
+      generateName: cert-manager-cainjector-5cc6f8695f-
+      labels:
+        app: cainjector
+        app.kubernetes.io/instance: cert-manager
+        app.kubernetes.io/name: cainjector
+        pod-template-hash: 5cc6f8695f
+      name: cert-manager-cainjector-5cc6f8695f-6zdn6
+      namespace: cert-manager
+      ownerReferences:
+      - apiVersion: apps/v1
+        blockOwnerDeletion: true
+        controller: true
+        kind: ReplicaSet
+        name: cert-manager-cainjector-5cc6f8695f
+        uid: 6aaa0e7a-703a-4718-886d-bf83337eca7a
+      resourceVersion: "639"
+      selfLink: /api/v1/namespaces/cert-manager/pods/cert-manager-cainjector-5cc6f8695f-6zdn6
+      uid: 8c61f36c-cad0-49c2-ba41-2fee3d60a79d
+    spec:
+      containers:
+      - args:
+        - --v=2
+        - --leader-election-namespace=kube-system
+        env:
+        - name: POD_NAMESPACE
+          valueFrom:
+            fieldRef:
+              apiVersion: v1
+              fieldPath: metadata.namespace
+        image: quay.io/jetstack/cert-manager-cainjector:v0.12.0
+        imagePullPolicy: IfNotPresent
+        name: cainjector
+        resources: {}
+        terminationMessagePath: /dev/termination-log
+        terminationMessagePolicy: File
+        volumeMounts:
+        - mountPath: /var/run/secrets/kubernetes.io/serviceaccount
+          name: cert-manager-cainjector-token-rvz6l
+          readOnly: true
+      dnsPolicy: ClusterFirst
+      enableServiceLinks: true
+      nodeName: kind-control-plane
+      priority: 0
+      restartPolicy: Always
+      schedulerName: default-scheduler
+      securityContext: {}
+      serviceAccount: cert-manager-cainjector
+      serviceAccountName: cert-manager-cainjector
+      terminationGracePeriodSeconds: 30
+      tolerations:
+      - effect: NoExecute
+        key: node.kubernetes.io/not-ready
+        operator: Exists
+        tolerationSeconds: 300
+      - effect: NoExecute
+        key: node.kubernetes.io/unreachable
+        operator: Exists
+        tolerationSeconds: 300
+      volumes:
+      - name: cert-manager-cainjector-token-rvz6l
+        secret:
+          defaultMode: 420
+          secretName: cert-manager-cainjector-token-rvz6l
+    status:
+      conditions:
+      - lastProbeTime: null
+        lastTransitionTime: "2020-04-27T20:34:47Z"
+        status: "True"
+        type: Initialized
+      - lastProbeTime: null
+        lastTransitionTime: "2020-04-27T20:34:50Z"
+        status: "True"
+        type: Ready
+      - lastProbeTime: null
+        lastTransitionTime: "2020-04-27T20:34:50Z"
+        status: "True"
+        type: ContainersReady
+      - lastProbeTime: null
+        lastTransitionTime: "2020-04-27T20:34:47Z"
+        status: "True"
+        type: PodScheduled
+      containerStatuses:
+      - containerID: containerd://b17fc77ce312cb584923c06430201dcc8b73f92873f1ea10109483ebc618e7a6
+        image: quay.io/jetstack/cert-manager-cainjector:v0.12.0
+        imageID: quay.io/jetstack/cert-manager-cainjector@sha256:9ff6923f6c567573103816796df283d03256bc7a9edb7450542e106b349cf34a
+        lastState: {}
+        name: cainjector
+        ready: true
+        restartCount: 0
+        state:
+          running:
+            startedAt: "2020-04-27T20:34:50Z"
+      hostIP: 172.17.0.2
+      phase: Running
+      podIP: 100.200.82.0
+      qosClass: BestEffort
+      startTime: "2020-04-27T20:34:47Z"
+  - apiVersion: v1
+    kind: Pod
+    metadata:
+      annotations:
+        cni.projectcalico.org/podIP: 100.200.82.5/32
+      creationTimestamp: "2020-04-27T20:34:58Z"
+      generateName: cert-manager-webhook-c48868f6f-
+      labels:
+        app: webhook
+        app.kubernetes.io/instance: cert-manager
+        app.kubernetes.io/name: webhook
+        pod-template-hash: c48868f6f
+      name: cert-manager-webhook-c48868f6f-fs987
+      namespace: cert-manager
+      ownerReferences:
+      - apiVersion: apps/v1
+        blockOwnerDeletion: true
+        controller: true
+        kind: ReplicaSet
+        name: cert-manager-webhook-c48868f6f
+        uid: bc7847d7-fecd-49a3-951f-cf913b6f39c3
+      resourceVersion: "778"
+      selfLink: /api/v1/namespaces/cert-manager/pods/cert-manager-webhook-c48868f6f-fs987
+      uid: 2498adc6-fc1a-4bd2-a19c-75ee0c472c80
+    spec:
+      containers:
+      - args:
+        - --v=2
+        - --secure-port=6443
+        - --tls-cert-file=/certs/tls.crt
+        - --tls-private-key-file=/certs/tls.key
+        env:
+        - name: POD_NAMESPACE
+          valueFrom:
+            fieldRef:
+              apiVersion: v1
+              fieldPath: metadata.namespace
+        image: quay.io/jetstack/cert-manager-webhook:v0.12.0
+        imagePullPolicy: IfNotPresent
+        livenessProbe:
+          failureThreshold: 3
+          httpGet:
+            path: /healthz
+            port: 6080
+            scheme: HTTP
+          periodSeconds: 10
+          successThreshold: 1
+          timeoutSeconds: 1
+        name: cert-manager
+        readinessProbe:
+          failureThreshold: 3
+          httpGet:
+            path: /healthz
+            port: 6080
+            scheme: HTTP
+          initialDelaySeconds: 15
+          periodSeconds: 10
+          successThreshold: 1
+          timeoutSeconds: 1
+        resources: {}
+        terminationMessagePath: /dev/termination-log
+        terminationMessagePolicy: File
+        volumeMounts:
+        - mountPath: /certs
+          name: certs
+        - mountPath: /var/run/secrets/kubernetes.io/serviceaccount
+          name: cert-manager-webhook-token-8ln67
+          readOnly: true
+      dnsPolicy: ClusterFirst
+      enableServiceLinks: true
+      nodeName: kind-control-plane
+      priority: 0
+      restartPolicy: Always
+      schedulerName: default-scheduler
+      securityContext: {}
+      serviceAccount: cert-manager-webhook
+      serviceAccountName: cert-manager-webhook
+      terminationGracePeriodSeconds: 30
+      tolerations:
+      - effect: NoExecute
+        key: node.kubernetes.io/not-ready
+        operator: Exists
+        tolerationSeconds: 300
+      - effect: NoExecute
+        key: node.kubernetes.io/unreachable
+        operator: Exists
+        tolerationSeconds: 300
+      volumes:
+      - name: certs
+        secret:
+          defaultMode: 420
+          secretName: cert-manager-webhook-tls
+      - name: cert-manager-webhook-token-8ln67
+        secret:
+          defaultMode: 420
+          secretName: cert-manager-webhook-token-8ln67
+    status:
+      conditions:
+      - lastProbeTime: null
+        lastTransitionTime: "2020-04-27T20:34:58Z"
+        status: "True"
+        type: Initialized
+      - lastProbeTime: null
+        lastTransitionTime: "2020-04-27T20:35:20Z"
+        status: "True"
+        type: Ready
+      - lastProbeTime: null
+        lastTransitionTime: "2020-04-27T20:35:20Z"
+        status: "True"
+        type: ContainersReady
+      - lastProbeTime: null
+        lastTransitionTime: "2020-04-27T20:34:58Z"
+        status: "True"
+        type: PodScheduled
+      containerStatuses:
+      - containerID: containerd://56d390b1a9553c8218c761662d36f9f293dd9b8d2299710c52c68b1377c20fc9
+        image: quay.io/jetstack/cert-manager-webhook:v0.12.0
+        imageID: quay.io/jetstack/cert-manager-webhook@sha256:f3b58247c674937deab9ae9603a2f2bf332bdd31a0e4f7928b52f7abfe653f15
+        lastState: {}
+        name: cert-manager
+        ready: true
+        restartCount: 0
+        state:
+          running:
+            startedAt: "2020-04-27T20:35:00Z"
+      hostIP: 172.17.0.2
+      phase: Running
+      podIP: 100.200.82.5
+      qosClass: BestEffort
+      startTime: "2020-04-27T20:34:58Z"
+  metadata: {}
+- items:
+  - apiVersion: v1
+    kind: ServiceAccount
+    metadata:
+      creationTimestamp: "2020-04-27T20:34:36Z"
+      labels:
+        app: cert-manager
+        app.kubernetes.io/instance: cert-manager
+        app.kubernetes.io/name: cert-manager
+      name: cert-manager
+      namespace: cert-manager
+      resourceVersion: "2049"
+      selfLink: /api/v1/namespaces/cert-manager/serviceaccounts/cert-manager
+      uid: 577bfbfe-7ea1-4c75-a8e9-b28fcbe03cbc
+    secrets:
+    - name: cert-manager-token-9npnz
+  - apiVersion: v1
+    kind: ServiceAccount
+    metadata:
+      creationTimestamp: "2020-04-27T20:34:36Z"
+      labels:
+        app: cainjector
+        app.kubernetes.io/instance: cert-manager
+        app.kubernetes.io/name: cainjector
+      name: cert-manager-cainjector
+      namespace: cert-manager
+      resourceVersion: "2044"
+      selfLink: /api/v1/namespaces/cert-manager/serviceaccounts/cert-manager-cainjector
+      uid: c554abc1-2e04-411b-b493-4eec5e486a16
+    secrets:
+    - name: cert-manager-cainjector-token-ctw5h
+  - apiVersion: v1
+    kind: ServiceAccount
+    metadata:
+      creationTimestamp: "2020-04-27T20:34:36Z"
+      labels:
+        app: webhook
+        app.kubernetes.io/instance: cert-manager
+        app.kubernetes.io/name: webhook
+      name: cert-manager-webhook
+      namespace: cert-manager
+      resourceVersion: "2052"
+      selfLink: /api/v1/namespaces/cert-manager/serviceaccounts/cert-manager-webhook
+      uid: f8fa8d11-347f-4ada-b7e4-db16ca24d7f1
+    secrets:
+    - name: cert-manager-webhook-token-zrvbr
+  - apiVersion: v1
+    kind: ServiceAccount
+    metadata:
+      creationTimestamp: "2020-04-27T20:34:35Z"
+      name: default
+      namespace: cert-manager
+      resourceVersion: "440"
+      selfLink: /api/v1/namespaces/cert-manager/serviceaccounts/default
+      uid: 05e26262-d26f-49b9-8e8c-bcb8e89d0b64
+    secrets:
+    - name: default-token-2qr48
+  metadata: {}
+- items:
+  - apiVersion: v1
+    kind: Service
+    metadata:
+      creationTimestamp: "2020-04-27T20:34:46Z"
+      labels:
+        app: cert-manager
+        app.kubernetes.io/instance: cert-manager
+        app.kubernetes.io/name: cert-manager
+      name: cert-manager
+      namespace: cert-manager
+      resourceVersion: "568"
+      selfLink: /api/v1/namespaces/cert-manager/services/cert-manager
+      uid: a957dc67-14c5-4ee8-a437-5967d880581d
+    spec:
+      clusterIP: 10.105.123.156
+      ports:
+      - port: 9402
+        protocol: TCP
+        targetPort: 9402
+      selector:
+        app.kubernetes.io/instance: cert-manager
+        app.kubernetes.io/name: cert-manager
+      sessionAffinity: None
+      type: ClusterIP
+    status:
+      loadBalancer: {}
+  - apiVersion: v1
+    kind: Service
+    metadata:
+      creationTimestamp: "2020-04-27T20:34:46Z"
+      labels:
+        app: webhook
+        app.kubernetes.io/instance: cert-manager
+        app.kubernetes.io/name: webhook
+      name: cert-manager-webhook
+      namespace: cert-manager
+      resourceVersion: "571"
+      selfLink: /api/v1/namespaces/cert-manager/services/cert-manager-webhook
+      uid: cf084a57-618e-4f05-abf8-42b87a47de09
+    spec:
+      clusterIP: 10.96.215.93
+      ports:
+      - name: https
+        port: 443
+        protocol: TCP
+        targetPort: 6443
+      selector:
+        app: webhook
+        app.kubernetes.io/instance: cert-manager
+        app.kubernetes.io/name: webhook
+      sessionAffinity: None
+      type: ClusterIP
+    status:
+      loadBalancer: {}
+  metadata: {}
+- items:
+  - apiVersion: apps/v1
+    kind: Deployment
+    metadata:
+      annotations:
+        deployment.kubernetes.io/revision: "1"
+      creationTimestamp: "2020-04-27T20:34:47Z"
+      generation: 2
+      labels:
+        app: cert-manager
+        app.kubernetes.io/instance: cert-manager
+        app.kubernetes.io/name: cert-manager
+      name: cert-manager
+      namespace: cert-manager
+      resourceVersion: "2090"
+      selfLink: /apis/apps/v1/namespaces/cert-manager/deployments/cert-manager
+      uid: dee1cac7-cf8e-478c-9e98-5e7696d1c8d7
+    spec:
+      progressDeadlineSeconds: 600
+      replicas: 1
+      revisionHistoryLimit: 10
+      selector:
+        matchLabels:
+          app: cert-manager
+          app.kubernetes.io/instance: cert-manager
+          app.kubernetes.io/name: cert-manager
+      strategy:
+        rollingUpdate:
+          maxSurge: 25%
+          maxUnavailable: 25%
+        type: RollingUpdate
+      template:
+        metadata:
+          annotations:
+            prometheus.io/path: /metrics
+            prometheus.io/port: "9402"
+            prometheus.io/scrape: "true"
+          creationTimestamp: null
+          labels:
+            app: cert-manager
+            app.kubernetes.io/instance: cert-manager
+            app.kubernetes.io/name: cert-manager
+        spec:
+          containers:
+          - args:
+            - --v=2
+            - --cluster-resource-namespace=$(POD_NAMESPACE)
+            - --default-issuer-name=ingress-ca
+            - --default-issuer-kind=ClusterIssuer
+            - --default-issuer-group=cert-manager.io
+            - --leader-election-namespace=kube-system
+            - --webhook-namespace=$(POD_NAMESPACE)
+            - --webhook-ca-secret=cert-manager-webhook-ca
+            - --webhook-serving-secret=cert-manager-webhook-tls
+            - --webhook-dns-names=cert-manager-webhook,cert-manager-webhook.cert-manager,cert-manager-webhook.cert-manager.svc
+            env:
+            - name: POD_NAMESPACE
+              valueFrom:
+                fieldRef:
+                  apiVersion: v1
+                  fieldPath: metadata.namespace
+            image: quay.io/jetstack/cert-manager-controller:v0.12.0
+            imagePullPolicy: IfNotPresent
+            name: cert-manager
+            ports:
+            - containerPort: 9402
+              protocol: TCP
+            resources:
+              requests:
+                cpu: 10m
+                memory: 32Mi
+            terminationMessagePath: /dev/termination-log
+            terminationMessagePolicy: File
+          dnsPolicy: ClusterFirst
+          restartPolicy: Always
+          schedulerName: default-scheduler
+          securityContext: {}
+          serviceAccount: cert-manager
+          serviceAccountName: cert-manager
+          terminationGracePeriodSeconds: 30
+    status:
+      availableReplicas: 1
+      conditions:
+      - lastTransitionTime: "2020-04-27T20:34:53Z"
+        lastUpdateTime: "2020-04-27T20:34:53Z"
+        message: Deployment has minimum availability.
+        reason: MinimumReplicasAvailable
+        status: "True"
+        type: Available
+      - lastTransitionTime: "2020-04-27T20:34:47Z"
+        lastUpdateTime: "2020-04-27T20:34:53Z"
+        message: ReplicaSet "cert-manager-67b8bfbfb4" has successfully progressed.
+        reason: NewReplicaSetAvailable
+        status: "True"
+        type: Progressing
+      observedGeneration: 2
+      readyReplicas: 1
+      replicas: 1
+      updatedReplicas: 1
+  - apiVersion: apps/v1
+    kind: Deployment
+    metadata:
+      annotations:
+        deployment.kubernetes.io/revision: "1"
+      creationTimestamp: "2020-04-27T20:34:47Z"
+      generation: 2
+      labels:
+        app: cainjector
+        app.kubernetes.io/instance: cert-manager
+        app.kubernetes.io/name: cainjector
+      name: cert-manager-cainjector
+      namespace: cert-manager
+      resourceVersion: "2087"
+      selfLink: /apis/apps/v1/namespaces/cert-manager/deployments/cert-manager-cainjector
+      uid: fced1ed5-2848-4b79-9150-fc45a3b18a49
+    spec:
+      progressDeadlineSeconds: 600
+      replicas: 1
+      revisionHistoryLimit: 10
+      selector:
+        matchLabels:
+          app: cainjector
+          app.kubernetes.io/instance: cert-manager
+          app.kubernetes.io/name: cainjector
+      strategy:
+        rollingUpdate:
+          maxSurge: 25%
+          maxUnavailable: 25%
+        type: RollingUpdate
+      template:
+        metadata:
+          creationTimestamp: null
+          labels:
+            app: cainjector
+            app.kubernetes.io/instance: cert-manager
+            app.kubernetes.io/name: cainjector
+        spec:
+          containers:
+          - args:
+            - --v=2
+            - --leader-election-namespace=kube-system
+            env:
+            - name: POD_NAMESPACE
+              valueFrom:
+                fieldRef:
+                  apiVersion: v1
+                  fieldPath: metadata.namespace
+            image: quay.io/jetstack/cert-manager-cainjector:v0.12.0
+            imagePullPolicy: IfNotPresent
+            name: cainjector
+            resources: {}
+            terminationMessagePath: /dev/termination-log
+            terminationMessagePolicy: File
+          dnsPolicy: ClusterFirst
+          restartPolicy: Always
+          schedulerName: default-scheduler
+          securityContext: {}
+          serviceAccount: cert-manager-cainjector
+          serviceAccountName: cert-manager-cainjector
+          terminationGracePeriodSeconds: 30
+    status:
+      availableReplicas: 1
+      conditions:
+      - lastTransitionTime: "2020-04-27T20:34:50Z"
+        lastUpdateTime: "2020-04-27T20:34:50Z"
+        message: Deployment has minimum availability.
+        reason: MinimumReplicasAvailable
+        status: "True"
+        type: Available
+      - lastTransitionTime: "2020-04-27T20:34:47Z"
+        lastUpdateTime: "2020-04-27T20:34:50Z"
+        message: ReplicaSet "cert-manager-cainjector-5cc6f8695f" has successfully
+          progressed.
+        reason: NewReplicaSetAvailable
+        status: "True"
+        type: Progressing
+      observedGeneration: 2
+      readyReplicas: 1
+      replicas: 1
+      updatedReplicas: 1
+  - apiVersion: apps/v1
+    kind: Deployment
+    metadata:
+      annotations:
+        deployment.kubernetes.io/revision: "1"
+      creationTimestamp: "2020-04-27T20:34:58Z"
+      generation: 2
+      labels:
+        app: webhook
+        app.kubernetes.io/instance: cert-manager
+        app.kubernetes.io/name: webhook
+      name: cert-manager-webhook
+      namespace: cert-manager
+      resourceVersion: "2096"
+      selfLink: /apis/apps/v1/namespaces/cert-manager/deployments/cert-manager-webhook
+      uid: 76807895-638f-4e98-8929-ead050befe30
+    spec:
+      progressDeadlineSeconds: 600
+      replicas: 1
+      revisionHistoryLimit: 10
+      selector:
+        matchLabels:
+          app: webhook
+          app.kubernetes.io/instance: cert-manager
+          app.kubernetes.io/name: webhook
+      strategy:
+        rollingUpdate:
+          maxSurge: 25%
+          maxUnavailable: 25%
+        type: RollingUpdate
+      template:
+        metadata:
+          creationTimestamp: null
+          labels:
+            app: webhook
+            app.kubernetes.io/instance: cert-manager
+            app.kubernetes.io/name: webhook
+        spec:
+          containers:
+          - args:
+            - --v=2
+            - --secure-port=6443
+            - --tls-cert-file=/certs/tls.crt
+            - --tls-private-key-file=/certs/tls.key
+            env:
+            - name: POD_NAMESPACE
+              valueFrom:
+                fieldRef:
+                  apiVersion: v1
+                  fieldPath: metadata.namespace
+            image: quay.io/jetstack/cert-manager-webhook:v0.12.0
+            imagePullPolicy: IfNotPresent
+            livenessProbe:
+              failureThreshold: 3
+              httpGet:
+                path: /healthz
+                port: 6080
+                scheme: HTTP
+              periodSeconds: 10
+              successThreshold: 1
+              timeoutSeconds: 1
+            name: cert-manager
+            readinessProbe:
+              failureThreshold: 3
+              httpGet:
+                path: /healthz
+                port: 6080
+                scheme: HTTP
+              initialDelaySeconds: 15
+              periodSeconds: 10
+              successThreshold: 1
+              timeoutSeconds: 1
+            resources: {}
+            terminationMessagePath: /dev/termination-log
+            terminationMessagePolicy: File
+            volumeMounts:
+            - mountPath: /certs
+              name: certs
+          dnsPolicy: ClusterFirst
+          restartPolicy: Always
+          schedulerName: default-scheduler
+          securityContext: {}
+          serviceAccount: cert-manager-webhook
+          serviceAccountName: cert-manager-webhook
+          terminationGracePeriodSeconds: 30
+          volumes:
+          - name: certs
+            secret:
+              defaultMode: 420
+              secretName: cert-manager-webhook-tls
+    status:
+      availableReplicas: 1
+      conditions:
+      - lastTransitionTime: "2020-04-27T20:35:20Z"
+        lastUpdateTime: "2020-04-27T20:35:20Z"
+        message: Deployment has minimum availability.
+        reason: MinimumReplicasAvailable
+        status: "True"
+        type: Available
+      - lastTransitionTime: "2020-04-27T20:34:58Z"
+        lastUpdateTime: "2020-04-27T20:35:20Z"
+        message: ReplicaSet "cert-manager-webhook-c48868f6f" has successfully progressed.
+        reason: NewReplicaSetAvailable
+        status: "True"
+        type: Progressing
+      observedGeneration: 2
+      readyReplicas: 1
+      replicas: 1
+      updatedReplicas: 1
+  metadata: {}
+- items:
+  - apiVersion: apps/v1
+    kind: ReplicaSet
+    metadata:
+      annotations:
+        deployment.kubernetes.io/desired-replicas: "1"
+        deployment.kubernetes.io/max-replicas: "2"
+        deployment.kubernetes.io/revision: "1"
+      creationTimestamp: "2020-04-27T20:34:47Z"
+      generation: 1
+      labels:
+        app: cert-manager
+        app.kubernetes.io/instance: cert-manager
+        app.kubernetes.io/name: cert-manager
+        pod-template-hash: 67b8bfbfb4
+      name: cert-manager-67b8bfbfb4
+      namespace: cert-manager
+      ownerReferences:
+      - apiVersion: apps/v1
+        blockOwnerDeletion: true
+        controller: true
+        kind: Deployment
+        name: cert-manager
+        uid: dee1cac7-cf8e-478c-9e98-5e7696d1c8d7
+      resourceVersion: "664"
+      selfLink: /apis/apps/v1/namespaces/cert-manager/replicasets/cert-manager-67b8bfbfb4
+      uid: 948e9517-4e3b-457a-84db-4443e15810ff
+    spec:
+      replicas: 1
+      selector:
+        matchLabels:
+          app: cert-manager
+          app.kubernetes.io/instance: cert-manager
+          app.kubernetes.io/name: cert-manager
+          pod-template-hash: 67b8bfbfb4
+      template:
+        metadata:
+          annotations:
+            prometheus.io/path: /metrics
+            prometheus.io/port: "9402"
+            prometheus.io/scrape: "true"
+          creationTimestamp: null
+          labels:
+            app: cert-manager
+            app.kubernetes.io/instance: cert-manager
+            app.kubernetes.io/name: cert-manager
+            pod-template-hash: 67b8bfbfb4
+        spec:
+          containers:
+          - args:
+            - --v=2
+            - --cluster-resource-namespace=$(POD_NAMESPACE)
+            - --default-issuer-name=ingress-ca
+            - --default-issuer-kind=ClusterIssuer
+            - --default-issuer-group=cert-manager.io
+            - --leader-election-namespace=kube-system
+            - --webhook-namespace=$(POD_NAMESPACE)
+            - --webhook-ca-secret=cert-manager-webhook-ca
+            - --webhook-serving-secret=cert-manager-webhook-tls
+            - --webhook-dns-names=cert-manager-webhook,cert-manager-webhook.cert-manager,cert-manager-webhook.cert-manager.svc
+            env:
+            - name: POD_NAMESPACE
+              valueFrom:
+                fieldRef:
+                  apiVersion: v1
+                  fieldPath: metadata.namespace
+            image: quay.io/jetstack/cert-manager-controller:v0.12.0
+            imagePullPolicy: IfNotPresent
+            name: cert-manager
+            ports:
+            - containerPort: 9402
+              protocol: TCP
+            resources:
+              requests:
+                cpu: 10m
+                memory: 32Mi
+            terminationMessagePath: /dev/termination-log
+            terminationMessagePolicy: File
+          dnsPolicy: ClusterFirst
+          restartPolicy: Always
+          schedulerName: default-scheduler
+          securityContext: {}
+          serviceAccount: cert-manager
+          serviceAccountName: cert-manager
+          terminationGracePeriodSeconds: 30
+    status:
+      availableReplicas: 1
+      fullyLabeledReplicas: 1
+      observedGeneration: 1
+      readyReplicas: 1
+      replicas: 1
+  - apiVersion: apps/v1
+    kind: ReplicaSet
+    metadata:
+      annotations:
+        deployment.kubernetes.io/desired-replicas: "1"
+        deployment.kubernetes.io/max-replicas: "2"
+        deployment.kubernetes.io/revision: "1"
+      creationTimestamp: "2020-04-27T20:34:47Z"
+      generation: 1
+      labels:
+        app: cainjector
+        app.kubernetes.io/instance: cert-manager
+        app.kubernetes.io/name: cainjector
+        pod-template-hash: 5cc6f8695f
+      name: cert-manager-cainjector-5cc6f8695f
+      namespace: cert-manager
+      ownerReferences:
+      - apiVersion: apps/v1
+        blockOwnerDeletion: true
+        controller: true
+        kind: Deployment
+        name: cert-manager-cainjector
+        uid: fced1ed5-2848-4b79-9150-fc45a3b18a49
+      resourceVersion: "640"
+      selfLink: /apis/apps/v1/namespaces/cert-manager/replicasets/cert-manager-cainjector-5cc6f8695f
+      uid: 6aaa0e7a-703a-4718-886d-bf83337eca7a
+    spec:
+      replicas: 1
+      selector:
+        matchLabels:
+          app: cainjector
+          app.kubernetes.io/instance: cert-manager
+          app.kubernetes.io/name: cainjector
+          pod-template-hash: 5cc6f8695f
+      template:
+        metadata:
+          creationTimestamp: null
+          labels:
+            app: cainjector
+            app.kubernetes.io/instance: cert-manager
+            app.kubernetes.io/name: cainjector
+            pod-template-hash: 5cc6f8695f
+        spec:
+          containers:
+          - args:
+            - --v=2
+            - --leader-election-namespace=kube-system
+            env:
+            - name: POD_NAMESPACE
+              valueFrom:
+                fieldRef:
+                  apiVersion: v1
+                  fieldPath: metadata.namespace
+            image: quay.io/jetstack/cert-manager-cainjector:v0.12.0
+            imagePullPolicy: IfNotPresent
+            name: cainjector
+            resources: {}
+            terminationMessagePath: /dev/termination-log
+            terminationMessagePolicy: File
+          dnsPolicy: ClusterFirst
+          restartPolicy: Always
+          schedulerName: default-scheduler
+          securityContext: {}
+          serviceAccount: cert-manager-cainjector
+          serviceAccountName: cert-manager-cainjector
+          terminationGracePeriodSeconds: 30
+    status:
+      availableReplicas: 1
+      fullyLabeledReplicas: 1
+      observedGeneration: 1
+      readyReplicas: 1
+      replicas: 1
+  - apiVersion: apps/v1
+    kind: ReplicaSet
+    metadata:
+      annotations:
+        deployment.kubernetes.io/desired-replicas: "1"
+        deployment.kubernetes.io/max-replicas: "2"
+        deployment.kubernetes.io/revision: "1"
+      creationTimestamp: "2020-04-27T20:34:58Z"
+      generation: 1
+      labels:
+        app: webhook
+        app.kubernetes.io/instance: cert-manager
+        app.kubernetes.io/name: webhook
+        pod-template-hash: c48868f6f
+      name: cert-manager-webhook-c48868f6f
+      namespace: cert-manager
+      ownerReferences:
+      - apiVersion: apps/v1
+        blockOwnerDeletion: true
+        controller: true
+        kind: Deployment
+        name: cert-manager-webhook
+        uid: 76807895-638f-4e98-8929-ead050befe30
+      resourceVersion: "780"
+      selfLink: /apis/apps/v1/namespaces/cert-manager/replicasets/cert-manager-webhook-c48868f6f
+      uid: bc7847d7-fecd-49a3-951f-cf913b6f39c3
+    spec:
+      replicas: 1
+      selector:
+        matchLabels:
+          app: webhook
+          app.kubernetes.io/instance: cert-manager
+          app.kubernetes.io/name: webhook
+          pod-template-hash: c48868f6f
+      template:
+        metadata:
+          creationTimestamp: null
+          labels:
+            app: webhook
+            app.kubernetes.io/instance: cert-manager
+            app.kubernetes.io/name: webhook
+            pod-template-hash: c48868f6f
+        spec:
+          containers:
+          - args:
+            - --v=2
+            - --secure-port=6443
+            - --tls-cert-file=/certs/tls.crt
+            - --tls-private-key-file=/certs/tls.key
+            env:
+            - name: POD_NAMESPACE
+              valueFrom:
+                fieldRef:
+                  apiVersion: v1
+                  fieldPath: metadata.namespace
+            image: quay.io/jetstack/cert-manager-webhook:v0.12.0
+            imagePullPolicy: IfNotPresent
+            livenessProbe:
+              failureThreshold: 3
+              httpGet:
+                path: /healthz
+                port: 6080
+                scheme: HTTP
+              periodSeconds: 10
+              successThreshold: 1
+              timeoutSeconds: 1
+            name: cert-manager
+            readinessProbe:
+              failureThreshold: 3
+              httpGet:
+                path: /healthz
+                port: 6080
+                scheme: HTTP
+              initialDelaySeconds: 15
+              periodSeconds: 10
+              successThreshold: 1
+              timeoutSeconds: 1
+            resources: {}
+            terminationMessagePath: /dev/termination-log
+            terminationMessagePolicy: File
+            volumeMounts:
+            - mountPath: /certs
+              name: certs
+          dnsPolicy: ClusterFirst
+          restartPolicy: Always
+          schedulerName: default-scheduler
+          securityContext: {}
+          serviceAccount: cert-manager-webhook
+          serviceAccountName: cert-manager-webhook
+          terminationGracePeriodSeconds: 30
+          volumes:
+          - name: certs
+            secret:
+              defaultMode: 420
+              secretName: cert-manager-webhook-tls
+    status:
+      availableReplicas: 1
+      fullyLabeledReplicas: 1
+      observedGeneration: 1
+      readyReplicas: 1
+      replicas: 1
+  metadata: {}
+- items:
+  - apiVersion: extensions/v1beta1
+    kind: Deployment
+    metadata:
+      annotations:
+        deployment.kubernetes.io/revision: "1"
+      creationTimestamp: "2020-04-27T20:34:47Z"
+      generation: 2
+      labels:
+        app: cert-manager
+        app.kubernetes.io/instance: cert-manager
+        app.kubernetes.io/name: cert-manager
+      name: cert-manager
+      namespace: cert-manager
+      resourceVersion: "2090"
+      selfLink: /apis/extensions/v1beta1/namespaces/cert-manager/deployments/cert-manager
+      uid: dee1cac7-cf8e-478c-9e98-5e7696d1c8d7
+    spec:
+      progressDeadlineSeconds: 600
+      replicas: 1
+      revisionHistoryLimit: 10
+      selector:
+        matchLabels:
+          app: cert-manager
+          app.kubernetes.io/instance: cert-manager
+          app.kubernetes.io/name: cert-manager
+      strategy:
+        rollingUpdate:
+          maxSurge: 25%
+          maxUnavailable: 25%
+        type: RollingUpdate
+      template:
+        metadata:
+          annotations:
+            prometheus.io/path: /metrics
+            prometheus.io/port: "9402"
+            prometheus.io/scrape: "true"
+          creationTimestamp: null
+          labels:
+            app: cert-manager
+            app.kubernetes.io/instance: cert-manager
+            app.kubernetes.io/name: cert-manager
+        spec:
+          containers:
+          - args:
+            - --v=2
+            - --cluster-resource-namespace=$(POD_NAMESPACE)
+            - --default-issuer-name=ingress-ca
+            - --default-issuer-kind=ClusterIssuer
+            - --default-issuer-group=cert-manager.io
+            - --leader-election-namespace=kube-system
+            - --webhook-namespace=$(POD_NAMESPACE)
+            - --webhook-ca-secret=cert-manager-webhook-ca
+            - --webhook-serving-secret=cert-manager-webhook-tls
+            - --webhook-dns-names=cert-manager-webhook,cert-manager-webhook.cert-manager,cert-manager-webhook.cert-manager.svc
+            env:
+            - name: POD_NAMESPACE
+              valueFrom:
+                fieldRef:
+                  apiVersion: v1
+                  fieldPath: metadata.namespace
+            image: quay.io/jetstack/cert-manager-controller:v0.12.0
+            imagePullPolicy: IfNotPresent
+            name: cert-manager
+            ports:
+            - containerPort: 9402
+              protocol: TCP
+            resources:
+              requests:
+                cpu: 10m
+                memory: 32Mi
+            terminationMessagePath: /dev/termination-log
+            terminationMessagePolicy: File
+          dnsPolicy: ClusterFirst
+          restartPolicy: Always
+          schedulerName: default-scheduler
+          securityContext: {}
+          serviceAccount: cert-manager
+          serviceAccountName: cert-manager
+          terminationGracePeriodSeconds: 30
+    status:
+      availableReplicas: 1
+      conditions:
+      - lastTransitionTime: "2020-04-27T20:34:53Z"
+        lastUpdateTime: "2020-04-27T20:34:53Z"
+        message: Deployment has minimum availability.
+        reason: MinimumReplicasAvailable
+        status: "True"
+        type: Available
+      - lastTransitionTime: "2020-04-27T20:34:47Z"
+        lastUpdateTime: "2020-04-27T20:34:53Z"
+        message: ReplicaSet "cert-manager-67b8bfbfb4" has successfully progressed.
+        reason: NewReplicaSetAvailable
+        status: "True"
+        type: Progressing
+      observedGeneration: 2
+      readyReplicas: 1
+      replicas: 1
+      updatedReplicas: 1
+  - apiVersion: extensions/v1beta1
+    kind: Deployment
+    metadata:
+      annotations:
+        deployment.kubernetes.io/revision: "1"
+      creationTimestamp: "2020-04-27T20:34:47Z"
+      generation: 2
+      labels:
+        app: cainjector
+        app.kubernetes.io/instance: cert-manager
+        app.kubernetes.io/name: cainjector
+      name: cert-manager-cainjector
+      namespace: cert-manager
+      resourceVersion: "2087"
+      selfLink: /apis/extensions/v1beta1/namespaces/cert-manager/deployments/cert-manager-cainjector
+      uid: fced1ed5-2848-4b79-9150-fc45a3b18a49
+    spec:
+      progressDeadlineSeconds: 600
+      replicas: 1
+      revisionHistoryLimit: 10
+      selector:
+        matchLabels:
+          app: cainjector
+          app.kubernetes.io/instance: cert-manager
+          app.kubernetes.io/name: cainjector
+      strategy:
+        rollingUpdate:
+          maxSurge: 25%
+          maxUnavailable: 25%
+        type: RollingUpdate
+      template:
+        metadata:
+          creationTimestamp: null
+          labels:
+            app: cainjector
+            app.kubernetes.io/instance: cert-manager
+            app.kubernetes.io/name: cainjector
+        spec:
+          containers:
+          - args:
+            - --v=2
+            - --leader-election-namespace=kube-system
+            env:
+            - name: POD_NAMESPACE
+              valueFrom:
+                fieldRef:
+                  apiVersion: v1
+                  fieldPath: metadata.namespace
+            image: quay.io/jetstack/cert-manager-cainjector:v0.12.0
+            imagePullPolicy: IfNotPresent
+            name: cainjector
+            resources: {}
+            terminationMessagePath: /dev/termination-log
+            terminationMessagePolicy: File
+          dnsPolicy: ClusterFirst
+          restartPolicy: Always
+          schedulerName: default-scheduler
+          securityContext: {}
+          serviceAccount: cert-manager-cainjector
+          serviceAccountName: cert-manager-cainjector
+          terminationGracePeriodSeconds: 30
+    status:
+      availableReplicas: 1
+      conditions:
+      - lastTransitionTime: "2020-04-27T20:34:50Z"
+        lastUpdateTime: "2020-04-27T20:34:50Z"
+        message: Deployment has minimum availability.
+        reason: MinimumReplicasAvailable
+        status: "True"
+        type: Available
+      - lastTransitionTime: "2020-04-27T20:34:47Z"
+        lastUpdateTime: "2020-04-27T20:34:50Z"
+        message: ReplicaSet "cert-manager-cainjector-5cc6f8695f" has successfully
+          progressed.
+        reason: NewReplicaSetAvailable
+        status: "True"
+        type: Progressing
+      observedGeneration: 2
+      readyReplicas: 1
+      replicas: 1
+      updatedReplicas: 1
+  - apiVersion: extensions/v1beta1
+    kind: Deployment
+    metadata:
+      annotations:
+        deployment.kubernetes.io/revision: "1"
+      creationTimestamp: "2020-04-27T20:34:58Z"
+      generation: 2
+      labels:
+        app: webhook
+        app.kubernetes.io/instance: cert-manager
+        app.kubernetes.io/name: webhook
+      name: cert-manager-webhook
+      namespace: cert-manager
+      resourceVersion: "2096"
+      selfLink: /apis/extensions/v1beta1/namespaces/cert-manager/deployments/cert-manager-webhook
+      uid: 76807895-638f-4e98-8929-ead050befe30
+    spec:
+      progressDeadlineSeconds: 600
+      replicas: 1
+      revisionHistoryLimit: 10
+      selector:
+        matchLabels:
+          app: webhook
+          app.kubernetes.io/instance: cert-manager
+          app.kubernetes.io/name: webhook
+      strategy:
+        rollingUpdate:
+          maxSurge: 25%
+          maxUnavailable: 25%
+        type: RollingUpdate
+      template:
+        metadata:
+          creationTimestamp: null
+          labels:
+            app: webhook
+            app.kubernetes.io/instance: cert-manager
+            app.kubernetes.io/name: webhook
+        spec:
+          containers:
+          - args:
+            - --v=2
+            - --secure-port=6443
+            - --tls-cert-file=/certs/tls.crt
+            - --tls-private-key-file=/certs/tls.key
+            env:
+            - name: POD_NAMESPACE
+              valueFrom:
+                fieldRef:
+                  apiVersion: v1
+                  fieldPath: metadata.namespace
+            image: quay.io/jetstack/cert-manager-webhook:v0.12.0
+            imagePullPolicy: IfNotPresent
+            livenessProbe:
+              failureThreshold: 3
+              httpGet:
+                path: /healthz
+                port: 6080
+                scheme: HTTP
+              periodSeconds: 10
+              successThreshold: 1
+              timeoutSeconds: 1
+            name: cert-manager
+            readinessProbe:
+              failureThreshold: 3
+              httpGet:
+                path: /healthz
+                port: 6080
+                scheme: HTTP
+              initialDelaySeconds: 15
+              periodSeconds: 10
+              successThreshold: 1
+              timeoutSeconds: 1
+            resources: {}
+            terminationMessagePath: /dev/termination-log
+            terminationMessagePolicy: File
+            volumeMounts:
+            - mountPath: /certs
+              name: certs
+          dnsPolicy: ClusterFirst
+          restartPolicy: Always
+          schedulerName: default-scheduler
+          securityContext: {}
+          serviceAccount: cert-manager-webhook
+          serviceAccountName: cert-manager-webhook
+          terminationGracePeriodSeconds: 30
+          volumes:
+          - name: certs
+            secret:
+              defaultMode: 420
+              secretName: cert-manager-webhook-tls
+    status:
+      availableReplicas: 1
+      conditions:
+      - lastTransitionTime: "2020-04-27T20:35:20Z"
+        lastUpdateTime: "2020-04-27T20:35:20Z"
+        message: Deployment has minimum availability.
+        reason: MinimumReplicasAvailable
+        status: "True"
+        type: Available
+      - lastTransitionTime: "2020-04-27T20:34:58Z"
+        lastUpdateTime: "2020-04-27T20:35:20Z"
+        message: ReplicaSet "cert-manager-webhook-c48868f6f" has successfully progressed.
+        reason: NewReplicaSetAvailable
+        status: "True"
+        type: Progressing
+      observedGeneration: 2
+      readyReplicas: 1
+      replicas: 1
+      updatedReplicas: 1
+  metadata: {}
+- items:
+  - apiVersion: extensions/v1beta1
+    kind: ReplicaSet
+    metadata:
+      annotations:
+        deployment.kubernetes.io/desired-replicas: "1"
+        deployment.kubernetes.io/max-replicas: "2"
+        deployment.kubernetes.io/revision: "1"
+      creationTimestamp: "2020-04-27T20:34:47Z"
+      generation: 1
+      labels:
+        app: cert-manager
+        app.kubernetes.io/instance: cert-manager
+        app.kubernetes.io/name: cert-manager
+        pod-template-hash: 67b8bfbfb4
+      name: cert-manager-67b8bfbfb4
+      namespace: cert-manager
+      ownerReferences:
+      - apiVersion: apps/v1
+        blockOwnerDeletion: true
+        controller: true
+        kind: Deployment
+        name: cert-manager
+        uid: dee1cac7-cf8e-478c-9e98-5e7696d1c8d7
+      resourceVersion: "664"
+      selfLink: /apis/extensions/v1beta1/namespaces/cert-manager/replicasets/cert-manager-67b8bfbfb4
+      uid: 948e9517-4e3b-457a-84db-4443e15810ff
+    spec:
+      replicas: 1
+      selector:
+        matchLabels:
+          app: cert-manager
+          app.kubernetes.io/instance: cert-manager
+          app.kubernetes.io/name: cert-manager
+          pod-template-hash: 67b8bfbfb4
+      template:
+        metadata:
+          annotations:
+            prometheus.io/path: /metrics
+            prometheus.io/port: "9402"
+            prometheus.io/scrape: "true"
+          creationTimestamp: null
+          labels:
+            app: cert-manager
+            app.kubernetes.io/instance: cert-manager
+            app.kubernetes.io/name: cert-manager
+            pod-template-hash: 67b8bfbfb4
+        spec:
+          containers:
+          - args:
+            - --v=2
+            - --cluster-resource-namespace=$(POD_NAMESPACE)
+            - --default-issuer-name=ingress-ca
+            - --default-issuer-kind=ClusterIssuer
+            - --default-issuer-group=cert-manager.io
+            - --leader-election-namespace=kube-system
+            - --webhook-namespace=$(POD_NAMESPACE)
+            - --webhook-ca-secret=cert-manager-webhook-ca
+            - --webhook-serving-secret=cert-manager-webhook-tls
+            - --webhook-dns-names=cert-manager-webhook,cert-manager-webhook.cert-manager,cert-manager-webhook.cert-manager.svc
+            env:
+            - name: POD_NAMESPACE
+              valueFrom:
+                fieldRef:
+                  apiVersion: v1
+                  fieldPath: metadata.namespace
+            image: quay.io/jetstack/cert-manager-controller:v0.12.0
+            imagePullPolicy: IfNotPresent
+            name: cert-manager
+            ports:
+            - containerPort: 9402
+              protocol: TCP
+            resources:
+              requests:
+                cpu: 10m
+                memory: 32Mi
+            terminationMessagePath: /dev/termination-log
+            terminationMessagePolicy: File
+          dnsPolicy: ClusterFirst
+          restartPolicy: Always
+          schedulerName: default-scheduler
+          securityContext: {}
+          serviceAccount: cert-manager
+          serviceAccountName: cert-manager
+          terminationGracePeriodSeconds: 30
+    status:
+      availableReplicas: 1
+      fullyLabeledReplicas: 1
+      observedGeneration: 1
+      readyReplicas: 1
+      replicas: 1
+  - apiVersion: extensions/v1beta1
+    kind: ReplicaSet
+    metadata:
+      annotations:
+        deployment.kubernetes.io/desired-replicas: "1"
+        deployment.kubernetes.io/max-replicas: "2"
+        deployment.kubernetes.io/revision: "1"
+      creationTimestamp: "2020-04-27T20:34:47Z"
+      generation: 1
+      labels:
+        app: cainjector
+        app.kubernetes.io/instance: cert-manager
+        app.kubernetes.io/name: cainjector
+        pod-template-hash: 5cc6f8695f
+      name: cert-manager-cainjector-5cc6f8695f
+      namespace: cert-manager
+      ownerReferences:
+      - apiVersion: apps/v1
+        blockOwnerDeletion: true
+        controller: true
+        kind: Deployment
+        name: cert-manager-cainjector
+        uid: fced1ed5-2848-4b79-9150-fc45a3b18a49
+      resourceVersion: "640"
+      selfLink: /apis/extensions/v1beta1/namespaces/cert-manager/replicasets/cert-manager-cainjector-5cc6f8695f
+      uid: 6aaa0e7a-703a-4718-886d-bf83337eca7a
+    spec:
+      replicas: 1
+      selector:
+        matchLabels:
+          app: cainjector
+          app.kubernetes.io/instance: cert-manager
+          app.kubernetes.io/name: cainjector
+          pod-template-hash: 5cc6f8695f
+      template:
+        metadata:
+          creationTimestamp: null
+          labels:
+            app: cainjector
+            app.kubernetes.io/instance: cert-manager
+            app.kubernetes.io/name: cainjector
+            pod-template-hash: 5cc6f8695f
+        spec:
+          containers:
+          - args:
+            - --v=2
+            - --leader-election-namespace=kube-system
+            env:
+            - name: POD_NAMESPACE
+              valueFrom:
+                fieldRef:
+                  apiVersion: v1
+                  fieldPath: metadata.namespace
+            image: quay.io/jetstack/cert-manager-cainjector:v0.12.0
+            imagePullPolicy: IfNotPresent
+            name: cainjector
+            resources: {}
+            terminationMessagePath: /dev/termination-log
+            terminationMessagePolicy: File
+          dnsPolicy: ClusterFirst
+          restartPolicy: Always
+          schedulerName: default-scheduler
+          securityContext: {}
+          serviceAccount: cert-manager-cainjector
+          serviceAccountName: cert-manager-cainjector
+          terminationGracePeriodSeconds: 30
+    status:
+      availableReplicas: 1
+      fullyLabeledReplicas: 1
+      observedGeneration: 1
+      readyReplicas: 1
+      replicas: 1
+  - apiVersion: extensions/v1beta1
+    kind: ReplicaSet
+    metadata:
+      annotations:
+        deployment.kubernetes.io/desired-replicas: "1"
+        deployment.kubernetes.io/max-replicas: "2"
+        deployment.kubernetes.io/revision: "1"
+      creationTimestamp: "2020-04-27T20:34:58Z"
+      generation: 1
+      labels:
+        app: webhook
+        app.kubernetes.io/instance: cert-manager
+        app.kubernetes.io/name: webhook
+        pod-template-hash: c48868f6f
+      name: cert-manager-webhook-c48868f6f
+      namespace: cert-manager
+      ownerReferences:
+      - apiVersion: apps/v1
+        blockOwnerDeletion: true
+        controller: true
+        kind: Deployment
+        name: cert-manager-webhook
+        uid: 76807895-638f-4e98-8929-ead050befe30
+      resourceVersion: "780"
+      selfLink: /apis/extensions/v1beta1/namespaces/cert-manager/replicasets/cert-manager-webhook-c48868f6f
+      uid: bc7847d7-fecd-49a3-951f-cf913b6f39c3
+    spec:
+      replicas: 1
+      selector:
+        matchLabels:
+          app: webhook
+          app.kubernetes.io/instance: cert-manager
+          app.kubernetes.io/name: webhook
+          pod-template-hash: c48868f6f
+      template:
+        metadata:
+          creationTimestamp: null
+          labels:
+            app: webhook
+            app.kubernetes.io/instance: cert-manager
+            app.kubernetes.io/name: webhook
+            pod-template-hash: c48868f6f
+        spec:
+          containers:
+          - args:
+            - --v=2
+            - --secure-port=6443
+            - --tls-cert-file=/certs/tls.crt
+            - --tls-private-key-file=/certs/tls.key
+            env:
+            - name: POD_NAMESPACE
+              valueFrom:
+                fieldRef:
+                  apiVersion: v1
+                  fieldPath: metadata.namespace
+            image: quay.io/jetstack/cert-manager-webhook:v0.12.0
+            imagePullPolicy: IfNotPresent
+            livenessProbe:
+              failureThreshold: 3
+              httpGet:
+                path: /healthz
+                port: 6080
+                scheme: HTTP
+              periodSeconds: 10
+              successThreshold: 1
+              timeoutSeconds: 1
+            name: cert-manager
+            readinessProbe:
+              failureThreshold: 3
+              httpGet:
+                path: /healthz
+                port: 6080
+                scheme: HTTP
+              initialDelaySeconds: 15
+              periodSeconds: 10
+              successThreshold: 1
+              timeoutSeconds: 1
+            resources: {}
+            terminationMessagePath: /dev/termination-log
+            terminationMessagePolicy: File
+            volumeMounts:
+            - mountPath: /certs
+              name: certs
+          dnsPolicy: ClusterFirst
+          restartPolicy: Always
+          schedulerName: default-scheduler
+          securityContext: {}
+          serviceAccount: cert-manager-webhook
+          serviceAccountName: cert-manager-webhook
+          terminationGracePeriodSeconds: 30
+          volumes:
+          - name: certs
+            secret:
+              defaultMode: 420
+              secretName: cert-manager-webhook-tls
+    status:
+      availableReplicas: 1
+      fullyLabeledReplicas: 1
+      observedGeneration: 1
+      readyReplicas: 1
+      replicas: 1
+  metadata: {}
+- items:
+  - apiVersion: metrics.k8s.io/v1beta1
+    containers:
+    - name: cert-manager
+      usage:
+        cpu: 6m
+        memory: 35656Ki
+    kind: PodMetrics
+    metadata:
+      creationTimestamp: "2020-04-27T20:46:04Z"
+      name: cert-manager-67b8bfbfb4-9wsv9
+      namespace: cert-manager
+      selfLink: /apis/metrics.k8s.io/v1beta1/namespaces/cert-manager/pods/cert-manager-67b8bfbfb4-9wsv9
+    timestamp: "2020-04-27T20:46:04Z"
+    window: 5m0s
+  - apiVersion: metrics.k8s.io/v1beta1
+    containers:
+    - name: cainjector
+      usage:
+        cpu: 8m
+        memory: 56216Ki
+    kind: PodMetrics
+    metadata:
+      creationTimestamp: "2020-04-27T20:46:04Z"
+      name: cert-manager-cainjector-5cc6f8695f-6zdn6
+      namespace: cert-manager
+      selfLink: /apis/metrics.k8s.io/v1beta1/namespaces/cert-manager/pods/cert-manager-cainjector-5cc6f8695f-6zdn6
+    timestamp: "2020-04-27T20:46:04Z"
+    window: 5m0s
+  - apiVersion: metrics.k8s.io/v1beta1
+    containers:
+    - name: cert-manager
+      usage:
+        cpu: "0"
+        memory: 11984Ki
+    kind: PodMetrics
+    metadata:
+      creationTimestamp: "2020-04-27T20:46:04Z"
+      name: cert-manager-webhook-c48868f6f-fs987
+      namespace: cert-manager
+      selfLink: /apis/metrics.k8s.io/v1beta1/namespaces/cert-manager/pods/cert-manager-webhook-c48868f6f-fs987
+    timestamp: "2020-04-27T20:46:04Z"
+    window: 5m0s
+  metadata: {}
+kind: List
+metadata: {}

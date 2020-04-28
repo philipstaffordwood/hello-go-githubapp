@@ -1,0 +1,399 @@
+apiVersion: v1
+items:
+- items:
+  - apiVersion: v1
+    data:
+      eck_license_level: basic
+      enterprise_resource_units: "0"
+      timestamp: "2020-04-27T20:44:53Z"
+      total_managed_memory: 0.00GB
+    kind: ConfigMap
+    metadata:
+      creationTimestamp: "2020-04-27T20:38:53Z"
+      labels:
+        common.k8s.elastic.co/type: elastic-usage
+      name: elastic-licensing
+      namespace: elastic-system
+      resourceVersion: "6652"
+      selfLink: /api/v1/namespaces/elastic-system/configmaps/elastic-licensing
+      uid: 4f9e7898-516c-48e8-affb-8ce9102a967b
+  - apiVersion: v1
+    data:
+      uuid: 2d46de24-1ed7-4c4c-9baf-6c2ca1d4cd9c
+    kind: ConfigMap
+    metadata:
+      creationTimestamp: "2020-04-27T20:38:40Z"
+      name: elastic-operator-uuid
+      namespace: elastic-system
+      resourceVersion: "2675"
+      selfLink: /api/v1/namespaces/elastic-system/configmaps/elastic-operator-uuid
+      uid: 9e2008ce-04ec-426e-adf4-b95faf958b7c
+  metadata: {}
+- items:
+  - apiVersion: v1
+    kind: Pod
+    metadata:
+      annotations:
+        cni.projectcalico.org/podIP: 100.200.82.27/32
+      creationTimestamp: "2020-04-27T20:38:34Z"
+      generateName: elastic-operator-
+      labels:
+        control-plane: elastic-operator
+        controller-revision-hash: elastic-operator-598df7bc9d
+        statefulset.kubernetes.io/pod-name: elastic-operator-0
+      name: elastic-operator-0
+      namespace: elastic-system
+      ownerReferences:
+      - apiVersion: apps/v1
+        blockOwnerDeletion: true
+        controller: true
+        kind: StatefulSet
+        name: elastic-operator
+        uid: 6bd14a48-3ba4-467f-bdd2-9153aeff3fa1
+      resourceVersion: "2677"
+      selfLink: /api/v1/namespaces/elastic-system/pods/elastic-operator-0
+      uid: b95c1367-2ec2-4fd0-9215-ab55f1844d4d
+    spec:
+      containers:
+      - args:
+        - manager
+        - --operator-roles
+        - all
+        - --log-verbosity=0
+        env:
+        - name: OPERATOR_NAMESPACE
+          valueFrom:
+            fieldRef:
+              apiVersion: v1
+              fieldPath: metadata.namespace
+        - name: WEBHOOK_SECRET
+          value: elastic-webhook-server-cert
+        - name: WEBHOOK_PODS_LABEL
+          value: elastic-operator
+        - name: OPERATOR_IMAGE
+          value: docker.elastic.co/eck/eck-operator:1.0.1
+        image: docker.elastic.co/eck/eck-operator:1.0.1
+        imagePullPolicy: IfNotPresent
+        name: manager
+        ports:
+        - containerPort: 9443
+          name: webhook-server
+          protocol: TCP
+        resources:
+          limits:
+            cpu: "1"
+            memory: 150Mi
+          requests:
+            cpu: 100m
+            memory: 50Mi
+        terminationMessagePath: /dev/termination-log
+        terminationMessagePolicy: File
+        volumeMounts:
+        - mountPath: /tmp/k8s-webhook-server/serving-certs
+          name: cert
+          readOnly: true
+        - mountPath: /var/run/secrets/kubernetes.io/serviceaccount
+          name: elastic-operator-token-s5wqv
+          readOnly: true
+      dnsPolicy: ClusterFirst
+      enableServiceLinks: true
+      hostname: elastic-operator-0
+      nodeName: kind-control-plane
+      priority: 0
+      restartPolicy: Always
+      schedulerName: default-scheduler
+      securityContext: {}
+      serviceAccount: elastic-operator
+      serviceAccountName: elastic-operator
+      subdomain: elastic-operator
+      terminationGracePeriodSeconds: 10
+      tolerations:
+      - effect: NoExecute
+        key: node.kubernetes.io/not-ready
+        operator: Exists
+        tolerationSeconds: 300
+      - effect: NoExecute
+        key: node.kubernetes.io/unreachable
+        operator: Exists
+        tolerationSeconds: 300
+      volumes:
+      - name: cert
+        secret:
+          defaultMode: 420
+          secretName: elastic-webhook-server-cert
+      - name: elastic-operator-token-s5wqv
+        secret:
+          defaultMode: 420
+          secretName: elastic-operator-token-s5wqv
+    status:
+      conditions:
+      - lastProbeTime: null
+        lastTransitionTime: "2020-04-27T20:38:34Z"
+        status: "True"
+        type: Initialized
+      - lastProbeTime: null
+        lastTransitionTime: "2020-04-27T20:38:41Z"
+        status: "True"
+        type: Ready
+      - lastProbeTime: null
+        lastTransitionTime: "2020-04-27T20:38:41Z"
+        status: "True"
+        type: ContainersReady
+      - lastProbeTime: null
+        lastTransitionTime: "2020-04-27T20:38:34Z"
+        status: "True"
+        type: PodScheduled
+      containerStatuses:
+      - containerID: containerd://09f083d7ffcd354dbc0fc853022cf1d13a20d42eb445695a7fdc3a5ac13a6131
+        image: docker.elastic.co/eck/eck-operator:1.0.1
+        imageID: docker.elastic.co/eck/eck-operator@sha256:fa4fbf738f8f81c39d1a4a0172209f1641ed0115488f16c91dcc4a9a16f42531
+        lastState: {}
+        name: manager
+        ready: true
+        restartCount: 0
+        state:
+          running:
+            startedAt: "2020-04-27T20:38:40Z"
+      hostIP: 172.17.0.2
+      phase: Running
+      podIP: 100.200.82.27
+      qosClass: Burstable
+      startTime: "2020-04-27T20:38:34Z"
+  metadata: {}
+- items:
+  - apiVersion: v1
+    kind: ServiceAccount
+    metadata:
+      creationTimestamp: "2020-04-27T20:38:33Z"
+      name: default
+      namespace: elastic-system
+      resourceVersion: "2513"
+      selfLink: /api/v1/namespaces/elastic-system/serviceaccounts/default
+      uid: ddefa072-8d6b-4b57-abd9-ca3175653cc7
+    secrets:
+    - name: default-token-wjcbt
+  - apiVersion: v1
+    kind: ServiceAccount
+    metadata:
+      creationTimestamp: "2020-04-27T20:38:34Z"
+      name: elastic-operator
+      namespace: elastic-system
+      resourceVersion: "2552"
+      selfLink: /api/v1/namespaces/elastic-system/serviceaccounts/elastic-operator
+      uid: 17207c54-654f-4850-8899-9c51747d6b5a
+    secrets:
+    - name: elastic-operator-token-s5wqv
+  metadata: {}
+- items:
+  - apiVersion: v1
+    kind: Service
+    metadata:
+      creationTimestamp: "2020-04-27T20:38:35Z"
+      name: elastic-webhook-server
+      namespace: elastic-system
+      resourceVersion: "2567"
+      selfLink: /api/v1/namespaces/elastic-system/services/elastic-webhook-server
+      uid: d5051d2a-60c9-4003-8a21-6b12dcb29ea0
+    spec:
+      clusterIP: 10.100.118.70
+      ports:
+      - port: 443
+        protocol: TCP
+        targetPort: 9443
+      selector:
+        control-plane: elastic-operator
+      sessionAffinity: None
+      type: ClusterIP
+    status:
+      loadBalancer: {}
+  metadata: {}
+- items:
+  - apiVersion: apps/v1
+    data:
+      spec:
+        template:
+          $patch: replace
+          metadata:
+            creationTimestamp: null
+            labels:
+              control-plane: elastic-operator
+          spec:
+            containers:
+            - args:
+              - manager
+              - --operator-roles
+              - all
+              - --log-verbosity=0
+              env:
+              - name: OPERATOR_NAMESPACE
+                valueFrom:
+                  fieldRef:
+                    apiVersion: v1
+                    fieldPath: metadata.namespace
+              - name: WEBHOOK_SECRET
+                value: elastic-webhook-server-cert
+              - name: WEBHOOK_PODS_LABEL
+                value: elastic-operator
+              - name: OPERATOR_IMAGE
+                value: docker.elastic.co/eck/eck-operator:1.0.1
+              image: docker.elastic.co/eck/eck-operator:1.0.1
+              imagePullPolicy: IfNotPresent
+              name: manager
+              ports:
+              - containerPort: 9443
+                name: webhook-server
+                protocol: TCP
+              resources:
+                limits:
+                  cpu: "1"
+                  memory: 150Mi
+                requests:
+                  cpu: 100m
+                  memory: 50Mi
+              terminationMessagePath: /dev/termination-log
+              terminationMessagePolicy: File
+              volumeMounts:
+              - mountPath: /tmp/k8s-webhook-server/serving-certs
+                name: cert
+                readOnly: true
+            dnsPolicy: ClusterFirst
+            restartPolicy: Always
+            schedulerName: default-scheduler
+            securityContext: {}
+            serviceAccount: elastic-operator
+            serviceAccountName: elastic-operator
+            terminationGracePeriodSeconds: 10
+            volumes:
+            - name: cert
+              secret:
+                defaultMode: 420
+                secretName: elastic-webhook-server-cert
+    kind: ControllerRevision
+    metadata:
+      creationTimestamp: "2020-04-27T20:38:34Z"
+      labels:
+        control-plane: elastic-operator
+        controller.kubernetes.io/hash: 598df7bc9d
+      name: elastic-operator-598df7bc9d
+      namespace: elastic-system
+      ownerReferences:
+      - apiVersion: apps/v1
+        blockOwnerDeletion: true
+        controller: true
+        kind: StatefulSet
+        name: elastic-operator
+        uid: 6bd14a48-3ba4-467f-bdd2-9153aeff3fa1
+      resourceVersion: "2539"
+      selfLink: /apis/apps/v1/namespaces/elastic-system/controllerrevisions/elastic-operator-598df7bc9d
+      uid: e612f707-3fb1-4b80-914f-47254e5e453e
+    revision: 1
+  metadata: {}
+- items:
+  - apiVersion: apps/v1
+    kind: StatefulSet
+    metadata:
+      creationTimestamp: "2020-04-27T20:38:34Z"
+      generation: 1
+      labels:
+        control-plane: elastic-operator
+      name: elastic-operator
+      namespace: elastic-system
+      resourceVersion: "2678"
+      selfLink: /apis/apps/v1/namespaces/elastic-system/statefulsets/elastic-operator
+      uid: 6bd14a48-3ba4-467f-bdd2-9153aeff3fa1
+    spec:
+      podManagementPolicy: OrderedReady
+      replicas: 1
+      revisionHistoryLimit: 10
+      selector:
+        matchLabels:
+          control-plane: elastic-operator
+      serviceName: elastic-operator
+      template:
+        metadata:
+          creationTimestamp: null
+          labels:
+            control-plane: elastic-operator
+        spec:
+          containers:
+          - args:
+            - manager
+            - --operator-roles
+            - all
+            - --log-verbosity=0
+            env:
+            - name: OPERATOR_NAMESPACE
+              valueFrom:
+                fieldRef:
+                  apiVersion: v1
+                  fieldPath: metadata.namespace
+            - name: WEBHOOK_SECRET
+              value: elastic-webhook-server-cert
+            - name: WEBHOOK_PODS_LABEL
+              value: elastic-operator
+            - name: OPERATOR_IMAGE
+              value: docker.elastic.co/eck/eck-operator:1.0.1
+            image: docker.elastic.co/eck/eck-operator:1.0.1
+            imagePullPolicy: IfNotPresent
+            name: manager
+            ports:
+            - containerPort: 9443
+              name: webhook-server
+              protocol: TCP
+            resources:
+              limits:
+                cpu: "1"
+                memory: 150Mi
+              requests:
+                cpu: 100m
+                memory: 50Mi
+            terminationMessagePath: /dev/termination-log
+            terminationMessagePolicy: File
+            volumeMounts:
+            - mountPath: /tmp/k8s-webhook-server/serving-certs
+              name: cert
+              readOnly: true
+          dnsPolicy: ClusterFirst
+          restartPolicy: Always
+          schedulerName: default-scheduler
+          securityContext: {}
+          serviceAccount: elastic-operator
+          serviceAccountName: elastic-operator
+          terminationGracePeriodSeconds: 10
+          volumes:
+          - name: cert
+            secret:
+              defaultMode: 420
+              secretName: elastic-webhook-server-cert
+      updateStrategy:
+        rollingUpdate:
+          partition: 0
+        type: RollingUpdate
+    status:
+      collisionCount: 0
+      currentReplicas: 1
+      currentRevision: elastic-operator-598df7bc9d
+      observedGeneration: 1
+      readyReplicas: 1
+      replicas: 1
+      updateRevision: elastic-operator-598df7bc9d
+      updatedReplicas: 1
+  metadata: {}
+- items:
+  - apiVersion: metrics.k8s.io/v1beta1
+    containers:
+    - name: manager
+      usage:
+        cpu: 4m
+        memory: 36224Ki
+    kind: PodMetrics
+    metadata:
+      creationTimestamp: "2020-04-27T20:46:06Z"
+      name: elastic-operator-0
+      namespace: elastic-system
+      selfLink: /apis/metrics.k8s.io/v1beta1/namespaces/elastic-system/pods/elastic-operator-0
+    timestamp: "2020-04-27T20:46:06Z"
+    window: 5m0s
+  metadata: {}
+kind: List
+metadata: {}

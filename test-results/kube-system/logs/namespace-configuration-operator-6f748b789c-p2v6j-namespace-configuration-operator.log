@@ -1,0 +1,14 @@
+{"level":"info","ts":1588019752.9503045,"logger":"cmd","msg":"Go Version: go1.12"}
+{"level":"info","ts":1588019752.9503496,"logger":"cmd","msg":"Go OS/Arch: linux/amd64"}
+{"level":"info","ts":1588019752.95036,"logger":"cmd","msg":"Version of operator-sdk: v0.10.0"}
+{"level":"info","ts":1588019752.9505377,"logger":"leader","msg":"Trying to become the leader."}
+{"level":"info","ts":1588019753.3511772,"logger":"leader","msg":"No pre-existing lock was found."}
+{"level":"info","ts":1588019753.3539274,"logger":"leader","msg":"Became the leader."}
+{"level":"info","ts":1588019753.653435,"logger":"cmd","msg":"Registering Components."}
+{"level":"info","ts":1588019753.6537476,"logger":"kubebuilder.controller","msg":"Starting EventSource","controller":"namespaceconfig-controller","source":"kind source: /, Kind="}
+{"level":"info","ts":1588019753.6538928,"logger":"kubebuilder.controller","msg":"Starting EventSource","controller":"namespaceconfig-controller","source":"kind source: /, Kind="}
+{"level":"info","ts":1588019754.0664637,"logger":"metrics","msg":"Metrics Service object created","Service.Name":"namespace-configuration-operator-metrics","Service.Namespace":"kube-system"}
+{"level":"info","ts":1588019754.243909,"logger":"cmd","msg":"Could not create ServiceMonitor object","error":"an empty namespace may not be set during creation"}
+{"level":"info","ts":1588019754.2439492,"logger":"cmd","msg":"Starting the Cmd."}
+{"level":"info","ts":1588019754.4430513,"logger":"kubebuilder.controller","msg":"Starting Controller","controller":"namespaceconfig-controller"}
+{"level":"info","ts":1588019754.5432558,"logger":"kubebuilder.controller","msg":"Starting workers","controller":"namespaceconfig-controller","worker count":1}

@@ -1,0 +1,37 @@
+apiVersion: v1
+items:
+- items:
+  - apiVersion: v1
+    kind: ServiceAccount
+    metadata:
+      creationTimestamp: "2020-04-27T20:34:35Z"
+      name: default
+      namespace: kube-node-lease
+      resourceVersion: "437"
+      selfLink: /api/v1/namespaces/kube-node-lease/serviceaccounts/default
+      uid: 621465e7-6339-4d9e-adf6-084517bfbf05
+    secrets:
+    - name: default-token-dst5s
+  metadata: {}
+- items:
+  - apiVersion: coordination.k8s.io/v1
+    kind: Lease
+    metadata:
+      creationTimestamp: "2020-04-27T20:34:14Z"
+      name: kind-control-plane
+      namespace: kube-node-lease
+      ownerReferences:
+      - apiVersion: v1
+        kind: Node
+        name: kind-control-plane
+        uid: a17fc70c-d43b-4061-b02b-9ac9e6599a64
+      resourceVersion: "7174"
+      selfLink: /apis/coordination.k8s.io/v1/namespaces/kube-node-lease/leases/kind-control-plane
+      uid: 677b09a6-bfaa-461b-9bce-6ffbf4af33d4
+    spec:
+      holderIdentity: kind-control-plane
+      leaseDurationSeconds: 40
+      renewTime: "2020-04-27T20:46:05.563082Z"
+  metadata: {}
+kind: List
+metadata: {}

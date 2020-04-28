@@ -1,0 +1,27 @@
+level=info ts=2020-04-27T20:40:47.935Z caller=main.go:329 msg="Starting Prometheus" version="(version=2.11.0, branch=HEAD, revision=4ef66003d9855ed2b7a41e987b33828ec36db34d)"
+level=info ts=2020-04-27T20:40:47.935Z caller=main.go:330 build_context="(go=go1.12.7, user=root@0dc27cf95f36, date=20190709-09:54:35)"
+level=info ts=2020-04-27T20:40:47.935Z caller=main.go:331 host_details="(Linux 4.15.0-1027-gcp #28~16.04.1-Ubuntu SMP Fri Jan 18 10:10:51 UTC 2019 x86_64 prometheus-k8s-1 (none))"
+level=info ts=2020-04-27T20:40:47.935Z caller=main.go:332 fd_limits="(soft=1048576, hard=1048576)"
+level=info ts=2020-04-27T20:40:47.935Z caller=main.go:333 vm_limits="(soft=unlimited, hard=unlimited)"
+level=info ts=2020-04-27T20:40:47.936Z caller=main.go:652 msg="Starting TSDB ..."
+level=info ts=2020-04-27T20:40:47.936Z caller=web.go:448 component=web msg="Start listening for connections" address=0.0.0.0:9090
+level=info ts=2020-04-27T20:40:47.944Z caller=main.go:667 fs_type=EXT4_SUPER_MAGIC
+level=info ts=2020-04-27T20:40:47.944Z caller=main.go:668 msg="TSDB started"
+level=info ts=2020-04-27T20:40:47.945Z caller=main.go:738 msg="Loading configuration file" filename=/etc/prometheus/config_out/prometheus.env.yaml
+level=info ts=2020-04-27T20:40:47.947Z caller=kubernetes.go:192 component="discovery manager scrape" discovery=k8s msg="Using pod service account via in-cluster config"
+level=info ts=2020-04-27T20:40:47.948Z caller=kubernetes.go:192 component="discovery manager scrape" discovery=k8s msg="Using pod service account via in-cluster config"
+level=info ts=2020-04-27T20:40:47.950Z caller=kubernetes.go:192 component="discovery manager notify" discovery=k8s msg="Using pod service account via in-cluster config"
+level=info ts=2020-04-27T20:40:48.009Z caller=main.go:766 msg="Completed loading of configuration file" filename=/etc/prometheus/config_out/prometheus.env.yaml
+level=info ts=2020-04-27T20:40:48.009Z caller=main.go:621 msg="Server is ready to receive web requests."
+level=info ts=2020-04-27T20:40:49.234Z caller=main.go:738 msg="Loading configuration file" filename=/etc/prometheus/config_out/prometheus.env.yaml
+level=info ts=2020-04-27T20:40:49.236Z caller=kubernetes.go:192 component="discovery manager scrape" discovery=k8s msg="Using pod service account via in-cluster config"
+level=info ts=2020-04-27T20:40:49.237Z caller=kubernetes.go:192 component="discovery manager scrape" discovery=k8s msg="Using pod service account via in-cluster config"
+level=info ts=2020-04-27T20:40:49.238Z caller=kubernetes.go:192 component="discovery manager notify" discovery=k8s msg="Using pod service account via in-cluster config"
+level=info ts=2020-04-27T20:40:49.271Z caller=main.go:766 msg="Completed loading of configuration file" filename=/etc/prometheus/config_out/prometheus.env.yaml
+level=info ts=2020-04-27T20:40:49.343Z caller=main.go:738 msg="Loading configuration file" filename=/etc/prometheus/config_out/prometheus.env.yaml
+level=info ts=2020-04-27T20:40:49.348Z caller=kubernetes.go:192 component="discovery manager scrape" discovery=k8s msg="Using pod service account via in-cluster config"
+level=info ts=2020-04-27T20:40:49.349Z caller=kubernetes.go:192 component="discovery manager scrape" discovery=k8s msg="Using pod service account via in-cluster config"
+level=info ts=2020-04-27T20:40:49.350Z caller=kubernetes.go:192 component="discovery manager scrape" discovery=k8s msg="Using pod service account via in-cluster config"
+level=info ts=2020-04-27T20:40:49.351Z caller=kubernetes.go:192 component="discovery manager scrape" discovery=k8s msg="Using pod service account via in-cluster config"
+level=info ts=2020-04-27T20:40:49.351Z caller=kubernetes.go:192 component="discovery manager notify" discovery=k8s msg="Using pod service account via in-cluster config"
+level=info ts=2020-04-27T20:40:49.385Z caller=main.go:766 msg="Completed loading of configuration file" filename=/etc/prometheus/config_out/prometheus.env.yaml

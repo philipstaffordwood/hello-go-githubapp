@@ -1,0 +1,9 @@
+2020-04-27 20:34:51.588 [INFO][1] main.go 92: Loaded configuration from environment config=&config.Config{LogLevel:"info", ReconcilerPeriod:"5m", CompactionPeriod:"10m", EnabledControllers:"node", WorkloadEndpointWorkers:1, ProfileWorkers:1, PolicyWorkers:1, NodeWorkers:1, Kubeconfig:"", HealthEnabled:true, SyncNodeLabels:true, DatastoreType:"kubernetes"}
+2020-04-27 20:34:51.589 [INFO][1] k8s.go 228: Using Calico IPAM
+W0427 20:34:51.589658       1 client_config.go:552] Neither --kubeconfig nor --master was specified.  Using the inClusterConfig.  This might not work.
+2020-04-27 20:34:51.590 [INFO][1] main.go 113: Ensuring Calico datastore is initialized
+2020-04-27 20:34:51.597 [INFO][1] main.go 175: Starting status report routine
+2020-04-27 20:34:51.597 [INFO][1] main.go 357: Starting controller ControllerType="Node"
+2020-04-27 20:34:51.597 [INFO][1] node_controller.go 133: Starting Node controller
+2020-04-27 20:34:51.697 [INFO][1] node_controller.go 146: Node controller is now running
+2020-04-27 20:34:51.708 [INFO][1] kdd.go 167: Node and IPAM data is in sync

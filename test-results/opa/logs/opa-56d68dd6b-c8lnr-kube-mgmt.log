@@ -1,0 +1,8 @@
+time="2020-04-27T20:38:31Z" level=warning msg="First line of log stream." 
+time="2020-04-27T20:38:31Z" level=info msg="Syncing extensions/v1beta1/ingresses." 
+time="2020-04-27T20:38:31Z" level=info msg="Syncing v1/namespaces." 
+time="2020-04-27T20:38:31Z" level=info msg="Listed extensions/v1beta1/ingresses and got 6 resources with resourceVersion 2447. Took 9.373043ms." 
+time="2020-04-27T20:38:31Z" level=info msg="Listed v1/namespaces and got 20 resources with resourceVersion 2447. Took 9.085154ms." 
+time="2020-04-27T20:38:31Z" level=info msg="Loaded extensions/v1beta1/ingresses resources into OPA. Took 83.892674ms. Starting watch at resourceVersion 2447." 
+time="2020-04-27T20:38:31Z" level=info msg="Loaded v1/namespaces resources into OPA. Took 83.864887ms. Starting watch at resourceVersion 2447." 
+E0427 20:45:42.471782       1 streamwatcher.go:109] Unable to decode an event from the watch stream: unable to decode watch event: no kind "Status" is registered for version "v1" in scheme "github.com/open-policy-agent/kube-mgmt/pkg/configmap/configmap.go:102"

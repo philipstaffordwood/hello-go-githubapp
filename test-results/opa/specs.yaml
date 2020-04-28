@@ -1,0 +1,1117 @@
+apiVersion: v1
+items:
+- items:
+  - apiVersion: v1
+    data:
+      check-image.rego: "package kubernetes.admission  \n  \nimport data.kubernetes.namespaces
+        \ \n\noperations =  {\"CREATE\", \"UPDATE\"}\nkinds = { \"Pod\", \"Deployment\",
+        \"ReplicationController\", \"ReplicaSet\", \"DaemonSet\", \"StatefulSet\",
+        \"Job\", \"CronJob\"}\n\nget_image(kind) = input.request.object.spec.template.spec.containers[_].image
+        { kinds[kind] }\nget_image(kind) = input.request.object.spec.containers[_].image
+        { kind == \"Pod\" }\nget_image(kind) = input.request.object.spec.jobTemplate.spec.template.spec.containers[_].image
+        { kind == \"CronJob\" }\n\nvalid_deployment_registries = {registry |  \n    whitelist
+        := namespaces[input.request.namespace].metadata.annotations[\"registry-whitelist\"]\n
+        \   registries = split(whitelist, \",\")  \n    registry = registries[_]  \n}
+        \ \n  \nreg_matches_any(str, patterns) {  \n    reg_matches(str, patterns[_])
+        \ \n}  \n  \nreg_matches(str, pattern) {  \n    contains(str, pattern)  \n}\n\ndeny[msg]
+        {  \n    kinds[input.request.kind.kind]  \n    operations[input.request.operation]\n
+        \   registry = get_image(input.request.kind.kind)  \n    not reg_matches_any(registory,valid_deployment_registries)
+        \ \n    msg = sprintf(\"your image registory is not whitelisted:registry=%q\",
+        [registry])  \n}  \n\ndeny[msg] {\n    kinds[input.request.kind.kind]  \n
+        \   operations[input.request.operation]\n    image = get_image(input.request.kind.kind)\n
+        \   not contains(image, \":\")\n    msg = sprintf(\"no tag in image-name %q\",
+        [image])\n}\n\ndeny[msg] {\n    kinds[input.request.kind.kind]  \n    operations[input.request.operation]\n
+        \   image = get_image(input.request.kind.kind)\n    [image_name, image_tag]
+        = split(image, \":\")\n    image_tag = \"latest\"\n    msg = sprintf(\"invalid
+        image tag — using default latest tag %q\", [image])\n}"
+    kind: ConfigMap
+    metadata:
+      annotations:
+        openpolicyagent.org/policy-status: '{"status":"error","error":{"code":"invalid_parameter","message":"error(s)
+          occurred while compiling module(s)","errors":[{"code":"rego_unsafe_var_error","message":"var
+          registory is unsafe","location":{"file":"opa/check-image/check-image.rego","row":30,"col":9}}]}}'
+      creationTimestamp: "2020-04-27T20:38:25Z"
+      name: check-image
+      namespace: opa
+      resourceVersion: "2449"
+      selfLink: /api/v1/namespaces/opa/configmaps/check-image
+      uid: 204939ae-944e-432b-bbf5-cd867ebd4041
+  - apiVersion: v1
+    data:
+      check-ingress-conflict.rego: |
+        package kubernetes.admission
+
+        import data.kubernetes.ingresses
+
+        deny[msg] {
+            some other_ns, other_ingress
+            input.request.kind.kind == "Ingress"
+            input.request.operation == "CREATE"
+            host := input.request.object.spec.rules[_].host
+            ingress := ingresses[other_ns][other_ingress]
+            other_ns != input.request.namespace
+            ingress.spec.rules[_].host == host
+            msg := sprintf("invalid ingress host %q (conflicts with %v/%v)", [host, other_ns, other_ingress])
+        }
+    kind: ConfigMap
+    metadata:
+      annotations:
+        openpolicyagent.org/policy-status: '{"status":"ok"}'
+      creationTimestamp: "2020-04-27T20:38:25Z"
+      name: check-ingress-conflict
+      namespace: opa
+      resourceVersion: "2450"
+      selfLink: /api/v1/namespaces/opa/configmaps/check-ingress-conflict
+      uid: 75cca345-2563-4564-a898-20bcb6da6fcb
+  - apiVersion: v1
+    data:
+      check-ingress-whitelist.rego: |
+        package kubernetes.admission
+
+        import data.kubernetes.namespaces
+
+        operations = {"CREATE", "UPDATE"}
+
+        deny[msg] {
+          input.request.kind.kind == "Ingress"
+          operations[input.request.operation]
+          host := input.request.object.spec.rules[_].host
+          not fqdn_matches_any(host, valid_ingress_hosts)
+          msg := sprintf("invalid ingress host %q", [host])
+        }
+
+        valid_ingress_hosts = {host |
+          whitelist := namespaces[input.request.namespace].metadata.annotations["ingress-whitelist"]
+          hosts := split(whitelist, ",")
+          host := hosts[_]
+        }
+
+        fqdn_matches_any(str, patterns) {
+          fqdn_matches(str, patterns[_])
+        }
+
+        fqdn_matches(str, pattern) {
+          pattern_parts := split(pattern, ".")
+          pattern_parts[0] == "*"
+          str_parts := split(str, ".")
+          n_pattern_parts := count(pattern_parts)
+          n_str_parts := count(str_parts)
+          suffix := trim(pattern, "*.")
+          endswith(str, suffix)
+        }
+
+        fqdn_matches(str, pattern) {
+            not contains(pattern, "*")
+            str == pattern
+        }
+    kind: ConfigMap
+    metadata:
+      annotations:
+        openpolicyagent.org/policy-status: '{"status":"ok"}'
+      creationTimestamp: "2020-04-27T20:38:25Z"
+      name: check-ingress-whitelist
+      namespace: opa
+      resourceVersion: "2463"
+      selfLink: /api/v1/namespaces/opa/configmaps/check-ingress-whitelist
+      uid: ed79f079-b1e4-415f-b0b9-628a17403d9e
+  - apiVersion: v1
+    data:
+      check-ns.rego: "package kubernetes.admission  \n  \nimport data.kubernetes.namespaces\nimport
+        data.automobile.companies\n\nhas_key(obj, k) { _ = obj[k]}\nhas_item(list,
+        i) {list[_] = i}\n\ndeny[msg] {\n    input.request.kind.kind = \"Namespace\"\n
+        \   input.request.operation = \"CREATE\"\n    metadata = input.request.object.metadata\n
+        \   not has_key(metadata,\"labels\")\n    msg = \"Must specify label: company
+        and service\"\n}\n\ndeny[msg] {\n    input.request.kind.kind = \"Namespace\"\n
+        \   input.request.operation = \"CREATE\"\n    incoming_service = input.request.object.metadata.labels.service\n
+        \   incoming_company = input.request.object.metadata.labels.company\n    labels
+        = input.request.object.metadata.labels\n    not has_key(companies,incoming_company
+        )\n    msg = sprintf(\"Company name %q does not exist\",[incoming_company])\n}\n\ndeny[msg]
+        {\n    input.request.kind.kind = \"Namespace\"\n    input.request.operation
+        = \"CREATE\"\n    incoming_service = input.request.object.metadata.labels.service\n
+        \   incoming_company = input.request.object.metadata.labels.company\n    services
+        = companies[incoming_company]\n    labels = input.request.object.metadata.labels\n
+        \   not has_item(services, incoming_service)\n    msg = sprintf(\"Service
+        %q not found for company %q\",[incoming_service,incoming_company])\n}"
+    kind: ConfigMap
+    metadata:
+      annotations:
+        openpolicyagent.org/policy-status: '{"status":"ok"}'
+      creationTimestamp: "2020-04-27T20:38:25Z"
+      name: check-ns
+      namespace: opa
+      resourceVersion: "2456"
+      selfLink: /api/v1/namespaces/opa/configmaps/check-ns
+      uid: 11d5d8bb-a05b-4bc6-aef9-13aa691ebcb5
+  - apiVersion: v1
+    data:
+      check-probes.rego: "package kubernetes.admission  \n  \nimport data.kubernetes.namespaces
+        \ \n\noperations =  {\"CREATE\", \"UPDATE\"}\nkinds = { \"Pod\", \"Deployment\",
+        \"ReplicationController\", \"ReplicaSet\", \"DaemonSet\", \"StatefulSet\"}\n\nhas_key(x,
+        k) { _ = x[k] }\nget_container(kind) = input.request.object.spec.template.spec.containers[_]
+        { kinds[kind] }\nget_container(kind) = input.request.object.spec.containers[_]
+        { kind == \"Pod\" }\n\ndeny[msg] {\n    kinds[input.request.kind.kind]  \n
+        \   operations[input.request.operation]\n    container = get_container(input.request.kind.kind)\n
+        \   not has_key(container,\"readinessProbe\")\n    msg = \"readiness probe
+        is not set\"\n}\n\ndeny[msg] {\n    kinds[input.request.kind.kind]  \n    operations[input.request.operation]\n
+        \   container = get_container(input.request.kind.kind)\n    not has_key(container,\"livenessProbe\")\n
+        \   msg = \"liveness  probe is not set\"\n}"
+    kind: ConfigMap
+    metadata:
+      annotations:
+        openpolicyagent.org/policy-status: '{"status":"ok"}'
+      creationTimestamp: "2020-04-27T20:38:25Z"
+      name: check-probes
+      namespace: opa
+      resourceVersion: "2459"
+      selfLink: /api/v1/namespaces/opa/configmaps/check-probes
+      uid: 0597cff5-daa8-494b-8ca4-0f36e5f03f66
+  - apiVersion: v1
+    data:
+      check-resource-requests.rego: "package kubernetes.admission  \n  \nimport data.kubernetes.namespaces
+        \ \n\noperations =  {\"CREATE\", \"UPDATE\"}\nkinds = { \"Pod\", \"Deployment\",
+        \"ReplicationController\", \"ReplicaSet\", \"DaemonSet\", \"StatefulSet\"}\n\nget_container(kind)
+        = input.request.object.spec.template.spec.containers[_] { kinds[kind] }\nget_container(kind)
+        = input.request.object.spec.containers[_] { kind == \"Pod\" }\n\n\ndeny[msg]
+        {\n    kinds[input.request.kind.kind]  \n    operations[input.request.operation]\n
+        \   container = get_container(input.request.kind.kind)\n    count(container.resources)
+        < 2\n    msg = sprintf(\"resource limits OR requests are not set: resources=%q\",[container.resources])\n}\n\ndeny[msg]
+        {\n    kinds[input.request.kind.kind]  \n    operations[input.request.operation]\n
+        \   container = get_container(input.request.kind.kind)\n    resource_limits
+        = container.resources.limits\n    count(resource_limits) < 2\n    msg = sprintf(\"resource
+        limits cpu OR memory are not set: resource_limits=%q\",[resource_limits])\n}\n\ndeny[msg]
+        {\n    input.request.kind.kind = \"Deployment\"\n    input.request.operation
+        = \"CREATE\"\n    container = input.request.object.spec.template.spec.containers[_]\n
+        \   resource_requests = container.resources.requests\n    count(resource_requests)
+        < 2\n    msg = sprintf(\"resource requests cpu OR memory are not set: resource_requests=%q\",[resource_requests])\n}"
+    kind: ConfigMap
+    metadata:
+      annotations:
+        openpolicyagent.org/policy-status: '{"status":"ok"}'
+      creationTimestamp: "2020-04-27T20:38:25Z"
+      name: check-resource-requests
+      namespace: opa
+      resourceVersion: "2452"
+      selfLink: /api/v1/namespaces/opa/configmaps/check-resource-requests
+      uid: d85751ef-62ec-4b1c-877b-863adf3797c3
+  - apiVersion: v1
+    data:
+      config.yaml: |
+        labels:
+          domain: 127.0.0.1.nip.io
+
+        services:
+          - name: automobile
+            url: http://minio.minio.svc:9000
+        bundle:
+          name: automobile.tar.gz
+          prefix: bundles
+          service: automobile
+          polling:
+              min_delay_seconds: 10
+              max_delay_seconds: 20
+    kind: ConfigMap
+    metadata:
+      annotations:
+        openpolicyagent.org/policy-status: '{"status":"error","error":{"code":"invalid_parameter","message":"error(s)
+          occurred while compiling module(s)","errors":[{"code":"rego_parse_error","message":"no
+          match found","location":{"file":"opa/opa-config/config.yaml","row":1,"col":7},"details":{"line":"labels:","idx":6}}]}}'
+      creationTimestamp: "2020-04-27T20:38:24Z"
+      name: opa-config
+      namespace: opa
+      resourceVersion: "2448"
+      selfLink: /api/v1/namespaces/opa/configmaps/opa-config
+      uid: 2b4654a4-05ee-4fbe-b953-338e8a5dd75e
+  - apiVersion: v1
+    data:
+      main: |
+        package system
+
+        import data.kubernetes.admission
+
+        main = {
+          "apiVersion": "admission.k8s.io/v1beta1",
+          "kind": "AdmissionReview",
+          "response": response,
+        }
+
+        default response = {"allowed": true}
+
+        response = {
+            "allowed": false,
+            "status": {
+                "reason": reason,
+            },
+        } {
+            reason = concat(", ", admission.deny)
+            reason != ""
+        }
+    kind: ConfigMap
+    metadata:
+      annotations:
+        openpolicyagent.org/policy-status: '{"status":"ok"}'
+      creationTimestamp: "2020-04-27T20:38:25Z"
+      name: opa-default-system-main
+      namespace: opa
+      resourceVersion: "2462"
+      selfLink: /api/v1/namespaces/opa/configmaps/opa-default-system-main
+      uid: c0b14fc4-90ef-4155-a476-fac27364291e
+  metadata: {}
+- items:
+  - apiVersion: v1
+    kind: Pod
+    metadata:
+      annotations:
+        cni.projectcalico.org/podIP: 100.200.82.25/32
+      creationTimestamp: "2020-04-27T20:38:24Z"
+      generateName: opa-56d68dd6b-
+      labels:
+        app: opa
+        pod-template-hash: 56d68dd6b
+      name: opa-56d68dd6b-c8lnr
+      namespace: opa
+      ownerReferences:
+      - apiVersion: apps/v1
+        blockOwnerDeletion: true
+        controller: true
+        kind: ReplicaSet
+        name: opa-56d68dd6b
+        uid: 122260c9-1273-4b77-8b2f-01ac6995f6bd
+      resourceVersion: "2464"
+      selfLink: /api/v1/namespaces/opa/pods/opa-56d68dd6b-c8lnr
+      uid: 896ff791-116c-45ed-8d40-4675ad0c97c0
+    spec:
+      containers:
+      - args:
+        - run
+        - --server
+        - --config-file=/config/config.yaml
+        - --log-level=error
+        - --tls-cert-file=/certs/tls.crt
+        - --tls-private-key-file=/certs/tls.key
+        - --addr=0.0.0.0:443
+        - --addr=http://127.0.0.1:8181
+        image: openpolicyagent/opa:0.17.3
+        imagePullPolicy: IfNotPresent
+        livenessProbe:
+          failureThreshold: 3
+          httpGet:
+            path: /health
+            port: 443
+            scheme: HTTPS
+          initialDelaySeconds: 3
+          periodSeconds: 5
+          successThreshold: 1
+          timeoutSeconds: 1
+        name: opa
+        readinessProbe:
+          failureThreshold: 3
+          httpGet:
+            path: /health
+            port: 443
+            scheme: HTTPS
+          initialDelaySeconds: 3
+          periodSeconds: 5
+          successThreshold: 1
+          timeoutSeconds: 1
+        resources:
+          limits:
+            cpu: 500m
+            memory: 512Mi
+          requests:
+            cpu: 10m
+            memory: 20Mi
+        terminationMessagePath: /dev/termination-log
+        terminationMessagePolicy: File
+        volumeMounts:
+        - mountPath: /certs
+          name: opa-server
+          readOnly: true
+        - mountPath: /config
+          name: opa-config
+          readOnly: true
+        - mountPath: /var/run/secrets/kubernetes.io/serviceaccount
+          name: default-token-6f7qw
+          readOnly: true
+      - args:
+        - --replicate-cluster=v1/namespaces
+        - --replicate=extensions/v1beta1/ingresses
+        image: openpolicyagent/kube-mgmt:0.10
+        imagePullPolicy: IfNotPresent
+        name: kube-mgmt
+        resources:
+          limits:
+            cpu: 500m
+            memory: 512Mi
+          requests:
+            cpu: 10m
+            memory: 20Mi
+        terminationMessagePath: /dev/termination-log
+        terminationMessagePolicy: File
+        volumeMounts:
+        - mountPath: /var/run/secrets/kubernetes.io/serviceaccount
+          name: default-token-6f7qw
+          readOnly: true
+      dnsPolicy: ClusterFirst
+      enableServiceLinks: true
+      nodeName: kind-control-plane
+      priority: 0
+      restartPolicy: Always
+      schedulerName: default-scheduler
+      securityContext: {}
+      serviceAccount: default
+      serviceAccountName: default
+      terminationGracePeriodSeconds: 30
+      tolerations:
+      - effect: NoExecute
+        key: node.kubernetes.io/not-ready
+        operator: Exists
+        tolerationSeconds: 300
+      - effect: NoExecute
+        key: node.kubernetes.io/unreachable
+        operator: Exists
+        tolerationSeconds: 300
+      volumes:
+      - name: opa-server
+        secret:
+          defaultMode: 420
+          secretName: opa-server
+      - configMap:
+          defaultMode: 420
+          items:
+          - key: config.yaml
+            path: config.yaml
+          name: opa-config
+        name: opa-config
+      - name: default-token-6f7qw
+        secret:
+          defaultMode: 420
+          secretName: default-token-6f7qw
+    status:
+      conditions:
+      - lastProbeTime: null
+        lastTransitionTime: "2020-04-27T20:38:24Z"
+        status: "True"
+        type: Initialized
+      - lastProbeTime: null
+        lastTransitionTime: "2020-04-27T20:38:32Z"
+        status: "True"
+        type: Ready
+      - lastProbeTime: null
+        lastTransitionTime: "2020-04-27T20:38:32Z"
+        status: "True"
+        type: ContainersReady
+      - lastProbeTime: null
+        lastTransitionTime: "2020-04-27T20:38:24Z"
+        status: "True"
+        type: PodScheduled
+      containerStatuses:
+      - containerID: containerd://308118f62e6752eab5b4d73a6e6b2de885b3db8d0fa813fb858b33c74534f7cd
+        image: docker.io/openpolicyagent/kube-mgmt:0.10
+        imageID: docker.io/openpolicyagent/kube-mgmt@sha256:d7e2fbc7d6805e0ed73be2f12616789cc888a2104369f378babf1410877d9490
+        lastState: {}
+        name: kube-mgmt
+        ready: true
+        restartCount: 0
+        state:
+          running:
+            startedAt: "2020-04-27T20:38:31Z"
+      - containerID: containerd://1e251fc9f8fc7cc323c306774463a753e95ee043c761bc55963777a3ffe583f7
+        image: docker.io/openpolicyagent/opa:0.17.3
+        imageID: docker.io/openpolicyagent/opa@sha256:6bcfd61977609eb61a783019c62f1efd8ce8b5db9ac1dbcb040ddcd7f318659b
+        lastState: {}
+        name: opa
+        ready: true
+        restartCount: 0
+        state:
+          running:
+            startedAt: "2020-04-27T20:38:29Z"
+      hostIP: 172.17.0.2
+      phase: Running
+      podIP: 100.200.82.25
+      qosClass: Burstable
+      startTime: "2020-04-27T20:38:24Z"
+  metadata: {}
+- items:
+  - apiVersion: v1
+    kind: ServiceAccount
+    metadata:
+      creationTimestamp: "2020-04-27T20:38:19Z"
+      name: default
+      namespace: opa
+      resourceVersion: "2322"
+      selfLink: /api/v1/namespaces/opa/serviceaccounts/default
+      uid: f2e027cd-0f23-43d1-99ff-ea9426800f8e
+    secrets:
+    - name: default-token-6f7qw
+  metadata: {}
+- items:
+  - apiVersion: v1
+    kind: Service
+    metadata:
+      creationTimestamp: "2020-04-27T20:38:23Z"
+      name: opa
+      namespace: opa
+      resourceVersion: "2370"
+      selfLink: /api/v1/namespaces/opa/services/opa
+      uid: 7e25117b-f427-43e3-8fc8-3816dbcd2f47
+    spec:
+      clusterIP: 10.105.225.96
+      ports:
+      - name: https
+        port: 443
+        protocol: TCP
+        targetPort: 443
+      selector:
+        app: opa
+      sessionAffinity: None
+      type: ClusterIP
+    status:
+      loadBalancer: {}
+  metadata: {}
+- items:
+  - apiVersion: apps/v1
+    kind: Deployment
+    metadata:
+      annotations:
+        deployment.kubernetes.io/revision: "1"
+      creationTimestamp: "2020-04-27T20:38:24Z"
+      generation: 1
+      labels:
+        app: opa
+      name: opa
+      namespace: opa
+      resourceVersion: "2466"
+      selfLink: /apis/apps/v1/namespaces/opa/deployments/opa
+      uid: 3ead7b84-1e6f-4a57-b1a2-bc07dfdf673a
+    spec:
+      progressDeadlineSeconds: 600
+      replicas: 1
+      revisionHistoryLimit: 10
+      selector:
+        matchLabels:
+          app: opa
+      strategy:
+        rollingUpdate:
+          maxSurge: 25%
+          maxUnavailable: 25%
+        type: RollingUpdate
+      template:
+        metadata:
+          creationTimestamp: null
+          labels:
+            app: opa
+          name: opa
+        spec:
+          containers:
+          - args:
+            - run
+            - --server
+            - --config-file=/config/config.yaml
+            - --log-level=error
+            - --tls-cert-file=/certs/tls.crt
+            - --tls-private-key-file=/certs/tls.key
+            - --addr=0.0.0.0:443
+            - --addr=http://127.0.0.1:8181
+            image: openpolicyagent/opa:0.17.3
+            imagePullPolicy: IfNotPresent
+            livenessProbe:
+              failureThreshold: 3
+              httpGet:
+                path: /health
+                port: 443
+                scheme: HTTPS
+              initialDelaySeconds: 3
+              periodSeconds: 5
+              successThreshold: 1
+              timeoutSeconds: 1
+            name: opa
+            readinessProbe:
+              failureThreshold: 3
+              httpGet:
+                path: /health
+                port: 443
+                scheme: HTTPS
+              initialDelaySeconds: 3
+              periodSeconds: 5
+              successThreshold: 1
+              timeoutSeconds: 1
+            resources:
+              limits:
+                cpu: 500m
+                memory: 512Mi
+              requests:
+                cpu: 10m
+                memory: 20Mi
+            terminationMessagePath: /dev/termination-log
+            terminationMessagePolicy: File
+            volumeMounts:
+            - mountPath: /certs
+              name: opa-server
+              readOnly: true
+            - mountPath: /config
+              name: opa-config
+              readOnly: true
+          - args:
+            - --replicate-cluster=v1/namespaces
+            - --replicate=extensions/v1beta1/ingresses
+            image: openpolicyagent/kube-mgmt:0.10
+            imagePullPolicy: IfNotPresent
+            name: kube-mgmt
+            resources:
+              limits:
+                cpu: 500m
+                memory: 512Mi
+              requests:
+                cpu: 10m
+                memory: 20Mi
+            terminationMessagePath: /dev/termination-log
+            terminationMessagePolicy: File
+          dnsPolicy: ClusterFirst
+          restartPolicy: Always
+          schedulerName: default-scheduler
+          securityContext: {}
+          terminationGracePeriodSeconds: 30
+          volumes:
+          - name: opa-server
+            secret:
+              defaultMode: 420
+              secretName: opa-server
+          - configMap:
+              defaultMode: 420
+              items:
+              - key: config.yaml
+                path: config.yaml
+              name: opa-config
+            name: opa-config
+    status:
+      availableReplicas: 1
+      conditions:
+      - lastTransitionTime: "2020-04-27T20:38:32Z"
+        lastUpdateTime: "2020-04-27T20:38:32Z"
+        message: Deployment has minimum availability.
+        reason: MinimumReplicasAvailable
+        status: "True"
+        type: Available
+      - lastTransitionTime: "2020-04-27T20:38:24Z"
+        lastUpdateTime: "2020-04-27T20:38:32Z"
+        message: ReplicaSet "opa-56d68dd6b" has successfully progressed.
+        reason: NewReplicaSetAvailable
+        status: "True"
+        type: Progressing
+      observedGeneration: 1
+      readyReplicas: 1
+      replicas: 1
+      updatedReplicas: 1
+  metadata: {}
+- items:
+  - apiVersion: apps/v1
+    kind: ReplicaSet
+    metadata:
+      annotations:
+        deployment.kubernetes.io/desired-replicas: "1"
+        deployment.kubernetes.io/max-replicas: "2"
+        deployment.kubernetes.io/revision: "1"
+      creationTimestamp: "2020-04-27T20:38:24Z"
+      generation: 1
+      labels:
+        app: opa
+        pod-template-hash: 56d68dd6b
+      name: opa-56d68dd6b
+      namespace: opa
+      ownerReferences:
+      - apiVersion: apps/v1
+        blockOwnerDeletion: true
+        controller: true
+        kind: Deployment
+        name: opa
+        uid: 3ead7b84-1e6f-4a57-b1a2-bc07dfdf673a
+      resourceVersion: "2465"
+      selfLink: /apis/apps/v1/namespaces/opa/replicasets/opa-56d68dd6b
+      uid: 122260c9-1273-4b77-8b2f-01ac6995f6bd
+    spec:
+      replicas: 1
+      selector:
+        matchLabels:
+          app: opa
+          pod-template-hash: 56d68dd6b
+      template:
+        metadata:
+          creationTimestamp: null
+          labels:
+            app: opa
+            pod-template-hash: 56d68dd6b
+          name: opa
+        spec:
+          containers:
+          - args:
+            - run
+            - --server
+            - --config-file=/config/config.yaml
+            - --log-level=error
+            - --tls-cert-file=/certs/tls.crt
+            - --tls-private-key-file=/certs/tls.key
+            - --addr=0.0.0.0:443
+            - --addr=http://127.0.0.1:8181
+            image: openpolicyagent/opa:0.17.3
+            imagePullPolicy: IfNotPresent
+            livenessProbe:
+              failureThreshold: 3
+              httpGet:
+                path: /health
+                port: 443
+                scheme: HTTPS
+              initialDelaySeconds: 3
+              periodSeconds: 5
+              successThreshold: 1
+              timeoutSeconds: 1
+            name: opa
+            readinessProbe:
+              failureThreshold: 3
+              httpGet:
+                path: /health
+                port: 443
+                scheme: HTTPS
+              initialDelaySeconds: 3
+              periodSeconds: 5
+              successThreshold: 1
+              timeoutSeconds: 1
+            resources:
+              limits:
+                cpu: 500m
+                memory: 512Mi
+              requests:
+                cpu: 10m
+                memory: 20Mi
+            terminationMessagePath: /dev/termination-log
+            terminationMessagePolicy: File
+            volumeMounts:
+            - mountPath: /certs
+              name: opa-server
+              readOnly: true
+            - mountPath: /config
+              name: opa-config
+              readOnly: true
+          - args:
+            - --replicate-cluster=v1/namespaces
+            - --replicate=extensions/v1beta1/ingresses
+            image: openpolicyagent/kube-mgmt:0.10
+            imagePullPolicy: IfNotPresent
+            name: kube-mgmt
+            resources:
+              limits:
+                cpu: 500m
+                memory: 512Mi
+              requests:
+                cpu: 10m
+                memory: 20Mi
+            terminationMessagePath: /dev/termination-log
+            terminationMessagePolicy: File
+          dnsPolicy: ClusterFirst
+          restartPolicy: Always
+          schedulerName: default-scheduler
+          securityContext: {}
+          terminationGracePeriodSeconds: 30
+          volumes:
+          - name: opa-server
+            secret:
+              defaultMode: 420
+              secretName: opa-server
+          - configMap:
+              defaultMode: 420
+              items:
+              - key: config.yaml
+                path: config.yaml
+              name: opa-config
+            name: opa-config
+    status:
+      availableReplicas: 1
+      fullyLabeledReplicas: 1
+      observedGeneration: 1
+      readyReplicas: 1
+      replicas: 1
+  metadata: {}
+- items:
+  - apiVersion: cert-manager.io/v1alpha2
+    kind: CertificateRequest
+    metadata:
+      annotations:
+        cert-manager.io/certificate-name: opa-server
+        cert-manager.io/private-key-secret-name: opa-server
+      creationTimestamp: "2020-04-27T20:38:23Z"
+      generation: 1
+      name: opa-server-777702660
+      namespace: opa
+      ownerReferences:
+      - apiVersion: cert-manager.io/v1alpha2
+        blockOwnerDeletion: true
+        controller: true
+        kind: Certificate
+        name: opa-server
+        uid: c0ce0e8f-dd84-496f-a476-58a6e7ebcbe0
+      resourceVersion: "2363"
+      selfLink: /apis/cert-manager.io/v1alpha2/namespaces/opa/certificaterequests/opa-server-777702660
+      uid: a2c0a522-9c34-41ca-89ba-42f986216f88
+    spec:
+      csr: LS0tLS1CRUdJTiBDRVJUSUZJQ0FURSBSRVFVRVNULS0tLS0KTUlJQ2hUQ0NBVzBDQVFBd0Z6RVZNQk1HQTFVRUNoTU1ZMlZ5ZEMxdFlXNWhaMlZ5TUlJQklqQU5CZ2txaGtpRwo5dzBCQVFFRkFBT0NBUThBTUlJQkNnS0NBUUVBdXlEQ204cnpCamVLKzJXeFNVa3BydWpad1haU0dQNmU5bzY4CkgvcERSamN4ZkxmZE13ei82K3UrTEc0Q0JrVVNoNTN3WjRyODRTa1ExK1BxMVBod1B5bGRlVzQxSDVDejNGYkcKQjdzY2Jlb1F5OFR4RTB0Y0ZnNTFvSXhzdjFZbUhUQTZKbkVMTkZkV0YxVER1RGtjNjArWHZ0Q05YaUF6K1VSSwpONndqcktXV3M2OGdCczNnb3ZjMjRZdUFkdHNsVWR5ZWpBR2NWRllTK0xyR3pjV3h3YlRnYXFvY1M0OHVqL0ZqClpxaFl4ME0vTlVzY28wSmpyNFFHWGZpRjR4VG1OTTgvejFMWnZMN3ZINkV3QWdQeWI5RkZ2Y21uc3dUUTh4NHoKWm1PTitMVDJ1LzE2T0lDYzEveXRuZ2w4WDBoWWgyN3Q5Zm85MHZlRUN1WjZYTm0zRVFJREFRQUJvQ2t3SndZSgpLb1pJaHZjTkFRa09NUm93R0RBV0JnTlZIUkVFRHpBTmdndHZjR0V1YjNCaExuTjJZekFOQmdrcWhraUc5dzBCCkFRc0ZBQU9DQVFFQXFUMFV2YkdZT3BXS0dWNGdDaHZrN0V2TlZkNk0xSlZFVExHcW9WdzhZc09JcDR1MHpnZFkKeXNwOGdCci9sQVlrVnBtby82WGNpL1pkUlBOMnlsTkFGSGhJWHVPWEp4WE5mdG5hblZWSEZUaEdFTWRWKzZwYgphV0puMTkxV0pYMjl5RUtZMzh0UTgwYlh1YmtpVndsaWM4dFYwSHlpd2dDV1NLODMxSXhqWURocUltRnVxM2x4CldTU21VZlhQUUQva0c3UnZOczZxVHNEUEd4Yk8rOEYxRy92R3lSZFNUWFpmcGx1ZS9haWNFQ1ZsT2VMdU56blcKNWozR3huZitMYWlQZ1Jtb2ZqVHJEcy9iM24wakVic3gwR0k3Qi9GMk1HRWhyZ2NwSnE2K0phY2Y2eXdvSU1NOQpqdHRiYVRiaWxxMmJUaHJLazcrR2pRUllyMlpJVzZudHl3PT0KLS0tLS1FTkQgQ0VSVElGSUNBVEUgUkVRVUVTVC0tLS0tCg==
+      issuerRef:
+        kind: ClusterIssuer
+        name: default-issuer
+    status:
+      ca: LS0tLS1CRUdJTiBDRVJUSUZJQ0FURS0tLS0tCk1JSURRakNDQWlxZ0F3SUJBZ0lRY2FhVkQ0bUx5dEl0ZGdyamJpMVI2ekFOQmdrcWhraUc5dzBCQVFzRkFEQkEKTVJ3d0dnWURWUVFLRXhOalpYSjBMVzFoYm1GblpYSXVjM2x6ZEdWdE1TQXdIZ1lEVlFRREV4ZGpaWEowTFcxaApibUZuWlhJdWQyVmlhRzl2YXk1allUQWVGdzB5TURBME1qY3lNRE0wTlROYUZ3MHlOVEEwTWpZeU1ETTBOVE5hCk1FQXhIREFhQmdOVkJBb1RFMk5sY25RdGJXRnVZV2RsY2k1emVYTjBaVzB4SURBZUJnTlZCQU1URjJObGNuUXQKYldGdVlXZGxjaTUzWldKb2IyOXJMbU5oTUlJQklqQU5CZ2txaGtpRzl3MEJBUUVGQUFPQ0FROEFNSUlCQ2dLQwpBUUVBdDZSaEZ1S2x5SXU3LzVJdE9IVnZrSFA0cUZ1NVFrY3BCK1J3dmJGUWpTbFNoemN2eU1OUGprcGQzNm9OCmw1K3E1bitRUDBWRFBoRTJNM203eVpJZGdmb0wyT0JkRlpRQVVDUGlhQ1dBQ0d1YnJtUVZuN0FXMjRjNHFKR3IKdGJjVzZDdWhDQnpCQ3g1VUJHdm5MM1h2T01UNGtsQ05TYTA1VmpLVDFqU29UcWhRUnlXNTJPcmllcC9lK2xwRAp2WGozSVZvK29QVGhRelpDaVduMlNiU24zU1N5NnUya3dUWDdlY1MwcXU5Z3EweFY2Z1c2QU5sZUNQdTN0blFkCkJTVDRDOGgrNXFvajdieDJleGMvRTlERng5VCs4TktXVWl1djA5TmU3L1BXZ0dzbkVhbDgwaWNvOFpTUlBSNGQKamQ1ZStwYVFsTE44VU1SSVBNc2NxbWt5SlFJREFRQUJvemd3TmpBT0JnTlZIUThCQWY4RUJBTUNBcVF3RXdZRApWUjBsQkF3d0NnWUlLd1lCQlFVSEF3RXdEd1lEVlIwVEFRSC9CQVV3QXdFQi96QU5CZ2txaGtpRzl3MEJBUXNGCkFBT0NBUUVBalhTaUNMUWxkUTRBZE5ZMTlGNkE1OFcxWHJqT1dPL0wzOGtueTRsRDg0bUU5TjFFa0tML2FQUlEKcklFa3Ftc2tIRnUwMGlET0d4RXFqZkhNZmtzNFV4NHltNWxPMmhlcEhTOE1qdzhDbFBHTkdnNVdtbS9TNTcvdApjbm9pNTV0ajFvMEtZcDdKQ1hTcUNsQUpPYXNTTmZBbEpraUJVRjIwMGlDUk1JN0N6SEJWS1hUWUs0cWZtZXJKCkF5d0R6Y1Y0Qjdkd1o3cEpZM0JDV0oybE1lbm5OMEFhN2ZLbTBhcnpUNG0yOU5qaVNMNUIreDFINWpldmFMR04KaFpsK0piTCtsczM2ZkFhUXhrUkR2QXovUElpVEM2ZDRWc0VDRjluSUFHQkpmVldab3MxNGVpckxHVDdwTnF0aQpZNWxxd3hDWnoyWWd3cVVPQURJbjlXYjZ5Z0lHc1E9PQotLS0tLUVORCBDRVJUSUZJQ0FURS0tLS0tCg==
+      certificate: LS0tLS1CRUdJTiBDRVJUSUZJQ0FURS0tLS0tCk1JSURMekNDQWhlZ0F3SUJBZ0lSQUpjRk4wbE1CUjFqMHNjNzJKczJWTEV3RFFZSktvWklodmNOQVFFTEJRQXcKUURFY01Cb0dBMVVFQ2hNVFkyVnlkQzF0WVc1aFoyVnlMbk41YzNSbGJURWdNQjRHQTFVRUF4TVhZMlZ5ZEMxdApZVzVoWjJWeUxuZGxZbWh2YjJzdVkyRXdIaGNOTWpBd05ESTNNakF6T0RJeldoY05NakF3TnpJMk1qQXpPREl6CldqQVhNUlV3RXdZRFZRUUtFd3hqWlhKMExXMWhibUZuWlhJd2dnRWlNQTBHQ1NxR1NJYjNEUUVCQVFVQUE0SUIKRHdBd2dnRUtBb0lCQVFDN0lNS2J5dk1HTjRyN1piRkpTU211Nk5uQmRsSVkvcDcyanJ3ZitrTkdOekY4dDkwegpEUC9yNjc0c2JnSUdSUktIbmZCbml2emhLUkRYNCtyVStIQS9LVjE1YmpVZmtMUGNWc1lIdXh4dDZoREx4UEVUClMxd1dEbldnakd5L1ZpWWRNRG9tY1FzMFYxWVhWTU80T1J6clQ1ZSswSTFlSURQNVJFbzNyQ09zcFphenJ5QUcKemVDaTl6YmhpNEIyMnlWUjNKNk1BWnhVVmhMNHVzYk54YkhCdE9CcXFoeExqeTZQOFdObXFGakhRejgxU3h5agpRbU92aEFaZCtJWGpGT1kwenovUFV0bTh2dThmb1RBQ0EvSnYwVVc5eWFlekJORHpIak5tWTQzNHRQYTcvWG80CmdKelgvSzJlQ1h4ZlNGaUhidTMxK2ozUzk0UUs1bnBjMmJjUkFnTUJBQUdqVFRCTE1BNEdBMVVkRHdFQi93UUUKQXdJRm9EQVRCZ05WSFNVRUREQUtCZ2dyQmdFRkJRY0RBVEFNQmdOVkhSTUJBZjhFQWpBQU1CWUdBMVVkRVFRUApNQTJDQzI5d1lTNXZjR0V1YzNaak1BMEdDU3FHU0liM0RRRUJDd1VBQTRJQkFRQlJGRm0weG1udVU5VUtkbStSCjEzQVpNbWMrL2hmeHY4c3A1c2tHT1FKYzFVbUo3dmtFSThFelVibGVBUHliSW02LzcrZmxlUDVEUkJHZlJ4ZG0KL3RVRWdUTWZxaFh0bVBKMUxzN3Q4Vkw2MVN0UGZtZE5IWi92WVZib3JxdDcxakxud0RqTzU3a3I5OTcyZmV2Ngp2dk84UjVIZjdEOWNMV0pVOGppTjV5RHR0dXhaNVNheWxYNndXay9MYW5vYmlzemNrUWIrMDdpZzRPYXQwelhsClFVZWx4TVB6NmRvWDlqQ25LOVRwOGdtcWdPcno3eHZ4M2NXamNNQTJ4cno0alkxYmNsUHdYRE5yVW9RaE12N0sKaVBtbkVUSkdPb1AzTXNDSVlwMlcyNU1zMTgyQVRIK1ViRDVpQVJMTGthRktBN3I0VWRUbVNyalNJazJheHJWUgpSMmVxCi0tLS0tRU5EIENFUlRJRklDQVRFLS0tLS0K
+      conditions:
+      - lastTransitionTime: "2020-04-27T20:38:23Z"
+        message: Certificate fetched from issuer successfully
+        reason: Issued
+        status: "True"
+        type: Ready
+  metadata: {}
+- items:
+  - apiVersion: cert-manager.io/v1alpha2
+    kind: Certificate
+    metadata:
+      creationTimestamp: "2020-04-27T20:38:23Z"
+      generation: 1
+      name: opa-server
+      namespace: opa
+      resourceVersion: "2366"
+      selfLink: /apis/cert-manager.io/v1alpha2/namespaces/opa/certificates/opa-server
+      uid: c0ce0e8f-dd84-496f-a476-58a6e7ebcbe0
+    spec:
+      dnsNames:
+      - opa.opa.svc
+      issuerRef:
+        kind: ClusterIssuer
+        name: default-issuer
+      secretName: opa-server
+    status:
+      conditions:
+      - lastTransitionTime: "2020-04-27T20:38:23Z"
+        message: Certificate is up to date and has not expired
+        reason: Ready
+        status: "True"
+        type: Ready
+      notAfter: "2020-07-26T20:38:23Z"
+  metadata: {}
+- items:
+  - apiVersion: extensions/v1beta1
+    kind: Deployment
+    metadata:
+      annotations:
+        deployment.kubernetes.io/revision: "1"
+      creationTimestamp: "2020-04-27T20:38:24Z"
+      generation: 1
+      labels:
+        app: opa
+      name: opa
+      namespace: opa
+      resourceVersion: "2466"
+      selfLink: /apis/extensions/v1beta1/namespaces/opa/deployments/opa
+      uid: 3ead7b84-1e6f-4a57-b1a2-bc07dfdf673a
+    spec:
+      progressDeadlineSeconds: 600
+      replicas: 1
+      revisionHistoryLimit: 10
+      selector:
+        matchLabels:
+          app: opa
+      strategy:
+        rollingUpdate:
+          maxSurge: 25%
+          maxUnavailable: 25%
+        type: RollingUpdate
+      template:
+        metadata:
+          creationTimestamp: null
+          labels:
+            app: opa
+          name: opa
+        spec:
+          containers:
+          - args:
+            - run
+            - --server
+            - --config-file=/config/config.yaml
+            - --log-level=error
+            - --tls-cert-file=/certs/tls.crt
+            - --tls-private-key-file=/certs/tls.key
+            - --addr=0.0.0.0:443
+            - --addr=http://127.0.0.1:8181
+            image: openpolicyagent/opa:0.17.3
+            imagePullPolicy: IfNotPresent
+            livenessProbe:
+              failureThreshold: 3
+              httpGet:
+                path: /health
+                port: 443
+                scheme: HTTPS
+              initialDelaySeconds: 3
+              periodSeconds: 5
+              successThreshold: 1
+              timeoutSeconds: 1
+            name: opa
+            readinessProbe:
+              failureThreshold: 3
+              httpGet:
+                path: /health
+                port: 443
+                scheme: HTTPS
+              initialDelaySeconds: 3
+              periodSeconds: 5
+              successThreshold: 1
+              timeoutSeconds: 1
+            resources:
+              limits:
+                cpu: 500m
+                memory: 512Mi
+              requests:
+                cpu: 10m
+                memory: 20Mi
+            terminationMessagePath: /dev/termination-log
+            terminationMessagePolicy: File
+            volumeMounts:
+            - mountPath: /certs
+              name: opa-server
+              readOnly: true
+            - mountPath: /config
+              name: opa-config
+              readOnly: true
+          - args:
+            - --replicate-cluster=v1/namespaces
+            - --replicate=extensions/v1beta1/ingresses
+            image: openpolicyagent/kube-mgmt:0.10
+            imagePullPolicy: IfNotPresent
+            name: kube-mgmt
+            resources:
+              limits:
+                cpu: 500m
+                memory: 512Mi
+              requests:
+                cpu: 10m
+                memory: 20Mi
+            terminationMessagePath: /dev/termination-log
+            terminationMessagePolicy: File
+          dnsPolicy: ClusterFirst
+          restartPolicy: Always
+          schedulerName: default-scheduler
+          securityContext: {}
+          terminationGracePeriodSeconds: 30
+          volumes:
+          - name: opa-server
+            secret:
+              defaultMode: 420
+              secretName: opa-server
+          - configMap:
+              defaultMode: 420
+              items:
+              - key: config.yaml
+                path: config.yaml
+              name: opa-config
+            name: opa-config
+    status:
+      availableReplicas: 1
+      conditions:
+      - lastTransitionTime: "2020-04-27T20:38:32Z"
+        lastUpdateTime: "2020-04-27T20:38:32Z"
+        message: Deployment has minimum availability.
+        reason: MinimumReplicasAvailable
+        status: "True"
+        type: Available
+      - lastTransitionTime: "2020-04-27T20:38:24Z"
+        lastUpdateTime: "2020-04-27T20:38:32Z"
+        message: ReplicaSet "opa-56d68dd6b" has successfully progressed.
+        reason: NewReplicaSetAvailable
+        status: "True"
+        type: Progressing
+      observedGeneration: 1
+      readyReplicas: 1
+      replicas: 1
+      updatedReplicas: 1
+  metadata: {}
+- items:
+  - apiVersion: extensions/v1beta1
+    kind: ReplicaSet
+    metadata:
+      annotations:
+        deployment.kubernetes.io/desired-replicas: "1"
+        deployment.kubernetes.io/max-replicas: "2"
+        deployment.kubernetes.io/revision: "1"
+      creationTimestamp: "2020-04-27T20:38:24Z"
+      generation: 1
+      labels:
+        app: opa
+        pod-template-hash: 56d68dd6b
+      name: opa-56d68dd6b
+      namespace: opa
+      ownerReferences:
+      - apiVersion: apps/v1
+        blockOwnerDeletion: true
+        controller: true
+        kind: Deployment
+        name: opa
+        uid: 3ead7b84-1e6f-4a57-b1a2-bc07dfdf673a
+      resourceVersion: "2465"
+      selfLink: /apis/extensions/v1beta1/namespaces/opa/replicasets/opa-56d68dd6b
+      uid: 122260c9-1273-4b77-8b2f-01ac6995f6bd
+    spec:
+      replicas: 1
+      selector:
+        matchLabels:
+          app: opa
+          pod-template-hash: 56d68dd6b
+      template:
+        metadata:
+          creationTimestamp: null
+          labels:
+            app: opa
+            pod-template-hash: 56d68dd6b
+          name: opa
+        spec:
+          containers:
+          - args:
+            - run
+            - --server
+            - --config-file=/config/config.yaml
+            - --log-level=error
+            - --tls-cert-file=/certs/tls.crt
+            - --tls-private-key-file=/certs/tls.key
+            - --addr=0.0.0.0:443
+            - --addr=http://127.0.0.1:8181
+            image: openpolicyagent/opa:0.17.3
+            imagePullPolicy: IfNotPresent
+            livenessProbe:
+              failureThreshold: 3
+              httpGet:
+                path: /health
+                port: 443
+                scheme: HTTPS
+              initialDelaySeconds: 3
+              periodSeconds: 5
+              successThreshold: 1
+              timeoutSeconds: 1
+            name: opa
+            readinessProbe:
+              failureThreshold: 3
+              httpGet:
+                path: /health
+                port: 443
+                scheme: HTTPS
+              initialDelaySeconds: 3
+              periodSeconds: 5
+              successThreshold: 1
+              timeoutSeconds: 1
+            resources:
+              limits:
+                cpu: 500m
+                memory: 512Mi
+              requests:
+                cpu: 10m
+                memory: 20Mi
+            terminationMessagePath: /dev/termination-log
+            terminationMessagePolicy: File
+            volumeMounts:
+            - mountPath: /certs
+              name: opa-server
+              readOnly: true
+            - mountPath: /config
+              name: opa-config
+              readOnly: true
+          - args:
+            - --replicate-cluster=v1/namespaces
+            - --replicate=extensions/v1beta1/ingresses
+            image: openpolicyagent/kube-mgmt:0.10
+            imagePullPolicy: IfNotPresent
+            name: kube-mgmt
+            resources:
+              limits:
+                cpu: 500m
+                memory: 512Mi
+              requests:
+                cpu: 10m
+                memory: 20Mi
+            terminationMessagePath: /dev/termination-log
+            terminationMessagePolicy: File
+          dnsPolicy: ClusterFirst
+          restartPolicy: Always
+          schedulerName: default-scheduler
+          securityContext: {}
+          terminationGracePeriodSeconds: 30
+          volumes:
+          - name: opa-server
+            secret:
+              defaultMode: 420
+              secretName: opa-server
+          - configMap:
+              defaultMode: 420
+              items:
+              - key: config.yaml
+                path: config.yaml
+              name: opa-config
+            name: opa-config
+    status:
+      availableReplicas: 1
+      fullyLabeledReplicas: 1
+      observedGeneration: 1
+      readyReplicas: 1
+      replicas: 1
+  metadata: {}
+- items:
+  - apiVersion: metrics.k8s.io/v1beta1
+    containers:
+    - name: opa
+      usage:
+        cpu: 12m
+        memory: 32460Ki
+    - name: kube-mgmt
+      usage:
+        cpu: 1m
+        memory: 15044Ki
+    kind: PodMetrics
+    metadata:
+      creationTimestamp: "2020-04-27T20:46:15Z"
+      name: opa-56d68dd6b-c8lnr
+      namespace: opa
+      selfLink: /apis/metrics.k8s.io/v1beta1/namespaces/opa/pods/opa-56d68dd6b-c8lnr
+    timestamp: "2020-04-27T20:46:15Z"
+    window: 5m0s
+  metadata: {}
+- items:
+  - apiVersion: rbac.authorization.k8s.io/v1
+    kind: RoleBinding
+    metadata:
+      creationTimestamp: "2020-04-27T20:38:23Z"
+      name: opa-configmap-modifier
+      namespace: opa
+      resourceVersion: "2352"
+      selfLink: /apis/rbac.authorization.k8s.io/v1/namespaces/opa/rolebindings/opa-configmap-modifier
+      uid: f79dfb61-63ea-4af4-9030-47529bbb3205
+    roleRef:
+      apiGroup: rbac.authorization.k8s.io
+      kind: Role
+      name: configmap-modifier
+    subjects:
+    - apiGroup: rbac.authorization.k8s.io
+      kind: Group
+      name: system:serviceaccounts:opa
+  metadata: {}
+- items:
+  - apiVersion: rbac.authorization.k8s.io/v1
+    kind: Role
+    metadata:
+      creationTimestamp: "2020-04-27T20:38:23Z"
+      name: configmap-modifier
+      namespace: opa
+      resourceVersion: "2351"
+      selfLink: /apis/rbac.authorization.k8s.io/v1/namespaces/opa/roles/configmap-modifier
+      uid: 01d552d6-ca3e-4dde-be18-4fdd0241f076
+    rules:
+    - apiGroups:
+      - ""
+      resources:
+      - configmaps
+      verbs:
+      - update
+      - patch
+  metadata: {}
+kind: List
+metadata: {}

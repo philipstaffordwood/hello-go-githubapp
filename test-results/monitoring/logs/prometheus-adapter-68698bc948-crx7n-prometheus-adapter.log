@@ -1,0 +1,3 @@
+I0427 20:40:24.513476       1 adapter.go:93] successfully using in-cluster auth
+I0427 20:40:25.119005       1 serving.go:273] Generated self-signed cert (/var/run/serving-cert/apiserver.crt, /var/run/serving-cert/apiserver.key)
+I0427 20:40:25.391526       1 serve.go:96] Serving securely on [::]:6443

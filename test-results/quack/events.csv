@@ -1,0 +1,16 @@
+LAST SEEN                      Count  TYPE     REASON             OBJECT                                     MESSAGE
+2020-04-27 20:35:38 +0000 UTC  1      Normal   Scheduled          Pod/quack-75dbc56886-dmnb6                 Successfully assigned quack/quack-75dbc56886-dmnb6 to kind-control-plane
+2020-04-27 20:35:39 +0000 UTC  2      Warning  FailedMount        Pod/quack-75dbc56886-dmnb6                 MountVolume.SetUp failed for volume "config" : configmap "quack-config" not found
+2020-04-27 20:35:41 +0000 UTC  1      Normal   Pulling            Pod/quack-75dbc56886-dmnb6                 Pulling image "quay.io/pusher/quack:v0.1.0"
+2020-04-27 20:35:45 +0000 UTC  1      Normal   Pulled             Pod/quack-75dbc56886-dmnb6                 Successfully pulled image "quay.io/pusher/quack:v0.1.0"
+2020-04-27 20:35:46 +0000 UTC  1      Normal   Created            Pod/quack-75dbc56886-dmnb6                 Created container quack
+2020-04-27 20:35:46 +0000 UTC  1      Normal   Started            Pod/quack-75dbc56886-dmnb6                 Started container quack
+2020-04-27 20:38:26 +0000 UTC  1      Warning  Unhealthy          Pod/quack-75dbc56886-dmnb6                 Liveness probe failed: Get https://100.200.82.7:443/healthz: net/http: request canceled (Client.Timeout exceeded while awaiting headers)
+2020-04-27 20:35:38 +0000 UTC  1      Normal   SuccessfulCreate   ReplicaSet/quack-75dbc56886                Created pod: quack-75dbc56886-dmnb6
+2020-04-27 20:35:38 +0000 UTC  1      Normal   CertificateIssued  CertificateRequest/quack-certs-2684760203  Certificate fetched from issuer successfully
+2020-04-27 20:37:52 +0000 UTC  1      Normal   CertificateIssued  CertificateRequest/quack-certs-2684760203  Certificate fetched from issuer successfully
+2020-04-27 20:37:52 +0000 UTC  2      Normal   GeneratedKey       Certificate/quack-certs                    Generated a new private key
+2020-04-27 20:37:52 +0000 UTC  2      Normal   Requested          Certificate/quack-certs                    Created new CertificateRequest resource "quack-certs-2684760203"
+2020-04-27 20:37:52 +0000 UTC  2      Normal   Issued             Certificate/quack-certs                    Certificate issued successfully
+2020-04-27 20:37:52 +0000 UTC  1      Normal   PrivateKeyLost     Certificate/quack-certs                    Lost private key for CertificateRequest "quack-certs-2684760203", deleting old resource
+2020-04-27 20:35:38 +0000 UTC  1      Normal   ScalingReplicaSet  Deployment/quack                           Scaled up replica set quack-75dbc56886 to 1

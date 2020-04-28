@@ -1,0 +1,29 @@
+LAST SEEN                      Count  TYPE     REASON             OBJECT                                         MESSAGE
+2020-04-27 20:43:40 +0000 UTC  1      Normal   Scheduled          Pod/configmap-reloader-test-7797897bb7-nccgh   Successfully assigned platform-system/configmap-reloader-test-7797897bb7-nccgh to kind-control-plane
+2020-04-27 20:43:42 +0000 UTC  3      Warning  FailedMount        Pod/configmap-reloader-test-7797897bb7-nccgh   MountVolume.SetUp failed for volume "test-configmap" : configmap "reloader-test" not found
+2020-04-27 20:45:43 +0000 UTC  1      Warning  FailedMount        Pod/configmap-reloader-test-7797897bb7-nccgh   Unable to mount volumes for pod "configmap-reloader-test-7797897bb7-nccgh_platform-system(4a44ae31-bb23-4c80-bc95-2a28805ac02e)": timeout expired waiting for volumes to attach or mount for pod "platform-system"/"configmap-reloader-test-7797897bb7-nccgh". list of unmounted volumes=[test-configmap default-token-n5gvt]. list of unattached volumes=[test-configmap default-token-n5gvt]
+2020-04-27 20:43:40 +0000 UTC  1      Normal   SuccessfulCreate   ReplicaSet/configmap-reloader-test-7797897bb7  Created pod: configmap-reloader-test-7797897bb7-nccgh
+2020-04-27 20:43:34 +0000 UTC  1      Normal   Scheduled          Pod/configmap-reloader-test-b57b8555c-5sz6l    Successfully assigned platform-system/configmap-reloader-test-b57b8555c-5sz6l to kind-control-plane
+2020-04-27 20:43:35 +0000 UTC  1      Normal   Pulling            Pod/configmap-reloader-test-b57b8555c-5sz6l    Pulling image "docker.io/nginx"
+2020-04-27 20:43:39 +0000 UTC  1      Normal   Pulled             Pod/configmap-reloader-test-b57b8555c-5sz6l    Successfully pulled image "docker.io/nginx"
+2020-04-27 20:43:39 +0000 UTC  1      Normal   Created            Pod/configmap-reloader-test-b57b8555c-5sz6l    Created container configmap-reloader-test
+2020-04-27 20:43:39 +0000 UTC  1      Normal   Started            Pod/configmap-reloader-test-b57b8555c-5sz6l    Started container configmap-reloader-test
+2020-04-27 20:43:42 +0000 UTC  3      Warning  FailedMount        Pod/configmap-reloader-test-b57b8555c-5sz6l    MountVolume.SetUp failed for volume "test-configmap" : configmap "reloader-test" not found
+2020-04-27 20:43:42 +0000 UTC  1      Normal   Killing            Pod/configmap-reloader-test-b57b8555c-5sz6l    Stopping container configmap-reloader-test
+2020-04-27 20:43:34 +0000 UTC  1      Normal   SuccessfulCreate   ReplicaSet/configmap-reloader-test-b57b8555c   Created pod: configmap-reloader-test-b57b8555c-5sz6l
+2020-04-27 20:43:34 +0000 UTC  1      Normal   ScalingReplicaSet  Deployment/configmap-reloader-test             Scaled up replica set configmap-reloader-test-b57b8555c to 1
+2020-04-27 20:43:40 +0000 UTC  1      Normal   ScalingReplicaSet  Deployment/configmap-reloader-test             Scaled up replica set configmap-reloader-test-7797897bb7 to 1
+2020-04-27 20:40:56 +0000 UTC  1      Normal   Scheduled          Pod/filebeat-4fj5w                             Successfully assigned platform-system/filebeat-4fj5w to kind-control-plane
+2020-04-27 20:40:57 +0000 UTC  1      Normal   Pulling            Pod/filebeat-4fj5w                             Pulling image "docker.elastic.co/beats/filebeat:7.6.0"
+2020-04-27 20:41:05 +0000 UTC  1      Normal   Pulled             Pod/filebeat-4fj5w                             Successfully pulled image "docker.elastic.co/beats/filebeat:7.6.0"
+2020-04-27 20:41:07 +0000 UTC  1      Normal   Created            Pod/filebeat-4fj5w                             Created container filebeat
+2020-04-27 20:41:07 +0000 UTC  1      Normal   Started            Pod/filebeat-4fj5w                             Started container filebeat
+2020-04-27 20:40:55 +0000 UTC  8      Warning  FailedCreate       DaemonSet/filebeat                             Error creating: pods "filebeat-" is forbidden: error looking up service account platform-system/filebeat: serviceaccount "filebeat" not found
+2020-04-27 20:40:56 +0000 UTC  1      Normal   SuccessfulCreate   DaemonSet/filebeat                             Created pod: filebeat-4fj5w
+2020-04-27 20:40:46 +0000 UTC  1      Normal   Scheduled          Pod/reloader-5c84b96d94-2j2h7                  Successfully assigned platform-system/reloader-5c84b96d94-2j2h7 to kind-control-plane
+2020-04-27 20:40:48 +0000 UTC  1      Normal   Pulling            Pod/reloader-5c84b96d94-2j2h7                  Pulling image "stakater/reloader:v0.0.56"
+2020-04-27 20:40:49 +0000 UTC  1      Normal   Pulled             Pod/reloader-5c84b96d94-2j2h7                  Successfully pulled image "stakater/reloader:v0.0.56"
+2020-04-27 20:40:49 +0000 UTC  1      Normal   Created            Pod/reloader-5c84b96d94-2j2h7                  Created container reloader
+2020-04-27 20:40:49 +0000 UTC  1      Normal   Started            Pod/reloader-5c84b96d94-2j2h7                  Started container reloader
+2020-04-27 20:40:46 +0000 UTC  1      Normal   SuccessfulCreate   ReplicaSet/reloader-5c84b96d94                 Created pod: reloader-5c84b96d94-2j2h7
+2020-04-27 20:40:46 +0000 UTC  1      Normal   ScalingReplicaSet  Deployment/reloader                            Scaled up replica set reloader-5c84b96d94 to 1

@@ -1,0 +1,1550 @@
+apiVersion: v1
+items:
+- items:
+  - apiVersion: v1
+    data:
+      config: ""
+      known_hosts: ""
+    kind: ConfigMap
+    metadata:
+      creationTimestamp: "2020-04-27T20:40:54Z"
+      labels:
+        app: flux
+      name: flux-ssh-platform-cli
+      namespace: gitops-e2e-test
+      resourceVersion: "4655"
+      selfLink: /api/v1/namespaces/gitops-e2e-test/configmaps/flux-ssh-platform-cli
+      uid: ce317a2a-a538-405a-85bd-962096264055
+  metadata: {}
+- items:
+  - apiVersion: v1
+    kind: Pod
+    metadata:
+      annotations:
+        cni.projectcalico.org/podIP: 100.200.82.20/32
+      creationTimestamp: "2020-04-27T20:40:51Z"
+      generateName: flux-memcache-platform-cli-9cbb8774c-
+      labels:
+        app: flux
+        pod-template-hash: 9cbb8774c
+      name: flux-memcache-platform-cli-9cbb8774c-x4vrc
+      namespace: gitops-e2e-test
+      ownerReferences:
+      - apiVersion: apps/v1
+        blockOwnerDeletion: true
+        controller: true
+        kind: ReplicaSet
+        name: flux-memcache-platform-cli-9cbb8774c
+        uid: bf4fcfc2-546f-497a-9064-7e1c31caecb1
+      resourceVersion: "4922"
+      selfLink: /api/v1/namespaces/gitops-e2e-test/pods/flux-memcache-platform-cli-9cbb8774c-x4vrc
+      uid: 13207429-188a-40eb-a22e-2cfbe5dc437d
+    spec:
+      containers:
+      - args:
+        - -m 512
+        - -p 11211
+        - -I 5m
+        image: docker.io/memcached:1.4.36-alpine
+        imagePullPolicy: IfNotPresent
+        name: flux-memcache-platform-cli
+        ports:
+        - containerPort: 11211
+          protocol: TCP
+        resources:
+          limits:
+            cpu: 500m
+            memory: 512Mi
+          requests:
+            cpu: 10m
+            memory: 128Mi
+        terminationMessagePath: /dev/termination-log
+        terminationMessagePolicy: File
+        volumeMounts:
+        - mountPath: /var/run/secrets/kubernetes.io/serviceaccount
+          name: default-token-z8gtt
+          readOnly: true
+      dnsPolicy: ClusterFirst
+      enableServiceLinks: true
+      nodeName: kind-control-plane
+      priority: 0
+      restartPolicy: Always
+      schedulerName: default-scheduler
+      securityContext: {}
+      serviceAccount: default
+      serviceAccountName: default
+      terminationGracePeriodSeconds: 30
+      tolerations:
+      - effect: NoExecute
+        key: node.kubernetes.io/not-ready
+        operator: Exists
+        tolerationSeconds: 300
+      - effect: NoExecute
+        key: node.kubernetes.io/unreachable
+        operator: Exists
+        tolerationSeconds: 300
+      volumes:
+      - name: default-token-z8gtt
+        secret:
+          defaultMode: 420
+          secretName: default-token-z8gtt
+    status:
+      conditions:
+      - lastProbeTime: null
+        lastTransitionTime: "2020-04-27T20:40:51Z"
+        status: "True"
+        type: Initialized
+      - lastProbeTime: null
+        lastTransitionTime: "2020-04-27T20:40:55Z"
+        status: "True"
+        type: Ready
+      - lastProbeTime: null
+        lastTransitionTime: "2020-04-27T20:40:55Z"
+        status: "True"
+        type: ContainersReady
+      - lastProbeTime: null
+        lastTransitionTime: "2020-04-27T20:40:51Z"
+        status: "True"
+        type: PodScheduled
+      containerStatuses:
+      - containerID: containerd://ce9d9291d3a7c24a3d29a2e4b34795f3c0f9691b5a9196a4aa6e2661360b9ad5
+        image: docker.io/library/memcached:1.4.36-alpine
+        imageID: docker.io/library/memcached@sha256:00b68b00139155817a8b1d69d74865563def06b3af1e6fc79ac541a1b2f6b961
+        lastState: {}
+        name: flux-memcache-platform-cli
+        ready: true
+        restartCount: 0
+        state:
+          running:
+            startedAt: "2020-04-27T20:40:55Z"
+      hostIP: 172.17.0.2
+      phase: Running
+      podIP: 100.200.82.20
+      qosClass: Burstable
+      startTime: "2020-04-27T20:40:51Z"
+  - apiVersion: v1
+    kind: Pod
+    metadata:
+      annotations:
+        cni.projectcalico.org/podIP: 100.200.82.51/32
+      creationTimestamp: "2020-04-27T20:40:53Z"
+      generateName: flux-platform-cli-5dd99c6dbd-
+      labels:
+        app: flux
+        pod-template-hash: 5dd99c6dbd
+      name: flux-platform-cli-5dd99c6dbd-qsxls
+      namespace: gitops-e2e-test
+      ownerReferences:
+      - apiVersion: apps/v1
+        blockOwnerDeletion: true
+        controller: true
+        kind: ReplicaSet
+        name: flux-platform-cli-5dd99c6dbd
+        uid: 823b1c6c-0825-488e-a00a-714b2d7bac3f
+      resourceVersion: "4981"
+      selfLink: /api/v1/namespaces/gitops-e2e-test/pods/flux-platform-cli-5dd99c6dbd-qsxls
+      uid: 7f1271cd-21f1-4753-9a10-037e995b20d5
+    spec:
+      containers:
+      - args:
+        - --git-branch=issue-170-e2e-git-ops
+        - --git-path=test/gitops/
+        - --git-poll-interval=60s
+        - --git-readonly=true
+        - --git-url=https://github.com/teodor-pripoae/platform-cli.git
+        - --k8s-secret-name=flux-git-deploy-platform-cli
+        - --manifest-generation=true
+        - --memcached-hostname=flux-memcache-platform-cli
+        - --memcached-service=
+        - --registry-exclude-image=*
+        - --ssh-keygen-dir=/etc/fluxd/ssh
+        - --sync-interval=5m00s
+        image: docker.io/fluxcd/flux:1.16.0
+        imagePullPolicy: IfNotPresent
+        name: flux-platform-cli
+        ports:
+        - containerPort: 3030
+          protocol: TCP
+        resources:
+          limits:
+            cpu: 500m
+            memory: 512Mi
+          requests:
+            cpu: 10m
+            memory: 128Mi
+        terminationMessagePath: /dev/termination-log
+        terminationMessagePolicy: File
+        volumeMounts:
+        - mountPath: /etc/fluxd/ssh
+          name: flux-git-deploy-platform-cli
+          readOnly: true
+        - mountPath: /root/.ssh
+          name: flux-ssh-platform-cli
+        - mountPath: /var/run/secrets/kubernetes.io/serviceaccount
+          name: flux-platform-cli-token-qzbl9
+          readOnly: true
+      dnsPolicy: ClusterFirst
+      enableServiceLinks: true
+      nodeName: kind-control-plane
+      priority: 0
+      restartPolicy: Always
+      schedulerName: default-scheduler
+      securityContext: {}
+      serviceAccount: flux-platform-cli
+      serviceAccountName: flux-platform-cli
+      terminationGracePeriodSeconds: 30
+      tolerations:
+      - effect: NoExecute
+        key: node.kubernetes.io/not-ready
+        operator: Exists
+        tolerationSeconds: 300
+      - effect: NoExecute
+        key: node.kubernetes.io/unreachable
+        operator: Exists
+        tolerationSeconds: 300
+      volumes:
+      - name: flux-git-deploy-platform-cli
+        secret:
+          defaultMode: 256
+          secretName: flux-git-deploy-platform-cli
+      - configMap:
+          defaultMode: 420
+          name: flux-ssh-platform-cli
+        name: flux-ssh-platform-cli
+      - name: flux-platform-cli-token-qzbl9
+        secret:
+          defaultMode: 420
+          secretName: flux-platform-cli-token-qzbl9
+    status:
+      conditions:
+      - lastProbeTime: null
+        lastTransitionTime: "2020-04-27T20:40:53Z"
+        status: "True"
+        type: Initialized
+      - lastProbeTime: null
+        lastTransitionTime: "2020-04-27T20:41:01Z"
+        status: "True"
+        type: Ready
+      - lastProbeTime: null
+        lastTransitionTime: "2020-04-27T20:41:01Z"
+        status: "True"
+        type: ContainersReady
+      - lastProbeTime: null
+        lastTransitionTime: "2020-04-27T20:40:53Z"
+        status: "True"
+        type: PodScheduled
+      containerStatuses:
+      - containerID: containerd://be1ef7949b617f26dcafe534b5a127cac1594ab2a22d2d1f68adad72873817b4
+        image: docker.io/fluxcd/flux:1.16.0
+        imageID: docker.io/fluxcd/flux@sha256:0134a02c8983b08d6e3b25eb73f0b758b146af7ea913c7b53f4b21553991217d
+        lastState: {}
+        name: flux-platform-cli
+        ready: true
+        restartCount: 0
+        state:
+          running:
+            startedAt: "2020-04-27T20:41:01Z"
+      hostIP: 172.17.0.2
+      phase: Running
+      podIP: 100.200.82.51
+      qosClass: Burstable
+      startTime: "2020-04-27T20:40:53Z"
+  - apiVersion: v1
+    kind: Pod
+    metadata:
+      annotations:
+        cni.projectcalico.org/podIP: 100.200.82.55/32
+      creationTimestamp: "2020-04-27T20:41:04Z"
+      generateName: nginx-7b56665dd8-
+      labels:
+        app: nginx
+        pod-template-hash: 7b56665dd8
+      name: nginx-7b56665dd8-tqq7l
+      namespace: gitops-e2e-test
+      ownerReferences:
+      - apiVersion: apps/v1
+        blockOwnerDeletion: true
+        controller: true
+        kind: ReplicaSet
+        name: nginx-7b56665dd8
+        uid: cdc02b24-a953-4e36-81ff-b7500a8c934e
+      resourceVersion: "5150"
+      selfLink: /api/v1/namespaces/gitops-e2e-test/pods/nginx-7b56665dd8-tqq7l
+      uid: 774e5021-4156-4643-bbb3-2163dc2b3bf8
+    spec:
+      containers:
+      - image: nginx:1.17.9
+        imagePullPolicy: IfNotPresent
+        name: nginx
+        ports:
+        - containerPort: 80
+          protocol: TCP
+        resources: {}
+        terminationMessagePath: /dev/termination-log
+        terminationMessagePolicy: File
+        volumeMounts:
+        - mountPath: /var/run/secrets/kubernetes.io/serviceaccount
+          name: default-token-z8gtt
+          readOnly: true
+      dnsPolicy: ClusterFirst
+      enableServiceLinks: true
+      nodeName: kind-control-plane
+      priority: 0
+      restartPolicy: Always
+      schedulerName: default-scheduler
+      securityContext: {}
+      serviceAccount: default
+      serviceAccountName: default
+      terminationGracePeriodSeconds: 30
+      tolerations:
+      - effect: NoExecute
+        key: node.kubernetes.io/not-ready
+        operator: Exists
+        tolerationSeconds: 300
+      - effect: NoExecute
+        key: node.kubernetes.io/unreachable
+        operator: Exists
+        tolerationSeconds: 300
+      volumes:
+      - name: default-token-z8gtt
+        secret:
+          defaultMode: 420
+          secretName: default-token-z8gtt
+    status:
+      conditions:
+      - lastProbeTime: null
+        lastTransitionTime: "2020-04-27T20:41:04Z"
+        status: "True"
+        type: Initialized
+      - lastProbeTime: null
+        lastTransitionTime: "2020-04-27T20:41:11Z"
+        status: "True"
+        type: Ready
+      - lastProbeTime: null
+        lastTransitionTime: "2020-04-27T20:41:11Z"
+        status: "True"
+        type: ContainersReady
+      - lastProbeTime: null
+        lastTransitionTime: "2020-04-27T20:41:04Z"
+        status: "True"
+        type: PodScheduled
+      containerStatuses:
+      - containerID: containerd://3a6b2cae2f2da4ce607d04399085b5f3b6fb0b3ba0331b5cc5001b16719ee365
+        image: docker.io/library/nginx:1.17.9
+        imageID: docker.io/library/nginx@sha256:88ea86df324b03b3205cbf4ca0d999143656d0a3394675630e55e49044d38b50
+        lastState: {}
+        name: nginx
+        ready: true
+        restartCount: 0
+        state:
+          running:
+            startedAt: "2020-04-27T20:41:11Z"
+      hostIP: 172.17.0.2
+      phase: Running
+      podIP: 100.200.82.55
+      qosClass: BestEffort
+      startTime: "2020-04-27T20:41:04Z"
+  - apiVersion: v1
+    kind: Pod
+    metadata:
+      annotations:
+        cni.projectcalico.org/podIP: 100.200.82.36/32
+      creationTimestamp: "2020-04-27T20:41:04Z"
+      generateName: nginx-7b56665dd8-
+      labels:
+        app: nginx
+        pod-template-hash: 7b56665dd8
+      name: nginx-7b56665dd8-z5tmw
+      namespace: gitops-e2e-test
+      ownerReferences:
+      - apiVersion: apps/v1
+        blockOwnerDeletion: true
+        controller: true
+        kind: ReplicaSet
+        name: nginx-7b56665dd8
+        uid: cdc02b24-a953-4e36-81ff-b7500a8c934e
+      resourceVersion: "5144"
+      selfLink: /api/v1/namespaces/gitops-e2e-test/pods/nginx-7b56665dd8-z5tmw
+      uid: 76128328-2b71-43aa-af38-13e9aee6ae92
+    spec:
+      containers:
+      - image: nginx:1.17.9
+        imagePullPolicy: IfNotPresent
+        name: nginx
+        ports:
+        - containerPort: 80
+          protocol: TCP
+        resources: {}
+        terminationMessagePath: /dev/termination-log
+        terminationMessagePolicy: File
+        volumeMounts:
+        - mountPath: /var/run/secrets/kubernetes.io/serviceaccount
+          name: default-token-z8gtt
+          readOnly: true
+      dnsPolicy: ClusterFirst
+      enableServiceLinks: true
+      nodeName: kind-control-plane
+      priority: 0
+      restartPolicy: Always
+      schedulerName: default-scheduler
+      securityContext: {}
+      serviceAccount: default
+      serviceAccountName: default
+      terminationGracePeriodSeconds: 30
+      tolerations:
+      - effect: NoExecute
+        key: node.kubernetes.io/not-ready
+        operator: Exists
+        tolerationSeconds: 300
+      - effect: NoExecute
+        key: node.kubernetes.io/unreachable
+        operator: Exists
+        tolerationSeconds: 300
+      volumes:
+      - name: default-token-z8gtt
+        secret:
+          defaultMode: 420
+          secretName: default-token-z8gtt
+    status:
+      conditions:
+      - lastProbeTime: null
+        lastTransitionTime: "2020-04-27T20:41:04Z"
+        status: "True"
+        type: Initialized
+      - lastProbeTime: null
+        lastTransitionTime: "2020-04-27T20:41:11Z"
+        status: "True"
+        type: Ready
+      - lastProbeTime: null
+        lastTransitionTime: "2020-04-27T20:41:11Z"
+        status: "True"
+        type: ContainersReady
+      - lastProbeTime: null
+        lastTransitionTime: "2020-04-27T20:41:04Z"
+        status: "True"
+        type: PodScheduled
+      containerStatuses:
+      - containerID: containerd://945ffab7a82c333e35b4f38fe3c1fb1af241bc65c3179e51926f680b75a0eaea
+        image: docker.io/library/nginx:1.17.9
+        imageID: docker.io/library/nginx@sha256:88ea86df324b03b3205cbf4ca0d999143656d0a3394675630e55e49044d38b50
+        lastState: {}
+        name: nginx
+        ready: true
+        restartCount: 0
+        state:
+          running:
+            startedAt: "2020-04-27T20:41:11Z"
+      hostIP: 172.17.0.2
+      phase: Running
+      podIP: 100.200.82.36
+      qosClass: BestEffort
+      startTime: "2020-04-27T20:41:04Z"
+  metadata: {}
+- items:
+  - apiVersion: v1
+    kind: ServiceAccount
+    metadata:
+      creationTimestamp: "2020-04-27T20:40:50Z"
+      name: default
+      namespace: gitops-e2e-test
+      resourceVersion: "4389"
+      selfLink: /api/v1/namespaces/gitops-e2e-test/serviceaccounts/default
+      uid: c80d67a3-3f34-41e1-8a64-06451eb6c3ac
+    secrets:
+    - name: default-token-z8gtt
+  - apiVersion: v1
+    kind: ServiceAccount
+    metadata:
+      creationTimestamp: "2020-04-27T20:40:52Z"
+      labels:
+        app: flux
+      name: flux-platform-cli
+      namespace: gitops-e2e-test
+      resourceVersion: "4546"
+      selfLink: /api/v1/namespaces/gitops-e2e-test/serviceaccounts/flux-platform-cli
+      uid: 1ca8513c-315d-441d-a273-08e88882b26c
+    secrets:
+    - name: flux-platform-cli-token-qzbl9
+  metadata: {}
+- items:
+  - apiVersion: v1
+    kind: Service
+    metadata:
+      creationTimestamp: "2020-04-27T20:40:51Z"
+      labels:
+        app: flux
+      name: flux-memcache-platform-cli
+      namespace: gitops-e2e-test
+      resourceVersion: "4422"
+      selfLink: /api/v1/namespaces/gitops-e2e-test/services/flux-memcache-platform-cli
+      uid: 9207708b-fc87-4790-a34d-8b7a9899b26d
+    spec:
+      clusterIP: 10.101.8.12
+      ports:
+      - port: 11211
+        protocol: TCP
+        targetPort: 11211
+      selector:
+        app: flux
+      sessionAffinity: None
+      type: ClusterIP
+    status:
+      loadBalancer: {}
+  - apiVersion: v1
+    kind: Service
+    metadata:
+      creationTimestamp: "2020-04-27T20:40:52Z"
+      labels:
+        app: flux
+      name: flux-platform-cli
+      namespace: gitops-e2e-test
+      resourceVersion: "4495"
+      selfLink: /api/v1/namespaces/gitops-e2e-test/services/flux-platform-cli
+      uid: 33761e18-a788-46d3-a419-0a24df863df5
+    spec:
+      clusterIP: 10.105.76.235
+      ports:
+      - port: 3030
+        protocol: TCP
+        targetPort: 3030
+      selector:
+        app: flux
+      sessionAffinity: None
+      type: ClusterIP
+    status:
+      loadBalancer: {}
+  - apiVersion: v1
+    kind: Service
+    metadata:
+      annotations:
+        fluxcd.io/sync-checksum: e43633409cf41b7aeed3b617681c5537b3525cce
+        kubectl.kubernetes.io/last-applied-configuration: |
+          {"apiVersion":"v1","kind":"Service","metadata":{"annotations":{"fluxcd.io/sync-checksum":"e43633409cf41b7aeed3b617681c5537b3525cce"},"labels":{"fluxcd.io/sync-gc-mark":"sha256.LY-XAKTDOxSv1o24tgJTYjBi5sU1EKCK7uHHtHhLAUk"},"name":"nginx","namespace":"gitops-e2e-test"},"spec":{"ports":[{"name":"http","port":80,"protocol":"TCP","targetPort":80}],"selector":{"app":"nginx"}}}
+      creationTimestamp: "2020-04-27T20:41:04Z"
+      labels:
+        fluxcd.io/sync-gc-mark: sha256.LY-XAKTDOxSv1o24tgJTYjBi5sU1EKCK7uHHtHhLAUk
+      name: nginx
+      namespace: gitops-e2e-test
+      resourceVersion: "4871"
+      selfLink: /api/v1/namespaces/gitops-e2e-test/services/nginx
+      uid: 7b938f58-72af-4d89-835b-824d6e130e8a
+    spec:
+      clusterIP: 10.104.205.59
+      ports:
+      - name: http
+        port: 80
+        protocol: TCP
+        targetPort: 80
+      selector:
+        app: nginx
+      sessionAffinity: None
+      type: ClusterIP
+    status:
+      loadBalancer: {}
+  metadata: {}
+- items:
+  - apiVersion: apps/v1
+    kind: Deployment
+    metadata:
+      annotations:
+        deployment.kubernetes.io/revision: "1"
+      creationTimestamp: "2020-04-27T20:40:51Z"
+      generation: 1
+      labels:
+        app: flux
+      name: flux-memcache-platform-cli
+      namespace: gitops-e2e-test
+      resourceVersion: "4927"
+      selfLink: /apis/apps/v1/namespaces/gitops-e2e-test/deployments/flux-memcache-platform-cli
+      uid: 47c4a911-62f9-49a9-bf07-15a843f8ccae
+    spec:
+      progressDeadlineSeconds: 600
+      replicas: 1
+      revisionHistoryLimit: 10
+      selector:
+        matchLabels:
+          app: flux
+      strategy:
+        rollingUpdate:
+          maxSurge: 25%
+          maxUnavailable: 25%
+        type: RollingUpdate
+      template:
+        metadata:
+          creationTimestamp: null
+          labels:
+            app: flux
+        spec:
+          containers:
+          - args:
+            - -m 512
+            - -p 11211
+            - -I 5m
+            image: docker.io/memcached:1.4.36-alpine
+            imagePullPolicy: IfNotPresent
+            name: flux-memcache-platform-cli
+            ports:
+            - containerPort: 11211
+              protocol: TCP
+            resources:
+              limits:
+                cpu: 500m
+                memory: 512Mi
+              requests:
+                cpu: 10m
+                memory: 128Mi
+            terminationMessagePath: /dev/termination-log
+            terminationMessagePolicy: File
+          dnsPolicy: ClusterFirst
+          restartPolicy: Always
+          schedulerName: default-scheduler
+          securityContext: {}
+          terminationGracePeriodSeconds: 30
+    status:
+      availableReplicas: 1
+      conditions:
+      - lastTransitionTime: "2020-04-27T20:41:06Z"
+        lastUpdateTime: "2020-04-27T20:41:06Z"
+        message: Deployment has minimum availability.
+        reason: MinimumReplicasAvailable
+        status: "True"
+        type: Available
+      - lastTransitionTime: "2020-04-27T20:40:51Z"
+        lastUpdateTime: "2020-04-27T20:41:06Z"
+        message: ReplicaSet "flux-memcache-platform-cli-9cbb8774c" has successfully
+          progressed.
+        reason: NewReplicaSetAvailable
+        status: "True"
+        type: Progressing
+      observedGeneration: 1
+      readyReplicas: 1
+      replicas: 1
+      updatedReplicas: 1
+  - apiVersion: apps/v1
+    kind: Deployment
+    metadata:
+      annotations:
+        deployment.kubernetes.io/revision: "1"
+      creationTimestamp: "2020-04-27T20:40:52Z"
+      generation: 1
+      labels:
+        app: flux
+      name: flux-platform-cli
+      namespace: gitops-e2e-test
+      resourceVersion: "4985"
+      selfLink: /apis/apps/v1/namespaces/gitops-e2e-test/deployments/flux-platform-cli
+      uid: 10e99159-3b97-43d1-a147-7326ee432f2b
+    spec:
+      progressDeadlineSeconds: 600
+      replicas: 1
+      revisionHistoryLimit: 10
+      selector:
+        matchLabels:
+          app: flux
+      strategy:
+        rollingUpdate:
+          maxSurge: 25%
+          maxUnavailable: 25%
+        type: RollingUpdate
+      template:
+        metadata:
+          creationTimestamp: null
+          labels:
+            app: flux
+        spec:
+          containers:
+          - args:
+            - --git-branch=issue-170-e2e-git-ops
+            - --git-path=test/gitops/
+            - --git-poll-interval=60s
+            - --git-readonly=true
+            - --git-url=https://github.com/teodor-pripoae/platform-cli.git
+            - --k8s-secret-name=flux-git-deploy-platform-cli
+            - --manifest-generation=true
+            - --memcached-hostname=flux-memcache-platform-cli
+            - --memcached-service=
+            - --registry-exclude-image=*
+            - --ssh-keygen-dir=/etc/fluxd/ssh
+            - --sync-interval=5m00s
+            image: docker.io/fluxcd/flux:1.16.0
+            imagePullPolicy: IfNotPresent
+            name: flux-platform-cli
+            ports:
+            - containerPort: 3030
+              protocol: TCP
+            resources:
+              limits:
+                cpu: 500m
+                memory: 512Mi
+              requests:
+                cpu: 10m
+                memory: 128Mi
+            terminationMessagePath: /dev/termination-log
+            terminationMessagePolicy: File
+            volumeMounts:
+            - mountPath: /etc/fluxd/ssh
+              name: flux-git-deploy-platform-cli
+              readOnly: true
+            - mountPath: /root/.ssh
+              name: flux-ssh-platform-cli
+          dnsPolicy: ClusterFirst
+          restartPolicy: Always
+          schedulerName: default-scheduler
+          securityContext: {}
+          serviceAccount: flux-platform-cli
+          serviceAccountName: flux-platform-cli
+          terminationGracePeriodSeconds: 30
+          volumes:
+          - name: flux-git-deploy-platform-cli
+            secret:
+              defaultMode: 256
+              secretName: flux-git-deploy-platform-cli
+          - configMap:
+              defaultMode: 420
+              name: flux-ssh-platform-cli
+            name: flux-ssh-platform-cli
+    status:
+      availableReplicas: 1
+      conditions:
+      - lastTransitionTime: "2020-04-27T20:41:10Z"
+        lastUpdateTime: "2020-04-27T20:41:10Z"
+        message: Deployment has minimum availability.
+        reason: MinimumReplicasAvailable
+        status: "True"
+        type: Available
+      - lastTransitionTime: "2020-04-27T20:40:53Z"
+        lastUpdateTime: "2020-04-27T20:41:10Z"
+        message: ReplicaSet "flux-platform-cli-5dd99c6dbd" has successfully progressed.
+        reason: NewReplicaSetAvailable
+        status: "True"
+        type: Progressing
+      observedGeneration: 1
+      readyReplicas: 1
+      replicas: 1
+      updatedReplicas: 1
+  - apiVersion: apps/v1
+    kind: Deployment
+    metadata:
+      annotations:
+        deployment.kubernetes.io/revision: "1"
+        fluxcd.io/sync-checksum: 559593d7e880ba658a06292ef6f9ec29afbf69b3
+        kubectl.kubernetes.io/last-applied-configuration: |
+          {"apiVersion":"apps/v1","kind":"Deployment","metadata":{"annotations":{"fluxcd.io/sync-checksum":"559593d7e880ba658a06292ef6f9ec29afbf69b3"},"labels":{"fluxcd.io/sync-gc-mark":"sha256.8avcul5BwlDu0VM0JuoWCGm9SuHT_RVRaoQugGIysAw"},"name":"nginx","namespace":"gitops-e2e-test"},"spec":{"replicas":2,"selector":{"matchLabels":{"app":"nginx"}},"template":{"metadata":{"labels":{"app":"nginx"}},"spec":{"containers":[{"image":"nginx:1.17.9","name":"nginx","ports":[{"containerPort":80}]}]}}}}
+      creationTimestamp: "2020-04-27T20:41:04Z"
+      generation: 1
+      labels:
+        fluxcd.io/sync-gc-mark: sha256.8avcul5BwlDu0VM0JuoWCGm9SuHT_RVRaoQugGIysAw
+      name: nginx
+      namespace: gitops-e2e-test
+      resourceVersion: "5153"
+      selfLink: /apis/apps/v1/namespaces/gitops-e2e-test/deployments/nginx
+      uid: 98558e03-40ed-4371-b840-e66c0e479aa7
+    spec:
+      progressDeadlineSeconds: 600
+      replicas: 2
+      revisionHistoryLimit: 10
+      selector:
+        matchLabels:
+          app: nginx
+      strategy:
+        rollingUpdate:
+          maxSurge: 25%
+          maxUnavailable: 25%
+        type: RollingUpdate
+      template:
+        metadata:
+          creationTimestamp: null
+          labels:
+            app: nginx
+        spec:
+          containers:
+          - image: nginx:1.17.9
+            imagePullPolicy: IfNotPresent
+            name: nginx
+            ports:
+            - containerPort: 80
+              protocol: TCP
+            resources: {}
+            terminationMessagePath: /dev/termination-log
+            terminationMessagePolicy: File
+          dnsPolicy: ClusterFirst
+          restartPolicy: Always
+          schedulerName: default-scheduler
+          securityContext: {}
+          terminationGracePeriodSeconds: 30
+    status:
+      availableReplicas: 2
+      conditions:
+      - lastTransitionTime: "2020-04-27T20:41:21Z"
+        lastUpdateTime: "2020-04-27T20:41:21Z"
+        message: Deployment has minimum availability.
+        reason: MinimumReplicasAvailable
+        status: "True"
+        type: Available
+      - lastTransitionTime: "2020-04-27T20:41:04Z"
+        lastUpdateTime: "2020-04-27T20:41:21Z"
+        message: ReplicaSet "nginx-7b56665dd8" has successfully progressed.
+        reason: NewReplicaSetAvailable
+        status: "True"
+        type: Progressing
+      observedGeneration: 1
+      readyReplicas: 2
+      replicas: 2
+      updatedReplicas: 2
+  metadata: {}
+- items:
+  - apiVersion: apps/v1
+    kind: ReplicaSet
+    metadata:
+      annotations:
+        deployment.kubernetes.io/desired-replicas: "1"
+        deployment.kubernetes.io/max-replicas: "2"
+        deployment.kubernetes.io/revision: "1"
+      creationTimestamp: "2020-04-27T20:40:51Z"
+      generation: 1
+      labels:
+        app: flux
+        pod-template-hash: 9cbb8774c
+      name: flux-memcache-platform-cli-9cbb8774c
+      namespace: gitops-e2e-test
+      ownerReferences:
+      - apiVersion: apps/v1
+        blockOwnerDeletion: true
+        controller: true
+        kind: Deployment
+        name: flux-memcache-platform-cli
+        uid: 47c4a911-62f9-49a9-bf07-15a843f8ccae
+      resourceVersion: "4925"
+      selfLink: /apis/apps/v1/namespaces/gitops-e2e-test/replicasets/flux-memcache-platform-cli-9cbb8774c
+      uid: bf4fcfc2-546f-497a-9064-7e1c31caecb1
+    spec:
+      replicas: 1
+      selector:
+        matchLabels:
+          app: flux
+          pod-template-hash: 9cbb8774c
+      template:
+        metadata:
+          creationTimestamp: null
+          labels:
+            app: flux
+            pod-template-hash: 9cbb8774c
+        spec:
+          containers:
+          - args:
+            - -m 512
+            - -p 11211
+            - -I 5m
+            image: docker.io/memcached:1.4.36-alpine
+            imagePullPolicy: IfNotPresent
+            name: flux-memcache-platform-cli
+            ports:
+            - containerPort: 11211
+              protocol: TCP
+            resources:
+              limits:
+                cpu: 500m
+                memory: 512Mi
+              requests:
+                cpu: 10m
+                memory: 128Mi
+            terminationMessagePath: /dev/termination-log
+            terminationMessagePolicy: File
+          dnsPolicy: ClusterFirst
+          restartPolicy: Always
+          schedulerName: default-scheduler
+          securityContext: {}
+          terminationGracePeriodSeconds: 30
+    status:
+      availableReplicas: 1
+      fullyLabeledReplicas: 1
+      observedGeneration: 1
+      readyReplicas: 1
+      replicas: 1
+  - apiVersion: apps/v1
+    kind: ReplicaSet
+    metadata:
+      annotations:
+        deployment.kubernetes.io/desired-replicas: "1"
+        deployment.kubernetes.io/max-replicas: "2"
+        deployment.kubernetes.io/revision: "1"
+      creationTimestamp: "2020-04-27T20:40:53Z"
+      generation: 1
+      labels:
+        app: flux
+        pod-template-hash: 5dd99c6dbd
+      name: flux-platform-cli-5dd99c6dbd
+      namespace: gitops-e2e-test
+      ownerReferences:
+      - apiVersion: apps/v1
+        blockOwnerDeletion: true
+        controller: true
+        kind: Deployment
+        name: flux-platform-cli
+        uid: 10e99159-3b97-43d1-a147-7326ee432f2b
+      resourceVersion: "4983"
+      selfLink: /apis/apps/v1/namespaces/gitops-e2e-test/replicasets/flux-platform-cli-5dd99c6dbd
+      uid: 823b1c6c-0825-488e-a00a-714b2d7bac3f
+    spec:
+      replicas: 1
+      selector:
+        matchLabels:
+          app: flux
+          pod-template-hash: 5dd99c6dbd
+      template:
+        metadata:
+          creationTimestamp: null
+          labels:
+            app: flux
+            pod-template-hash: 5dd99c6dbd
+        spec:
+          containers:
+          - args:
+            - --git-branch=issue-170-e2e-git-ops
+            - --git-path=test/gitops/
+            - --git-poll-interval=60s
+            - --git-readonly=true
+            - --git-url=https://github.com/teodor-pripoae/platform-cli.git
+            - --k8s-secret-name=flux-git-deploy-platform-cli
+            - --manifest-generation=true
+            - --memcached-hostname=flux-memcache-platform-cli
+            - --memcached-service=
+            - --registry-exclude-image=*
+            - --ssh-keygen-dir=/etc/fluxd/ssh
+            - --sync-interval=5m00s
+            image: docker.io/fluxcd/flux:1.16.0
+            imagePullPolicy: IfNotPresent
+            name: flux-platform-cli
+            ports:
+            - containerPort: 3030
+              protocol: TCP
+            resources:
+              limits:
+                cpu: 500m
+                memory: 512Mi
+              requests:
+                cpu: 10m
+                memory: 128Mi
+            terminationMessagePath: /dev/termination-log
+            terminationMessagePolicy: File
+            volumeMounts:
+            - mountPath: /etc/fluxd/ssh
+              name: flux-git-deploy-platform-cli
+              readOnly: true
+            - mountPath: /root/.ssh
+              name: flux-ssh-platform-cli
+          dnsPolicy: ClusterFirst
+          restartPolicy: Always
+          schedulerName: default-scheduler
+          securityContext: {}
+          serviceAccount: flux-platform-cli
+          serviceAccountName: flux-platform-cli
+          terminationGracePeriodSeconds: 30
+          volumes:
+          - name: flux-git-deploy-platform-cli
+            secret:
+              defaultMode: 256
+              secretName: flux-git-deploy-platform-cli
+          - configMap:
+              defaultMode: 420
+              name: flux-ssh-platform-cli
+            name: flux-ssh-platform-cli
+    status:
+      availableReplicas: 1
+      fullyLabeledReplicas: 1
+      observedGeneration: 1
+      readyReplicas: 1
+      replicas: 1
+  - apiVersion: apps/v1
+    kind: ReplicaSet
+    metadata:
+      annotations:
+        deployment.kubernetes.io/desired-replicas: "2"
+        deployment.kubernetes.io/max-replicas: "3"
+        deployment.kubernetes.io/revision: "1"
+        fluxcd.io/sync-checksum: 559593d7e880ba658a06292ef6f9ec29afbf69b3
+      creationTimestamp: "2020-04-27T20:41:04Z"
+      generation: 1
+      labels:
+        app: nginx
+        pod-template-hash: 7b56665dd8
+      name: nginx-7b56665dd8
+      namespace: gitops-e2e-test
+      ownerReferences:
+      - apiVersion: apps/v1
+        blockOwnerDeletion: true
+        controller: true
+        kind: Deployment
+        name: nginx
+        uid: 98558e03-40ed-4371-b840-e66c0e479aa7
+      resourceVersion: "5151"
+      selfLink: /apis/apps/v1/namespaces/gitops-e2e-test/replicasets/nginx-7b56665dd8
+      uid: cdc02b24-a953-4e36-81ff-b7500a8c934e
+    spec:
+      replicas: 2
+      selector:
+        matchLabels:
+          app: nginx
+          pod-template-hash: 7b56665dd8
+      template:
+        metadata:
+          creationTimestamp: null
+          labels:
+            app: nginx
+            pod-template-hash: 7b56665dd8
+        spec:
+          containers:
+          - image: nginx:1.17.9
+            imagePullPolicy: IfNotPresent
+            name: nginx
+            ports:
+            - containerPort: 80
+              protocol: TCP
+            resources: {}
+            terminationMessagePath: /dev/termination-log
+            terminationMessagePolicy: File
+          dnsPolicy: ClusterFirst
+          restartPolicy: Always
+          schedulerName: default-scheduler
+          securityContext: {}
+          terminationGracePeriodSeconds: 30
+    status:
+      availableReplicas: 2
+      fullyLabeledReplicas: 2
+      observedGeneration: 1
+      readyReplicas: 2
+      replicas: 2
+  metadata: {}
+- items:
+  - apiVersion: extensions/v1beta1
+    kind: Deployment
+    metadata:
+      annotations:
+        deployment.kubernetes.io/revision: "1"
+      creationTimestamp: "2020-04-27T20:40:51Z"
+      generation: 1
+      labels:
+        app: flux
+      name: flux-memcache-platform-cli
+      namespace: gitops-e2e-test
+      resourceVersion: "4927"
+      selfLink: /apis/extensions/v1beta1/namespaces/gitops-e2e-test/deployments/flux-memcache-platform-cli
+      uid: 47c4a911-62f9-49a9-bf07-15a843f8ccae
+    spec:
+      progressDeadlineSeconds: 600
+      replicas: 1
+      revisionHistoryLimit: 10
+      selector:
+        matchLabels:
+          app: flux
+      strategy:
+        rollingUpdate:
+          maxSurge: 25%
+          maxUnavailable: 25%
+        type: RollingUpdate
+      template:
+        metadata:
+          creationTimestamp: null
+          labels:
+            app: flux
+        spec:
+          containers:
+          - args:
+            - -m 512
+            - -p 11211
+            - -I 5m
+            image: docker.io/memcached:1.4.36-alpine
+            imagePullPolicy: IfNotPresent
+            name: flux-memcache-platform-cli
+            ports:
+            - containerPort: 11211
+              protocol: TCP
+            resources:
+              limits:
+                cpu: 500m
+                memory: 512Mi
+              requests:
+                cpu: 10m
+                memory: 128Mi
+            terminationMessagePath: /dev/termination-log
+            terminationMessagePolicy: File
+          dnsPolicy: ClusterFirst
+          restartPolicy: Always
+          schedulerName: default-scheduler
+          securityContext: {}
+          terminationGracePeriodSeconds: 30
+    status:
+      availableReplicas: 1
+      conditions:
+      - lastTransitionTime: "2020-04-27T20:41:06Z"
+        lastUpdateTime: "2020-04-27T20:41:06Z"
+        message: Deployment has minimum availability.
+        reason: MinimumReplicasAvailable
+        status: "True"
+        type: Available
+      - lastTransitionTime: "2020-04-27T20:40:51Z"
+        lastUpdateTime: "2020-04-27T20:41:06Z"
+        message: ReplicaSet "flux-memcache-platform-cli-9cbb8774c" has successfully
+          progressed.
+        reason: NewReplicaSetAvailable
+        status: "True"
+        type: Progressing
+      observedGeneration: 1
+      readyReplicas: 1
+      replicas: 1
+      updatedReplicas: 1
+  - apiVersion: extensions/v1beta1
+    kind: Deployment
+    metadata:
+      annotations:
+        deployment.kubernetes.io/revision: "1"
+      creationTimestamp: "2020-04-27T20:40:52Z"
+      generation: 1
+      labels:
+        app: flux
+      name: flux-platform-cli
+      namespace: gitops-e2e-test
+      resourceVersion: "4985"
+      selfLink: /apis/extensions/v1beta1/namespaces/gitops-e2e-test/deployments/flux-platform-cli
+      uid: 10e99159-3b97-43d1-a147-7326ee432f2b
+    spec:
+      progressDeadlineSeconds: 600
+      replicas: 1
+      revisionHistoryLimit: 10
+      selector:
+        matchLabels:
+          app: flux
+      strategy:
+        rollingUpdate:
+          maxSurge: 25%
+          maxUnavailable: 25%
+        type: RollingUpdate
+      template:
+        metadata:
+          creationTimestamp: null
+          labels:
+            app: flux
+        spec:
+          containers:
+          - args:
+            - --git-branch=issue-170-e2e-git-ops
+            - --git-path=test/gitops/
+            - --git-poll-interval=60s
+            - --git-readonly=true
+            - --git-url=https://github.com/teodor-pripoae/platform-cli.git
+            - --k8s-secret-name=flux-git-deploy-platform-cli
+            - --manifest-generation=true
+            - --memcached-hostname=flux-memcache-platform-cli
+            - --memcached-service=
+            - --registry-exclude-image=*
+            - --ssh-keygen-dir=/etc/fluxd/ssh
+            - --sync-interval=5m00s
+            image: docker.io/fluxcd/flux:1.16.0
+            imagePullPolicy: IfNotPresent
+            name: flux-platform-cli
+            ports:
+            - containerPort: 3030
+              protocol: TCP
+            resources:
+              limits:
+                cpu: 500m
+                memory: 512Mi
+              requests:
+                cpu: 10m
+                memory: 128Mi
+            terminationMessagePath: /dev/termination-log
+            terminationMessagePolicy: File
+            volumeMounts:
+            - mountPath: /etc/fluxd/ssh
+              name: flux-git-deploy-platform-cli
+              readOnly: true
+            - mountPath: /root/.ssh
+              name: flux-ssh-platform-cli
+          dnsPolicy: ClusterFirst
+          restartPolicy: Always
+          schedulerName: default-scheduler
+          securityContext: {}
+          serviceAccount: flux-platform-cli
+          serviceAccountName: flux-platform-cli
+          terminationGracePeriodSeconds: 30
+          volumes:
+          - name: flux-git-deploy-platform-cli
+            secret:
+              defaultMode: 256
+              secretName: flux-git-deploy-platform-cli
+          - configMap:
+              defaultMode: 420
+              name: flux-ssh-platform-cli
+            name: flux-ssh-platform-cli
+    status:
+      availableReplicas: 1
+      conditions:
+      - lastTransitionTime: "2020-04-27T20:41:10Z"
+        lastUpdateTime: "2020-04-27T20:41:10Z"
+        message: Deployment has minimum availability.
+        reason: MinimumReplicasAvailable
+        status: "True"
+        type: Available
+      - lastTransitionTime: "2020-04-27T20:40:53Z"
+        lastUpdateTime: "2020-04-27T20:41:10Z"
+        message: ReplicaSet "flux-platform-cli-5dd99c6dbd" has successfully progressed.
+        reason: NewReplicaSetAvailable
+        status: "True"
+        type: Progressing
+      observedGeneration: 1
+      readyReplicas: 1
+      replicas: 1
+      updatedReplicas: 1
+  - apiVersion: extensions/v1beta1
+    kind: Deployment
+    metadata:
+      annotations:
+        deployment.kubernetes.io/revision: "1"
+        fluxcd.io/sync-checksum: 559593d7e880ba658a06292ef6f9ec29afbf69b3
+        kubectl.kubernetes.io/last-applied-configuration: |
+          {"apiVersion":"apps/v1","kind":"Deployment","metadata":{"annotations":{"fluxcd.io/sync-checksum":"559593d7e880ba658a06292ef6f9ec29afbf69b3"},"labels":{"fluxcd.io/sync-gc-mark":"sha256.8avcul5BwlDu0VM0JuoWCGm9SuHT_RVRaoQugGIysAw"},"name":"nginx","namespace":"gitops-e2e-test"},"spec":{"replicas":2,"selector":{"matchLabels":{"app":"nginx"}},"template":{"metadata":{"labels":{"app":"nginx"}},"spec":{"containers":[{"image":"nginx:1.17.9","name":"nginx","ports":[{"containerPort":80}]}]}}}}
+      creationTimestamp: "2020-04-27T20:41:04Z"
+      generation: 1
+      labels:
+        fluxcd.io/sync-gc-mark: sha256.8avcul5BwlDu0VM0JuoWCGm9SuHT_RVRaoQugGIysAw
+      name: nginx
+      namespace: gitops-e2e-test
+      resourceVersion: "5153"
+      selfLink: /apis/extensions/v1beta1/namespaces/gitops-e2e-test/deployments/nginx
+      uid: 98558e03-40ed-4371-b840-e66c0e479aa7
+    spec:
+      progressDeadlineSeconds: 600
+      replicas: 2
+      revisionHistoryLimit: 10
+      selector:
+        matchLabels:
+          app: nginx
+      strategy:
+        rollingUpdate:
+          maxSurge: 25%
+          maxUnavailable: 25%
+        type: RollingUpdate
+      template:
+        metadata:
+          creationTimestamp: null
+          labels:
+            app: nginx
+        spec:
+          containers:
+          - image: nginx:1.17.9
+            imagePullPolicy: IfNotPresent
+            name: nginx
+            ports:
+            - containerPort: 80
+              protocol: TCP
+            resources: {}
+            terminationMessagePath: /dev/termination-log
+            terminationMessagePolicy: File
+          dnsPolicy: ClusterFirst
+          restartPolicy: Always
+          schedulerName: default-scheduler
+          securityContext: {}
+          terminationGracePeriodSeconds: 30
+    status:
+      availableReplicas: 2
+      conditions:
+      - lastTransitionTime: "2020-04-27T20:41:21Z"
+        lastUpdateTime: "2020-04-27T20:41:21Z"
+        message: Deployment has minimum availability.
+        reason: MinimumReplicasAvailable
+        status: "True"
+        type: Available
+      - lastTransitionTime: "2020-04-27T20:41:04Z"
+        lastUpdateTime: "2020-04-27T20:41:21Z"
+        message: ReplicaSet "nginx-7b56665dd8" has successfully progressed.
+        reason: NewReplicaSetAvailable
+        status: "True"
+        type: Progressing
+      observedGeneration: 1
+      readyReplicas: 2
+      replicas: 2
+      updatedReplicas: 2
+  metadata: {}
+- items:
+  - apiVersion: extensions/v1beta1
+    kind: ReplicaSet
+    metadata:
+      annotations:
+        deployment.kubernetes.io/desired-replicas: "1"
+        deployment.kubernetes.io/max-replicas: "2"
+        deployment.kubernetes.io/revision: "1"
+      creationTimestamp: "2020-04-27T20:40:51Z"
+      generation: 1
+      labels:
+        app: flux
+        pod-template-hash: 9cbb8774c
+      name: flux-memcache-platform-cli-9cbb8774c
+      namespace: gitops-e2e-test
+      ownerReferences:
+      - apiVersion: apps/v1
+        blockOwnerDeletion: true
+        controller: true
+        kind: Deployment
+        name: flux-memcache-platform-cli
+        uid: 47c4a911-62f9-49a9-bf07-15a843f8ccae
+      resourceVersion: "4925"
+      selfLink: /apis/extensions/v1beta1/namespaces/gitops-e2e-test/replicasets/flux-memcache-platform-cli-9cbb8774c
+      uid: bf4fcfc2-546f-497a-9064-7e1c31caecb1
+    spec:
+      replicas: 1
+      selector:
+        matchLabels:
+          app: flux
+          pod-template-hash: 9cbb8774c
+      template:
+        metadata:
+          creationTimestamp: null
+          labels:
+            app: flux
+            pod-template-hash: 9cbb8774c
+        spec:
+          containers:
+          - args:
+            - -m 512
+            - -p 11211
+            - -I 5m
+            image: docker.io/memcached:1.4.36-alpine
+            imagePullPolicy: IfNotPresent
+            name: flux-memcache-platform-cli
+            ports:
+            - containerPort: 11211
+              protocol: TCP
+            resources:
+              limits:
+                cpu: 500m
+                memory: 512Mi
+              requests:
+                cpu: 10m
+                memory: 128Mi
+            terminationMessagePath: /dev/termination-log
+            terminationMessagePolicy: File
+          dnsPolicy: ClusterFirst
+          restartPolicy: Always
+          schedulerName: default-scheduler
+          securityContext: {}
+          terminationGracePeriodSeconds: 30
+    status:
+      availableReplicas: 1
+      fullyLabeledReplicas: 1
+      observedGeneration: 1
+      readyReplicas: 1
+      replicas: 1
+  - apiVersion: extensions/v1beta1
+    kind: ReplicaSet
+    metadata:
+      annotations:
+        deployment.kubernetes.io/desired-replicas: "1"
+        deployment.kubernetes.io/max-replicas: "2"
+        deployment.kubernetes.io/revision: "1"
+      creationTimestamp: "2020-04-27T20:40:53Z"
+      generation: 1
+      labels:
+        app: flux
+        pod-template-hash: 5dd99c6dbd
+      name: flux-platform-cli-5dd99c6dbd
+      namespace: gitops-e2e-test
+      ownerReferences:
+      - apiVersion: apps/v1
+        blockOwnerDeletion: true
+        controller: true
+        kind: Deployment
+        name: flux-platform-cli
+        uid: 10e99159-3b97-43d1-a147-7326ee432f2b
+      resourceVersion: "4983"
+      selfLink: /apis/extensions/v1beta1/namespaces/gitops-e2e-test/replicasets/flux-platform-cli-5dd99c6dbd
+      uid: 823b1c6c-0825-488e-a00a-714b2d7bac3f
+    spec:
+      replicas: 1
+      selector:
+        matchLabels:
+          app: flux
+          pod-template-hash: 5dd99c6dbd
+      template:
+        metadata:
+          creationTimestamp: null
+          labels:
+            app: flux
+            pod-template-hash: 5dd99c6dbd
+        spec:
+          containers:
+          - args:
+            - --git-branch=issue-170-e2e-git-ops
+            - --git-path=test/gitops/
+            - --git-poll-interval=60s
+            - --git-readonly=true
+            - --git-url=https://github.com/teodor-pripoae/platform-cli.git
+            - --k8s-secret-name=flux-git-deploy-platform-cli
+            - --manifest-generation=true
+            - --memcached-hostname=flux-memcache-platform-cli
+            - --memcached-service=
+            - --registry-exclude-image=*
+            - --ssh-keygen-dir=/etc/fluxd/ssh
+            - --sync-interval=5m00s
+            image: docker.io/fluxcd/flux:1.16.0
+            imagePullPolicy: IfNotPresent
+            name: flux-platform-cli
+            ports:
+            - containerPort: 3030
+              protocol: TCP
+            resources:
+              limits:
+                cpu: 500m
+                memory: 512Mi
+              requests:
+                cpu: 10m
+                memory: 128Mi
+            terminationMessagePath: /dev/termination-log
+            terminationMessagePolicy: File
+            volumeMounts:
+            - mountPath: /etc/fluxd/ssh
+              name: flux-git-deploy-platform-cli
+              readOnly: true
+            - mountPath: /root/.ssh
+              name: flux-ssh-platform-cli
+          dnsPolicy: ClusterFirst
+          restartPolicy: Always
+          schedulerName: default-scheduler
+          securityContext: {}
+          serviceAccount: flux-platform-cli
+          serviceAccountName: flux-platform-cli
+          terminationGracePeriodSeconds: 30
+          volumes:
+          - name: flux-git-deploy-platform-cli
+            secret:
+              defaultMode: 256
+              secretName: flux-git-deploy-platform-cli
+          - configMap:
+              defaultMode: 420
+              name: flux-ssh-platform-cli
+            name: flux-ssh-platform-cli
+    status:
+      availableReplicas: 1
+      fullyLabeledReplicas: 1
+      observedGeneration: 1
+      readyReplicas: 1
+      replicas: 1
+  - apiVersion: extensions/v1beta1
+    kind: ReplicaSet
+    metadata:
+      annotations:
+        deployment.kubernetes.io/desired-replicas: "2"
+        deployment.kubernetes.io/max-replicas: "3"
+        deployment.kubernetes.io/revision: "1"
+        fluxcd.io/sync-checksum: 559593d7e880ba658a06292ef6f9ec29afbf69b3
+      creationTimestamp: "2020-04-27T20:41:04Z"
+      generation: 1
+      labels:
+        app: nginx
+        pod-template-hash: 7b56665dd8
+      name: nginx-7b56665dd8
+      namespace: gitops-e2e-test
+      ownerReferences:
+      - apiVersion: apps/v1
+        blockOwnerDeletion: true
+        controller: true
+        kind: Deployment
+        name: nginx
+        uid: 98558e03-40ed-4371-b840-e66c0e479aa7
+      resourceVersion: "5151"
+      selfLink: /apis/extensions/v1beta1/namespaces/gitops-e2e-test/replicasets/nginx-7b56665dd8
+      uid: cdc02b24-a953-4e36-81ff-b7500a8c934e
+    spec:
+      replicas: 2
+      selector:
+        matchLabels:
+          app: nginx
+          pod-template-hash: 7b56665dd8
+      template:
+        metadata:
+          creationTimestamp: null
+          labels:
+            app: nginx
+            pod-template-hash: 7b56665dd8
+        spec:
+          containers:
+          - image: nginx:1.17.9
+            imagePullPolicy: IfNotPresent
+            name: nginx
+            ports:
+            - containerPort: 80
+              protocol: TCP
+            resources: {}
+            terminationMessagePath: /dev/termination-log
+            terminationMessagePolicy: File
+          dnsPolicy: ClusterFirst
+          restartPolicy: Always
+          schedulerName: default-scheduler
+          securityContext: {}
+          terminationGracePeriodSeconds: 30
+    status:
+      availableReplicas: 2
+      fullyLabeledReplicas: 2
+      observedGeneration: 1
+      readyReplicas: 2
+      replicas: 2
+  metadata: {}
+- items:
+  - apiVersion: metrics.k8s.io/v1beta1
+    containers:
+    - name: flux-platform-cli
+      usage:
+        cpu: 4m
+        memory: 39128Ki
+    kind: PodMetrics
+    metadata:
+      creationTimestamp: "2020-04-27T20:46:06Z"
+      name: flux-platform-cli-5dd99c6dbd-qsxls
+      namespace: gitops-e2e-test
+      selfLink: /apis/metrics.k8s.io/v1beta1/namespaces/gitops-e2e-test/pods/flux-platform-cli-5dd99c6dbd-qsxls
+    timestamp: "2020-04-27T20:46:06Z"
+    window: 5m0s
+  - apiVersion: metrics.k8s.io/v1beta1
+    containers:
+    - name: nginx
+      usage:
+        cpu: "0"
+        memory: 5608Ki
+    kind: PodMetrics
+    metadata:
+      creationTimestamp: "2020-04-27T20:46:06Z"
+      name: nginx-7b56665dd8-z5tmw
+      namespace: gitops-e2e-test
+      selfLink: /apis/metrics.k8s.io/v1beta1/namespaces/gitops-e2e-test/pods/nginx-7b56665dd8-z5tmw
+    timestamp: "2020-04-27T20:46:06Z"
+    window: 5m0s
+  - apiVersion: metrics.k8s.io/v1beta1
+    containers:
+    - name: nginx
+      usage:
+        cpu: "0"
+        memory: 5392Ki
+    kind: PodMetrics
+    metadata:
+      creationTimestamp: "2020-04-27T20:46:06Z"
+      name: nginx-7b56665dd8-tqq7l
+      namespace: gitops-e2e-test
+      selfLink: /apis/metrics.k8s.io/v1beta1/namespaces/gitops-e2e-test/pods/nginx-7b56665dd8-tqq7l
+    timestamp: "2020-04-27T20:46:06Z"
+    window: 5m0s
+  - apiVersion: metrics.k8s.io/v1beta1
+    containers:
+    - name: flux-memcache-platform-cli
+      usage:
+        cpu: "0"
+        memory: 3560Ki
+    kind: PodMetrics
+    metadata:
+      creationTimestamp: "2020-04-27T20:46:06Z"
+      name: flux-memcache-platform-cli-9cbb8774c-x4vrc
+      namespace: gitops-e2e-test
+      selfLink: /apis/metrics.k8s.io/v1beta1/namespaces/gitops-e2e-test/pods/flux-memcache-platform-cli-9cbb8774c-x4vrc
+    timestamp: "2020-04-27T20:46:06Z"
+    window: 5m0s
+  metadata: {}
+kind: List
+metadata: {}

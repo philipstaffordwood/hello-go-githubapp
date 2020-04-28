@@ -1,0 +1,11 @@
+++ mktemp /tmp/consul-backup.XXXXXX
++ BACKUP_FILE=/tmp/consul-backup.OjIpJG
++ rm /tmp/consul-backup.OjIpJG
++ SSL_OPTS=
++ [[ http://minio.minio.svc:9000 =~ ^http:// ]]
++ SSL_OPTS=--no-ssl
++ s3cmd --host=http://minio.minio.svc:9000 --host-bucket=http://minio.minio.svc:9000/consul-backups --no-ssl --acl-private get s3://consul-backups/consul/backups/vault/consul-server/2020-04-27_20-43-43.snapshot /tmp/consul-backup.OjIpJG
+download: 's3://consul-backups/consul/backups/vault/consul-server/2020-04-27_20-43-43.snapshot' -> '/tmp/consul-backup.OjIpJG' (13281 bytes in 0.0 seconds, 3.56 MB/s)
++ consul snapshot restore -http-addr=consul-server-0.consul-server.vault.svc:8500 /tmp/consul-backup.OjIpJG
+Restored snapshot
++ rm /tmp/consul-backup.OjIpJG

@@ -1,0 +1,784 @@
+apiVersion: v1
+items:
+- items:
+  - apiVersion: v1
+    kind: Pod
+    metadata:
+      annotations:
+        cni.projectcalico.org/podIP: 100.200.82.26/32
+        prometheus.io/path: /metrics
+        prometheus.io/port: "8085"
+        prometheus.io/scrape: "true"
+      creationTimestamp: "2020-04-27T20:38:33Z"
+      generateName: velero-77565ddf45-
+      labels:
+        component: velero
+        deploy: velero
+        pod-template-hash: 77565ddf45
+      name: velero-77565ddf45-p8djk
+      namespace: velero
+      ownerReferences:
+      - apiVersion: apps/v1
+        blockOwnerDeletion: true
+        controller: true
+        kind: ReplicaSet
+        name: velero-77565ddf45
+        uid: 087f7f6b-4ac3-466b-ae26-b217fa70c969
+      resourceVersion: "2698"
+      selfLink: /api/v1/namespaces/velero/pods/velero-77565ddf45-p8djk
+      uid: d8cc044e-9d2f-4659-9655-cf4203a64914
+    spec:
+      containers:
+      - args:
+        - server
+        command:
+        - /velero
+        env:
+        - name: VELERO_SCRATCH_DIR
+          value: /scratch
+        - name: VELERO_NAMESPACE
+          valueFrom:
+            fieldRef:
+              apiVersion: v1
+              fieldPath: metadata.namespace
+        - name: LD_LIBRARY_PATH
+          value: /plugins
+        - name: GOOGLE_APPLICATION_CREDENTIALS
+          value: /credentials/cloud
+        - name: AWS_SHARED_CREDENTIALS_FILE
+          value: /credentials/cloud
+        - name: AZURE_CREDENTIALS_FILE
+          value: /credentials/cloud
+        image: velero/velero:v1.2.0
+        imagePullPolicy: IfNotPresent
+        name: velero
+        ports:
+        - containerPort: 8085
+          name: metrics
+          protocol: TCP
+        resources:
+          limits:
+            cpu: "1"
+            memory: 256Mi
+          requests:
+            cpu: 500m
+            memory: 128Mi
+        terminationMessagePath: /dev/termination-log
+        terminationMessagePolicy: File
+        volumeMounts:
+        - mountPath: /plugins
+          name: plugins
+        - mountPath: /scratch
+          name: scratch
+        - mountPath: /credentials
+          name: cloud-credentials
+        - mountPath: /var/run/secrets/kubernetes.io/serviceaccount
+          name: velero-token-5qnzq
+          readOnly: true
+      dnsPolicy: ClusterFirst
+      enableServiceLinks: true
+      initContainers:
+      - image: velero/velero-plugin-for-aws:v1.0.0
+        imagePullPolicy: IfNotPresent
+        name: velero-plugin-for-aws
+        resources: {}
+        terminationMessagePath: /dev/termination-log
+        terminationMessagePolicy: File
+        volumeMounts:
+        - mountPath: /target
+          name: plugins
+        - mountPath: /var/run/secrets/kubernetes.io/serviceaccount
+          name: velero-token-5qnzq
+          readOnly: true
+      nodeName: kind-control-plane
+      priority: 0
+      restartPolicy: Always
+      schedulerName: default-scheduler
+      securityContext: {}
+      serviceAccount: velero
+      serviceAccountName: velero
+      terminationGracePeriodSeconds: 30
+      tolerations:
+      - effect: NoExecute
+        key: node.kubernetes.io/not-ready
+        operator: Exists
+        tolerationSeconds: 300
+      - effect: NoExecute
+        key: node.kubernetes.io/unreachable
+        operator: Exists
+        tolerationSeconds: 300
+      volumes:
+      - emptyDir: {}
+        name: plugins
+      - emptyDir: {}
+        name: scratch
+      - name: cloud-credentials
+        secret:
+          defaultMode: 420
+          secretName: cloud-credentials
+      - name: velero-token-5qnzq
+        secret:
+          defaultMode: 420
+          secretName: velero-token-5qnzq
+    status:
+      conditions:
+      - lastProbeTime: null
+        lastTransitionTime: "2020-04-27T20:38:39Z"
+        status: "True"
+        type: Initialized
+      - lastProbeTime: null
+        lastTransitionTime: "2020-04-27T20:38:42Z"
+        status: "True"
+        type: Ready
+      - lastProbeTime: null
+        lastTransitionTime: "2020-04-27T20:38:42Z"
+        status: "True"
+        type: ContainersReady
+      - lastProbeTime: null
+        lastTransitionTime: "2020-04-27T20:38:33Z"
+        status: "True"
+        type: PodScheduled
+      containerStatuses:
+      - containerID: containerd://42aa687bca9c8d3a4f45c963e3fbe2fb6ef7aeb943e2ce3b3d00b2b0f3056ade
+        image: docker.io/velero/velero:v1.2.0
+        imageID: docker.io/velero/velero@sha256:f1f8af0e8f9ec7221f30b31188ff604bc662c7cbedee620b0f5f8df15729e72e
+        lastState: {}
+        name: velero
+        ready: true
+        restartCount: 0
+        state:
+          running:
+            startedAt: "2020-04-27T20:38:41Z"
+      hostIP: 172.17.0.2
+      initContainerStatuses:
+      - containerID: containerd://34ffc7ee121502bb07a8b337f325c3aa40f49bcc50fc52900e1ea8c4920aa3a1
+        image: docker.io/velero/velero-plugin-for-aws:v1.0.0
+        imageID: docker.io/velero/velero-plugin-for-aws@sha256:12a0af53302006830616bf0f743d64a05cdfb0cf2c2a10980c06c4831a359f05
+        lastState: {}
+        name: velero-plugin-for-aws
+        ready: true
+        restartCount: 0
+        state:
+          terminated:
+            containerID: containerd://34ffc7ee121502bb07a8b337f325c3aa40f49bcc50fc52900e1ea8c4920aa3a1
+            exitCode: 0
+            finishedAt: "2020-04-27T20:38:38Z"
+            reason: Completed
+            startedAt: "2020-04-27T20:38:38Z"
+      phase: Running
+      podIP: 100.200.82.26
+      qosClass: Burstable
+      startTime: "2020-04-27T20:38:33Z"
+  metadata: {}
+- items:
+  - apiVersion: v1
+    kind: ServiceAccount
+    metadata:
+      creationTimestamp: "2020-04-27T20:38:26Z"
+      name: default
+      namespace: velero
+      resourceVersion: "2411"
+      selfLink: /api/v1/namespaces/velero/serviceaccounts/default
+      uid: c3b186ac-8de8-449b-b8e3-a5f573b6c09f
+    secrets:
+    - name: default-token-6nfj4
+  - apiVersion: v1
+    kind: ServiceAccount
+    metadata:
+      creationTimestamp: "2020-04-27T20:38:32Z"
+      labels:
+        component: velero
+      name: velero
+      namespace: velero
+      resourceVersion: "2494"
+      selfLink: /api/v1/namespaces/velero/serviceaccounts/velero
+      uid: 5973a96e-d48c-4576-8b77-9ada81ca79cf
+    secrets:
+    - name: velero-token-5qnzq
+  metadata: {}
+- items:
+  - apiVersion: apps/v1
+    kind: Deployment
+    metadata:
+      annotations:
+        deployment.kubernetes.io/revision: "1"
+      creationTimestamp: "2020-04-27T20:38:33Z"
+      generation: 1
+      labels:
+        component: velero
+      name: velero
+      namespace: velero
+      resourceVersion: "2700"
+      selfLink: /apis/apps/v1/namespaces/velero/deployments/velero
+      uid: c33894f3-7c9d-4cb8-a238-69bb7c15bc12
+    spec:
+      progressDeadlineSeconds: 600
+      replicas: 1
+      revisionHistoryLimit: 10
+      selector:
+        matchLabels:
+          deploy: velero
+      strategy:
+        rollingUpdate:
+          maxSurge: 25%
+          maxUnavailable: 25%
+        type: RollingUpdate
+      template:
+        metadata:
+          annotations:
+            prometheus.io/path: /metrics
+            prometheus.io/port: "8085"
+            prometheus.io/scrape: "true"
+          creationTimestamp: null
+          labels:
+            component: velero
+            deploy: velero
+        spec:
+          containers:
+          - args:
+            - server
+            command:
+            - /velero
+            env:
+            - name: VELERO_SCRATCH_DIR
+              value: /scratch
+            - name: VELERO_NAMESPACE
+              valueFrom:
+                fieldRef:
+                  apiVersion: v1
+                  fieldPath: metadata.namespace
+            - name: LD_LIBRARY_PATH
+              value: /plugins
+            - name: GOOGLE_APPLICATION_CREDENTIALS
+              value: /credentials/cloud
+            - name: AWS_SHARED_CREDENTIALS_FILE
+              value: /credentials/cloud
+            - name: AZURE_CREDENTIALS_FILE
+              value: /credentials/cloud
+            image: velero/velero:v1.2.0
+            imagePullPolicy: IfNotPresent
+            name: velero
+            ports:
+            - containerPort: 8085
+              name: metrics
+              protocol: TCP
+            resources:
+              limits:
+                cpu: "1"
+                memory: 256Mi
+              requests:
+                cpu: 500m
+                memory: 128Mi
+            terminationMessagePath: /dev/termination-log
+            terminationMessagePolicy: File
+            volumeMounts:
+            - mountPath: /plugins
+              name: plugins
+            - mountPath: /scratch
+              name: scratch
+            - mountPath: /credentials
+              name: cloud-credentials
+          dnsPolicy: ClusterFirst
+          initContainers:
+          - image: velero/velero-plugin-for-aws:v1.0.0
+            imagePullPolicy: IfNotPresent
+            name: velero-plugin-for-aws
+            resources: {}
+            terminationMessagePath: /dev/termination-log
+            terminationMessagePolicy: File
+            volumeMounts:
+            - mountPath: /target
+              name: plugins
+          restartPolicy: Always
+          schedulerName: default-scheduler
+          securityContext: {}
+          serviceAccount: velero
+          serviceAccountName: velero
+          terminationGracePeriodSeconds: 30
+          volumes:
+          - emptyDir: {}
+            name: plugins
+          - emptyDir: {}
+            name: scratch
+          - name: cloud-credentials
+            secret:
+              defaultMode: 420
+              secretName: cloud-credentials
+    status:
+      availableReplicas: 1
+      conditions:
+      - lastTransitionTime: "2020-04-27T20:38:42Z"
+        lastUpdateTime: "2020-04-27T20:38:42Z"
+        message: Deployment has minimum availability.
+        reason: MinimumReplicasAvailable
+        status: "True"
+        type: Available
+      - lastTransitionTime: "2020-04-27T20:38:33Z"
+        lastUpdateTime: "2020-04-27T20:38:42Z"
+        message: ReplicaSet "velero-77565ddf45" has successfully progressed.
+        reason: NewReplicaSetAvailable
+        status: "True"
+        type: Progressing
+      observedGeneration: 1
+      readyReplicas: 1
+      replicas: 1
+      updatedReplicas: 1
+  metadata: {}
+- items:
+  - apiVersion: apps/v1
+    kind: ReplicaSet
+    metadata:
+      annotations:
+        deployment.kubernetes.io/desired-replicas: "1"
+        deployment.kubernetes.io/max-replicas: "2"
+        deployment.kubernetes.io/revision: "1"
+      creationTimestamp: "2020-04-27T20:38:33Z"
+      generation: 1
+      labels:
+        component: velero
+        deploy: velero
+        pod-template-hash: 77565ddf45
+      name: velero-77565ddf45
+      namespace: velero
+      ownerReferences:
+      - apiVersion: apps/v1
+        blockOwnerDeletion: true
+        controller: true
+        kind: Deployment
+        name: velero
+        uid: c33894f3-7c9d-4cb8-a238-69bb7c15bc12
+      resourceVersion: "2699"
+      selfLink: /apis/apps/v1/namespaces/velero/replicasets/velero-77565ddf45
+      uid: 087f7f6b-4ac3-466b-ae26-b217fa70c969
+    spec:
+      replicas: 1
+      selector:
+        matchLabels:
+          deploy: velero
+          pod-template-hash: 77565ddf45
+      template:
+        metadata:
+          annotations:
+            prometheus.io/path: /metrics
+            prometheus.io/port: "8085"
+            prometheus.io/scrape: "true"
+          creationTimestamp: null
+          labels:
+            component: velero
+            deploy: velero
+            pod-template-hash: 77565ddf45
+        spec:
+          containers:
+          - args:
+            - server
+            command:
+            - /velero
+            env:
+            - name: VELERO_SCRATCH_DIR
+              value: /scratch
+            - name: VELERO_NAMESPACE
+              valueFrom:
+                fieldRef:
+                  apiVersion: v1
+                  fieldPath: metadata.namespace
+            - name: LD_LIBRARY_PATH
+              value: /plugins
+            - name: GOOGLE_APPLICATION_CREDENTIALS
+              value: /credentials/cloud
+            - name: AWS_SHARED_CREDENTIALS_FILE
+              value: /credentials/cloud
+            - name: AZURE_CREDENTIALS_FILE
+              value: /credentials/cloud
+            image: velero/velero:v1.2.0
+            imagePullPolicy: IfNotPresent
+            name: velero
+            ports:
+            - containerPort: 8085
+              name: metrics
+              protocol: TCP
+            resources:
+              limits:
+                cpu: "1"
+                memory: 256Mi
+              requests:
+                cpu: 500m
+                memory: 128Mi
+            terminationMessagePath: /dev/termination-log
+            terminationMessagePolicy: File
+            volumeMounts:
+            - mountPath: /plugins
+              name: plugins
+            - mountPath: /scratch
+              name: scratch
+            - mountPath: /credentials
+              name: cloud-credentials
+          dnsPolicy: ClusterFirst
+          initContainers:
+          - image: velero/velero-plugin-for-aws:v1.0.0
+            imagePullPolicy: IfNotPresent
+            name: velero-plugin-for-aws
+            resources: {}
+            terminationMessagePath: /dev/termination-log
+            terminationMessagePolicy: File
+            volumeMounts:
+            - mountPath: /target
+              name: plugins
+          restartPolicy: Always
+          schedulerName: default-scheduler
+          securityContext: {}
+          serviceAccount: velero
+          serviceAccountName: velero
+          terminationGracePeriodSeconds: 30
+          volumes:
+          - emptyDir: {}
+            name: plugins
+          - emptyDir: {}
+            name: scratch
+          - name: cloud-credentials
+            secret:
+              defaultMode: 420
+              secretName: cloud-credentials
+    status:
+      availableReplicas: 1
+      fullyLabeledReplicas: 1
+      observedGeneration: 1
+      readyReplicas: 1
+      replicas: 1
+  metadata: {}
+- items:
+  - apiVersion: extensions/v1beta1
+    kind: Deployment
+    metadata:
+      annotations:
+        deployment.kubernetes.io/revision: "1"
+      creationTimestamp: "2020-04-27T20:38:33Z"
+      generation: 1
+      labels:
+        component: velero
+      name: velero
+      namespace: velero
+      resourceVersion: "2700"
+      selfLink: /apis/extensions/v1beta1/namespaces/velero/deployments/velero
+      uid: c33894f3-7c9d-4cb8-a238-69bb7c15bc12
+    spec:
+      progressDeadlineSeconds: 600
+      replicas: 1
+      revisionHistoryLimit: 10
+      selector:
+        matchLabels:
+          deploy: velero
+      strategy:
+        rollingUpdate:
+          maxSurge: 25%
+          maxUnavailable: 25%
+        type: RollingUpdate
+      template:
+        metadata:
+          annotations:
+            prometheus.io/path: /metrics
+            prometheus.io/port: "8085"
+            prometheus.io/scrape: "true"
+          creationTimestamp: null
+          labels:
+            component: velero
+            deploy: velero
+        spec:
+          containers:
+          - args:
+            - server
+            command:
+            - /velero
+            env:
+            - name: VELERO_SCRATCH_DIR
+              value: /scratch
+            - name: VELERO_NAMESPACE
+              valueFrom:
+                fieldRef:
+                  apiVersion: v1
+                  fieldPath: metadata.namespace
+            - name: LD_LIBRARY_PATH
+              value: /plugins
+            - name: GOOGLE_APPLICATION_CREDENTIALS
+              value: /credentials/cloud
+            - name: AWS_SHARED_CREDENTIALS_FILE
+              value: /credentials/cloud
+            - name: AZURE_CREDENTIALS_FILE
+              value: /credentials/cloud
+            image: velero/velero:v1.2.0
+            imagePullPolicy: IfNotPresent
+            name: velero
+            ports:
+            - containerPort: 8085
+              name: metrics
+              protocol: TCP
+            resources:
+              limits:
+                cpu: "1"
+                memory: 256Mi
+              requests:
+                cpu: 500m
+                memory: 128Mi
+            terminationMessagePath: /dev/termination-log
+            terminationMessagePolicy: File
+            volumeMounts:
+            - mountPath: /plugins
+              name: plugins
+            - mountPath: /scratch
+              name: scratch
+            - mountPath: /credentials
+              name: cloud-credentials
+          dnsPolicy: ClusterFirst
+          initContainers:
+          - image: velero/velero-plugin-for-aws:v1.0.0
+            imagePullPolicy: IfNotPresent
+            name: velero-plugin-for-aws
+            resources: {}
+            terminationMessagePath: /dev/termination-log
+            terminationMessagePolicy: File
+            volumeMounts:
+            - mountPath: /target
+              name: plugins
+          restartPolicy: Always
+          schedulerName: default-scheduler
+          securityContext: {}
+          serviceAccount: velero
+          serviceAccountName: velero
+          terminationGracePeriodSeconds: 30
+          volumes:
+          - emptyDir: {}
+            name: plugins
+          - emptyDir: {}
+            name: scratch
+          - name: cloud-credentials
+            secret:
+              defaultMode: 420
+              secretName: cloud-credentials
+    status:
+      availableReplicas: 1
+      conditions:
+      - lastTransitionTime: "2020-04-27T20:38:42Z"
+        lastUpdateTime: "2020-04-27T20:38:42Z"
+        message: Deployment has minimum availability.
+        reason: MinimumReplicasAvailable
+        status: "True"
+        type: Available
+      - lastTransitionTime: "2020-04-27T20:38:33Z"
+        lastUpdateTime: "2020-04-27T20:38:42Z"
+        message: ReplicaSet "velero-77565ddf45" has successfully progressed.
+        reason: NewReplicaSetAvailable
+        status: "True"
+        type: Progressing
+      observedGeneration: 1
+      readyReplicas: 1
+      replicas: 1
+      updatedReplicas: 1
+  metadata: {}
+- items:
+  - apiVersion: extensions/v1beta1
+    kind: ReplicaSet
+    metadata:
+      annotations:
+        deployment.kubernetes.io/desired-replicas: "1"
+        deployment.kubernetes.io/max-replicas: "2"
+        deployment.kubernetes.io/revision: "1"
+      creationTimestamp: "2020-04-27T20:38:33Z"
+      generation: 1
+      labels:
+        component: velero
+        deploy: velero
+        pod-template-hash: 77565ddf45
+      name: velero-77565ddf45
+      namespace: velero
+      ownerReferences:
+      - apiVersion: apps/v1
+        blockOwnerDeletion: true
+        controller: true
+        kind: Deployment
+        name: velero
+        uid: c33894f3-7c9d-4cb8-a238-69bb7c15bc12
+      resourceVersion: "2699"
+      selfLink: /apis/extensions/v1beta1/namespaces/velero/replicasets/velero-77565ddf45
+      uid: 087f7f6b-4ac3-466b-ae26-b217fa70c969
+    spec:
+      replicas: 1
+      selector:
+        matchLabels:
+          deploy: velero
+          pod-template-hash: 77565ddf45
+      template:
+        metadata:
+          annotations:
+            prometheus.io/path: /metrics
+            prometheus.io/port: "8085"
+            prometheus.io/scrape: "true"
+          creationTimestamp: null
+          labels:
+            component: velero
+            deploy: velero
+            pod-template-hash: 77565ddf45
+        spec:
+          containers:
+          - args:
+            - server
+            command:
+            - /velero
+            env:
+            - name: VELERO_SCRATCH_DIR
+              value: /scratch
+            - name: VELERO_NAMESPACE
+              valueFrom:
+                fieldRef:
+                  apiVersion: v1
+                  fieldPath: metadata.namespace
+            - name: LD_LIBRARY_PATH
+              value: /plugins
+            - name: GOOGLE_APPLICATION_CREDENTIALS
+              value: /credentials/cloud
+            - name: AWS_SHARED_CREDENTIALS_FILE
+              value: /credentials/cloud
+            - name: AZURE_CREDENTIALS_FILE
+              value: /credentials/cloud
+            image: velero/velero:v1.2.0
+            imagePullPolicy: IfNotPresent
+            name: velero
+            ports:
+            - containerPort: 8085
+              name: metrics
+              protocol: TCP
+            resources:
+              limits:
+                cpu: "1"
+                memory: 256Mi
+              requests:
+                cpu: 500m
+                memory: 128Mi
+            terminationMessagePath: /dev/termination-log
+            terminationMessagePolicy: File
+            volumeMounts:
+            - mountPath: /plugins
+              name: plugins
+            - mountPath: /scratch
+              name: scratch
+            - mountPath: /credentials
+              name: cloud-credentials
+          dnsPolicy: ClusterFirst
+          initContainers:
+          - image: velero/velero-plugin-for-aws:v1.0.0
+            imagePullPolicy: IfNotPresent
+            name: velero-plugin-for-aws
+            resources: {}
+            terminationMessagePath: /dev/termination-log
+            terminationMessagePolicy: File
+            volumeMounts:
+            - mountPath: /target
+              name: plugins
+          restartPolicy: Always
+          schedulerName: default-scheduler
+          securityContext: {}
+          serviceAccount: velero
+          serviceAccountName: velero
+          terminationGracePeriodSeconds: 30
+          volumes:
+          - emptyDir: {}
+            name: plugins
+          - emptyDir: {}
+            name: scratch
+          - name: cloud-credentials
+            secret:
+              defaultMode: 420
+              secretName: cloud-credentials
+    status:
+      availableReplicas: 1
+      fullyLabeledReplicas: 1
+      observedGeneration: 1
+      readyReplicas: 1
+      replicas: 1
+  metadata: {}
+- items:
+  - apiVersion: metrics.k8s.io/v1beta1
+    containers:
+    - name: velero
+      usage:
+        cpu: 16m
+        memory: 66248Ki
+    kind: PodMetrics
+    metadata:
+      creationTimestamp: "2020-04-27T20:46:20Z"
+      name: velero-77565ddf45-p8djk
+      namespace: velero
+      selfLink: /apis/metrics.k8s.io/v1beta1/namespaces/velero/pods/velero-77565ddf45-p8djk
+    timestamp: "2020-04-27T20:46:20Z"
+    window: 5m0s
+  metadata: {}
+- items:
+  - apiVersion: velero.io/v1
+    kind: Backup
+    metadata:
+      creationTimestamp: "2020-04-27T20:43:34Z"
+      generation: 3
+      labels:
+        velero.io/storage-location: default
+      name: backup-20200427-204334
+      namespace: velero
+      resourceVersion: "6270"
+      selfLink: /apis/velero.io/v1/namespaces/velero/backups/backup-20200427-204334
+      uid: 5a79b336-ef94-4ab7-a3bd-160a9aba7975
+    spec:
+      hooks: {}
+      includedNamespaces:
+      - '*'
+      snapshotVolumes: false
+      storageLocation: default
+      ttl: 720h0m0s
+      volumeSnapshotLocations:
+      - default
+    status:
+      completionTimestamp: "2020-04-27T20:43:47Z"
+      expiration: "2020-05-27T20:43:34Z"
+      phase: Completed
+      startTimestamp: "2020-04-27T20:43:34Z"
+      version: 1
+  metadata: {}
+- items:
+  - apiVersion: velero.io/v1
+    kind: BackupStorageLocation
+    metadata:
+      creationTimestamp: "2020-04-27T20:38:33Z"
+      generation: 9
+      labels:
+        component: velero
+      name: default
+      namespace: velero
+      resourceVersion: "6994"
+      selfLink: /apis/velero.io/v1/namespaces/velero/backupstoragelocations/default
+      uid: 02ba9d43-60b9-46af-ba46-5369c1e12aa1
+    spec:
+      config:
+        insecureSkipTLSVerify: "true"
+        region: us-east1
+        s3ForcePathStyle: "true"
+        s3Url: http://minio.minio.svc:9000
+      objectStorage:
+        bucket: velero
+      provider: aws
+    status:
+      lastSyncedTime: "2020-04-27T20:45:48.849796886Z"
+  metadata: {}
+- items:
+  - apiVersion: velero.io/v1
+    kind: VolumeSnapshotLocation
+    metadata:
+      creationTimestamp: "2020-04-27T20:38:33Z"
+      generation: 1
+      labels:
+        component: velero
+      name: default
+      namespace: velero
+      resourceVersion: "2497"
+      selfLink: /apis/velero.io/v1/namespaces/velero/volumesnapshotlocations/default
+      uid: 2cbcd062-06e5-49ba-b23d-e813775dcf41
+    spec:
+      provider: aws
+  metadata: {}
+kind: List
+metadata: {}

@@ -1,0 +1,424 @@
+2020-04-27 20:39:02,238 - bootstrapping - INFO - Figuring out my environment (Google? AWS? Openstack? Local?)
+2020-04-27 20:39:02,263 - bootstrapping - INFO - Looks like your running google
+2020-04-27 20:39:02,288 - bootstrapping - INFO - Configuring renice
+2020-04-27 20:39:02,291 - bootstrapping - INFO - Skipping creation of renice cron job due to lack of permissions
+2020-04-27 20:39:02,291 - bootstrapping - INFO - Configuring pgqd
+2020-04-27 20:39:02,291 - bootstrapping - INFO - Configuring patroni
+2020-04-27 20:39:02,298 - bootstrapping - INFO - Writing to file /home/postgres/postgres.yml
+2020-04-27 20:39:02,298 - bootstrapping - INFO - Configuring certificate
+2020-04-27 20:39:02,298 - bootstrapping - INFO - Generating ssl certificate
+2020-04-27 20:39:02,334 - bootstrapping - INFO - Configuring log
+2020-04-27 20:39:02,335 - bootstrapping - INFO - Configuring bootstrap
+2020-04-27 20:39:02,335 - bootstrapping - INFO - Configuring pam-oauth2
+2020-04-27 20:39:02,335 - bootstrapping - INFO - No PAM_OAUTH2 configuration was specified, skipping
+2020-04-27 20:39:02,335 - bootstrapping - INFO - Configuring wal-e
+2020-04-27 20:39:02,335 - bootstrapping - INFO - Writing to file /run/etc/wal-e.d/env/WALE_S3_PREFIX
+2020-04-27 20:39:02,335 - bootstrapping - INFO - Writing to file /run/etc/wal-e.d/env/WALG_S3_PREFIX
+2020-04-27 20:39:02,335 - bootstrapping - INFO - Writing to file /run/etc/wal-e.d/env/AWS_ACCESS_KEY_ID
+2020-04-27 20:39:02,335 - bootstrapping - INFO - Writing to file /run/etc/wal-e.d/env/AWS_SECRET_ACCESS_KEY
+2020-04-27 20:39:02,336 - bootstrapping - INFO - Writing to file /run/etc/wal-e.d/env/WALE_S3_ENDPOINT
+2020-04-27 20:39:02,336 - bootstrapping - INFO - Writing to file /run/etc/wal-e.d/env/AWS_ENDPOINT
+2020-04-27 20:39:02,336 - bootstrapping - INFO - Writing to file /run/etc/wal-e.d/env/WALG_DISABLE_S3_SSE
+2020-04-27 20:39:02,336 - bootstrapping - INFO - Writing to file /run/etc/wal-e.d/env/AWS_S3_FORCE_PATH_STYLE
+2020-04-27 20:39:02,336 - bootstrapping - INFO - Writing to file /run/etc/wal-e.d/env/WALG_DOWNLOAD_CONCURRENCY
+2020-04-27 20:39:02,336 - bootstrapping - INFO - Writing to file /run/etc/wal-e.d/env/WALG_UPLOAD_CONCURRENCY
+2020-04-27 20:39:02,336 - bootstrapping - INFO - Writing to file /run/etc/wal-e.d/env/USE_WALG_BACKUP
+2020-04-27 20:39:02,336 - bootstrapping - INFO - Writing to file /run/etc/wal-e.d/env/USE_WALG_RESTORE
+2020-04-27 20:39:02,336 - bootstrapping - INFO - Writing to file /run/etc/wal-e.d/env/WALE_LOG_DESTINATION
+2020-04-27 20:39:02,336 - bootstrapping - INFO - Writing to file /run/etc/wal-e.d/env/BACKUP_NUM_TO_RETAIN
+2020-04-27 20:39:02,337 - bootstrapping - INFO - Writing to file /run/etc/wal-e.d/env/TMPDIR
+2020-04-27 20:39:02,337 - bootstrapping - INFO - Configuring pgbouncer
+2020-04-27 20:39:02,337 - bootstrapping - INFO - No PGBOUNCER_CONFIGURATION was specified, skipping
+2020-04-27 20:39:02,337 - bootstrapping - INFO - Configuring standby-cluster
+2020-04-27 20:39:02,337 - bootstrapping - INFO - Configuring crontab
+2020-04-27 20:39:03,713 INFO: No PostgreSQL configuration items changed, nothing to reload.
+2020-04-27 20:39:03,715 INFO: Lock owner: None; I am postgres-harbor-0
+2020-04-27 20:39:03,854 INFO: trying to bootstrap a new cluster
+The files belonging to this database system will be owned by user "postgres".
+This user must also own the server process.
+
+The database cluster will be initialized with locale "en_US.UTF-8".
+The default text search configuration will be set to "english".
+
+Data page checksums are enabled.
+
+creating directory /home/postgres/pgdata/pgroot/data ... ok
+creating subdirectories ... ok
+selecting dynamic shared memory implementation ... posix
+selecting default max_connections ... 100
+selecting default shared_buffers ... 128MB
+selecting default time zone ... Etc/UTC
+creating configuration files ... ok
+running bootstrap script ... ok
+performing post-bootstrap initialization ... ok
+syncing data to disk ... ok
+
+Success. You can now start the database server using:
+
+    /usr/lib/postgresql/12/bin/pg_ctl -D /home/postgres/pgdata/pgroot/data -l logfile start
+
+2020-04-27 20:39:04 UTC [86]: [1-1] 5ea742e8.56 0     LOG:  Auto detecting pg_stat_kcache.linux_hz parameter...
+2020-04-27 20:39:04 UTC [86]: [2-1] 5ea742e8.56 0     LOG:  pg_stat_kcache.linux_hz is set to 1000000
+2020-04-27 20:39:04 UTC [86]: [3-1] 5ea742e8.56 0     LOG:  starting PostgreSQL 12.2 (Ubuntu 12.2-2.pgdg18.04+1) on x86_64-pc-linux-gnu, compiled by gcc (Ubuntu 7.4.0-1ubuntu1~18.04.1) 7.4.0, 64-bit
+2020-04-27 20:39:04 UTC [86]: [4-1] 5ea742e8.56 0     LOG:  listening on IPv4 address "0.0.0.0", port 5432
+2020-04-27 20:39:04 UTC [86]: [5-1] 5ea742e8.56 0     LOG:  listening on IPv6 address "::", port 5432
+2020-04-27 20:39:04 UTC [86]: [6-1] 5ea742e8.56 0     LOG:  listening on Unix socket "/var/run/postgresql/.s.PGSQL.5432"
+2020-04-27 20:39:04,781 INFO: postmaster pid=86
+2020-04-27 20:39:04 UTC [86]: [7-1] 5ea742e8.56 0     LOG:  redirecting log output to logging collector process
+2020-04-27 20:39:04 UTC [86]: [8-1] 5ea742e8.56 0     HINT:  Future log output will appear in directory "../pg_log".
+/var/run/postgresql:5432 - rejecting connections
+/var/run/postgresql:5432 - accepting connections
+2020-04-27 20:39:04,821 INFO: establishing a new patroni connection to the postgres cluster
+2020-04-27 20:39:04,871 INFO: running post_bootstrap
+SET
+DO
+DO
+DO
+CREATE EXTENSION
+NOTICE:  version "1.0" of extension "pg_auth_mon" is already installed
+ALTER EXTENSION
+GRANT
+CREATE EXTENSION
+NOTICE:  version "1.2" of extension "pg_cron" is already installed
+ALTER EXTENSION
+ALTER POLICY
+REVOKE
+GRANT
+GRANT
+CREATE FUNCTION
+REVOKE
+GRANT
+REVOKE
+GRANT
+REVOKE
+GRANT
+GRANT
+CREATE EXTENSION
+DO
+CREATE TABLE
+GRANT
+CREATE FOREIGN TABLE
+GRANT
+CREATE VIEW
+ALTER VIEW
+GRANT
+CREATE FOREIGN TABLE
+GRANT
+CREATE VIEW
+ALTER VIEW
+GRANT
+CREATE FOREIGN TABLE
+GRANT
+CREATE VIEW
+ALTER VIEW
+GRANT
+CREATE FOREIGN TABLE
+GRANT
+CREATE VIEW
+ALTER VIEW
+GRANT
+CREATE FOREIGN TABLE
+GRANT
+CREATE VIEW
+ALTER VIEW
+GRANT
+CREATE FOREIGN TABLE
+GRANT
+CREATE VIEW
+ALTER VIEW
+GRANT
+CREATE FOREIGN TABLE
+GRANT
+CREATE VIEW
+ALTER VIEW
+GRANT
+CREATE FOREIGN TABLE
+GRANT
+CREATE VIEW
+ALTER VIEW
+GRANT
+RESET
+SET
+NOTICE:  schema "zmon_utils" does not exist, skipping
+DROP SCHEMA
+DO
+NOTICE:  language "plpythonu" does not exist, skipping
+DROP LANGUAGE
+NOTICE:  function plpython_call_handler() does not exist, skipping
+DROP FUNCTION
+NOTICE:  function plpython_inline_handler(internal) does not exist, skipping
+DROP FUNCTION
+NOTICE:  function plpython_validator(oid) does not exist, skipping
+DROP FUNCTION
+CREATE SCHEMA
+GRANT
+SET
+CREATE TYPE
+CREATE FUNCTION
+CREATE FUNCTION
+GRANT
+You are now connected to database "postgres" as user "postgres".
+CREATE SCHEMA
+GRANT
+SET
+CREATE FUNCTION
+CREATE FUNCTION
+REVOKE
+GRANT
+COMMENT
+CREATE FUNCTION
+REVOKE
+GRANT
+COMMENT
+CREATE FUNCTION
+REVOKE
+GRANT
+COMMENT
+CREATE FUNCTION
+REVOKE
+GRANT
+COMMENT
+CREATE FUNCTION
+REVOKE
+GRANT
+COMMENT
+CREATE FUNCTION
+REVOKE
+GRANT
+COMMENT
+CREATE FUNCTION
+REVOKE
+GRANT
+COMMENT
+CREATE FUNCTION
+REVOKE
+GRANT
+COMMENT
+GRANT
+RESET
+CREATE EXTENSION
+CREATE EXTENSION
+CREATE EXTENSION
+NOTICE:  version "1.6" of extension "set_user" is already installed
+ALTER EXTENSION
+GRANT
+GRANT
+CREATE SCHEMA
+GRANT
+GRANT
+SET
+CREATE FUNCTION
+REVOKE
+GRANT
+GRANT
+CREATE VIEW
+REVOKE
+GRANT
+GRANT
+CREATE FUNCTION
+REVOKE
+GRANT
+GRANT
+CREATE VIEW
+REVOKE
+GRANT
+GRANT
+CREATE FUNCTION
+REVOKE
+GRANT
+GRANT
+CREATE VIEW
+REVOKE
+GRANT
+GRANT
+RESET
+You are now connected to database "template1" as user "postgres".
+CREATE SCHEMA
+GRANT
+SET
+CREATE FUNCTION
+CREATE FUNCTION
+REVOKE
+GRANT
+COMMENT
+CREATE FUNCTION
+REVOKE
+GRANT
+COMMENT
+CREATE FUNCTION
+REVOKE
+GRANT
+COMMENT
+CREATE FUNCTION
+REVOKE
+GRANT
+COMMENT
+CREATE FUNCTION
+REVOKE
+GRANT
+COMMENT
+CREATE FUNCTION
+REVOKE
+GRANT
+COMMENT
+CREATE FUNCTION
+REVOKE
+GRANT
+COMMENT
+CREATE FUNCTION
+REVOKE
+GRANT
+COMMENT
+GRANT
+RESET
+CREATE EXTENSION
+CREATE EXTENSION
+CREATE EXTENSION
+NOTICE:  version "1.6" of extension "set_user" is already installed
+ALTER EXTENSION
+GRANT
+GRANT
+CREATE SCHEMA
+GRANT
+GRANT
+SET
+CREATE FUNCTION
+REVOKE
+GRANT
+GRANT
+CREATE VIEW
+REVOKE
+GRANT
+GRANT
+CREATE FUNCTION
+REVOKE
+GRANT
+GRANT
+CREATE VIEW
+REVOKE
+GRANT
+GRANT
+CREATE FUNCTION
+REVOKE
+GRANT
+GRANT
+CREATE VIEW
+REVOKE
+GRANT
+GRANT
+RESET
+2020-04-27 20:39:05,204 WARNING: Could not activate Linux watchdog device: "Can't open watchdog device: [Errno 2] No such file or directory: '/dev/watchdog'"
+2020-04-27 20:39:05,411 INFO: initialized a new cluster
+2020-04-27 20:39:05,412 INFO: Lock owner: postgres-harbor-0; I am postgres-harbor-0
+2020-04-27 20:39:05,508 INFO: no action.  i am the leader with the lock
+2020-04-27 20:39:15,412 INFO: Lock owner: postgres-harbor-0; I am postgres-harbor-0
+2020-04-27 20:39:15,507 INFO: no action.  i am the leader with the lock
+2020-04-27 20:39:25,411 INFO: Lock owner: postgres-harbor-0; I am postgres-harbor-0
+2020-04-27 20:39:25,503 INFO: no action.  i am the leader with the lock
+2020-04-27 20:39:35,412 INFO: Lock owner: postgres-harbor-0; I am postgres-harbor-0
+2020-04-27 20:39:35,457 INFO: no action.  i am the leader with the lock
+2020-04-27 20:39:45,411 INFO: Lock owner: postgres-harbor-0; I am postgres-harbor-0
+2020-04-27 20:39:45,503 INFO: no action.  i am the leader with the lock
+2020-04-27 20:39:55,411 INFO: Lock owner: postgres-harbor-0; I am postgres-harbor-0
+2020-04-27 20:39:55,507 INFO: no action.  i am the leader with the lock
+2020-04-27 20:40:02.415 - /scripts/postgres_backup.sh - I was called as: /scripts/postgres_backup.sh /home/postgres/pgdata/pgroot/data
+2020-04-27 20:40:02.527 - /scripts/postgres_backup.sh - producing a new backup
+INFO: 2020/04/27 20:40:02.537256 Doing full backup.
+INFO: 2020/04/27 20:40:02.549992 Calling pg_start_backup()
+INFO: 2020/04/27 20:40:02.731601 Walking ...
+INFO: 2020/04/27 20:40:02.731866 Starting part 1 ...
+INFO: 2020/04/27 20:40:03.422271 Finished writing part 1.
+2020-04-27 20:40:03.477 44 LOG Starting pgqd 3.3
+2020-04-27 20:40:03.477 44 LOG auto-detecting dbs ...
+INFO: 2020/04/27 20:40:03.752687 Starting part 2 ...
+INFO: 2020/04/27 20:40:03.752732 /global/pg_control
+INFO: 2020/04/27 20:40:03.782953 Finished writing part 2.
+INFO: 2020/04/27 20:40:03.784271 Calling pg_stop_backup()
+INFO: 2020/04/27 20:40:04.097289 Starting part 3 ...
+INFO: 2020/04/27 20:40:04.102909 backup_label
+INFO: 2020/04/27 20:40:04.103002 tablespace_map
+INFO: 2020/04/27 20:40:04.103100 Finished writing part 3.
+INFO: 2020/04/27 20:40:04.168161 Wrote backup with name base_000000010000000000000005
+2020-04-27 20:40:05,412 INFO: Lock owner: postgres-harbor-0; I am postgres-harbor-0
+2020-04-27 20:40:05,512 INFO: no action.  i am the leader with the lock
+2020-04-27 20:40:15,412 INFO: Lock owner: postgres-harbor-0; I am postgres-harbor-0
+2020-04-27 20:40:15,507 INFO: no action.  i am the leader with the lock
+2020-04-27 20:40:25,412 INFO: Lock owner: postgres-harbor-0; I am postgres-harbor-0
+2020-04-27 20:40:25,512 INFO: no action.  i am the leader with the lock
+2020-04-27 20:40:33.506 44 LOG {ticks: 0, maint: 0, retry: 0}
+2020-04-27 20:40:35,412 INFO: Lock owner: postgres-harbor-0; I am postgres-harbor-0
+2020-04-27 20:40:35,516 INFO: no action.  i am the leader with the lock
+2020-04-27 20:40:45,412 INFO: Lock owner: postgres-harbor-0; I am postgres-harbor-0
+2020-04-27 20:40:45,539 INFO: no action.  i am the leader with the lock
+2020-04-27 20:40:55,412 INFO: Lock owner: postgres-harbor-0; I am postgres-harbor-0
+2020-04-27 20:40:55,511 INFO: no action.  i am the leader with the lock
+2020-04-27 20:41:03.510 44 LOG {ticks: 0, maint: 0, retry: 0}
+2020-04-27 20:41:05,412 INFO: Lock owner: postgres-harbor-0; I am postgres-harbor-0
+2020-04-27 20:41:05,508 INFO: no action.  i am the leader with the lock
+2020-04-27 20:41:15,411 INFO: Lock owner: postgres-harbor-0; I am postgres-harbor-0
+2020-04-27 20:41:15,506 INFO: no action.  i am the leader with the lock
+2020-04-27 20:41:25,411 INFO: Lock owner: postgres-harbor-0; I am postgres-harbor-0
+2020-04-27 20:41:25,458 INFO: no action.  i am the leader with the lock
+2020-04-27 20:41:33.534 44 LOG {ticks: 0, maint: 0, retry: 0}
+2020-04-27 20:41:35,411 INFO: Lock owner: postgres-harbor-0; I am postgres-harbor-0
+2020-04-27 20:41:35,511 INFO: no action.  i am the leader with the lock
+2020-04-27 20:41:45,411 INFO: Lock owner: postgres-harbor-0; I am postgres-harbor-0
+2020-04-27 20:41:45,457 INFO: no action.  i am the leader with the lock
+2020-04-27 20:41:55,411 INFO: Lock owner: postgres-harbor-0; I am postgres-harbor-0
+2020-04-27 20:41:55,507 INFO: no action.  i am the leader with the lock
+2020-04-27 20:42:03.546 44 LOG {ticks: 0, maint: 0, retry: 0}
+2020-04-27 20:42:05,412 INFO: Lock owner: postgres-harbor-0; I am postgres-harbor-0
+2020-04-27 20:42:05,504 INFO: no action.  i am the leader with the lock
+2020-04-27 20:42:15,411 INFO: Lock owner: postgres-harbor-0; I am postgres-harbor-0
+2020-04-27 20:42:15,461 INFO: no action.  i am the leader with the lock
+2020-04-27 20:42:25,411 INFO: Lock owner: postgres-harbor-0; I am postgres-harbor-0
+2020-04-27 20:42:25,503 INFO: no action.  i am the leader with the lock
+2020-04-27 20:42:33.556 44 LOG {ticks: 0, maint: 0, retry: 0}
+2020-04-27 20:42:35,411 INFO: Lock owner: postgres-harbor-0; I am postgres-harbor-0
+2020-04-27 20:42:35,457 INFO: no action.  i am the leader with the lock
+2020-04-27 20:42:45,411 INFO: Lock owner: postgres-harbor-0; I am postgres-harbor-0
+2020-04-27 20:42:45,457 INFO: no action.  i am the leader with the lock
+2020-04-27 20:42:55,411 INFO: Lock owner: postgres-harbor-0; I am postgres-harbor-0
+2020-04-27 20:42:55,457 INFO: no action.  i am the leader with the lock
+2020-04-27 20:43:03.569 44 LOG {ticks: 0, maint: 0, retry: 0}
+2020-04-27 20:43:05,412 INFO: Lock owner: postgres-harbor-0; I am postgres-harbor-0
+2020-04-27 20:43:05,504 INFO: no action.  i am the leader with the lock
+2020-04-27 20:43:15,411 INFO: Lock owner: postgres-harbor-0; I am postgres-harbor-0
+2020-04-27 20:43:15,457 INFO: no action.  i am the leader with the lock
+2020-04-27 20:43:25,411 INFO: Lock owner: postgres-harbor-0; I am postgres-harbor-0
+2020-04-27 20:43:25,457 INFO: no action.  i am the leader with the lock
+2020-04-27 20:43:33.584 44 LOG {ticks: 0, maint: 0, retry: 0}
+2020-04-27 20:43:35,412 INFO: Lock owner: postgres-harbor-0; I am postgres-harbor-0
+2020-04-27 20:43:35,459 INFO: no action.  i am the leader with the lock
+2020-04-27 20:43:45,412 INFO: Lock owner: postgres-harbor-0; I am postgres-harbor-0
+2020-04-27 20:43:45,458 INFO: no action.  i am the leader with the lock
+2020-04-27 20:43:55,411 INFO: Lock owner: postgres-harbor-0; I am postgres-harbor-0
+2020-04-27 20:43:55,461 INFO: no action.  i am the leader with the lock
+2020-04-27 20:44:03.603 44 LOG {ticks: 0, maint: 0, retry: 0}
+2020-04-27 20:44:05,412 INFO: Lock owner: postgres-harbor-0; I am postgres-harbor-0
+2020-04-27 20:44:05,458 INFO: no action.  i am the leader with the lock
+2020-04-27 20:44:15,411 INFO: Lock owner: postgres-harbor-0; I am postgres-harbor-0
+2020-04-27 20:44:15,461 INFO: no action.  i am the leader with the lock
+2020-04-27 20:44:25,411 INFO: Lock owner: postgres-harbor-0; I am postgres-harbor-0
+2020-04-27 20:44:25,457 INFO: no action.  i am the leader with the lock
+2020-04-27 20:44:33.634 44 LOG {ticks: 0, maint: 0, retry: 0}
+2020-04-27 20:44:35,411 INFO: Lock owner: postgres-harbor-0; I am postgres-harbor-0
+2020-04-27 20:44:35,461 INFO: no action.  i am the leader with the lock
+2020-04-27 20:44:45,412 INFO: Lock owner: postgres-harbor-0; I am postgres-harbor-0
+2020-04-27 20:44:45,457 INFO: no action.  i am the leader with the lock
+2020-04-27 20:44:55,412 INFO: Lock owner: postgres-harbor-0; I am postgres-harbor-0
+2020-04-27 20:44:55,458 INFO: no action.  i am the leader with the lock
+2020-04-27 20:45:03.635 44 LOG {ticks: 0, maint: 0, retry: 0}
+2020-04-27 20:45:05,411 INFO: Lock owner: postgres-harbor-0; I am postgres-harbor-0
+2020-04-27 20:45:05,506 INFO: no action.  i am the leader with the lock
+2020-04-27 20:45:15,411 INFO: Lock owner: postgres-harbor-0; I am postgres-harbor-0
+2020-04-27 20:45:15,516 INFO: no action.  i am the leader with the lock
+2020-04-27 20:45:25,411 INFO: Lock owner: postgres-harbor-0; I am postgres-harbor-0
+2020-04-27 20:45:25,461 INFO: no action.  i am the leader with the lock
+2020-04-27 20:45:33.654 44 LOG {ticks: 0, maint: 0, retry: 0}
+2020-04-27 20:45:35,411 INFO: Lock owner: postgres-harbor-0; I am postgres-harbor-0
+2020-04-27 20:45:35,457 INFO: no action.  i am the leader with the lock
+2020-04-27 20:45:45,411 INFO: Lock owner: postgres-harbor-0; I am postgres-harbor-0
+2020-04-27 20:45:45,457 INFO: no action.  i am the leader with the lock
+2020-04-27 20:45:55,411 INFO: Lock owner: postgres-harbor-0; I am postgres-harbor-0
+2020-04-27 20:45:55,457 INFO: no action.  i am the leader with the lock

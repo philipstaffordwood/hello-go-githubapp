@@ -1,0 +1,11 @@
+I0427 20:40:30.046328       1 main.go:86] Using default collectors
+I0427 20:40:30.046404       1 main.go:98] Using all namespace
+I0427 20:40:30.046414       1 main.go:139] metric white-blacklisting: blacklisting the following items: 
+W0427 20:40:30.046443       1 client_config.go:541] Neither --kubeconfig nor --master was specified.  Using the inClusterConfig.  This might not work.
+I0427 20:40:30.047675       1 main.go:184] Testing communication with server
+I0427 20:40:30.054023       1 main.go:189] Running with Kubernetes cluster version: v1.15. git version: v1.15.7. git tree state: clean. commit: 6c143d35bb11d74970e7bc0b6c45b6bfdffc0bd4. platform: linux/amd64
+I0427 20:40:30.054054       1 main.go:191] Communication with server successful
+I0427 20:40:30.054191       1 main.go:225] Starting metrics server: 127.0.0.1:8081
+I0427 20:40:30.054339       1 metrics_handler.go:96] Autosharding disabled
+I0427 20:40:30.054691       1 main.go:200] Starting kube-state-metrics self metrics server: 127.0.0.1:8082
+I0427 20:40:30.143661       1 builder.go:144] Active collectors: certificatesigningrequests,configmaps,cronjobs,daemonsets,deployments,endpoints,horizontalpodautoscalers,ingresses,jobs,limitranges,namespaces,nodes,persistentvolumeclaims,persistentvolumes,poddisruptionbudgets,pods,replicasets,replicationcontrollers,resourcequotas,secrets,services,statefulsets,storageclasses

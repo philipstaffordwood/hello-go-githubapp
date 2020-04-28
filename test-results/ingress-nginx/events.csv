@@ -1,0 +1,24 @@
+LAST SEEN                      Count  TYPE     REASON             OBJECT                                    MESSAGE
+2020-04-27 20:35:43 +0000 UTC  1      Normal   CREATE             ConfigMap/nginx-configuration             ConfigMap ingress-nginx/nginx-configuration
+2020-04-27 20:35:32 +0000 UTC  1      Normal   Scheduled          Pod/nginx-ingress-controller-49lz4        Successfully assigned ingress-nginx/nginx-ingress-controller-49lz4 to kind-control-plane
+2020-04-27 20:35:32 +0000 UTC  1      Normal   Pulling            Pod/nginx-ingress-controller-49lz4        Pulling image "flanksource/nginx-ingress-controller:0.25.1.flanksource.1"
+2020-04-27 20:35:41 +0000 UTC  1      Normal   Pulled             Pod/nginx-ingress-controller-49lz4        Successfully pulled image "flanksource/nginx-ingress-controller:0.25.1.flanksource.1"
+2020-04-27 20:35:43 +0000 UTC  1      Normal   Created            Pod/nginx-ingress-controller-49lz4        Created container nginx-ingress-controller
+2020-04-27 20:35:43 +0000 UTC  1      Normal   Started            Pod/nginx-ingress-controller-49lz4        Started container nginx-ingress-controller
+2020-04-27 20:35:45 +0000 UTC  1      Warning  Unhealthy          Pod/nginx-ingress-controller-49lz4        Readiness probe failed: HTTP probe failed with statuscode: 500
+2020-04-27 20:35:32 +0000 UTC  1      Normal   SuccessfulCreate   DaemonSet/nginx-ingress-controller        Created pod: nginx-ingress-controller-49lz4
+2020-04-27 20:35:33 +0000 UTC  1      Normal   Scheduled          Pod/oauth2-proxy-888c476b8-gl7c4          Successfully assigned ingress-nginx/oauth2-proxy-888c476b8-gl7c4 to kind-control-plane
+2020-04-27 20:35:34 +0000 UTC  1      Normal   Pulling            Pod/oauth2-proxy-888c476b8-gl7c4          Pulling image "flanksource/oauth2_proxy:v5.0.0.flanksource.1"
+2020-04-27 20:35:43 +0000 UTC  1      Normal   Pulled             Pod/oauth2-proxy-888c476b8-gl7c4          Successfully pulled image "flanksource/oauth2_proxy:v5.0.0.flanksource.1"
+2020-04-27 20:35:43 +0000 UTC  1      Normal   Created            Pod/oauth2-proxy-888c476b8-gl7c4          Created container oauth2-proxy
+2020-04-27 20:35:44 +0000 UTC  1      Normal   Started            Pod/oauth2-proxy-888c476b8-gl7c4          Started container oauth2-proxy
+2020-04-27 20:35:33 +0000 UTC  1      Normal   SuccessfulCreate   ReplicaSet/oauth2-proxy-888c476b8         Created pod: oauth2-proxy-888c476b8-gl7c4
+2020-04-27 20:35:33 +0000 UTC  1      Normal   ScalingReplicaSet  Deployment/oauth2-proxy                   Scaled up replica set oauth2-proxy-888c476b8 to 1
+2020-04-27 20:35:34 +0000 UTC  1      Normal   CreateCertificate  Ingress/oauth2-proxy                      Successfully created Certificate "oauth2-tls"
+2020-04-27 20:35:44 +0000 UTC  1      Normal   CREATE             Ingress/oauth2-proxy                      Ingress ingress-nginx/oauth2-proxy
+2020-04-27 20:35:34 +0000 UTC  1      Normal   CertificateIssued  CertificateRequest/oauth2-tls-1546207436  Certificate fetched from issuer successfully
+2020-04-27 20:35:34 +0000 UTC  1      Normal   GeneratedKey       Certificate/oauth2-tls                    Generated a new private key
+2020-04-27 20:35:34 +0000 UTC  1      Normal   Requested          Certificate/oauth2-tls                    Created new CertificateRequest resource "oauth2-tls-1546207436"
+2020-04-27 20:35:34 +0000 UTC  1      Normal   Issued             Certificate/oauth2-tls                    Certificate issued successfully
+2020-04-27 20:35:43 +0000 UTC  1      Normal   CREATE             ConfigMap/tcp-services                    ConfigMap ingress-nginx/tcp-services
+2020-04-27 20:35:43 +0000 UTC  1      Normal   CREATE             ConfigMap/udp-services                    ConfigMap ingress-nginx/udp-services

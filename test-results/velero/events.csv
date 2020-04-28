@@ -1,0 +1,12 @@
+LAST SEEN                      Count  TYPE    REASON             OBJECT                        MESSAGE
+2020-04-27 20:38:33 +0000 UTC  1      Normal  Scheduled          Pod/velero-77565ddf45-p8djk   Successfully assigned velero/velero-77565ddf45-p8djk to kind-control-plane
+2020-04-27 20:38:34 +0000 UTC  1      Normal  Pulling            Pod/velero-77565ddf45-p8djk   Pulling image "velero/velero-plugin-for-aws:v1.0.0"
+2020-04-27 20:38:37 +0000 UTC  1      Normal  Pulled             Pod/velero-77565ddf45-p8djk   Successfully pulled image "velero/velero-plugin-for-aws:v1.0.0"
+2020-04-27 20:38:37 +0000 UTC  1      Normal  Created            Pod/velero-77565ddf45-p8djk   Created container velero-plugin-for-aws
+2020-04-27 20:38:38 +0000 UTC  1      Normal  Started            Pod/velero-77565ddf45-p8djk   Started container velero-plugin-for-aws
+2020-04-27 20:38:39 +0000 UTC  1      Normal  Pulling            Pod/velero-77565ddf45-p8djk   Pulling image "velero/velero:v1.2.0"
+2020-04-27 20:38:41 +0000 UTC  1      Normal  Pulled             Pod/velero-77565ddf45-p8djk   Successfully pulled image "velero/velero:v1.2.0"
+2020-04-27 20:38:41 +0000 UTC  1      Normal  Created            Pod/velero-77565ddf45-p8djk   Created container velero
+2020-04-27 20:38:41 +0000 UTC  1      Normal  Started            Pod/velero-77565ddf45-p8djk   Started container velero
+2020-04-27 20:38:33 +0000 UTC  1      Normal  SuccessfulCreate   ReplicaSet/velero-77565ddf45  Created pod: velero-77565ddf45-p8djk
+2020-04-27 20:38:33 +0000 UTC  1      Normal  ScalingReplicaSet  Deployment/velero             Scaled up replica set velero-77565ddf45 to 1

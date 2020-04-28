@@ -1,0 +1,92 @@
+LAST SEEN                      Count  TYPE     REASON                  OBJECT                                                  MESSAGE
+2020-04-27 20:34:45 +0000 UTC  3      Warning  FailedScheduling        Pod/calico-kube-controllers-65b8787765-q8mpm            0/1 nodes are available: 1 node(s) had taints that the pod didn't tolerate.
+2020-04-27 20:34:47 +0000 UTC  1      Normal   Scheduled               Pod/calico-kube-controllers-65b8787765-q8mpm            Successfully assigned kube-system/calico-kube-controllers-65b8787765-q8mpm to kind-control-plane
+2020-04-27 20:34:48 +0000 UTC  1      Normal   Pulling                 Pod/calico-kube-controllers-65b8787765-q8mpm            Pulling image "calico/kube-controllers:v3.8.2"
+2020-04-27 20:34:51 +0000 UTC  1      Normal   Pulled                  Pod/calico-kube-controllers-65b8787765-q8mpm            Successfully pulled image "calico/kube-controllers:v3.8.2"
+2020-04-27 20:34:51 +0000 UTC  1      Normal   Created                 Pod/calico-kube-controllers-65b8787765-q8mpm            Created container calico-kube-controllers
+2020-04-27 20:34:51 +0000 UTC  1      Normal   Started                 Pod/calico-kube-controllers-65b8787765-q8mpm            Started container calico-kube-controllers
+2020-04-27 20:34:35 +0000 UTC  1      Normal   SuccessfulCreate        ReplicaSet/calico-kube-controllers-65b8787765           Created pod: calico-kube-controllers-65b8787765-q8mpm
+2020-04-27 20:34:35 +0000 UTC  1      Normal   ScalingReplicaSet       Deployment/calico-kube-controllers                      Scaled up replica set calico-kube-controllers-65b8787765 to 1
+2020-04-27 20:34:35 +0000 UTC  1      Normal   Scheduled               Pod/calico-node-lvdsp                                   Successfully assigned kube-system/calico-node-lvdsp to kind-control-plane
+2020-04-27 20:34:35 +0000 UTC  1      Normal   Pulling                 Pod/calico-node-lvdsp                                   Pulling image "calico/cni:v3.8.2"
+2020-04-27 20:34:39 +0000 UTC  1      Normal   Pulled                  Pod/calico-node-lvdsp                                   Successfully pulled image "calico/cni:v3.8.2"
+2020-04-27 20:34:39 +0000 UTC  1      Normal   Created                 Pod/calico-node-lvdsp                                   Created container install-cni
+2020-04-27 20:34:39 +0000 UTC  1      Normal   Started                 Pod/calico-node-lvdsp                                   Started container install-cni
+2020-04-27 20:34:40 +0000 UTC  1      Normal   Pulling                 Pod/calico-node-lvdsp                                   Pulling image "calico/pod2daemon-flexvol:v3.8.2"
+2020-04-27 20:34:41 +0000 UTC  1      Normal   Pulled                  Pod/calico-node-lvdsp                                   Successfully pulled image "calico/pod2daemon-flexvol:v3.8.2"
+2020-04-27 20:34:41 +0000 UTC  1      Normal   Created                 Pod/calico-node-lvdsp                                   Created container flexvol-driver
+2020-04-27 20:34:41 +0000 UTC  1      Normal   Started                 Pod/calico-node-lvdsp                                   Started container flexvol-driver
+2020-04-27 20:34:42 +0000 UTC  1      Normal   Pulling                 Pod/calico-node-lvdsp                                   Pulling image "calico/node:v3.8.2"
+2020-04-27 20:34:45 +0000 UTC  1      Normal   Pulled                  Pod/calico-node-lvdsp                                   Successfully pulled image "calico/node:v3.8.2"
+2020-04-27 20:34:45 +0000 UTC  1      Normal   Created                 Pod/calico-node-lvdsp                                   Created container calico-node
+2020-04-27 20:34:45 +0000 UTC  1      Normal   Started                 Pod/calico-node-lvdsp                                   Started container calico-node
+2020-04-27 20:34:35 +0000 UTC  1      Normal   SuccessfulCreate        DaemonSet/calico-node                                   Created pod: calico-node-lvdsp
+2020-04-27 20:34:50 +0000 UTC  1      Normal   LeaderElection          ConfigMap/cert-manager-cainjector-leader-election-core  cert-manager-cainjector-5cc6f8695f-6zdn6_7bc87e86-da04-458b-a76c-a3f99c3ac47b became leader
+2020-04-27 20:34:50 +0000 UTC  1      Normal   LeaderElection          ConfigMap/cert-manager-cainjector-leader-election       cert-manager-cainjector-5cc6f8695f-6zdn6_e8c9bb78-2759-4758-b2f0-a76b29259998 became leader
+2020-04-27 20:34:53 +0000 UTC  1      Normal   LeaderElection          ConfigMap/cert-manager-controller                       cert-manager-67b8bfbfb4-9wsv9-external-cert-manager-controller became leader
+2020-04-27 20:34:45 +0000 UTC  3      Warning  FailedScheduling        Pod/coredns-5d4dd4b4db-7w9bv                            0/1 nodes are available: 1 node(s) had taints that the pod didn't tolerate.
+2020-04-27 20:34:47 +0000 UTC  1      Normal   Scheduled               Pod/coredns-5d4dd4b4db-7w9bv                            Successfully assigned kube-system/coredns-5d4dd4b4db-7w9bv to kind-control-plane
+2020-04-27 20:34:48 +0000 UTC  1      Normal   Pulled                  Pod/coredns-5d4dd4b4db-7w9bv                            Container image "k8s.gcr.io/coredns:1.3.1" already present on machine
+2020-04-27 20:34:48 +0000 UTC  1      Normal   Created                 Pod/coredns-5d4dd4b4db-7w9bv                            Created container coredns
+2020-04-27 20:34:49 +0000 UTC  1      Normal   Started                 Pod/coredns-5d4dd4b4db-7w9bv                            Started container coredns
+2020-04-27 20:34:35 +0000 UTC  2      Warning  FailedScheduling        Pod/coredns-5d4dd4b4db-jp62r                            0/1 nodes are available: 1 node(s) had taints that the pod didn't tolerate.
+2020-04-27 20:34:45 +0000 UTC  1      Normal   Scheduled               Pod/coredns-5d4dd4b4db-jp62r                            Successfully assigned kube-system/coredns-5d4dd4b4db-jp62r to kind-control-plane
+2020-04-27 20:34:45 +0000 UTC  1      Warning  FailedCreatePodSandBox  Pod/coredns-5d4dd4b4db-jp62r                            Failed create pod sandbox: rpc error: code = Unknown desc = failed to setup network for sandbox "9d1b947f9b2189d3f2a947ec2899e54e98e9dfc638cf920fc1d953119988ec06": stat /var/lib/calico/nodename: no such file or directory: check that the calico/node container is running and has mounted /var/lib/calico/
+2020-04-27 20:34:56 +0000 UTC  1      Normal   Pulled                  Pod/coredns-5d4dd4b4db-jp62r                            Container image "k8s.gcr.io/coredns:1.3.1" already present on machine
+2020-04-27 20:34:57 +0000 UTC  1      Normal   Created                 Pod/coredns-5d4dd4b4db-jp62r                            Created container coredns
+2020-04-27 20:34:57 +0000 UTC  1      Normal   Started                 Pod/coredns-5d4dd4b4db-jp62r                            Started container coredns
+2020-04-27 20:34:35 +0000 UTC  1      Normal   SuccessfulCreate        ReplicaSet/coredns-5d4dd4b4db                           Created pod: coredns-5d4dd4b4db-7w9bv
+2020-04-27 20:34:35 +0000 UTC  1      Normal   SuccessfulCreate        ReplicaSet/coredns-5d4dd4b4db                           Created pod: coredns-5d4dd4b4db-jp62r
+2020-04-27 20:34:35 +0000 UTC  1      Normal   ScalingReplicaSet       Deployment/coredns                                      Scaled up replica set coredns-5d4dd4b4db to 2
+2020-04-27 20:35:45 +0000 UTC  1      Normal   CREATE                  Ingress/dashboard-ing                                   Ingress kube-system/dashboard-ing
+2020-04-27 20:35:45 +0000 UTC  1      Normal   CreateCertificate       Ingress/dashboard-ing                                   Successfully created Certificate "dashboard-tls"
+2020-04-27 20:35:46 +0000 UTC  1      Normal   CertificateIssued       CertificateRequest/dashboard-tls-1828523392             Certificate fetched from issuer successfully
+2020-04-27 20:35:45 +0000 UTC  1      Normal   GeneratedKey            Certificate/dashboard-tls                               Generated a new private key
+2020-04-27 20:35:46 +0000 UTC  1      Normal   Requested               Certificate/dashboard-tls                               Created new CertificateRequest resource "dashboard-tls-1828523392"
+2020-04-27 20:35:46 +0000 UTC  1      Normal   Issued                  Certificate/dashboard-tls                               Certificate issued successfully
+2020-04-27 20:34:01 +0000 UTC  1      Normal   Pulled                  Pod/etcd-kind-control-plane                             Container image "k8s.gcr.io/etcd:3.3.10" already present on machine
+2020-04-27 20:34:11 +0000 UTC  1      Normal   Created                 Pod/etcd-kind-control-plane                             Created container etcd
+2020-04-27 20:34:11 +0000 UTC  1      Normal   Started                 Pod/etcd-kind-control-plane                             Started container etcd
+2020-04-27 20:34:01 +0000 UTC  1      Normal   Pulled                  Pod/kube-apiserver-kind-control-plane                   Container image "k8s.gcr.io/kube-apiserver:v1.15.7" already present on machine
+2020-04-27 20:34:10 +0000 UTC  1      Normal   Created                 Pod/kube-apiserver-kind-control-plane                   Created container kube-apiserver
+2020-04-27 20:34:11 +0000 UTC  1      Normal   Started                 Pod/kube-apiserver-kind-control-plane                   Started container kube-apiserver
+2020-04-27 20:34:01 +0000 UTC  1      Normal   Pulled                  Pod/kube-controller-manager-kind-control-plane          Container image "k8s.gcr.io/kube-controller-manager:v1.15.7" already present on machine
+2020-04-27 20:34:10 +0000 UTC  1      Normal   Created                 Pod/kube-controller-manager-kind-control-plane          Created container kube-controller-manager
+2020-04-27 20:34:11 +0000 UTC  1      Normal   Started                 Pod/kube-controller-manager-kind-control-plane          Started container kube-controller-manager
+2020-04-27 20:34:18 +0000 UTC  1      Normal   LeaderElection          Endpoints/kube-controller-manager                       kind-control-plane_c48b0400-4b98-4965-ae0c-6e2c94aa263b became leader
+2020-04-27 20:34:35 +0000 UTC  1      Normal   Scheduled               Pod/kube-proxy-cdzt5                                    Successfully assigned kube-system/kube-proxy-cdzt5 to kind-control-plane
+2020-04-27 20:34:35 +0000 UTC  1      Normal   Pulled                  Pod/kube-proxy-cdzt5                                    Container image "k8s.gcr.io/kube-proxy:v1.15.7" already present on machine
+2020-04-27 20:34:36 +0000 UTC  1      Normal   Created                 Pod/kube-proxy-cdzt5                                    Created container kube-proxy
+2020-04-27 20:34:36 +0000 UTC  1      Normal   Started                 Pod/kube-proxy-cdzt5                                    Started container kube-proxy
+2020-04-27 20:34:35 +0000 UTC  1      Normal   SuccessfulCreate        DaemonSet/kube-proxy                                    Created pod: kube-proxy-cdzt5
+2020-04-27 20:34:01 +0000 UTC  1      Normal   Pulled                  Pod/kube-scheduler-kind-control-plane                   Container image "k8s.gcr.io/kube-scheduler:v1.15.7" already present on machine
+2020-04-27 20:34:10 +0000 UTC  1      Normal   Created                 Pod/kube-scheduler-kind-control-plane                   Created container kube-scheduler
+2020-04-27 20:34:11 +0000 UTC  1      Normal   Started                 Pod/kube-scheduler-kind-control-plane                   Started container kube-scheduler
+2020-04-27 20:34:17 +0000 UTC  1      Normal   LeaderElection          Endpoints/kube-scheduler                                kind-control-plane_a3ee5144-fe2f-426e-a68b-2a11c7ab32a1 became leader
+2020-04-27 20:35:44 +0000 UTC  1      Normal   Scheduled               Pod/kubernetes-dashboard-7d75c474bb-ggrrx               Successfully assigned kube-system/kubernetes-dashboard-7d75c474bb-ggrrx to kind-control-plane
+2020-04-27 20:35:45 +0000 UTC  1      Normal   Pulling                 Pod/kubernetes-dashboard-7d75c474bb-ggrrx               Pulling image "k8s.gcr.io/kubernetes-dashboard-amd64:v1.10.1"
+2020-04-27 20:35:48 +0000 UTC  1      Normal   Pulled                  Pod/kubernetes-dashboard-7d75c474bb-ggrrx               Successfully pulled image "k8s.gcr.io/kubernetes-dashboard-amd64:v1.10.1"
+2020-04-27 20:35:48 +0000 UTC  1      Normal   Created                 Pod/kubernetes-dashboard-7d75c474bb-ggrrx               Created container kubernetes-dashboard
+2020-04-27 20:35:48 +0000 UTC  1      Normal   Started                 Pod/kubernetes-dashboard-7d75c474bb-ggrrx               Started container kubernetes-dashboard
+2020-04-27 20:35:44 +0000 UTC  1      Normal   SuccessfulCreate        ReplicaSet/kubernetes-dashboard-7d75c474bb              Created pod: kubernetes-dashboard-7d75c474bb-ggrrx
+2020-04-27 20:35:44 +0000 UTC  1      Normal   ScalingReplicaSet       Deployment/kubernetes-dashboard                         Scaled up replica set kubernetes-dashboard-7d75c474bb to 1
+2020-04-27 20:35:47 +0000 UTC  1      Normal   Scheduled               Pod/namespace-configuration-operator-6f748b789c-p2v6j   Successfully assigned kube-system/namespace-configuration-operator-6f748b789c-p2v6j to kind-control-plane
+2020-04-27 20:35:48 +0000 UTC  1      Normal   Pulling                 Pod/namespace-configuration-operator-6f748b789c-p2v6j   Pulling image "quay.io/redhat-cop/namespace-configuration-operator:v0.1.0"
+2020-04-27 20:35:51 +0000 UTC  1      Normal   Pulled                  Pod/namespace-configuration-operator-6f748b789c-p2v6j   Successfully pulled image "quay.io/redhat-cop/namespace-configuration-operator:v0.1.0"
+2020-04-27 20:35:52 +0000 UTC  1      Normal   Created                 Pod/namespace-configuration-operator-6f748b789c-p2v6j   Created container namespace-configuration-operator
+2020-04-27 20:35:52 +0000 UTC  1      Normal   Started                 Pod/namespace-configuration-operator-6f748b789c-p2v6j   Started container namespace-configuration-operator
+2020-04-27 20:35:47 +0000 UTC  1      Normal   SuccessfulCreate        ReplicaSet/namespace-configuration-operator-6f748b789c  Created pod: namespace-configuration-operator-6f748b789c-p2v6j
+2020-04-27 20:35:47 +0000 UTC  1      Normal   ScalingReplicaSet       Deployment/namespace-configuration-operator             Scaled up replica set namespace-configuration-operator-6f748b789c to 1
+2020-04-27 20:35:28 +0000 UTC  1      Normal   Scheduled               Pod/node-local-dns-ttl7q                                Successfully assigned kube-system/node-local-dns-ttl7q to kind-control-plane
+2020-04-27 20:35:28 +0000 UTC  1      Normal   Pulling                 Pod/node-local-dns-ttl7q                                Pulling image "k8s.gcr.io/k8s-dns-node-cache:1.15.7"
+2020-04-27 20:35:30 +0000 UTC  1      Normal   Pulled                  Pod/node-local-dns-ttl7q                                Successfully pulled image "k8s.gcr.io/k8s-dns-node-cache:1.15.7"
+2020-04-27 20:35:30 +0000 UTC  1      Normal   Created                 Pod/node-local-dns-ttl7q                                Created container node-cache
+2020-04-27 20:35:30 +0000 UTC  1      Normal   Started                 Pod/node-local-dns-ttl7q                                Started container node-cache
+2020-04-27 20:35:28 +0000 UTC  1      Normal   SuccessfulCreate        DaemonSet/node-local-dns                                Created pod: node-local-dns-ttl7q
+2020-04-27 20:35:48 +0000 UTC  1      Normal   Scheduled               Pod/platform-operator-995b7fb78-9m4pj                   Successfully assigned kube-system/platform-operator-995b7fb78-9m4pj to kind-control-plane
+2020-04-27 20:35:49 +0000 UTC  1      Normal   Pulling                 Pod/platform-operator-995b7fb78-9m4pj                   Pulling image "docker.io/moshloop/platform-operator:0.1"
+2020-04-27 20:35:54 +0000 UTC  1      Normal   Pulled                  Pod/platform-operator-995b7fb78-9m4pj                   Successfully pulled image "docker.io/moshloop/platform-operator:0.1"
+2020-04-27 20:35:55 +0000 UTC  1      Normal   Created                 Pod/platform-operator-995b7fb78-9m4pj                   Created container platform-operator
+2020-04-27 20:35:55 +0000 UTC  1      Normal   Started                 Pod/platform-operator-995b7fb78-9m4pj                   Started container platform-operator
+2020-04-27 20:35:48 +0000 UTC  1      Normal   SuccessfulCreate        ReplicaSet/platform-operator-995b7fb78                  Created pod: platform-operator-995b7fb78-9m4pj
+2020-04-27 20:35:48 +0000 UTC  1      Normal   ScalingReplicaSet       Deployment/platform-operator                            Scaled up replica set platform-operator-995b7fb78 to 1

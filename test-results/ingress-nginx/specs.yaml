@@ -1,0 +1,1378 @@
+apiVersion: v1
+items:
+- items:
+  - apiVersion: v1
+    kind: ConfigMap
+    metadata:
+      annotations:
+        control-plane.alpha.kubernetes.io/leader: '{"holderIdentity":"nginx-ingress-controller-49lz4","leaseDurationSeconds":30,"acquireTime":"2020-04-27T20:35:44Z","renewTime":"2020-04-27T20:46:00Z","leaderTransitions":0}'
+      creationTimestamp: "2020-04-27T20:35:44Z"
+      name: ingress-controller-leader-nginx
+      namespace: ingress-nginx
+      resourceVersion: "7158"
+      selfLink: /api/v1/namespaces/ingress-nginx/configmaps/ingress-controller-leader-nginx
+      uid: 84de3763-66b5-4ad3-bfc7-87e587bc25dd
+  - apiVersion: v1
+    data:
+      client-body-buffer-size: 16M
+      disable-access-log: <no value>
+      proxy-body-size: 32M
+    kind: ConfigMap
+    metadata:
+      creationTimestamp: "2020-04-27T20:35:28Z"
+      name: nginx-configuration
+      namespace: ingress-nginx
+      resourceVersion: "837"
+      selfLink: /api/v1/namespaces/ingress-nginx/configmaps/nginx-configuration
+      uid: 81d8fc6f-859e-4677-bb41-eb968e854f7c
+  - apiVersion: v1
+    kind: ConfigMap
+    metadata:
+      creationTimestamp: "2020-04-27T20:35:29Z"
+      name: tcp-services
+      namespace: ingress-nginx
+      resourceVersion: "839"
+      selfLink: /api/v1/namespaces/ingress-nginx/configmaps/tcp-services
+      uid: 3a3d1e92-6419-45da-807b-dbe3b6a62f97
+  - apiVersion: v1
+    kind: ConfigMap
+    metadata:
+      creationTimestamp: "2020-04-27T20:35:29Z"
+      name: udp-services
+      namespace: ingress-nginx
+      resourceVersion: "840"
+      selfLink: /api/v1/namespaces/ingress-nginx/configmaps/udp-services
+      uid: 6664bfca-8f98-45c6-ab03-78a75bd52a52
+  metadata: {}
+- items:
+  - apiVersion: v1
+    kind: Pod
+    metadata:
+      creationTimestamp: "2020-04-27T20:35:32Z"
+      generateName: nginx-ingress-controller-
+      labels:
+        app: ingress-nginx
+        controller-revision-hash: 78777c8c8b
+        pod-template-generation: "1"
+      name: nginx-ingress-controller-49lz4
+      namespace: ingress-nginx
+      ownerReferences:
+      - apiVersion: apps/v1
+        blockOwnerDeletion: true
+        controller: true
+        kind: DaemonSet
+        name: nginx-ingress-controller
+        uid: 5ff92e1b-7139-4be7-8445-148117da1362
+      resourceVersion: "1330"
+      selfLink: /api/v1/namespaces/ingress-nginx/pods/nginx-ingress-controller-49lz4
+      uid: a45030e5-f36e-4486-bf73-9c7c29234458
+    spec:
+      affinity:
+        nodeAffinity:
+          requiredDuringSchedulingIgnoredDuringExecution:
+            nodeSelectorTerms:
+            - matchFields:
+              - key: metadata.name
+                operator: In
+                values:
+                - kind-control-plane
+      containers:
+      - args:
+        - /nginx-ingress-controller
+        - --configmap=$(POD_NAMESPACE)/nginx-configuration
+        - --tcp-services-configmap=$(POD_NAMESPACE)/tcp-services
+        - --udp-services-configmap=$(POD_NAMESPACE)/udp-services
+        - --publish-service=$(POD_NAMESPACE)/ingress-nginx
+        - --annotations-prefix=nginx.ingress.kubernetes.io
+        - --enable-ssl-passthrough
+        env:
+        - name: POD_NAME
+          valueFrom:
+            fieldRef:
+              apiVersion: v1
+              fieldPath: metadata.name
+        - name: POD_NAMESPACE
+          valueFrom:
+            fieldRef:
+              apiVersion: v1
+              fieldPath: metadata.namespace
+        image: flanksource/nginx-ingress-controller:0.25.1.flanksource.1
+        imagePullPolicy: Always
+        livenessProbe:
+          failureThreshold: 3
+          httpGet:
+            path: /healthz
+            port: 10254
+            scheme: HTTP
+          initialDelaySeconds: 10
+          periodSeconds: 10
+          successThreshold: 1
+          timeoutSeconds: 10
+        name: nginx-ingress-controller
+        ports:
+        - containerPort: 80
+          hostPort: 80
+          name: http
+          protocol: TCP
+        - containerPort: 443
+          hostPort: 443
+          name: https
+          protocol: TCP
+        - containerPort: 10254
+          hostPort: 10254
+          name: metrics
+          protocol: TCP
+        readinessProbe:
+          failureThreshold: 3
+          httpGet:
+            path: /healthz
+            port: 10254
+            scheme: HTTP
+          periodSeconds: 10
+          successThreshold: 1
+          timeoutSeconds: 10
+        resources: {}
+        securityContext:
+          allowPrivilegeEscalation: true
+          capabilities:
+            add:
+            - NET_BIND_SERVICE
+            drop:
+            - ALL
+          runAsUser: 33
+        terminationMessagePath: /dev/termination-log
+        terminationMessagePolicy: File
+        volumeMounts:
+        - mountPath: /var/run/secrets/kubernetes.io/serviceaccount
+          name: nginx-ingress-serviceaccount-token-4mf2p
+          readOnly: true
+      dnsPolicy: ClusterFirst
+      enableServiceLinks: true
+      hostNetwork: true
+      nodeName: kind-control-plane
+      priority: 0
+      restartPolicy: Always
+      schedulerName: default-scheduler
+      securityContext: {}
+      serviceAccount: nginx-ingress-serviceaccount
+      serviceAccountName: nginx-ingress-serviceaccount
+      terminationGracePeriodSeconds: 30
+      tolerations:
+      - effect: NoExecute
+        key: node.kubernetes.io/not-ready
+        operator: Exists
+      - effect: NoExecute
+        key: node.kubernetes.io/unreachable
+        operator: Exists
+      - effect: NoSchedule
+        key: node.kubernetes.io/disk-pressure
+        operator: Exists
+      - effect: NoSchedule
+        key: node.kubernetes.io/memory-pressure
+        operator: Exists
+      - effect: NoSchedule
+        key: node.kubernetes.io/pid-pressure
+        operator: Exists
+      - effect: NoSchedule
+        key: node.kubernetes.io/unschedulable
+        operator: Exists
+      - effect: NoSchedule
+        key: node.kubernetes.io/network-unavailable
+        operator: Exists
+      volumes:
+      - name: nginx-ingress-serviceaccount-token-4mf2p
+        secret:
+          defaultMode: 420
+          secretName: nginx-ingress-serviceaccount-token-4mf2p
+    status:
+      conditions:
+      - lastProbeTime: null
+        lastTransitionTime: "2020-04-27T20:35:32Z"
+        status: "True"
+        type: Initialized
+      - lastProbeTime: null
+        lastTransitionTime: "2020-04-27T20:35:55Z"
+        status: "True"
+        type: Ready
+      - lastProbeTime: null
+        lastTransitionTime: "2020-04-27T20:35:55Z"
+        status: "True"
+        type: ContainersReady
+      - lastProbeTime: null
+        lastTransitionTime: "2020-04-27T20:35:32Z"
+        status: "True"
+        type: PodScheduled
+      containerStatuses:
+      - containerID: containerd://0cca5af0121cdd9f86253a9376c511dc5d246184876fb0381f18d897984599e3
+        image: docker.io/flanksource/nginx-ingress-controller:0.25.1.flanksource.1
+        imageID: docker.io/flanksource/nginx-ingress-controller@sha256:847898852e368e562e938027bbf48168c461e4e3e3d499e8dfaf85500e523ba1
+        lastState: {}
+        name: nginx-ingress-controller
+        ready: true
+        restartCount: 0
+        state:
+          running:
+            startedAt: "2020-04-27T20:35:43Z"
+      hostIP: 172.17.0.2
+      phase: Running
+      podIP: 172.17.0.2
+      qosClass: BestEffort
+      startTime: "2020-04-27T20:35:32Z"
+  - apiVersion: v1
+    kind: Pod
+    metadata:
+      annotations:
+        cni.projectcalico.org/podIP: 100.200.82.6/32
+      creationTimestamp: "2020-04-27T20:35:33Z"
+      generateName: oauth2-proxy-888c476b8-
+      labels:
+        k8s-app: oauth2-proxy
+        pod-template-hash: 888c476b8
+      name: oauth2-proxy-888c476b8-gl7c4
+      namespace: ingress-nginx
+      ownerReferences:
+      - apiVersion: apps/v1
+        blockOwnerDeletion: true
+        controller: true
+        kind: ReplicaSet
+        name: oauth2-proxy-888c476b8
+        uid: 5fc237ee-0e7d-45b3-a4d7-af2b7a49ce74
+      resourceVersion: "1034"
+      selfLink: /api/v1/namespaces/ingress-nginx/pods/oauth2-proxy-888c476b8-gl7c4
+      uid: d81d2880-7194-4d82-ba01-420eb2717fb9
+    spec:
+      containers:
+      - args:
+        - -upstream=file:///dev/null
+        - -http-address=0.0.0.0:4180
+        - -whitelist-domain=.127.0.0.1.nip.io
+        - -cookie-domain=.127.0.0.1.nip.io
+        - -provider=oidc
+        - -provider-display-name=Dex
+        - -client-id=kubernetes
+        - -client-secret=ZXhhbXBsZS1hcHAtc2VjcmV0
+        - -redirect-url=https://oauth2.127.0.0.1.nip.io/oauth2/callback
+        - -oidc-issuer-url=https://dex.127.0.0.1.nip.io
+        - -oidc-group=cn=k8s,ou=groups,dc=example,dc=com
+        - -skip-oidc-discovery
+        - -login-url=https://dex.127.0.0.1.nip.io/auth
+        - -redeem-url=https://dex.dex.svc:443/token
+        - -ssl-insecure-skip-verify
+        - -oidc-jwks-url=https://dex.dex.svc/keys
+        - -cookie-secure=true
+        - -email-domain=*
+        - --pass-authorization-header=true
+        - --pass-host-header=true
+        - --pass-access-token=true
+        - --set-xauthrequest=true
+        - --set-authorization-header=true
+        - --request-logging=true
+        env:
+        - name: OAUTH2_PROXY_COOKIE_SECRET
+          value: ZDBiMDY4MWQ1YmFiZWZiMTY0YjRkNmUwM2I1Mzk2N2I=
+        image: flanksource/oauth2_proxy:v5.0.0.flanksource.1
+        imagePullPolicy: Always
+        name: oauth2-proxy
+        ports:
+        - containerPort: 4180
+          protocol: TCP
+        resources:
+          limits:
+            memory: 512Mi
+          requests:
+            cpu: 25m
+            memory: 100Mi
+        terminationMessagePath: /dev/termination-log
+        terminationMessagePolicy: File
+        volumeMounts:
+        - mountPath: /var/run/secrets/kubernetes.io/serviceaccount
+          name: default-token-fjwdl
+          readOnly: true
+      dnsPolicy: ClusterFirst
+      enableServiceLinks: true
+      nodeName: kind-control-plane
+      priority: 0
+      restartPolicy: Always
+      schedulerName: default-scheduler
+      securityContext: {}
+      serviceAccount: default
+      serviceAccountName: default
+      terminationGracePeriodSeconds: 30
+      tolerations:
+      - effect: NoExecute
+        key: node.kubernetes.io/not-ready
+        operator: Exists
+        tolerationSeconds: 300
+      - effect: NoExecute
+        key: node.kubernetes.io/unreachable
+        operator: Exists
+        tolerationSeconds: 300
+      volumes:
+      - name: default-token-fjwdl
+        secret:
+          defaultMode: 420
+          secretName: default-token-fjwdl
+    status:
+      conditions:
+      - lastProbeTime: null
+        lastTransitionTime: "2020-04-27T20:35:33Z"
+        status: "True"
+        type: Initialized
+      - lastProbeTime: null
+        lastTransitionTime: "2020-04-27T20:35:44Z"
+        status: "True"
+        type: Ready
+      - lastProbeTime: null
+        lastTransitionTime: "2020-04-27T20:35:44Z"
+        status: "True"
+        type: ContainersReady
+      - lastProbeTime: null
+        lastTransitionTime: "2020-04-27T20:35:33Z"
+        status: "True"
+        type: PodScheduled
+      containerStatuses:
+      - containerID: containerd://60f4e137a290df698dca186a0c443dc995daa0542875c0a65df67ca133e84d0c
+        image: docker.io/flanksource/oauth2_proxy:v5.0.0.flanksource.1
+        imageID: docker.io/flanksource/oauth2_proxy@sha256:b335f74b41a2fd41a1d4baec1430a23e5e553d63cbd6f41e5050f7218977367c
+        lastState: {}
+        name: oauth2-proxy
+        ready: true
+        restartCount: 0
+        state:
+          running:
+            startedAt: "2020-04-27T20:35:44Z"
+      hostIP: 172.17.0.2
+      phase: Running
+      podIP: 100.200.82.6
+      qosClass: Burstable
+      startTime: "2020-04-27T20:35:33Z"
+  metadata: {}
+- items:
+  - apiVersion: v1
+    kind: ServiceAccount
+    metadata:
+      creationTimestamp: "2020-04-27T20:35:28Z"
+      name: default
+      namespace: ingress-nginx
+      resourceVersion: "834"
+      selfLink: /api/v1/namespaces/ingress-nginx/serviceaccounts/default
+      uid: 1e390f51-8d69-4869-83b8-1e02ed920d3e
+    secrets:
+    - name: default-token-fjwdl
+  - apiVersion: v1
+    kind: ServiceAccount
+    metadata:
+      creationTimestamp: "2020-04-27T20:35:30Z"
+      name: nginx-ingress-serviceaccount
+      namespace: ingress-nginx
+      resourceVersion: "2122"
+      selfLink: /api/v1/namespaces/ingress-nginx/serviceaccounts/nginx-ingress-serviceaccount
+      uid: 12764642-f807-4095-8b4d-d92d38edd467
+    secrets:
+    - name: nginx-ingress-serviceaccount-token-xftfv
+  metadata: {}
+- items:
+  - apiVersion: v1
+    kind: Service
+    metadata:
+      annotations:
+        prometheus.io/port: "10254"
+        prometheus.io/scrape: "true"
+      creationTimestamp: "2020-04-27T20:35:32Z"
+      labels:
+        app: ingress-nginx
+        app.kubernetes.io/name: ingress-nginx
+      name: ingress-nginx
+      namespace: ingress-nginx
+      resourceVersion: "870"
+      selfLink: /api/v1/namespaces/ingress-nginx/services/ingress-nginx
+      uid: 1354efd5-459e-4962-a63d-3fa8a2d5ed2c
+    spec:
+      clusterIP: 10.107.132.103
+      ports:
+      - name: http
+        port: 80
+        protocol: TCP
+        targetPort: 80
+      - name: https
+        port: 443
+        protocol: TCP
+        targetPort: 443
+      - name: metrics
+        port: 10254
+        protocol: TCP
+        targetPort: 10254
+      selector:
+        app: ingress-nginx
+      sessionAffinity: None
+      type: ClusterIP
+    status:
+      loadBalancer: {}
+  - apiVersion: v1
+    kind: Service
+    metadata:
+      creationTimestamp: "2020-04-27T20:35:33Z"
+      labels:
+        k8s-app: oauth2-proxy
+      name: oauth2-proxy
+      namespace: ingress-nginx
+      resourceVersion: "890"
+      selfLink: /api/v1/namespaces/ingress-nginx/services/oauth2-proxy
+      uid: 56250454-a909-4a7d-b961-a933bb2cd1a6
+    spec:
+      clusterIP: 10.101.38.1
+      ports:
+      - name: http
+        port: 4180
+        protocol: TCP
+        targetPort: 4180
+      selector:
+        k8s-app: oauth2-proxy
+      sessionAffinity: None
+      type: ClusterIP
+    status:
+      loadBalancer: {}
+  metadata: {}
+- items:
+  - apiVersion: apps/v1
+    data:
+      spec:
+        template:
+          $patch: replace
+          metadata:
+            creationTimestamp: null
+            labels:
+              app: ingress-nginx
+          spec:
+            containers:
+            - args:
+              - /nginx-ingress-controller
+              - --configmap=$(POD_NAMESPACE)/nginx-configuration
+              - --tcp-services-configmap=$(POD_NAMESPACE)/tcp-services
+              - --udp-services-configmap=$(POD_NAMESPACE)/udp-services
+              - --publish-service=$(POD_NAMESPACE)/ingress-nginx
+              - --annotations-prefix=nginx.ingress.kubernetes.io
+              - --enable-ssl-passthrough
+              env:
+              - name: POD_NAME
+                valueFrom:
+                  fieldRef:
+                    apiVersion: v1
+                    fieldPath: metadata.name
+              - name: POD_NAMESPACE
+                valueFrom:
+                  fieldRef:
+                    apiVersion: v1
+                    fieldPath: metadata.namespace
+              image: flanksource/nginx-ingress-controller:0.25.1.flanksource.1
+              imagePullPolicy: Always
+              livenessProbe:
+                failureThreshold: 3
+                httpGet:
+                  path: /healthz
+                  port: 10254
+                  scheme: HTTP
+                initialDelaySeconds: 10
+                periodSeconds: 10
+                successThreshold: 1
+                timeoutSeconds: 10
+              name: nginx-ingress-controller
+              ports:
+              - containerPort: 80
+                hostPort: 80
+                name: http
+                protocol: TCP
+              - containerPort: 443
+                hostPort: 443
+                name: https
+                protocol: TCP
+              - containerPort: 10254
+                hostPort: 10254
+                name: metrics
+                protocol: TCP
+              readinessProbe:
+                failureThreshold: 3
+                httpGet:
+                  path: /healthz
+                  port: 10254
+                  scheme: HTTP
+                periodSeconds: 10
+                successThreshold: 1
+                timeoutSeconds: 10
+              resources: {}
+              securityContext:
+                allowPrivilegeEscalation: true
+                capabilities:
+                  add:
+                  - NET_BIND_SERVICE
+                  drop:
+                  - ALL
+                runAsUser: 33
+              terminationMessagePath: /dev/termination-log
+              terminationMessagePolicy: File
+            dnsPolicy: ClusterFirst
+            hostNetwork: true
+            restartPolicy: Always
+            schedulerName: default-scheduler
+            securityContext: {}
+            serviceAccount: nginx-ingress-serviceaccount
+            serviceAccountName: nginx-ingress-serviceaccount
+            terminationGracePeriodSeconds: 30
+    kind: ControllerRevision
+    metadata:
+      annotations:
+        deprecated.daemonset.template.generation: "1"
+        reload/all: "true"
+      creationTimestamp: "2020-04-27T20:35:32Z"
+      labels:
+        app: ingress-nginx
+        controller-revision-hash: 78777c8c8b
+      name: nginx-ingress-controller-78777c8c8b
+      namespace: ingress-nginx
+      ownerReferences:
+      - apiVersion: apps/v1
+        blockOwnerDeletion: true
+        controller: true
+        kind: DaemonSet
+        name: nginx-ingress-controller
+        uid: 5ff92e1b-7139-4be7-8445-148117da1362
+      resourceVersion: "862"
+      selfLink: /apis/apps/v1/namespaces/ingress-nginx/controllerrevisions/nginx-ingress-controller-78777c8c8b
+      uid: c87b0afb-fd85-421e-b4dd-018d9a5f66bb
+    revision: 1
+  metadata: {}
+- items:
+  - apiVersion: apps/v1
+    kind: DaemonSet
+    metadata:
+      annotations:
+        deprecated.daemonset.template.generation: "1"
+        reload/all: "true"
+      creationTimestamp: "2020-04-27T20:35:32Z"
+      generation: 1
+      name: nginx-ingress-controller
+      namespace: ingress-nginx
+      resourceVersion: "1332"
+      selfLink: /apis/apps/v1/namespaces/ingress-nginx/daemonsets/nginx-ingress-controller
+      uid: 5ff92e1b-7139-4be7-8445-148117da1362
+    spec:
+      revisionHistoryLimit: 10
+      selector:
+        matchLabels:
+          app: ingress-nginx
+      template:
+        metadata:
+          creationTimestamp: null
+          labels:
+            app: ingress-nginx
+        spec:
+          containers:
+          - args:
+            - /nginx-ingress-controller
+            - --configmap=$(POD_NAMESPACE)/nginx-configuration
+            - --tcp-services-configmap=$(POD_NAMESPACE)/tcp-services
+            - --udp-services-configmap=$(POD_NAMESPACE)/udp-services
+            - --publish-service=$(POD_NAMESPACE)/ingress-nginx
+            - --annotations-prefix=nginx.ingress.kubernetes.io
+            - --enable-ssl-passthrough
+            env:
+            - name: POD_NAME
+              valueFrom:
+                fieldRef:
+                  apiVersion: v1
+                  fieldPath: metadata.name
+            - name: POD_NAMESPACE
+              valueFrom:
+                fieldRef:
+                  apiVersion: v1
+                  fieldPath: metadata.namespace
+            image: flanksource/nginx-ingress-controller:0.25.1.flanksource.1
+            imagePullPolicy: Always
+            livenessProbe:
+              failureThreshold: 3
+              httpGet:
+                path: /healthz
+                port: 10254
+                scheme: HTTP
+              initialDelaySeconds: 10
+              periodSeconds: 10
+              successThreshold: 1
+              timeoutSeconds: 10
+            name: nginx-ingress-controller
+            ports:
+            - containerPort: 80
+              hostPort: 80
+              name: http
+              protocol: TCP
+            - containerPort: 443
+              hostPort: 443
+              name: https
+              protocol: TCP
+            - containerPort: 10254
+              hostPort: 10254
+              name: metrics
+              protocol: TCP
+            readinessProbe:
+              failureThreshold: 3
+              httpGet:
+                path: /healthz
+                port: 10254
+                scheme: HTTP
+              periodSeconds: 10
+              successThreshold: 1
+              timeoutSeconds: 10
+            resources: {}
+            securityContext:
+              allowPrivilegeEscalation: true
+              capabilities:
+                add:
+                - NET_BIND_SERVICE
+                drop:
+                - ALL
+              runAsUser: 33
+            terminationMessagePath: /dev/termination-log
+            terminationMessagePolicy: File
+          dnsPolicy: ClusterFirst
+          hostNetwork: true
+          restartPolicy: Always
+          schedulerName: default-scheduler
+          securityContext: {}
+          serviceAccount: nginx-ingress-serviceaccount
+          serviceAccountName: nginx-ingress-serviceaccount
+          terminationGracePeriodSeconds: 30
+      updateStrategy:
+        rollingUpdate:
+          maxUnavailable: 1
+        type: RollingUpdate
+    status:
+      currentNumberScheduled: 1
+      desiredNumberScheduled: 1
+      numberAvailable: 1
+      numberMisscheduled: 0
+      numberReady: 1
+      observedGeneration: 1
+      updatedNumberScheduled: 1
+  metadata: {}
+- items:
+  - apiVersion: apps/v1
+    kind: Deployment
+    metadata:
+      annotations:
+        deployment.kubernetes.io/revision: "1"
+      creationTimestamp: "2020-04-27T20:35:33Z"
+      generation: 2
+      labels:
+        k8s-app: oauth2-proxy
+      name: oauth2-proxy
+      namespace: ingress-nginx
+      resourceVersion: "2136"
+      selfLink: /apis/apps/v1/namespaces/ingress-nginx/deployments/oauth2-proxy
+      uid: cc3a7176-5572-4e71-aa60-bf531c66c9fd
+    spec:
+      progressDeadlineSeconds: 600
+      replicas: 1
+      revisionHistoryLimit: 10
+      selector:
+        matchLabels:
+          k8s-app: oauth2-proxy
+      strategy:
+        rollingUpdate:
+          maxSurge: 25%
+          maxUnavailable: 25%
+        type: RollingUpdate
+      template:
+        metadata:
+          creationTimestamp: null
+          labels:
+            k8s-app: oauth2-proxy
+        spec:
+          containers:
+          - args:
+            - -upstream=file:///dev/null
+            - -http-address=0.0.0.0:4180
+            - -whitelist-domain=.127.0.0.1.nip.io
+            - -cookie-domain=.127.0.0.1.nip.io
+            - -provider=oidc
+            - -provider-display-name=Dex
+            - -client-id=kubernetes
+            - -client-secret=ZXhhbXBsZS1hcHAtc2VjcmV0
+            - -redirect-url=https://oauth2.127.0.0.1.nip.io/oauth2/callback
+            - -oidc-issuer-url=https://dex.127.0.0.1.nip.io
+            - -oidc-group=cn=k8s,ou=groups,dc=example,dc=com
+            - -skip-oidc-discovery
+            - -login-url=https://dex.127.0.0.1.nip.io/auth
+            - -redeem-url=https://dex.dex.svc:443/token
+            - -ssl-insecure-skip-verify
+            - -oidc-jwks-url=https://dex.dex.svc/keys
+            - -cookie-secure=true
+            - -email-domain=*
+            - --pass-authorization-header=true
+            - --pass-host-header=true
+            - --pass-access-token=true
+            - --set-xauthrequest=true
+            - --set-authorization-header=true
+            - --request-logging=true
+            env:
+            - name: OAUTH2_PROXY_COOKIE_SECRET
+              value: ZDBiMDY4MWQ1YmFiZWZiMTY0YjRkNmUwM2I1Mzk2N2I=
+            image: flanksource/oauth2_proxy:v5.0.0.flanksource.1
+            imagePullPolicy: Always
+            name: oauth2-proxy
+            ports:
+            - containerPort: 4180
+              protocol: TCP
+            resources:
+              limits:
+                memory: 512Mi
+              requests:
+                cpu: 25m
+                memory: 100Mi
+            terminationMessagePath: /dev/termination-log
+            terminationMessagePolicy: File
+          dnsPolicy: ClusterFirst
+          restartPolicy: Always
+          schedulerName: default-scheduler
+          securityContext: {}
+          terminationGracePeriodSeconds: 30
+    status:
+      availableReplicas: 1
+      conditions:
+      - lastTransitionTime: "2020-04-27T20:35:44Z"
+        lastUpdateTime: "2020-04-27T20:35:44Z"
+        message: Deployment has minimum availability.
+        reason: MinimumReplicasAvailable
+        status: "True"
+        type: Available
+      - lastTransitionTime: "2020-04-27T20:35:33Z"
+        lastUpdateTime: "2020-04-27T20:35:44Z"
+        message: ReplicaSet "oauth2-proxy-888c476b8" has successfully progressed.
+        reason: NewReplicaSetAvailable
+        status: "True"
+        type: Progressing
+      observedGeneration: 2
+      readyReplicas: 1
+      replicas: 1
+      updatedReplicas: 1
+  metadata: {}
+- items:
+  - apiVersion: apps/v1
+    kind: ReplicaSet
+    metadata:
+      annotations:
+        deployment.kubernetes.io/desired-replicas: "1"
+        deployment.kubernetes.io/max-replicas: "2"
+        deployment.kubernetes.io/revision: "1"
+      creationTimestamp: "2020-04-27T20:35:33Z"
+      generation: 1
+      labels:
+        k8s-app: oauth2-proxy
+        pod-template-hash: 888c476b8
+      name: oauth2-proxy-888c476b8
+      namespace: ingress-nginx
+      ownerReferences:
+      - apiVersion: apps/v1
+        blockOwnerDeletion: true
+        controller: true
+        kind: Deployment
+        name: oauth2-proxy
+        uid: cc3a7176-5572-4e71-aa60-bf531c66c9fd
+      resourceVersion: "1036"
+      selfLink: /apis/apps/v1/namespaces/ingress-nginx/replicasets/oauth2-proxy-888c476b8
+      uid: 5fc237ee-0e7d-45b3-a4d7-af2b7a49ce74
+    spec:
+      replicas: 1
+      selector:
+        matchLabels:
+          k8s-app: oauth2-proxy
+          pod-template-hash: 888c476b8
+      template:
+        metadata:
+          creationTimestamp: null
+          labels:
+            k8s-app: oauth2-proxy
+            pod-template-hash: 888c476b8
+        spec:
+          containers:
+          - args:
+            - -upstream=file:///dev/null
+            - -http-address=0.0.0.0:4180
+            - -whitelist-domain=.127.0.0.1.nip.io
+            - -cookie-domain=.127.0.0.1.nip.io
+            - -provider=oidc
+            - -provider-display-name=Dex
+            - -client-id=kubernetes
+            - -client-secret=ZXhhbXBsZS1hcHAtc2VjcmV0
+            - -redirect-url=https://oauth2.127.0.0.1.nip.io/oauth2/callback
+            - -oidc-issuer-url=https://dex.127.0.0.1.nip.io
+            - -oidc-group=cn=k8s,ou=groups,dc=example,dc=com
+            - -skip-oidc-discovery
+            - -login-url=https://dex.127.0.0.1.nip.io/auth
+            - -redeem-url=https://dex.dex.svc:443/token
+            - -ssl-insecure-skip-verify
+            - -oidc-jwks-url=https://dex.dex.svc/keys
+            - -cookie-secure=true
+            - -email-domain=*
+            - --pass-authorization-header=true
+            - --pass-host-header=true
+            - --pass-access-token=true
+            - --set-xauthrequest=true
+            - --set-authorization-header=true
+            - --request-logging=true
+            env:
+            - name: OAUTH2_PROXY_COOKIE_SECRET
+              value: ZDBiMDY4MWQ1YmFiZWZiMTY0YjRkNmUwM2I1Mzk2N2I=
+            image: flanksource/oauth2_proxy:v5.0.0.flanksource.1
+            imagePullPolicy: Always
+            name: oauth2-proxy
+            ports:
+            - containerPort: 4180
+              protocol: TCP
+            resources:
+              limits:
+                memory: 512Mi
+              requests:
+                cpu: 25m
+                memory: 100Mi
+            terminationMessagePath: /dev/termination-log
+            terminationMessagePolicy: File
+          dnsPolicy: ClusterFirst
+          restartPolicy: Always
+          schedulerName: default-scheduler
+          securityContext: {}
+          terminationGracePeriodSeconds: 30
+    status:
+      availableReplicas: 1
+      fullyLabeledReplicas: 1
+      observedGeneration: 1
+      readyReplicas: 1
+      replicas: 1
+  metadata: {}
+- items:
+  - apiVersion: cert-manager.io/v1alpha2
+    kind: CertificateRequest
+    metadata:
+      annotations:
+        cert-manager.io/certificate-name: oauth2-tls
+        cert-manager.io/private-key-secret-name: oauth2-tls
+      creationTimestamp: "2020-04-27T20:35:34Z"
+      generation: 1
+      name: oauth2-tls-1546207436
+      namespace: ingress-nginx
+      ownerReferences:
+      - apiVersion: cert-manager.io/v1alpha2
+        blockOwnerDeletion: true
+        controller: true
+        kind: Certificate
+        name: oauth2-tls
+        uid: 1321bb7f-4657-4274-bb98-e097d1678952
+      resourceVersion: "907"
+      selfLink: /apis/cert-manager.io/v1alpha2/namespaces/ingress-nginx/certificaterequests/oauth2-tls-1546207436
+      uid: 9f6d08c2-07f6-4088-bca3-204b9ec20eb7
+    spec:
+      csr: LS0tLS1CRUdJTiBDRVJUSUZJQ0FURSBSRVFVRVNULS0tLS0KTUlJQ2tUQ0NBWGtDQVFBd0Z6RVZNQk1HQTFVRUNoTU1ZMlZ5ZEMxdFlXNWhaMlZ5TUlJQklqQU5CZ2txaGtpRwo5dzBCQVFFRkFBT0NBUThBTUlJQkNnS0NBUUVBMVFsVVJ6MTBUQSs3OFh6dUxpU2dTYllPZDlyM0g3aE0xbUpvCmZZWWlZUjVMbTFXcUlZNHpIM1QxSks2L1NjK1Fld1FvREJ3V1NUR2V0T0lDYWdsK0V5NnIxWmdRZ0d3TUZ3a3gKTDFzTG5tWEN3N1N4VityY2Q2a29seFNCcEJtQ0ErRXh2RUNOSS9aREhFRWZFZXdnbGZmdUpQQzRNb1hpcHFwbApzNWJYNUxUTjRsMVBMSTRITmhTSUVCMU1aajMySlBQV0t6UnpmT3ExL2VWaTFWVXN1SUJHZVNCcUdtcnV1VVM0ClJKRk1JalhPT1pLbUJHZW1zaVFma2hGdHJsSGNuWGRIMzY0TXpTYmRRVEVPMzVUV0JMZlgrRjdLdnZnakZ3eHQKNFU5M29KbXVxT0tsc1YwdnpNeDlNVU9mSFlZRk9HOWd6OGM4SGV5dDVDbHVrdnAyUlFJREFRQUJvRFV3TXdZSgpLb1pJaHZjTkFRa09NU1l3SkRBaUJnTlZIUkVFR3pBWmdoZHZZWFYwYURJdU1USTNMakF1TUM0eExtNXBjQzVwCmJ6QU5CZ2txaGtpRzl3MEJBUXNGQUFPQ0FRRUFVblBHWThiWitORE1iZzZ2Y1djM3Mxb1JSd05qTFpDMnlBYWsKVTdOcnNTMzcveVFreWo1dWtkdXR5emJZeVJhSkt2NHBoNko5VmIzQnZPdkdpRUVEbU1wczFSNkYxZmRyWHhWRApyajhDK3dLUEFPUUR4emx0dU5LbU5LK2JseEFMMGtQa24zd1dZbGtqYmtWY0w4cnhtSktWZWk0RnFKb0RVaE9kClQ0VjBzazdUWW9udUtNeTUxeVpzVzIwdElNZlZFUS9BS081c3o4TkU3cHR4VDVnYUdCQStGakVJWURocE1mWjMKdEVYckFUY1lCMmxMR1UwdDV2bDZmeUFZU3VXK1o4VTlQbGdKT1JwWFppaHBXMklrdS94TmYyaXVBWVZiZUFUVwpxR1hKK2IwODVpb0RCREg2cS9LQXYrbWZWdXhiREsrdDlRMFdWbUYrVzE1R0JESTZIQT09Ci0tLS0tRU5EIENFUlRJRklDQVRFIFJFUVVFU1QtLS0tLQo=
+      issuerRef:
+        group: cert-manager.io
+        kind: ClusterIssuer
+        name: ingress-ca
+    status:
+      ca: LS0tLS1CRUdJTiBDRVJUSUZJQ0FURS0tLS0tCk1JSUMwakNDQWJxZ0F3SUJBZ0lJTTJrUWVscjYycTh3RFFZSktvWklodmNOQVFFTEJRQXdGVEVUTUJFR0ExVUUKQXhNS2FXNW5jbVZ6Y3kxallUQWVGdzB5TURBME1qY3lNREU0TURaYUZ3MHlNVEEwTWpZeU1ETXpNRFphTUJVeApFekFSQmdOVkJBTVRDbWx1WjNKbGMzTXRZMkV3Z2dFaU1BMEdDU3FHU0liM0RRRUJBUVVBQTRJQkR3QXdnZ0VLCkFvSUJBUUR6SXdlRnFIYktoRjNCWUdDaTFCOXAwNmNOVU1Hc2MyMm9lWVcvYmlqZmkvMWRRR3ViOHVBRnNPVG4KMTBHc0EvbzZxd25MS1BtT2k1U3Y3MzVlRGpPMThxSXMwcUhrdkVmbG8xVXdKZGw2Y3ZVU1ZDYTNlbStsU28xUwpEY1dxeDJuRlFjUVgxOEluc2dLYnhQZGY5UE5uQkM4QnE0L2ZPQTRoM1BBNTJEUHQxVGFCODNZZFhMdVNnMzZUCmUwTWI3ZnNadDRGZDMxWTArK0kxQklLc0dWWk0rejQxVlYrcWlucFpsTkZhQ0F4d2VwTnJPMGhXOUoxRlh0akYKTSsrYVR5bHNCQlJmV1FRcFFIZXAvME4vSzBZNDVPeURQVmdJNWp5a2d1VzM0aFZJRGYya3ViYldXMmJObVpIUAorVUI1MkZxSFpRemxWU1ZYMWhiSVI2Wm5lZzMzQWdNQkFBR2pKakFrTUE0R0ExVWREd0VCL3dRRUF3SUNwREFTCkJnTlZIUk1CQWY4RUNEQUdBUUgvQWdFQU1BMEdDU3FHU0liM0RRRUJDd1VBQTRJQkFRQ2Ura0VsWlZrZEdvVGcKVkVOQkhERGJYMkY5N0FmRDFMcjlaWTVlMHFORVJlZnpvSElJdGJrN00reXk3QTRLNzJkcHBzdlYya0ZtMXhZcApnd1o1OGZKWGtSSk5XQjlOMjNIcHVJUXdzZmVFTkpBYk8yL1UrWEZVdnBZMitaazQ5bE5oUEZWZFBjcS9nTXdSCkQ2Y2hWckF6L3NvLzh2V0h3WDREOTBQL01vd0dWQ2F4aENEWVZDRGt1WERKeGdwdnEvSDlQaXU3YlNYUjd1TVEKb3Z4V0QxN1BuN2xmdXFSbitjT2xmMVdmTXlQUmJXNHY1bGVjb0J0SGdZUkhsMG9PVU5SVXdJTHIydkkrczkzTwpjMmVPQ3dLZU9iWGllSUU3RjRGVWs2cGNUdjFBbDRjRXlzK2IyVWFxek96SndlY3J0ZUh5Z2ZTYjBWVE1mL3BwCmEzd3hZV0VDCi0tLS0tRU5EIENFUlRJRklDQVRFLS0tLS0K
+      certificate: LS0tLS1CRUdJTiBDRVJUSUZJQ0FURS0tLS0tCk1JSURFRENDQWZpZ0F3SUJBZ0lSQUpRc2FMR3QyTTEwV0o3TEhVcW0xRDB3RFFZSktvWklodmNOQVFFTEJRQXcKRlRFVE1CRUdBMVVFQXhNS2FXNW5jbVZ6Y3kxallUQWVGdzB5TURBME1qY3lNRE0xTXpSYUZ3MHlNREEzTWpZeQpNRE0xTXpSYU1CY3hGVEFUQmdOVkJBb1RER05sY25RdGJXRnVZV2RsY2pDQ0FTSXdEUVlKS29aSWh2Y05BUUVCCkJRQURnZ0VQQURDQ0FRb0NnZ0VCQU5VSlZFYzlkRXdQdS9GODdpNGtvRW0yRG5mYTl4KzRUTlppYUgyR0ltRWUKUzV0VnFpR09NeDkwOVNTdXYwblBrSHNFS0F3Y0Zra3huclRpQW1vSmZoTXVxOVdZRUlCc0RCY0pNUzliQzU1bAp3c08wc1ZmcTNIZXBLSmNVZ2FRWmdnUGhNYnhBalNQMlF4eEJIeEhzSUpYMzdpVHd1REtGNHFhcVpiT1cxK1MwCnplSmRUeXlPQnpZVWlCQWRUR1k5OWlUejFpczBjM3pxdGYzbFl0VlZMTGlBUm5rZ2FocHE3cmxFdUVTUlRDSTEKemptU3BnUm5wcklrSDVJUmJhNVIzSjEzUjkrdURNMG0zVUV4RHQrVTFnUzMxL2hleXI3NEl4Y01iZUZQZDZDWgpycWppcGJGZEw4ek1mVEZEbngyR0JUaHZZTS9IUEIzc3JlUXBicEw2ZGtVQ0F3RUFBYU5aTUZjd0RnWURWUjBQCkFRSC9CQVFEQWdXZ01CTUdBMVVkSlFRTU1Bb0dDQ3NHQVFVRkJ3TUJNQXdHQTFVZEV3RUIvd1FDTUFBd0lnWUQKVlIwUkJCc3dHWUlYYjJGMWRHZ3lMakV5Tnk0d0xqQXVNUzV1YVhBdWFXOHdEUVlKS29aSWh2Y05BUUVMQlFBRApnZ0VCQUdWcVloVk1VcXgvMHhSKzlla0lUUHkwamI4Y09PaHF3NVNXd1Jucmhmc2MrdGNFMVhBZjdsV2g0b0NqClZkQ3NJUWhvbStpNHRDeENaY3JZeTljSGQ5UjJBL0NkNzZVN1puTFZZRTR1TnR6NSt1L1U2ZXNIYXV3TmZ5Z2IKQm90bnY3ZWxnQ01TdlUzMER3b2l4TS9ReEsrL1EvbzRYV0RXVUpSK3M3VE1sd0RKbnBuZG9JUzRmVXpTaDFVRQo3R1h2cDRsRFlISDJvZ2daMVFhb1JvWTZhcmx5cGlEbms0REZmeE1xQWNIOHJaRGc3cWw1MmpvUzYvWms3d2IrCk9iR3ZTYUVJZW0yc0VMcjEzYkt2U21KSUFZTG1TUk8wQ2I2cncrSndwNHY4NDBkRXhQYi95UHZFTjlyUmpXa3gKbDBqMW1SNFFRUlB1M0hwdzRVRHVRT1lUQXdBPQotLS0tLUVORCBDRVJUSUZJQ0FURS0tLS0tCg==
+      conditions:
+      - lastTransitionTime: "2020-04-27T20:35:34Z"
+        message: Certificate fetched from issuer successfully
+        reason: Issued
+        status: "True"
+        type: Ready
+  metadata: {}
+- items:
+  - apiVersion: cert-manager.io/v1alpha2
+    kind: Certificate
+    metadata:
+      creationTimestamp: "2020-04-27T20:35:34Z"
+      generation: 1
+      name: oauth2-tls
+      namespace: ingress-nginx
+      ownerReferences:
+      - apiVersion: extensions/v1beta1
+        blockOwnerDeletion: true
+        controller: true
+        kind: Ingress
+        name: oauth2-proxy
+        uid: 9886832c-134f-44bd-92f4-6027edd89777
+      resourceVersion: "910"
+      selfLink: /apis/cert-manager.io/v1alpha2/namespaces/ingress-nginx/certificates/oauth2-tls
+      uid: 1321bb7f-4657-4274-bb98-e097d1678952
+    spec:
+      dnsNames:
+      - oauth2.127.0.0.1.nip.io
+      issuerRef:
+        group: cert-manager.io
+        kind: ClusterIssuer
+        name: ingress-ca
+      secretName: oauth2-tls
+    status:
+      conditions:
+      - lastTransitionTime: "2020-04-27T20:35:34Z"
+        message: Certificate is up to date and has not expired
+        reason: Ready
+        status: "True"
+        type: Ready
+      notAfter: "2020-07-26T20:35:34Z"
+  metadata: {}
+- items:
+  - apiVersion: extensions/v1beta1
+    kind: DaemonSet
+    metadata:
+      annotations:
+        reload/all: "true"
+      creationTimestamp: "2020-04-27T20:35:32Z"
+      generation: 1
+      name: nginx-ingress-controller
+      namespace: ingress-nginx
+      resourceVersion: "1332"
+      selfLink: /apis/extensions/v1beta1/namespaces/ingress-nginx/daemonsets/nginx-ingress-controller
+      uid: 5ff92e1b-7139-4be7-8445-148117da1362
+    spec:
+      revisionHistoryLimit: 10
+      selector:
+        matchLabels:
+          app: ingress-nginx
+      template:
+        metadata:
+          creationTimestamp: null
+          labels:
+            app: ingress-nginx
+        spec:
+          containers:
+          - args:
+            - /nginx-ingress-controller
+            - --configmap=$(POD_NAMESPACE)/nginx-configuration
+            - --tcp-services-configmap=$(POD_NAMESPACE)/tcp-services
+            - --udp-services-configmap=$(POD_NAMESPACE)/udp-services
+            - --publish-service=$(POD_NAMESPACE)/ingress-nginx
+            - --annotations-prefix=nginx.ingress.kubernetes.io
+            - --enable-ssl-passthrough
+            env:
+            - name: POD_NAME
+              valueFrom:
+                fieldRef:
+                  apiVersion: v1
+                  fieldPath: metadata.name
+            - name: POD_NAMESPACE
+              valueFrom:
+                fieldRef:
+                  apiVersion: v1
+                  fieldPath: metadata.namespace
+            image: flanksource/nginx-ingress-controller:0.25.1.flanksource.1
+            imagePullPolicy: Always
+            livenessProbe:
+              failureThreshold: 3
+              httpGet:
+                path: /healthz
+                port: 10254
+                scheme: HTTP
+              initialDelaySeconds: 10
+              periodSeconds: 10
+              successThreshold: 1
+              timeoutSeconds: 10
+            name: nginx-ingress-controller
+            ports:
+            - containerPort: 80
+              hostPort: 80
+              name: http
+              protocol: TCP
+            - containerPort: 443
+              hostPort: 443
+              name: https
+              protocol: TCP
+            - containerPort: 10254
+              hostPort: 10254
+              name: metrics
+              protocol: TCP
+            readinessProbe:
+              failureThreshold: 3
+              httpGet:
+                path: /healthz
+                port: 10254
+                scheme: HTTP
+              periodSeconds: 10
+              successThreshold: 1
+              timeoutSeconds: 10
+            resources: {}
+            securityContext:
+              allowPrivilegeEscalation: true
+              capabilities:
+                add:
+                - NET_BIND_SERVICE
+                drop:
+                - ALL
+              runAsUser: 33
+            terminationMessagePath: /dev/termination-log
+            terminationMessagePolicy: File
+          dnsPolicy: ClusterFirst
+          hostNetwork: true
+          restartPolicy: Always
+          schedulerName: default-scheduler
+          securityContext: {}
+          serviceAccount: nginx-ingress-serviceaccount
+          serviceAccountName: nginx-ingress-serviceaccount
+          terminationGracePeriodSeconds: 30
+      templateGeneration: 1
+      updateStrategy:
+        rollingUpdate:
+          maxUnavailable: 1
+        type: RollingUpdate
+    status:
+      currentNumberScheduled: 1
+      desiredNumberScheduled: 1
+      numberAvailable: 1
+      numberMisscheduled: 0
+      numberReady: 1
+      observedGeneration: 1
+      updatedNumberScheduled: 1
+  metadata: {}
+- items:
+  - apiVersion: extensions/v1beta1
+    kind: Deployment
+    metadata:
+      annotations:
+        deployment.kubernetes.io/revision: "1"
+      creationTimestamp: "2020-04-27T20:35:33Z"
+      generation: 2
+      labels:
+        k8s-app: oauth2-proxy
+      name: oauth2-proxy
+      namespace: ingress-nginx
+      resourceVersion: "2136"
+      selfLink: /apis/extensions/v1beta1/namespaces/ingress-nginx/deployments/oauth2-proxy
+      uid: cc3a7176-5572-4e71-aa60-bf531c66c9fd
+    spec:
+      progressDeadlineSeconds: 600
+      replicas: 1
+      revisionHistoryLimit: 10
+      selector:
+        matchLabels:
+          k8s-app: oauth2-proxy
+      strategy:
+        rollingUpdate:
+          maxSurge: 25%
+          maxUnavailable: 25%
+        type: RollingUpdate
+      template:
+        metadata:
+          creationTimestamp: null
+          labels:
+            k8s-app: oauth2-proxy
+        spec:
+          containers:
+          - args:
+            - -upstream=file:///dev/null
+            - -http-address=0.0.0.0:4180
+            - -whitelist-domain=.127.0.0.1.nip.io
+            - -cookie-domain=.127.0.0.1.nip.io
+            - -provider=oidc
+            - -provider-display-name=Dex
+            - -client-id=kubernetes
+            - -client-secret=ZXhhbXBsZS1hcHAtc2VjcmV0
+            - -redirect-url=https://oauth2.127.0.0.1.nip.io/oauth2/callback
+            - -oidc-issuer-url=https://dex.127.0.0.1.nip.io
+            - -oidc-group=cn=k8s,ou=groups,dc=example,dc=com
+            - -skip-oidc-discovery
+            - -login-url=https://dex.127.0.0.1.nip.io/auth
+            - -redeem-url=https://dex.dex.svc:443/token
+            - -ssl-insecure-skip-verify
+            - -oidc-jwks-url=https://dex.dex.svc/keys
+            - -cookie-secure=true
+            - -email-domain=*
+            - --pass-authorization-header=true
+            - --pass-host-header=true
+            - --pass-access-token=true
+            - --set-xauthrequest=true
+            - --set-authorization-header=true
+            - --request-logging=true
+            env:
+            - name: OAUTH2_PROXY_COOKIE_SECRET
+              value: ZDBiMDY4MWQ1YmFiZWZiMTY0YjRkNmUwM2I1Mzk2N2I=
+            image: flanksource/oauth2_proxy:v5.0.0.flanksource.1
+            imagePullPolicy: Always
+            name: oauth2-proxy
+            ports:
+            - containerPort: 4180
+              protocol: TCP
+            resources:
+              limits:
+                memory: 512Mi
+              requests:
+                cpu: 25m
+                memory: 100Mi
+            terminationMessagePath: /dev/termination-log
+            terminationMessagePolicy: File
+          dnsPolicy: ClusterFirst
+          restartPolicy: Always
+          schedulerName: default-scheduler
+          securityContext: {}
+          terminationGracePeriodSeconds: 30
+    status:
+      availableReplicas: 1
+      conditions:
+      - lastTransitionTime: "2020-04-27T20:35:44Z"
+        lastUpdateTime: "2020-04-27T20:35:44Z"
+        message: Deployment has minimum availability.
+        reason: MinimumReplicasAvailable
+        status: "True"
+        type: Available
+      - lastTransitionTime: "2020-04-27T20:35:33Z"
+        lastUpdateTime: "2020-04-27T20:35:44Z"
+        message: ReplicaSet "oauth2-proxy-888c476b8" has successfully progressed.
+        reason: NewReplicaSetAvailable
+        status: "True"
+        type: Progressing
+      observedGeneration: 2
+      readyReplicas: 1
+      replicas: 1
+      updatedReplicas: 1
+  metadata: {}
+- items:
+  - apiVersion: extensions/v1beta1
+    kind: Ingress
+    metadata:
+      annotations:
+        kubernetes.io/tls-acme: "true"
+      creationTimestamp: "2020-04-27T20:35:34Z"
+      generation: 1
+      name: oauth2-proxy
+      namespace: ingress-nginx
+      resourceVersion: "895"
+      selfLink: /apis/extensions/v1beta1/namespaces/ingress-nginx/ingresses/oauth2-proxy
+      uid: 9886832c-134f-44bd-92f4-6027edd89777
+    spec:
+      rules:
+      - host: oauth2.127.0.0.1.nip.io
+        http:
+          paths:
+          - backend:
+              serviceName: oauth2-proxy
+              servicePort: 4180
+            path: /oauth2
+      tls:
+      - hosts:
+        - oauth2.127.0.0.1.nip.io
+        secretName: oauth2-tls
+    status:
+      loadBalancer: {}
+  metadata: {}
+- items:
+  - apiVersion: extensions/v1beta1
+    kind: ReplicaSet
+    metadata:
+      annotations:
+        deployment.kubernetes.io/desired-replicas: "1"
+        deployment.kubernetes.io/max-replicas: "2"
+        deployment.kubernetes.io/revision: "1"
+      creationTimestamp: "2020-04-27T20:35:33Z"
+      generation: 1
+      labels:
+        k8s-app: oauth2-proxy
+        pod-template-hash: 888c476b8
+      name: oauth2-proxy-888c476b8
+      namespace: ingress-nginx
+      ownerReferences:
+      - apiVersion: apps/v1
+        blockOwnerDeletion: true
+        controller: true
+        kind: Deployment
+        name: oauth2-proxy
+        uid: cc3a7176-5572-4e71-aa60-bf531c66c9fd
+      resourceVersion: "1036"
+      selfLink: /apis/extensions/v1beta1/namespaces/ingress-nginx/replicasets/oauth2-proxy-888c476b8
+      uid: 5fc237ee-0e7d-45b3-a4d7-af2b7a49ce74
+    spec:
+      replicas: 1
+      selector:
+        matchLabels:
+          k8s-app: oauth2-proxy
+          pod-template-hash: 888c476b8
+      template:
+        metadata:
+          creationTimestamp: null
+          labels:
+            k8s-app: oauth2-proxy
+            pod-template-hash: 888c476b8
+        spec:
+          containers:
+          - args:
+            - -upstream=file:///dev/null
+            - -http-address=0.0.0.0:4180
+            - -whitelist-domain=.127.0.0.1.nip.io
+            - -cookie-domain=.127.0.0.1.nip.io
+            - -provider=oidc
+            - -provider-display-name=Dex
+            - -client-id=kubernetes
+            - -client-secret=ZXhhbXBsZS1hcHAtc2VjcmV0
+            - -redirect-url=https://oauth2.127.0.0.1.nip.io/oauth2/callback
+            - -oidc-issuer-url=https://dex.127.0.0.1.nip.io
+            - -oidc-group=cn=k8s,ou=groups,dc=example,dc=com
+            - -skip-oidc-discovery
+            - -login-url=https://dex.127.0.0.1.nip.io/auth
+            - -redeem-url=https://dex.dex.svc:443/token
+            - -ssl-insecure-skip-verify
+            - -oidc-jwks-url=https://dex.dex.svc/keys
+            - -cookie-secure=true
+            - -email-domain=*
+            - --pass-authorization-header=true
+            - --pass-host-header=true
+            - --pass-access-token=true
+            - --set-xauthrequest=true
+            - --set-authorization-header=true
+            - --request-logging=true
+            env:
+            - name: OAUTH2_PROXY_COOKIE_SECRET
+              value: ZDBiMDY4MWQ1YmFiZWZiMTY0YjRkNmUwM2I1Mzk2N2I=
+            image: flanksource/oauth2_proxy:v5.0.0.flanksource.1
+            imagePullPolicy: Always
+            name: oauth2-proxy
+            ports:
+            - containerPort: 4180
+              protocol: TCP
+            resources:
+              limits:
+                memory: 512Mi
+              requests:
+                cpu: 25m
+                memory: 100Mi
+            terminationMessagePath: /dev/termination-log
+            terminationMessagePolicy: File
+          dnsPolicy: ClusterFirst
+          restartPolicy: Always
+          schedulerName: default-scheduler
+          securityContext: {}
+          terminationGracePeriodSeconds: 30
+    status:
+      availableReplicas: 1
+      fullyLabeledReplicas: 1
+      observedGeneration: 1
+      readyReplicas: 1
+      replicas: 1
+  metadata: {}
+- items:
+  - apiVersion: metrics.k8s.io/v1beta1
+    containers:
+    - name: oauth2-proxy
+      usage:
+        cpu: "0"
+        memory: 6136Ki
+    kind: PodMetrics
+    metadata:
+      creationTimestamp: "2020-04-27T20:46:08Z"
+      name: oauth2-proxy-888c476b8-gl7c4
+      namespace: ingress-nginx
+      selfLink: /apis/metrics.k8s.io/v1beta1/namespaces/ingress-nginx/pods/oauth2-proxy-888c476b8-gl7c4
+    timestamp: "2020-04-27T20:46:08Z"
+    window: 5m0s
+  - apiVersion: metrics.k8s.io/v1beta1
+    containers:
+    - name: nginx-ingress-controller
+      usage:
+        cpu: 22m
+        memory: 404232Ki
+    kind: PodMetrics
+    metadata:
+      creationTimestamp: "2020-04-27T20:46:08Z"
+      name: nginx-ingress-controller-49lz4
+      namespace: ingress-nginx
+      selfLink: /apis/metrics.k8s.io/v1beta1/namespaces/ingress-nginx/pods/nginx-ingress-controller-49lz4
+    timestamp: "2020-04-27T20:46:08Z"
+    window: 5m0s
+  metadata: {}
+- items:
+  - apiVersion: networking.k8s.io/v1beta1
+    kind: Ingress
+    metadata:
+      annotations:
+        kubernetes.io/tls-acme: "true"
+      creationTimestamp: "2020-04-27T20:35:34Z"
+      generation: 1
+      name: oauth2-proxy
+      namespace: ingress-nginx
+      resourceVersion: "895"
+      selfLink: /apis/networking.k8s.io/v1beta1/namespaces/ingress-nginx/ingresses/oauth2-proxy
+      uid: 9886832c-134f-44bd-92f4-6027edd89777
+    spec:
+      rules:
+      - host: oauth2.127.0.0.1.nip.io
+        http:
+          paths:
+          - backend:
+              serviceName: oauth2-proxy
+              servicePort: 4180
+            path: /oauth2
+      tls:
+      - hosts:
+        - oauth2.127.0.0.1.nip.io
+        secretName: oauth2-tls
+    status:
+      loadBalancer: {}
+  metadata: {}
+- items:
+  - apiVersion: rbac.authorization.k8s.io/v1
+    kind: RoleBinding
+    metadata:
+      creationTimestamp: "2020-04-27T20:35:31Z"
+      name: nginx-ingress-role-nisa-binding
+      namespace: ingress-nginx
+      resourceVersion: "858"
+      selfLink: /apis/rbac.authorization.k8s.io/v1/namespaces/ingress-nginx/rolebindings/nginx-ingress-role-nisa-binding
+      uid: 64a86fd5-e7e3-4780-baee-cbc078465c05
+    roleRef:
+      apiGroup: rbac.authorization.k8s.io
+      kind: Role
+      name: nginx-ingress-role
+    subjects:
+    - kind: ServiceAccount
+      name: nginx-ingress-serviceaccount
+      namespace: ingress-nginx
+  metadata: {}
+- items:
+  - apiVersion: rbac.authorization.k8s.io/v1
+    kind: Role
+    metadata:
+      creationTimestamp: "2020-04-27T20:35:30Z"
+      name: nginx-ingress-role
+      namespace: ingress-nginx
+      resourceVersion: "857"
+      selfLink: /apis/rbac.authorization.k8s.io/v1/namespaces/ingress-nginx/roles/nginx-ingress-role
+      uid: 24a77547-4d94-4b81-99cd-aac944409a59
+    rules:
+    - apiGroups:
+      - ""
+      resources:
+      - configmaps
+      - pods
+      - secrets
+      - namespaces
+      verbs:
+      - get
+    - apiGroups:
+      - ""
+      resourceNames:
+      - ingress-controller-leader-nginx
+      resources:
+      - configmaps
+      verbs:
+      - get
+      - update
+    - apiGroups:
+      - ""
+      resources:
+      - configmaps
+      verbs:
+      - create
+    - apiGroups:
+      - ""
+      resources:
+      - endpoints
+      verbs:
+      - get
+  metadata: {}
+kind: List
+metadata: {}

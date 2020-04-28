@@ -1,0 +1,12 @@
+W0427 20:34:37.190459       1 server_others.go:249] Flag proxy-mode="" unknown, assuming iptables proxy
+I0427 20:34:37.197002       1 server_others.go:143] Using iptables Proxier.
+I0427 20:34:37.197320       1 server.go:534] Version: v1.15.7
+I0427 20:34:37.204578       1 conntrack.go:52] Setting nf_conntrack_max to 262144
+I0427 20:34:37.204873       1 conntrack.go:100] Set sysctl 'net/netfilter/nf_conntrack_tcp_timeout_established' to 86400
+I0427 20:34:37.205080       1 conntrack.go:100] Set sysctl 'net/netfilter/nf_conntrack_tcp_timeout_close_wait' to 3600
+I0427 20:34:37.205238       1 config.go:96] Starting endpoints config controller
+I0427 20:34:37.205276       1 controller_utils.go:1029] Waiting for caches to sync for endpoints config controller
+I0427 20:34:37.205304       1 config.go:187] Starting service config controller
+I0427 20:34:37.205315       1 controller_utils.go:1029] Waiting for caches to sync for service config controller
+I0427 20:34:37.305473       1 controller_utils.go:1036] Caches are synced for service config controller
+I0427 20:34:37.305473       1 controller_utils.go:1036] Caches are synced for endpoints config controller

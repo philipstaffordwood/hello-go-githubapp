@@ -1,0 +1,654 @@
+{"level":"info","ts":1588020016.1568608,"logger":"cmd","msg":"Go Version: go1.13.8"}
+{"level":"info","ts":1588020016.156898,"logger":"cmd","msg":"Go OS/Arch: linux/amd64"}
+{"level":"info","ts":1588020016.1569061,"logger":"cmd","msg":"operator-sdk Version: v0.12.0"}
+{"level":"info","ts":1588020016.156913,"logger":"cmd","msg":"operator Version: 3.1.0"}
+{"level":"info","ts":1588020016.157081,"logger":"leader","msg":"Trying to become the leader."}
+{"level":"info","ts":1588020019.6722765,"logger":"leader","msg":"No pre-existing lock was found."}
+{"level":"info","ts":1588020019.6755228,"logger":"leader","msg":"Became the leader."}
+{"level":"info","ts":1588020023.1793456,"logger":"controller-runtime.metrics","msg":"metrics server is starting to listen","addr":"0.0.0.0:8080"}
+{"level":"info","ts":1588020023.1799018,"logger":"cmd","msg":"Registering Components."}
+{"level":"info","ts":1588020023.1807218,"logger":"controller-runtime.controller","msg":"Starting EventSource","controller":"grafanadatasource-controller","source":"kind source: /, Kind="}
+{"level":"info","ts":1588020023.181217,"logger":"controller-runtime.controller","msg":"Starting EventSource","controller":"grafana-controller","source":"kind source: /, Kind="}
+{"level":"info","ts":1588020023.181368,"logger":"controller-runtime.controller","msg":"Starting EventSource","controller":"grafana-controller","source":"kind source: /, Kind="}
+{"level":"info","ts":1588020023.1814704,"logger":"controller-runtime.controller","msg":"Starting EventSource","controller":"grafana-controller","source":"kind source: /, Kind="}
+{"level":"info","ts":1588020023.1815844,"logger":"controller-runtime.controller","msg":"Starting EventSource","controller":"grafana-controller","source":"kind source: /, Kind="}
+{"level":"info","ts":1588020023.1818898,"logger":"controller-runtime.controller","msg":"Starting EventSource","controller":"grafana-controller","source":"kind source: /, Kind="}
+{"level":"info","ts":1588020023.1819935,"logger":"controller-runtime.controller","msg":"Starting EventSource","controller":"grafana-controller","source":"kind source: /, Kind="}
+{"level":"info","ts":1588020026.7770555,"logger":"metrics","msg":"Metrics Service object created","Service.Name":"grafana-operator-metrics","Service.Namespace":"monitoring"}
+{"level":"info","ts":1588020026.7770965,"logger":"cmd","msg":"Starting the Cmd."}
+{"level":"info","ts":1588020027.781205,"logger":"controller-runtime.controller","msg":"Starting EventSource","controller":"grafanadashboard-controller","source":"kind source: /, Kind="}
+{"level":"info","ts":1588020027.7813559,"logger":"controller_grafanadashboard","msg":"Starting dashboard controller"}
+{"level":"info","ts":1588020027.7815125,"logger":"controller-runtime.manager","msg":"starting metrics server","path":"/metrics"}
+{"level":"info","ts":1588020027.8816187,"logger":"controller-runtime.controller","msg":"Starting Controller","controller":"grafana-controller"}
+{"level":"info","ts":1588020027.8816416,"logger":"controller-runtime.controller","msg":"Starting Controller","controller":"grafanadatasource-controller"}
+{"level":"info","ts":1588020027.8828294,"logger":"controller-runtime.controller","msg":"Starting Controller","controller":"grafanadashboard-controller"}
+{"level":"info","ts":1588020027.9823077,"logger":"controller-runtime.controller","msg":"Starting workers","controller":"grafana-controller","worker count":1}
+{"level":"info","ts":1588020027.9828165,"logger":"controller-runtime.controller","msg":"Starting workers","controller":"grafanadatasource-controller","worker count":1}
+{"level":"info","ts":1588020027.9839153,"logger":"controller_grafanadatasource","msg":"no datasources configmap found"}
+{"level":"info","ts":1588020027.9839926,"logger":"controller-runtime.controller","msg":"Starting workers","controller":"grafanadashboard-controller","worker count":1}
+{"level":"info","ts":1588020027.9840212,"logger":"controller_grafanadashboard","msg":"no grafana instance available"}
+{"level":"info","ts":1588020028.0921197,"logger":"action-runner","msg":"(    0)    SUCCESS create admin credentials secret"}
+{"level":"info","ts":1588020028.1018794,"logger":"action-runner","msg":"(    1)    SUCCESS create grafana service"}
+{"level":"info","ts":1588020028.105808,"logger":"action-runner","msg":"(    2)    SUCCESS create grafana service account"}
+{"level":"info","ts":1588020028.108765,"logger":"action-runner","msg":"(    3)    SUCCESS create grafana config"}
+{"level":"info","ts":1588020028.111043,"logger":"action-runner","msg":"(    4)    SUCCESS create grafanadatasource config"}
+{"level":"info","ts":1588020028.1111002,"logger":"action-runner","msg":"(    5)    SUCCESS plugins unchanged"}
+{"level":"info","ts":1588020028.128994,"logger":"action-runner","msg":"(    6)    SUCCESS create grafana deployment"}
+{"level":"info","ts":1588020028.1290264,"logger":"action-runner","msg":"(    7)     FAILED check deployment readiness"}
+{"level":"info","ts":1588020028.171029,"logger":"action-runner","msg":"(    0)    SUCCESS update admin credentials secret"}
+{"level":"info","ts":1588020028.1872098,"logger":"action-runner","msg":"(    1)    SUCCESS update grafana service"}
+{"level":"info","ts":1588020028.1900094,"logger":"action-runner","msg":"(    2)    SUCCESS update grafana service account"}
+{"level":"info","ts":1588020028.1954536,"logger":"action-runner","msg":"(    3)    SUCCESS update grafana config"}
+{"level":"info","ts":1588020028.1954892,"logger":"action-runner","msg":"(    4)    SUCCESS plugins unchanged"}
+{"level":"info","ts":1588020028.2040117,"logger":"action-runner","msg":"(    5)    SUCCESS update grafana deployment"}
+{"level":"info","ts":1588020028.2040534,"logger":"action-runner","msg":"(    6)    SUCCESS check deployment readiness"}
+{"level":"info","ts":1588020028.2099836,"logger":"grafana-controller","msg":"desired cluster state met"}
+{"level":"info","ts":1588020028.2126267,"logger":"action-runner","msg":"(    0)    SUCCESS update admin credentials secret"}
+{"level":"info","ts":1588020028.2166743,"logger":"action-runner","msg":"(    1)    SUCCESS update grafana service"}
+{"level":"info","ts":1588020028.2203758,"logger":"action-runner","msg":"(    2)    SUCCESS update grafana service account"}
+{"level":"info","ts":1588020028.2228968,"logger":"action-runner","msg":"(    3)    SUCCESS update grafana config"}
+{"level":"info","ts":1588020028.222916,"logger":"action-runner","msg":"(    4)    SUCCESS plugins unchanged"}
+{"level":"info","ts":1588020028.2281148,"logger":"action-runner","msg":"(    5)    SUCCESS update grafana deployment"}
+{"level":"info","ts":1588020028.2281516,"logger":"action-runner","msg":"(    6)     FAILED check deployment readiness"}
+{"level":"info","ts":1588020028.2404056,"logger":"action-runner","msg":"(    0)    SUCCESS update admin credentials secret"}
+{"level":"info","ts":1588020028.2731323,"logger":"action-runner","msg":"(    1)    SUCCESS update grafana service"}
+{"level":"info","ts":1588020028.2807846,"logger":"action-runner","msg":"(    2)    SUCCESS update grafana service account"}
+{"level":"info","ts":1588020028.2828085,"logger":"action-runner","msg":"(    3)    SUCCESS update grafana config"}
+{"level":"info","ts":1588020028.2828755,"logger":"action-runner","msg":"(    4)    SUCCESS plugins unchanged"}
+{"level":"info","ts":1588020028.2852821,"logger":"action-runner","msg":"(    5)    SUCCESS update grafana deployment"}
+{"level":"info","ts":1588020028.2853103,"logger":"action-runner","msg":"(    6)     FAILED check deployment readiness"}
+{"level":"info","ts":1588020028.2931588,"logger":"action-runner","msg":"(    0)    SUCCESS update admin credentials secret"}
+{"level":"info","ts":1588020028.2972553,"logger":"action-runner","msg":"(    1)    SUCCESS update grafana service"}
+{"level":"info","ts":1588020028.2992747,"logger":"action-runner","msg":"(    2)    SUCCESS update grafana service account"}
+{"level":"info","ts":1588020028.3012495,"logger":"action-runner","msg":"(    3)    SUCCESS update grafana config"}
+{"level":"info","ts":1588020028.301271,"logger":"action-runner","msg":"(    4)    SUCCESS plugins unchanged"}
+{"level":"info","ts":1588020028.3046892,"logger":"action-runner","msg":"(    5)    SUCCESS update grafana deployment"}
+{"level":"info","ts":1588020028.3047125,"logger":"action-runner","msg":"(    6)     FAILED check deployment readiness"}
+{"level":"info","ts":1588020031.6684513,"logger":"controller_grafanadashboard","msg":"no grafana instance available"}
+{"level":"info","ts":1588020032.0666494,"logger":"controller_grafanadashboard","msg":"no grafana instance available"}
+{"level":"info","ts":1588020032.4661908,"logger":"controller_grafanadashboard","msg":"no grafana instance available"}
+{"level":"info","ts":1588020032.8679402,"logger":"controller_grafanadashboard","msg":"no grafana instance available"}
+{"level":"info","ts":1588020033.2661333,"logger":"controller_grafanadashboard","msg":"no grafana instance available"}
+{"level":"info","ts":1588020033.667296,"logger":"controller_grafanadashboard","msg":"no grafana instance available"}
+{"level":"info","ts":1588020034.0657008,"logger":"controller_grafanadashboard","msg":"no grafana instance available"}
+{"level":"info","ts":1588020034.464212,"logger":"controller_grafanadashboard","msg":"no grafana instance available"}
+{"level":"info","ts":1588020034.8685355,"logger":"controller_grafanadashboard","msg":"no grafana instance available"}
+{"level":"info","ts":1588020035.2650857,"logger":"controller_grafanadashboard","msg":"no grafana instance available"}
+{"level":"info","ts":1588020035.6719503,"logger":"controller_grafanadashboard","msg":"no grafana instance available"}
+{"level":"info","ts":1588020036.0751536,"logger":"controller_grafanadashboard","msg":"no grafana instance available"}
+{"level":"info","ts":1588020036.5186076,"logger":"controller_grafanadashboard","msg":"no grafana instance available"}
+{"level":"info","ts":1588020036.8639574,"logger":"controller_grafanadashboard","msg":"no grafana instance available"}
+{"level":"info","ts":1588020037.2618742,"logger":"controller_grafanadashboard","msg":"no grafana instance available"}
+{"level":"info","ts":1588020037.7399948,"logger":"controller_grafanadashboard","msg":"no grafana instance available"}
+{"level":"info","ts":1588020037.781516,"logger":"controller_grafanadashboard","msg":"running periodic dashboard resync"}
+{"level":"info","ts":1588020037.7815502,"logger":"controller_grafanadashboard","msg":"no grafana instance available"}
+{"level":"info","ts":1588020038.0618224,"logger":"controller_grafanadashboard","msg":"no grafana instance available"}
+{"level":"info","ts":1588020038.1692982,"logger":"action-runner","msg":"(    0)    SUCCESS update admin credentials secret"}
+{"level":"info","ts":1588020038.1723907,"logger":"action-runner","msg":"(    1)    SUCCESS update grafana service"}
+{"level":"info","ts":1588020038.1743991,"logger":"action-runner","msg":"(    2)    SUCCESS update grafana service account"}
+{"level":"info","ts":1588020038.1764364,"logger":"action-runner","msg":"(    3)    SUCCESS update grafana config"}
+{"level":"info","ts":1588020038.1764598,"logger":"action-runner","msg":"(    4)    SUCCESS plugins unchanged"}
+{"level":"info","ts":1588020038.1795864,"logger":"action-runner","msg":"(    5)    SUCCESS update grafana deployment"}
+{"level":"info","ts":1588020038.179612,"logger":"action-runner","msg":"(    6)     FAILED check deployment readiness"}
+{"level":"info","ts":1588020038.47852,"logger":"controller_grafanadashboard","msg":"no grafana instance available"}
+{"level":"info","ts":1588020038.8650157,"logger":"controller_grafanadashboard","msg":"no grafana instance available"}
+{"level":"info","ts":1588020039.2716892,"logger":"controller_grafanadashboard","msg":"no grafana instance available"}
+{"level":"info","ts":1588020039.6654334,"logger":"controller_grafanadashboard","msg":"no grafana instance available"}
+{"level":"info","ts":1588020040.0684934,"logger":"controller_grafanadashboard","msg":"no grafana instance available"}
+{"level":"info","ts":1588020040.466851,"logger":"controller_grafanadashboard","msg":"no grafana instance available"}
+{"level":"info","ts":1588020040.866882,"logger":"controller_grafanadashboard","msg":"no grafana instance available"}
+{"level":"info","ts":1588020041.2749364,"logger":"controller_grafanadashboard","msg":"no grafana instance available"}
+{"level":"info","ts":1588020041.6893275,"logger":"controller_grafanadashboard","msg":"no grafana instance available"}
+{"level":"info","ts":1588020042.0762706,"logger":"controller_grafanadashboard","msg":"no grafana instance available"}
+{"level":"info","ts":1588020042.4646912,"logger":"controller_grafanadashboard","msg":"no grafana instance available"}
+{"level":"info","ts":1588020042.865068,"logger":"controller_grafanadashboard","msg":"no grafana instance available"}
+{"level":"info","ts":1588020043.181153,"logger":"controller_grafanadatasource","msg":"running periodic datasource resync"}
+{"level":"info","ts":1588020043.1884553,"logger":"controller_grafanadatasource","msg":"datasource monitoring/prometheus successfully imported"}
+{"level":"info","ts":1588020043.192392,"logger":"action-runner","msg":"(    0)    SUCCESS update admin credentials secret"}
+{"level":"info","ts":1588020043.1955779,"logger":"action-runner","msg":"(    1)    SUCCESS update grafana service"}
+{"level":"info","ts":1588020043.1974216,"logger":"action-runner","msg":"(    2)    SUCCESS update grafana service account"}
+{"level":"info","ts":1588020043.1993315,"logger":"action-runner","msg":"(    3)    SUCCESS update grafana config"}
+{"level":"info","ts":1588020043.199349,"logger":"action-runner","msg":"(    4)    SUCCESS plugins unchanged"}
+{"level":"info","ts":1588020043.2039216,"logger":"action-runner","msg":"(    5)    SUCCESS update grafana deployment"}
+{"level":"info","ts":1588020043.2039955,"logger":"action-runner","msg":"(    6)     FAILED check deployment readiness"}
+{"level":"info","ts":1588020043.2099879,"logger":"action-runner","msg":"(    0)    SUCCESS update admin credentials secret"}
+{"level":"info","ts":1588020043.2160218,"logger":"action-runner","msg":"(    1)    SUCCESS update grafana service"}
+{"level":"info","ts":1588020043.2190156,"logger":"action-runner","msg":"(    2)    SUCCESS update grafana service account"}
+{"level":"info","ts":1588020043.2254891,"logger":"action-runner","msg":"(    3)    SUCCESS update grafana config"}
+{"level":"info","ts":1588020043.2257507,"logger":"action-runner","msg":"(    4)    SUCCESS plugins unchanged"}
+{"level":"info","ts":1588020043.2296352,"logger":"action-runner","msg":"(    5)    SUCCESS update grafana deployment"}
+{"level":"info","ts":1588020043.2296588,"logger":"action-runner","msg":"(    6)     FAILED check deployment readiness"}
+{"level":"info","ts":1588020043.2488854,"logger":"action-runner","msg":"(    0)    SUCCESS update admin credentials secret"}
+{"level":"info","ts":1588020043.2664828,"logger":"controller_grafanadashboard","msg":"no grafana instance available"}
+{"level":"info","ts":1588020043.266814,"logger":"action-runner","msg":"(    1)    SUCCESS update grafana service"}
+{"level":"info","ts":1588020043.2776456,"logger":"action-runner","msg":"(    2)    SUCCESS update grafana service account"}
+{"level":"info","ts":1588020043.2803211,"logger":"action-runner","msg":"(    3)    SUCCESS update grafana config"}
+{"level":"info","ts":1588020043.2803464,"logger":"action-runner","msg":"(    4)    SUCCESS plugins unchanged"}
+{"level":"info","ts":1588020043.2829807,"logger":"action-runner","msg":"(    5)    SUCCESS update grafana deployment"}
+{"level":"info","ts":1588020043.2830052,"logger":"action-runner","msg":"(    6)     FAILED check deployment readiness"}
+{"level":"info","ts":1588020043.2909443,"logger":"action-runner","msg":"(    0)    SUCCESS update admin credentials secret"}
+{"level":"info","ts":1588020043.2938223,"logger":"action-runner","msg":"(    1)    SUCCESS update grafana service"}
+{"level":"info","ts":1588020043.2956166,"logger":"action-runner","msg":"(    2)    SUCCESS update grafana service account"}
+{"level":"info","ts":1588020043.297259,"logger":"action-runner","msg":"(    3)    SUCCESS update grafana config"}
+{"level":"info","ts":1588020043.2972772,"logger":"action-runner","msg":"(    4)    SUCCESS plugins unchanged"}
+{"level":"info","ts":1588020043.3000085,"logger":"action-runner","msg":"(    5)    SUCCESS update grafana deployment"}
+{"level":"info","ts":1588020043.300026,"logger":"action-runner","msg":"(    6)     FAILED check deployment readiness"}
+{"level":"info","ts":1588020043.6679947,"logger":"controller_grafanadashboard","msg":"no grafana instance available"}
+{"level":"info","ts":1588020044.0805876,"logger":"controller_grafanadashboard","msg":"no grafana instance available"}
+{"level":"info","ts":1588020047.7814898,"logger":"controller_grafanadashboard","msg":"running periodic dashboard resync"}
+{"level":"info","ts":1588020047.78152,"logger":"controller_grafanadashboard","msg":"no grafana instance available"}
+{"level":"info","ts":1588020048.2042701,"logger":"action-runner","msg":"(    0)    SUCCESS update admin credentials secret"}
+{"level":"info","ts":1588020048.2076297,"logger":"action-runner","msg":"(    1)    SUCCESS update grafana service"}
+{"level":"info","ts":1588020048.2099757,"logger":"action-runner","msg":"(    2)    SUCCESS update grafana service account"}
+{"level":"info","ts":1588020048.212058,"logger":"action-runner","msg":"(    3)    SUCCESS update grafana config"}
+{"level":"info","ts":1588020048.212081,"logger":"action-runner","msg":"(    4)    SUCCESS plugins unchanged"}
+{"level":"info","ts":1588020048.215414,"logger":"action-runner","msg":"(    5)    SUCCESS update grafana deployment"}
+{"level":"info","ts":1588020048.2154374,"logger":"action-runner","msg":"(    6)     FAILED check deployment readiness"}
+{"level":"info","ts":1588020057.7815094,"logger":"controller_grafanadashboard","msg":"running periodic dashboard resync"}
+{"level":"info","ts":1588020057.781603,"logger":"controller_grafanadashboard","msg":"no grafana instance available"}
+{"level":"info","ts":1588020058.221639,"logger":"action-runner","msg":"(    0)    SUCCESS update admin credentials secret"}
+{"level":"info","ts":1588020058.2263849,"logger":"action-runner","msg":"(    1)    SUCCESS update grafana service"}
+{"level":"info","ts":1588020058.2287495,"logger":"action-runner","msg":"(    2)    SUCCESS update grafana service account"}
+{"level":"info","ts":1588020058.2310882,"logger":"action-runner","msg":"(    3)    SUCCESS update grafana config"}
+{"level":"info","ts":1588020058.2311165,"logger":"action-runner","msg":"(    4)    SUCCESS plugins unchanged"}
+{"level":"info","ts":1588020058.2344353,"logger":"action-runner","msg":"(    5)    SUCCESS update grafana deployment"}
+{"level":"info","ts":1588020058.2344654,"logger":"action-runner","msg":"(    6)     FAILED check deployment readiness"}
+{"level":"info","ts":1588020063.181148,"logger":"controller_grafanadatasource","msg":"running periodic datasource resync"}
+{"level":"info","ts":1588020067.7818685,"logger":"controller_grafanadashboard","msg":"running periodic dashboard resync"}
+{"level":"info","ts":1588020067.7819014,"logger":"controller_grafanadashboard","msg":"no grafana instance available"}
+{"level":"info","ts":1588020068.1114304,"logger":"action-runner","msg":"(    0)    SUCCESS update admin credentials secret"}
+{"level":"info","ts":1588020068.1141047,"logger":"action-runner","msg":"(    1)    SUCCESS update grafana service"}
+{"level":"info","ts":1588020068.1186996,"logger":"action-runner","msg":"(    2)    SUCCESS update grafana service account"}
+{"level":"info","ts":1588020068.1240003,"logger":"action-runner","msg":"(    3)    SUCCESS update grafana config"}
+{"level":"info","ts":1588020068.1240323,"logger":"action-runner","msg":"(    4)    SUCCESS plugins unchanged"}
+{"level":"info","ts":1588020068.1275167,"logger":"action-runner","msg":"(    5)    SUCCESS update grafana deployment"}
+{"level":"info","ts":1588020068.127545,"logger":"action-runner","msg":"(    6)    SUCCESS check deployment readiness"}
+{"level":"info","ts":1588020068.1308405,"logger":"grafana-controller","msg":"desired cluster state met"}
+{"level":"info","ts":1588020068.1334028,"logger":"action-runner","msg":"(    0)    SUCCESS update admin credentials secret"}
+{"level":"info","ts":1588020068.1364908,"logger":"action-runner","msg":"(    1)    SUCCESS update grafana service"}
+{"level":"info","ts":1588020068.1385462,"logger":"action-runner","msg":"(    2)    SUCCESS update grafana service account"}
+{"level":"info","ts":1588020068.1406257,"logger":"action-runner","msg":"(    3)    SUCCESS update grafana config"}
+{"level":"info","ts":1588020068.1406512,"logger":"action-runner","msg":"(    4)    SUCCESS plugins unchanged"}
+{"level":"info","ts":1588020068.1439695,"logger":"action-runner","msg":"(    5)    SUCCESS update grafana deployment"}
+{"level":"info","ts":1588020068.143991,"logger":"action-runner","msg":"(    6)    SUCCESS check deployment readiness"}
+{"level":"info","ts":1588020068.146696,"logger":"grafana-controller","msg":"desired cluster state met"}
+{"level":"info","ts":1588020068.240541,"logger":"action-runner","msg":"(    0)    SUCCESS update admin credentials secret"}
+{"level":"info","ts":1588020068.244032,"logger":"action-runner","msg":"(    1)    SUCCESS update grafana service"}
+{"level":"info","ts":1588020068.2461307,"logger":"action-runner","msg":"(    2)    SUCCESS update grafana service account"}
+{"level":"info","ts":1588020068.248251,"logger":"action-runner","msg":"(    3)    SUCCESS update grafana config"}
+{"level":"info","ts":1588020068.248277,"logger":"action-runner","msg":"(    4)    SUCCESS plugins unchanged"}
+{"level":"info","ts":1588020068.2513578,"logger":"action-runner","msg":"(    5)    SUCCESS update grafana deployment"}
+{"level":"info","ts":1588020068.2513814,"logger":"action-runner","msg":"(    6)    SUCCESS check deployment readiness"}
+{"level":"info","ts":1588020068.2542043,"logger":"grafana-controller","msg":"desired cluster state met"}
+{"level":"info","ts":1588020077.7815125,"logger":"controller_grafanadashboard","msg":"running periodic dashboard resync"}
+{"level":"info","ts":1588020077.8824596,"logger":"controller_grafanadashboard","msg":"dashboard monitoring/elasticsearch.json successfully submitted"}
+{"level":"info","ts":1588020078.043829,"logger":"controller_grafanadashboard","msg":"dashboard monitoring/kubernetes-cluster-rev2.json successfully submitted"}
+{"level":"info","ts":1588020078.0579975,"logger":"controller_grafanadashboard","msg":"dashboard monitoring/grafana-dashboard-k8s-resources-cluster.json successfully submitted"}
+{"level":"info","ts":1588020078.1549263,"logger":"controller_grafanadashboard","msg":"dashboard monitoring/namespaces.json.raw successfully submitted"}
+{"level":"info","ts":1588020078.1695824,"logger":"controller_grafanadashboard","msg":"dashboard monitoring/dashboard-with-plugins successfully submitted"}
+{"level":"info","ts":1588020078.2742188,"logger":"grafana-controller","msg":"installing plugin grafana-piechart-panel@1.3.9"}
+{"level":"info","ts":1588020078.274254,"logger":"grafana-controller","msg":"installing plugin grafana-clock-panel@1.0.2"}
+{"level":"info","ts":1588020078.2742586,"logger":"grafana-controller","msg":"installing plugin grafana-polystat-panel@1.0.16"}
+{"level":"info","ts":1588020078.274262,"logger":"grafana-controller","msg":"installing plugin kubernetes-app@1.0.1"}
+{"level":"info","ts":1588020078.2742655,"logger":"grafana-controller","msg":"installing plugin elasticsearch@5.0.0"}
+{"level":"info","ts":1588020078.340882,"logger":"grafana-controller","msg":"installing plugin: grafana-piechart-panel@1.3.9"}
+{"level":"info","ts":1588020078.3494496,"logger":"controller_grafanadashboard","msg":"dashboard monitoring/grafana-dashboard-cluster-total.json successfully submitted"}
+{"level":"info","ts":1588020078.3629723,"logger":"controller_grafanadashboard","msg":"dashboard monitoring/grafana-dashboard-controller-manager.json successfully submitted"}
+{"level":"info","ts":1588020078.3975337,"logger":"grafana-controller","msg":"installing plugin: grafana-clock-panel@1.0.2"}
+{"level":"info","ts":1588020078.4544785,"logger":"controller_grafanadashboard","msg":"dashboard monitoring/grafana-dashboard-statefulset.json successfully submitted"}
+{"level":"info","ts":1588020078.457076,"logger":"grafana-controller","msg":"installing plugin: grafana-polystat-panel@1.0.16"}
+{"level":"info","ts":1588020078.4627697,"logger":"controller_grafanadashboard","msg":"dashboard monitoring/grafana-dashboard-persistentvolumesusage.json successfully submitted"}
+{"level":"info","ts":1588020078.5258346,"logger":"grafana-controller","msg":"invalid plugin: kubernetes-app@1.0.1"}
+{"level":"info","ts":1588020078.5671039,"logger":"controller_grafanadashboard","msg":"dashboard monitoring/grafana-dashboard-k8s-resources-namespace.json successfully submitted"}
+{"level":"info","ts":1588020078.575077,"logger":"controller_grafanadashboard","msg":"dashboard monitoring/grafana-dashboard-node-rsrc-use.json successfully submitted"}
+{"level":"info","ts":1588020078.5792034,"logger":"grafana-controller","msg":"installing plugin: elasticsearch@5.0.0"}
+{"level":"info","ts":1588020078.5873744,"logger":"action-runner","msg":"(    0)    SUCCESS update admin credentials secret"}
+{"level":"info","ts":1588020078.590303,"logger":"action-runner","msg":"(    1)    SUCCESS update grafana service"}
+{"level":"info","ts":1588020078.592207,"logger":"action-runner","msg":"(    2)    SUCCESS update grafana service account"}
+{"level":"info","ts":1588020078.5939784,"logger":"action-runner","msg":"(    3)    SUCCESS update grafana config"}
+{"level":"info","ts":1588020078.5939944,"logger":"action-runner","msg":"(    4)    SUCCESS plugins updated to grafana-piechart-panel:1.3.9,grafana-clock-panel:1.0.2,grafana-polystat-panel:1.0.16,elasticsearch:5.0.0"}
+{"level":"info","ts":1588020078.5971305,"logger":"action-runner","msg":"(    5)    SUCCESS update grafana deployment"}
+{"level":"info","ts":1588020078.5971506,"logger":"action-runner","msg":"(    6)    SUCCESS check deployment readiness"}
+{"level":"info","ts":1588020078.6016881,"logger":"grafana-controller","msg":"desired cluster state met"}
+{"level":"info","ts":1588020078.6047814,"logger":"action-runner","msg":"(    0)    SUCCESS update admin credentials secret"}
+{"level":"info","ts":1588020078.613244,"logger":"action-runner","msg":"(    1)    SUCCESS update grafana service"}
+{"level":"info","ts":1588020078.623266,"logger":"action-runner","msg":"(    2)    SUCCESS update grafana service account"}
+{"level":"info","ts":1588020078.6550303,"logger":"action-runner","msg":"(    3)    SUCCESS update grafana config"}
+{"level":"info","ts":1588020078.6550615,"logger":"action-runner","msg":"(    4)    SUCCESS plugins unchanged"}
+{"level":"info","ts":1588020078.665837,"logger":"action-runner","msg":"(    5)    SUCCESS update grafana deployment"}
+{"level":"info","ts":1588020078.665866,"logger":"action-runner","msg":"(    6)    SUCCESS check deployment readiness"}
+{"level":"info","ts":1588020078.673735,"logger":"grafana-controller","msg":"desired cluster state met"}
+{"level":"info","ts":1588020078.6763766,"logger":"action-runner","msg":"(    0)    SUCCESS update admin credentials secret"}
+{"level":"info","ts":1588020078.6792202,"logger":"action-runner","msg":"(    1)    SUCCESS update grafana service"}
+{"level":"info","ts":1588020078.681123,"logger":"action-runner","msg":"(    2)    SUCCESS update grafana service account"}
+{"level":"info","ts":1588020078.6830435,"logger":"action-runner","msg":"(    3)    SUCCESS update grafana config"}
+{"level":"info","ts":1588020078.683074,"logger":"action-runner","msg":"(    4)    SUCCESS plugins unchanged"}
+{"level":"info","ts":1588020078.6858687,"logger":"action-runner","msg":"(    5)    SUCCESS update grafana deployment"}
+{"level":"info","ts":1588020078.6858947,"logger":"action-runner","msg":"(    6)     FAILED check deployment readiness"}
+{"level":"info","ts":1588020078.6914904,"logger":"action-runner","msg":"(    0)    SUCCESS update admin credentials secret"}
+{"level":"info","ts":1588020078.69408,"logger":"action-runner","msg":"(    1)    SUCCESS update grafana service"}
+{"level":"info","ts":1588020078.6959348,"logger":"action-runner","msg":"(    2)    SUCCESS update grafana service account"}
+{"level":"info","ts":1588020078.6976652,"logger":"action-runner","msg":"(    3)    SUCCESS update grafana config"}
+{"level":"info","ts":1588020078.6976826,"logger":"action-runner","msg":"(    4)    SUCCESS plugins unchanged"}
+{"level":"info","ts":1588020078.6992536,"logger":"controller_grafanadashboard","msg":"cannot submit dashboard monitoring/grafana-dashboard-k8s-resources-node.json"}
+{"level":"info","ts":1588020078.6993608,"logger":"controller_grafanadashboard","msg":"cannot submit dashboard monitoring/dashboard-with-plugins"}
+{"level":"info","ts":1588020078.7020571,"logger":"action-runner","msg":"(    5)    SUCCESS update grafana deployment"}
+{"level":"info","ts":1588020078.7020745,"logger":"action-runner","msg":"(    6)     FAILED check deployment readiness"}
+{"level":"info","ts":1588020078.703881,"logger":"controller_grafanadashboard","msg":"dashboard monitoring/grafana-dashboard-controller-manager.json found but selectors do not match"}
+{"level":"info","ts":1588020078.7038982,"logger":"controller_grafanadashboard","msg":"dashboard monitoring/grafana-dashboard-persistentvolumesusage.json found but selectors do not match"}
+{"level":"info","ts":1588020078.7039025,"logger":"controller_grafanadashboard","msg":"dashboard monitoring/grafana-dashboard-node-rsrc-use.json found but selectors do not match"}
+{"level":"info","ts":1588020078.7039065,"logger":"controller_grafanadashboard","msg":"dashboard monitoring/grafana-dashboard-k8s-resources-cluster.json found but selectors do not match"}
+{"level":"info","ts":1588020078.7039106,"logger":"controller_grafanadashboard","msg":"dashboard monitoring/grafana-dashboard-proxy.json found but selectors do not match"}
+{"level":"info","ts":1588020078.7039142,"logger":"controller_grafanadashboard","msg":"dashboard monitoring/grafana-dashboard-apiserver.json found but selectors do not match"}
+{"level":"info","ts":1588020078.7039354,"logger":"controller_grafanadashboard","msg":"dashboard monitoring/grafana-dashboard-kubelet.json found but selectors do not match"}
+{"level":"info","ts":1588020078.70394,"logger":"controller_grafanadashboard","msg":"dashboard monitoring/docker.json.raw found but selectors do not match"}
+{"level":"info","ts":1588020078.7039435,"logger":"controller_grafanadashboard","msg":"dashboard monitoring/grafana-dashboard-k8s-resources-node.json found but selectors do not match"}
+{"level":"info","ts":1588020078.703947,"logger":"controller_grafanadashboard","msg":"dashboard monitoring/grafana-dashboard-workload-total.json found but selectors do not match"}
+{"level":"info","ts":1588020078.703952,"logger":"controller_grafanadashboard","msg":"dashboard monitoring/grafana-dashboard-k8s-resources-workloads-namespace.json found but selectors do not match"}
+{"level":"info","ts":1588020078.703957,"logger":"controller_grafanadashboard","msg":"dashboard monitoring/cluster-dash.json.raw found but selectors do not match"}
+{"level":"info","ts":1588020078.7039607,"logger":"controller_grafanadashboard","msg":"dashboard monitoring/grafana-dashboard-pods.json found but selectors do not match"}
+{"level":"info","ts":1588020078.7039645,"logger":"controller_grafanadashboard","msg":"dashboard monitoring/grafana-dashboard-k8s-resources-pod.json found but selectors do not match"}
+{"level":"info","ts":1588020078.7039683,"logger":"controller_grafanadashboard","msg":"dashboard monitoring/grafana-dashboard-nodes.json found but selectors do not match"}
+{"level":"info","ts":1588020078.7039723,"logger":"controller_grafanadashboard","msg":"dashboard monitoring/grafana-dashboard-prometheus.json found but selectors do not match"}
+{"level":"info","ts":1588020078.7039764,"logger":"controller_grafanadashboard","msg":"dashboard monitoring/alerts.json.raw found but selectors do not match"}
+{"level":"info","ts":1588020078.70398,"logger":"controller_grafanadashboard","msg":"dashboard monitoring/nginx-ingress-controller-rev1.json.raw found but selectors do not match"}
+{"level":"info","ts":1588020078.703984,"logger":"controller_grafanadashboard","msg":"dashboard monitoring/grafana-dashboard-k8s-resources-workload.json found but selectors do not match"}
+{"level":"info","ts":1588020078.7039888,"logger":"controller_grafanadashboard","msg":"dashboard monitoring/grafana-dashboard-pod-total.json found but selectors do not match"}
+{"level":"info","ts":1588020078.7039926,"logger":"controller_grafanadashboard","msg":"dashboard monitoring/grafana-dashboard-scheduler.json found but selectors do not match"}
+{"level":"info","ts":1588020078.7039967,"logger":"controller_grafanadashboard","msg":"dashboard monitoring/grafana-dashboard-node-cluster-rsrc-use.json found but selectors do not match"}
+{"level":"info","ts":1588020078.7040007,"logger":"controller_grafanadashboard","msg":"dashboard monitoring/etcd.json found but selectors do not match"}
+{"level":"info","ts":1588020078.7040303,"logger":"controller_grafanadashboard","msg":"dashboard monitoring/grafana-dashboard-namespace-by-pod.json found but selectors do not match"}
+{"level":"info","ts":1588020078.704035,"logger":"controller_grafanadashboard","msg":"dashboard monitoring/grafana-dashboard-namespace-by-workload.json found but selectors do not match"}
+{"level":"info","ts":1588020078.7040389,"logger":"controller_grafanadashboard","msg":"dashboard monitoring/coredns.json.raw found but selectors do not match"}
+{"level":"info","ts":1588020078.7115884,"logger":"controller_grafanadashboard","msg":"dashboard monitoring/grafana-dashboard-proxy.json found but selectors do not match"}
+{"level":"info","ts":1588020078.7116156,"logger":"controller_grafanadashboard","msg":"dashboard monitoring/grafana-dashboard-apiserver.json found but selectors do not match"}
+{"level":"info","ts":1588020078.71162,"logger":"controller_grafanadashboard","msg":"dashboard monitoring/grafana-dashboard-kubelet.json found but selectors do not match"}
+{"level":"info","ts":1588020078.7116241,"logger":"controller_grafanadashboard","msg":"dashboard monitoring/docker.json.raw found but selectors do not match"}
+{"level":"info","ts":1588020078.711628,"logger":"controller_grafanadashboard","msg":"dashboard monitoring/grafana-dashboard-workload-total.json found but selectors do not match"}
+{"level":"info","ts":1588020078.711632,"logger":"controller_grafanadashboard","msg":"dashboard monitoring/grafana-dashboard-k8s-resources-workloads-namespace.json found but selectors do not match"}
+{"level":"info","ts":1588020078.7116363,"logger":"controller_grafanadashboard","msg":"dashboard monitoring/grafana-dashboard-prometheus.json found but selectors do not match"}
+{"level":"info","ts":1588020078.7116408,"logger":"controller_grafanadashboard","msg":"dashboard monitoring/alerts.json.raw found but selectors do not match"}
+{"level":"info","ts":1588020078.7116446,"logger":"controller_grafanadashboard","msg":"dashboard monitoring/cluster-dash.json.raw found but selectors do not match"}
+{"level":"info","ts":1588020078.711649,"logger":"controller_grafanadashboard","msg":"dashboard monitoring/grafana-dashboard-pods.json found but selectors do not match"}
+{"level":"info","ts":1588020078.7116525,"logger":"controller_grafanadashboard","msg":"dashboard monitoring/grafana-dashboard-k8s-resources-pod.json found but selectors do not match"}
+{"level":"info","ts":1588020078.7116568,"logger":"controller_grafanadashboard","msg":"dashboard monitoring/grafana-dashboard-nodes.json found but selectors do not match"}
+{"level":"info","ts":1588020078.7116606,"logger":"controller_grafanadashboard","msg":"dashboard monitoring/nginx-ingress-controller-rev1.json.raw found but selectors do not match"}
+{"level":"info","ts":1588020078.7116644,"logger":"controller_grafanadashboard","msg":"dashboard monitoring/grafana-dashboard-k8s-resources-workload.json found but selectors do not match"}
+{"level":"info","ts":1588020078.7116683,"logger":"controller_grafanadashboard","msg":"dashboard monitoring/grafana-dashboard-pod-total.json found but selectors do not match"}
+{"level":"info","ts":1588020078.7116716,"logger":"controller_grafanadashboard","msg":"dashboard monitoring/grafana-dashboard-namespace-by-workload.json found but selectors do not match"}
+{"level":"info","ts":1588020078.7116752,"logger":"controller_grafanadashboard","msg":"dashboard monitoring/coredns.json.raw found but selectors do not match"}
+{"level":"info","ts":1588020078.7116787,"logger":"controller_grafanadashboard","msg":"dashboard monitoring/grafana-dashboard-scheduler.json found but selectors do not match"}
+{"level":"info","ts":1588020078.7116826,"logger":"controller_grafanadashboard","msg":"dashboard monitoring/grafana-dashboard-node-cluster-rsrc-use.json found but selectors do not match"}
+{"level":"info","ts":1588020078.7116864,"logger":"controller_grafanadashboard","msg":"dashboard monitoring/etcd.json found but selectors do not match"}
+{"level":"info","ts":1588020078.7116895,"logger":"controller_grafanadashboard","msg":"dashboard monitoring/grafana-dashboard-namespace-by-pod.json found but selectors do not match"}
+{"level":"info","ts":1588020078.711693,"logger":"controller_grafanadashboard","msg":"dashboard monitoring/elasticsearch.json found but selectors do not match"}
+{"level":"info","ts":1588020078.711704,"logger":"controller_grafanadashboard","msg":"dashboard monitoring/kubernetes-cluster-rev2.json found but selectors do not match"}
+{"level":"info","ts":1588020078.7117078,"logger":"controller_grafanadashboard","msg":"dashboard monitoring/namespaces.json.raw found but selectors do not match"}
+{"level":"info","ts":1588020078.7117114,"logger":"controller_grafanadashboard","msg":"dashboard monitoring/grafana-dashboard-cluster-total.json found but selectors do not match"}
+{"level":"info","ts":1588020078.7117157,"logger":"controller_grafanadashboard","msg":"dashboard monitoring/grafana-dashboard-statefulset.json found but selectors do not match"}
+{"level":"info","ts":1588020078.7117198,"logger":"controller_grafanadashboard","msg":"dashboard monitoring/grafana-dashboard-k8s-resources-namespace.json found but selectors do not match"}
+{"level":"info","ts":1588020078.711743,"logger":"controller_grafanadashboard","msg":"no grafana instance available"}
+{"level":"info","ts":1588020078.7117512,"logger":"controller_grafanadashboard","msg":"no grafana instance available"}
+{"level":"info","ts":1588020078.7117589,"logger":"controller_grafanadashboard","msg":"no grafana instance available"}
+{"level":"info","ts":1588020078.711765,"logger":"controller_grafanadashboard","msg":"no grafana instance available"}
+{"level":"info","ts":1588020078.7117712,"logger":"controller_grafanadashboard","msg":"no grafana instance available"}
+{"level":"info","ts":1588020078.711779,"logger":"controller_grafanadashboard","msg":"no grafana instance available"}
+{"level":"info","ts":1588020078.7117858,"logger":"controller_grafanadashboard","msg":"no grafana instance available"}
+{"level":"info","ts":1588020078.7117922,"logger":"controller_grafanadashboard","msg":"no grafana instance available"}
+{"level":"info","ts":1588020078.7117984,"logger":"controller_grafanadashboard","msg":"no grafana instance available"}
+{"level":"info","ts":1588020078.711805,"logger":"controller_grafanadashboard","msg":"no grafana instance available"}
+{"level":"info","ts":1588020078.7118118,"logger":"controller_grafanadashboard","msg":"no grafana instance available"}
+{"level":"info","ts":1588020083.1811314,"logger":"controller_grafanadatasource","msg":"running periodic datasource resync"}
+{"level":"info","ts":1588020087.7814996,"logger":"controller_grafanadashboard","msg":"running periodic dashboard resync"}
+{"level":"info","ts":1588020087.7815433,"logger":"controller_grafanadashboard","msg":"no grafana instance available"}
+{"level":"info","ts":1588020088.6048062,"logger":"action-runner","msg":"(    0)    SUCCESS update admin credentials secret"}
+{"level":"info","ts":1588020088.6088254,"logger":"action-runner","msg":"(    1)    SUCCESS update grafana service"}
+{"level":"info","ts":1588020088.6106687,"logger":"action-runner","msg":"(    2)    SUCCESS update grafana service account"}
+{"level":"info","ts":1588020088.6124036,"logger":"action-runner","msg":"(    3)    SUCCESS update grafana config"}
+{"level":"info","ts":1588020088.6124227,"logger":"action-runner","msg":"(    4)    SUCCESS plugins unchanged"}
+{"level":"info","ts":1588020088.6149983,"logger":"action-runner","msg":"(    5)    SUCCESS update grafana deployment"}
+{"level":"info","ts":1588020088.6150174,"logger":"action-runner","msg":"(    6)     FAILED check deployment readiness"}
+{"level":"info","ts":1588020097.7815092,"logger":"controller_grafanadashboard","msg":"running periodic dashboard resync"}
+{"level":"info","ts":1588020097.781537,"logger":"controller_grafanadashboard","msg":"no grafana instance available"}
+{"level":"info","ts":1588020098.62039,"logger":"action-runner","msg":"(    0)    SUCCESS update admin credentials secret"}
+{"level":"info","ts":1588020098.6232083,"logger":"action-runner","msg":"(    1)    SUCCESS update grafana service"}
+{"level":"info","ts":1588020098.625096,"logger":"action-runner","msg":"(    2)    SUCCESS update grafana service account"}
+{"level":"info","ts":1588020098.6267118,"logger":"action-runner","msg":"(    3)    SUCCESS update grafana config"}
+{"level":"info","ts":1588020098.6267729,"logger":"action-runner","msg":"(    4)    SUCCESS plugins unchanged"}
+{"level":"info","ts":1588020098.6294024,"logger":"action-runner","msg":"(    5)    SUCCESS update grafana deployment"}
+{"level":"info","ts":1588020098.6294196,"logger":"action-runner","msg":"(    6)     FAILED check deployment readiness"}
+{"level":"info","ts":1588020100.6440833,"logger":"action-runner","msg":"(    0)    SUCCESS update admin credentials secret"}
+{"level":"info","ts":1588020100.6473715,"logger":"action-runner","msg":"(    1)    SUCCESS update grafana service"}
+{"level":"info","ts":1588020100.6495197,"logger":"action-runner","msg":"(    2)    SUCCESS update grafana service account"}
+{"level":"info","ts":1588020100.651653,"logger":"action-runner","msg":"(    3)    SUCCESS update grafana config"}
+{"level":"info","ts":1588020100.6516767,"logger":"action-runner","msg":"(    4)    SUCCESS plugins unchanged"}
+{"level":"info","ts":1588020100.654948,"logger":"action-runner","msg":"(    5)    SUCCESS update grafana deployment"}
+{"level":"info","ts":1588020100.654976,"logger":"action-runner","msg":"(    6)    SUCCESS check deployment readiness"}
+{"level":"info","ts":1588020100.6582277,"logger":"grafana-controller","msg":"desired cluster state met"}
+{"level":"info","ts":1588020100.6603408,"logger":"action-runner","msg":"(    0)    SUCCESS update admin credentials secret"}
+{"level":"info","ts":1588020100.6629832,"logger":"action-runner","msg":"(    1)    SUCCESS update grafana service"}
+{"level":"info","ts":1588020100.6646314,"logger":"action-runner","msg":"(    2)    SUCCESS update grafana service account"}
+{"level":"info","ts":1588020100.6664386,"logger":"action-runner","msg":"(    3)    SUCCESS update grafana config"}
+{"level":"info","ts":1588020100.6664612,"logger":"action-runner","msg":"(    4)    SUCCESS plugins unchanged"}
+{"level":"info","ts":1588020100.6691535,"logger":"action-runner","msg":"(    5)    SUCCESS update grafana deployment"}
+{"level":"info","ts":1588020100.6691704,"logger":"action-runner","msg":"(    6)    SUCCESS check deployment readiness"}
+{"level":"info","ts":1588020100.6716933,"logger":"grafana-controller","msg":"desired cluster state met"}
+{"level":"info","ts":1588020103.1813872,"logger":"controller_grafanadatasource","msg":"running periodic datasource resync"}
+{"level":"info","ts":1588020107.7815168,"logger":"controller_grafanadashboard","msg":"running periodic dashboard resync"}
+{"level":"info","ts":1588020107.8552432,"logger":"controller_grafanadashboard","msg":"dashboard monitoring/grafana-dashboard-workload-total.json successfully submitted"}
+{"level":"info","ts":1588020107.9488573,"logger":"controller_grafanadashboard","msg":"dashboard monitoring/grafana-dashboard-k8s-resources-workloads-namespace.json successfully submitted"}
+{"level":"info","ts":1588020107.9614968,"logger":"controller_grafanadashboard","msg":"dashboard monitoring/elasticsearch.json successfully submitted"}
+{"level":"info","ts":1588020108.0593123,"logger":"controller_grafanadashboard","msg":"dashboard monitoring/grafana-dashboard-nodes.json successfully submitted"}
+{"level":"info","ts":1588020108.1493711,"logger":"controller_grafanadashboard","msg":"dashboard monitoring/kubernetes-cluster-rev2.json successfully submitted"}
+{"level":"info","ts":1588020108.1664557,"logger":"controller_grafanadashboard","msg":"dashboard monitoring/grafana-dashboard-prometheus.json successfully submitted"}
+{"level":"info","ts":1588020108.2525356,"logger":"controller_grafanadashboard","msg":"dashboard monitoring/namespaces.json.raw successfully submitted"}
+{"level":"info","ts":1588020108.2707622,"logger":"controller_grafanadashboard","msg":"dashboard monitoring/alerts.json.raw successfully submitted"}
+{"level":"info","ts":1588020108.3678062,"logger":"controller_grafanadashboard","msg":"dashboard monitoring/grafana-dashboard-cluster-total.json successfully submitted"}
+{"level":"info","ts":1588020108.4526775,"logger":"controller_grafanadashboard","msg":"dashboard monitoring/cluster-dash.json.raw successfully submitted"}
+{"level":"info","ts":1588020108.4729137,"logger":"controller_grafanadashboard","msg":"dashboard monitoring/grafana-dashboard-statefulset.json successfully submitted"}
+{"level":"info","ts":1588020108.5634148,"logger":"controller_grafanadashboard","msg":"dashboard monitoring/grafana-dashboard-pods.json successfully submitted"}
+{"level":"info","ts":1588020108.5769486,"logger":"controller_grafanadashboard","msg":"dashboard monitoring/grafana-dashboard-k8s-resources-namespace.json successfully submitted"}
+{"level":"info","ts":1588020108.634976,"logger":"action-runner","msg":"(    0)    SUCCESS update admin credentials secret"}
+{"level":"info","ts":1588020108.6378114,"logger":"action-runner","msg":"(    1)    SUCCESS update grafana service"}
+{"level":"info","ts":1588020108.639698,"logger":"action-runner","msg":"(    2)    SUCCESS update grafana service account"}
+{"level":"info","ts":1588020108.641464,"logger":"action-runner","msg":"(    3)    SUCCESS update grafana config"}
+{"level":"info","ts":1588020108.6414824,"logger":"action-runner","msg":"(    4)    SUCCESS plugins unchanged"}
+{"level":"info","ts":1588020108.6444666,"logger":"action-runner","msg":"(    5)    SUCCESS update grafana deployment"}
+{"level":"info","ts":1588020108.6444914,"logger":"action-runner","msg":"(    6)    SUCCESS check deployment readiness"}
+{"level":"info","ts":1588020108.6489282,"logger":"grafana-controller","msg":"desired cluster state met"}
+{"level":"info","ts":1588020108.6512678,"logger":"action-runner","msg":"(    0)    SUCCESS update admin credentials secret"}
+{"level":"info","ts":1588020108.6558483,"logger":"action-runner","msg":"(    1)    SUCCESS update grafana service"}
+{"level":"info","ts":1588020108.6575744,"logger":"action-runner","msg":"(    2)    SUCCESS update grafana service account"}
+{"level":"info","ts":1588020108.6592388,"logger":"action-runner","msg":"(    3)    SUCCESS update grafana config"}
+{"level":"info","ts":1588020108.6592588,"logger":"action-runner","msg":"(    4)    SUCCESS plugins unchanged"}
+{"level":"info","ts":1588020108.662002,"logger":"action-runner","msg":"(    5)    SUCCESS update grafana deployment"}
+{"level":"info","ts":1588020108.6620204,"logger":"action-runner","msg":"(    6)    SUCCESS check deployment readiness"}
+{"level":"info","ts":1588020108.6646924,"logger":"grafana-controller","msg":"desired cluster state met"}
+{"level":"info","ts":1588020108.7557147,"logger":"controller_grafanadashboard","msg":"dashboard monitoring/grafana-dashboard-k8s-resources-pod.json successfully submitted"}
+{"level":"info","ts":1588020108.769557,"logger":"controller_grafanadashboard","msg":"dashboard monitoring/grafana-dashboard-k8s-resources-cluster.json successfully submitted"}
+{"level":"info","ts":1588020108.8640432,"logger":"controller_grafanadashboard","msg":"dashboard monitoring/dashboard-with-plugins successfully submitted"}
+{"level":"info","ts":1588020108.875815,"logger":"controller_grafanadashboard","msg":"dashboard monitoring/nginx-ingress-controller-rev1.json.raw successfully submitted"}
+{"level":"info","ts":1588020108.9645417,"logger":"controller_grafanadashboard","msg":"dashboard monitoring/grafana-dashboard-controller-manager.json successfully submitted"}
+{"level":"info","ts":1588020109.0465786,"logger":"controller_grafanadashboard","msg":"dashboard monitoring/grafana-dashboard-k8s-resources-workload.json successfully submitted"}
+{"level":"info","ts":1588020109.071218,"logger":"controller_grafanadashboard","msg":"dashboard monitoring/grafana-dashboard-persistentvolumesusage.json successfully submitted"}
+{"level":"info","ts":1588020109.1618643,"logger":"controller_grafanadashboard","msg":"dashboard monitoring/grafana-dashboard-pod-total.json successfully submitted"}
+{"level":"info","ts":1588020109.1712408,"logger":"controller_grafanadashboard","msg":"dashboard monitoring/grafana-dashboard-node-rsrc-use.json successfully submitted"}
+{"level":"info","ts":1588020109.263412,"logger":"controller_grafanadashboard","msg":"dashboard monitoring/grafana-dashboard-namespace-by-pod.json successfully submitted"}
+{"level":"info","ts":1588020109.2738123,"logger":"controller_grafanadashboard","msg":"dashboard monitoring/grafana-dashboard-k8s-resources-node.json successfully submitted"}
+{"level":"info","ts":1588020109.4514174,"logger":"controller_grafanadashboard","msg":"dashboard monitoring/grafana-dashboard-namespace-by-workload.json successfully submitted"}
+{"level":"info","ts":1588020109.463668,"logger":"controller_grafanadashboard","msg":"dashboard monitoring/grafana-dashboard-proxy.json successfully submitted"}
+{"level":"info","ts":1588020109.5546422,"logger":"controller_grafanadashboard","msg":"dashboard monitoring/coredns.json.raw successfully submitted"}
+{"level":"info","ts":1588020109.5648875,"logger":"controller_grafanadashboard","msg":"dashboard monitoring/grafana-dashboard-apiserver.json successfully submitted"}
+{"level":"info","ts":1588020109.6527936,"logger":"controller_grafanadashboard","msg":"dashboard monitoring/grafana-dashboard-scheduler.json successfully submitted"}
+{"level":"info","ts":1588020109.67128,"logger":"controller_grafanadashboard","msg":"dashboard monitoring/grafana-dashboard-kubelet.json successfully submitted"}
+{"level":"info","ts":1588020109.7672548,"logger":"controller_grafanadashboard","msg":"dashboard monitoring/grafana-dashboard-node-cluster-rsrc-use.json successfully submitted"}
+{"level":"info","ts":1588020109.777473,"logger":"controller_grafanadashboard","msg":"dashboard monitoring/docker.json.raw successfully submitted"}
+{"level":"info","ts":1588020109.949026,"logger":"controller_grafanadashboard","msg":"dashboard monitoring/etcd.json successfully submitted"}
+{"level":"info","ts":1588020109.9637094,"logger":"controller_grafanadashboard","msg":"dashboard monitoring/grafana-dashboard-k8s-resources-workloads-namespace.json successfully submitted"}
+{"level":"info","ts":1588020110.0501144,"logger":"controller_grafanadashboard","msg":"dashboard monitoring/elasticsearch.json successfully submitted"}
+{"level":"info","ts":1588020110.075716,"logger":"controller_grafanadashboard","msg":"dashboard monitoring/grafana-dashboard-prometheus.json successfully submitted"}
+{"level":"info","ts":1588020110.2490127,"logger":"controller_grafanadashboard","msg":"dashboard monitoring/kubernetes-cluster-rev2.json successfully submitted"}
+{"level":"info","ts":1588020110.260384,"logger":"controller_grafanadashboard","msg":"dashboard monitoring/alerts.json.raw successfully submitted"}
+{"level":"info","ts":1588020110.2946396,"logger":"controller_grafanadashboard","msg":"dashboard monitoring/namespaces.json.raw successfully submitted"}
+{"level":"info","ts":1588020110.4436705,"logger":"controller_grafanadashboard","msg":"dashboard monitoring/cluster-dash.json.raw successfully submitted"}
+{"level":"info","ts":1588020110.456452,"logger":"controller_grafanadashboard","msg":"dashboard monitoring/grafana-dashboard-cluster-total.json successfully submitted"}
+{"level":"info","ts":1588020110.5528486,"logger":"controller_grafanadashboard","msg":"dashboard monitoring/grafana-dashboard-pods.json successfully submitted"}
+{"level":"info","ts":1588020110.5652654,"logger":"controller_grafanadashboard","msg":"dashboard monitoring/grafana-dashboard-statefulset.json successfully submitted"}
+{"level":"info","ts":1588020110.6614337,"logger":"controller_grafanadashboard","msg":"dashboard monitoring/grafana-dashboard-k8s-resources-pod.json successfully submitted"}
+{"level":"info","ts":1588020110.753929,"logger":"controller_grafanadashboard","msg":"dashboard monitoring/grafana-dashboard-k8s-resources-namespace.json successfully submitted"}
+{"level":"info","ts":1588020110.7748477,"logger":"controller_grafanadashboard","msg":"dashboard monitoring/grafana-dashboard-nodes.json successfully submitted"}
+{"level":"info","ts":1588020110.862952,"logger":"controller_grafanadashboard","msg":"dashboard monitoring/grafana-dashboard-node-rsrc-use.json successfully submitted"}
+{"level":"info","ts":1588020110.9542983,"logger":"controller_grafanadashboard","msg":"dashboard monitoring/nginx-ingress-controller-rev1.json.raw successfully submitted"}
+{"level":"info","ts":1588020111.0515146,"logger":"controller_grafanadashboard","msg":"dashboard monitoring/grafana-dashboard-k8s-resources-cluster.json successfully submitted"}
+{"level":"info","ts":1588020111.0782397,"logger":"controller_grafanadashboard","msg":"dashboard monitoring/grafana-dashboard-k8s-resources-workload.json successfully submitted"}
+{"level":"info","ts":1588020111.1671598,"logger":"controller_grafanadashboard","msg":"dashboard monitoring/dashboard-with-plugins successfully submitted"}
+{"level":"info","ts":1588020111.1827025,"logger":"controller_grafanadashboard","msg":"dashboard monitoring/grafana-dashboard-pod-total.json successfully submitted"}
+{"level":"info","ts":1588020111.3518095,"logger":"controller_grafanadashboard","msg":"dashboard monitoring/grafana-dashboard-controller-manager.json successfully submitted"}
+{"level":"info","ts":1588020111.3655155,"logger":"controller_grafanadashboard","msg":"dashboard monitoring/grafana-dashboard-namespace-by-workload.json successfully submitted"}
+{"level":"info","ts":1588020111.4523983,"logger":"controller_grafanadashboard","msg":"dashboard monitoring/grafana-dashboard-persistentvolumesusage.json successfully submitted"}
+{"level":"info","ts":1588020111.4674182,"logger":"controller_grafanadashboard","msg":"dashboard monitoring/coredns.json.raw successfully submitted"}
+{"level":"info","ts":1588020111.5673845,"logger":"controller_grafanadashboard","msg":"dashboard monitoring/docker.json.raw successfully submitted"}
+{"level":"info","ts":1588020111.659447,"logger":"controller_grafanadashboard","msg":"dashboard monitoring/grafana-dashboard-scheduler.json successfully submitted"}
+{"level":"info","ts":1588020111.671485,"logger":"controller_grafanadashboard","msg":"dashboard monitoring/grafana-dashboard-k8s-resources-node.json successfully submitted"}
+{"level":"info","ts":1588020111.84974,"logger":"controller_grafanadashboard","msg":"dashboard monitoring/grafana-dashboard-node-cluster-rsrc-use.json successfully submitted"}
+{"level":"info","ts":1588020111.8632822,"logger":"controller_grafanadashboard","msg":"dashboard monitoring/grafana-dashboard-proxy.json successfully submitted"}
+{"level":"info","ts":1588020111.948511,"logger":"controller_grafanadashboard","msg":"dashboard monitoring/etcd.json successfully submitted"}
+{"level":"info","ts":1588020111.963167,"logger":"controller_grafanadashboard","msg":"dashboard monitoring/grafana-dashboard-apiserver.json successfully submitted"}
+{"level":"info","ts":1588020112.0551639,"logger":"controller_grafanadashboard","msg":"dashboard monitoring/grafana-dashboard-namespace-by-pod.json successfully submitted"}
+{"level":"info","ts":1588020112.0774667,"logger":"controller_grafanadashboard","msg":"dashboard monitoring/grafana-dashboard-kubelet.json successfully submitted"}
+{"level":"info","ts":1588020117.7815452,"logger":"controller_grafanadashboard","msg":"running periodic dashboard resync"}
+{"level":"info","ts":1588020118.6521764,"logger":"action-runner","msg":"(    0)    SUCCESS update admin credentials secret"}
+{"level":"info","ts":1588020118.6567943,"logger":"action-runner","msg":"(    1)    SUCCESS update grafana service"}
+{"level":"info","ts":1588020118.6586483,"logger":"action-runner","msg":"(    2)    SUCCESS update grafana service account"}
+{"level":"info","ts":1588020118.6604972,"logger":"action-runner","msg":"(    3)    SUCCESS update grafana config"}
+{"level":"info","ts":1588020118.6605234,"logger":"action-runner","msg":"(    4)    SUCCESS plugins unchanged"}
+{"level":"info","ts":1588020118.663133,"logger":"action-runner","msg":"(    5)    SUCCESS update grafana deployment"}
+{"level":"info","ts":1588020118.6631546,"logger":"action-runner","msg":"(    6)    SUCCESS check deployment readiness"}
+{"level":"info","ts":1588020118.6673813,"logger":"grafana-controller","msg":"desired cluster state met"}
+{"level":"info","ts":1588020118.6695023,"logger":"action-runner","msg":"(    0)    SUCCESS update admin credentials secret"}
+{"level":"info","ts":1588020118.672151,"logger":"action-runner","msg":"(    1)    SUCCESS update grafana service"}
+{"level":"info","ts":1588020118.673731,"logger":"action-runner","msg":"(    2)    SUCCESS update grafana service account"}
+{"level":"info","ts":1588020118.6755838,"logger":"action-runner","msg":"(    3)    SUCCESS update grafana config"}
+{"level":"info","ts":1588020118.6756155,"logger":"action-runner","msg":"(    4)    SUCCESS plugins unchanged"}
+{"level":"info","ts":1588020118.6782367,"logger":"action-runner","msg":"(    5)    SUCCESS update grafana deployment"}
+{"level":"info","ts":1588020118.6782532,"logger":"action-runner","msg":"(    6)    SUCCESS check deployment readiness"}
+{"level":"info","ts":1588020118.6828096,"logger":"grafana-controller","msg":"desired cluster state met"}
+{"level":"info","ts":1588020123.1811247,"logger":"controller_grafanadatasource","msg":"running periodic datasource resync"}
+{"level":"info","ts":1588020127.781488,"logger":"controller_grafanadashboard","msg":"running periodic dashboard resync"}
+{"level":"info","ts":1588020128.6703804,"logger":"action-runner","msg":"(    0)    SUCCESS update admin credentials secret"}
+{"level":"info","ts":1588020128.6733568,"logger":"action-runner","msg":"(    1)    SUCCESS update grafana service"}
+{"level":"info","ts":1588020128.67528,"logger":"action-runner","msg":"(    2)    SUCCESS update grafana service account"}
+{"level":"info","ts":1588020128.6773524,"logger":"action-runner","msg":"(    3)    SUCCESS update grafana config"}
+{"level":"info","ts":1588020128.677372,"logger":"action-runner","msg":"(    4)    SUCCESS plugins unchanged"}
+{"level":"info","ts":1588020128.6800766,"logger":"action-runner","msg":"(    5)    SUCCESS update grafana deployment"}
+{"level":"info","ts":1588020128.6801093,"logger":"action-runner","msg":"(    6)    SUCCESS check deployment readiness"}
+{"level":"info","ts":1588020128.6836257,"logger":"grafana-controller","msg":"desired cluster state met"}
+{"level":"info","ts":1588020137.7815096,"logger":"controller_grafanadashboard","msg":"running periodic dashboard resync"}
+{"level":"info","ts":1588020138.687112,"logger":"action-runner","msg":"(    0)    SUCCESS update admin credentials secret"}
+{"level":"info","ts":1588020138.6898632,"logger":"action-runner","msg":"(    1)    SUCCESS update grafana service"}
+{"level":"info","ts":1588020138.6917014,"logger":"action-runner","msg":"(    2)    SUCCESS update grafana service account"}
+{"level":"info","ts":1588020138.6934264,"logger":"action-runner","msg":"(    3)    SUCCESS update grafana config"}
+{"level":"info","ts":1588020138.6934438,"logger":"action-runner","msg":"(    4)    SUCCESS plugins unchanged"}
+{"level":"info","ts":1588020138.6960063,"logger":"action-runner","msg":"(    5)    SUCCESS update grafana deployment"}
+{"level":"info","ts":1588020138.6960254,"logger":"action-runner","msg":"(    6)    SUCCESS check deployment readiness"}
+{"level":"info","ts":1588020138.69966,"logger":"grafana-controller","msg":"desired cluster state met"}
+{"level":"info","ts":1588020143.1810977,"logger":"controller_grafanadatasource","msg":"running periodic datasource resync"}
+{"level":"info","ts":1588020147.781502,"logger":"controller_grafanadashboard","msg":"running periodic dashboard resync"}
+{"level":"info","ts":1588020148.70265,"logger":"action-runner","msg":"(    0)    SUCCESS update admin credentials secret"}
+{"level":"info","ts":1588020148.7071822,"logger":"action-runner","msg":"(    1)    SUCCESS update grafana service"}
+{"level":"info","ts":1588020148.7089338,"logger":"action-runner","msg":"(    2)    SUCCESS update grafana service account"}
+{"level":"info","ts":1588020148.710675,"logger":"action-runner","msg":"(    3)    SUCCESS update grafana config"}
+{"level":"info","ts":1588020148.710693,"logger":"action-runner","msg":"(    4)    SUCCESS plugins unchanged"}
+{"level":"info","ts":1588020148.7131596,"logger":"action-runner","msg":"(    5)    SUCCESS update grafana deployment"}
+{"level":"info","ts":1588020148.7131798,"logger":"action-runner","msg":"(    6)    SUCCESS check deployment readiness"}
+{"level":"info","ts":1588020148.7166884,"logger":"grafana-controller","msg":"desired cluster state met"}
+{"level":"info","ts":1588020157.7814925,"logger":"controller_grafanadashboard","msg":"running periodic dashboard resync"}
+{"level":"info","ts":1588020158.7197561,"logger":"action-runner","msg":"(    0)    SUCCESS update admin credentials secret"}
+{"level":"info","ts":1588020158.7228148,"logger":"action-runner","msg":"(    1)    SUCCESS update grafana service"}
+{"level":"info","ts":1588020158.724687,"logger":"action-runner","msg":"(    2)    SUCCESS update grafana service account"}
+{"level":"info","ts":1588020158.7265403,"logger":"action-runner","msg":"(    3)    SUCCESS update grafana config"}
+{"level":"info","ts":1588020158.7265577,"logger":"action-runner","msg":"(    4)    SUCCESS plugins unchanged"}
+{"level":"info","ts":1588020158.7295132,"logger":"action-runner","msg":"(    5)    SUCCESS update grafana deployment"}
+{"level":"info","ts":1588020158.7295358,"logger":"action-runner","msg":"(    6)    SUCCESS check deployment readiness"}
+{"level":"info","ts":1588020158.7331564,"logger":"grafana-controller","msg":"desired cluster state met"}
+{"level":"info","ts":1588020163.1815443,"logger":"controller_grafanadatasource","msg":"running periodic datasource resync"}
+{"level":"info","ts":1588020167.7814722,"logger":"controller_grafanadashboard","msg":"running periodic dashboard resync"}
+{"level":"info","ts":1588020168.7359474,"logger":"action-runner","msg":"(    0)    SUCCESS update admin credentials secret"}
+{"level":"info","ts":1588020168.7389088,"logger":"action-runner","msg":"(    1)    SUCCESS update grafana service"}
+{"level":"info","ts":1588020168.7407,"logger":"action-runner","msg":"(    2)    SUCCESS update grafana service account"}
+{"level":"info","ts":1588020168.7425578,"logger":"action-runner","msg":"(    3)    SUCCESS update grafana config"}
+{"level":"info","ts":1588020168.7425785,"logger":"action-runner","msg":"(    4)    SUCCESS plugins unchanged"}
+{"level":"info","ts":1588020168.7453716,"logger":"action-runner","msg":"(    5)    SUCCESS update grafana deployment"}
+{"level":"info","ts":1588020168.745398,"logger":"action-runner","msg":"(    6)    SUCCESS check deployment readiness"}
+{"level":"info","ts":1588020168.7496212,"logger":"grafana-controller","msg":"desired cluster state met"}
+{"level":"info","ts":1588020177.7814953,"logger":"controller_grafanadashboard","msg":"running periodic dashboard resync"}
+{"level":"info","ts":1588020178.7526183,"logger":"action-runner","msg":"(    0)    SUCCESS update admin credentials secret"}
+{"level":"info","ts":1588020178.757104,"logger":"action-runner","msg":"(    1)    SUCCESS update grafana service"}
+{"level":"info","ts":1588020178.7591918,"logger":"action-runner","msg":"(    2)    SUCCESS update grafana service account"}
+{"level":"info","ts":1588020178.7609766,"logger":"action-runner","msg":"(    3)    SUCCESS update grafana config"}
+{"level":"info","ts":1588020178.7609932,"logger":"action-runner","msg":"(    4)    SUCCESS plugins unchanged"}
+{"level":"info","ts":1588020178.763981,"logger":"action-runner","msg":"(    5)    SUCCESS update grafana deployment"}
+{"level":"info","ts":1588020178.764,"logger":"action-runner","msg":"(    6)    SUCCESS check deployment readiness"}
+{"level":"info","ts":1588020178.767739,"logger":"grafana-controller","msg":"desired cluster state met"}
+{"level":"info","ts":1588020183.1810946,"logger":"controller_grafanadatasource","msg":"running periodic datasource resync"}
+{"level":"info","ts":1588020187.7815201,"logger":"controller_grafanadashboard","msg":"running periodic dashboard resync"}
+{"level":"info","ts":1588020188.770585,"logger":"action-runner","msg":"(    0)    SUCCESS update admin credentials secret"}
+{"level":"info","ts":1588020188.7734802,"logger":"action-runner","msg":"(    1)    SUCCESS update grafana service"}
+{"level":"info","ts":1588020188.7754214,"logger":"action-runner","msg":"(    2)    SUCCESS update grafana service account"}
+{"level":"info","ts":1588020188.7771418,"logger":"action-runner","msg":"(    3)    SUCCESS update grafana config"}
+{"level":"info","ts":1588020188.7771611,"logger":"action-runner","msg":"(    4)    SUCCESS plugins unchanged"}
+{"level":"info","ts":1588020188.7797017,"logger":"action-runner","msg":"(    5)    SUCCESS update grafana deployment"}
+{"level":"info","ts":1588020188.7797203,"logger":"action-runner","msg":"(    6)    SUCCESS check deployment readiness"}
+{"level":"info","ts":1588020188.7834349,"logger":"grafana-controller","msg":"desired cluster state met"}
+{"level":"info","ts":1588020197.7814994,"logger":"controller_grafanadashboard","msg":"running periodic dashboard resync"}
+{"level":"info","ts":1588020198.7861342,"logger":"action-runner","msg":"(    0)    SUCCESS update admin credentials secret"}
+{"level":"info","ts":1588020198.7893322,"logger":"action-runner","msg":"(    1)    SUCCESS update grafana service"}
+{"level":"info","ts":1588020198.7914069,"logger":"action-runner","msg":"(    2)    SUCCESS update grafana service account"}
+{"level":"info","ts":1588020198.793195,"logger":"action-runner","msg":"(    3)    SUCCESS update grafana config"}
+{"level":"info","ts":1588020198.7932131,"logger":"action-runner","msg":"(    4)    SUCCESS plugins unchanged"}
+{"level":"info","ts":1588020198.7958927,"logger":"action-runner","msg":"(    5)    SUCCESS update grafana deployment"}
+{"level":"info","ts":1588020198.7959127,"logger":"action-runner","msg":"(    6)    SUCCESS check deployment readiness"}
+{"level":"info","ts":1588020198.7990978,"logger":"grafana-controller","msg":"desired cluster state met"}
+{"level":"info","ts":1588020203.1811266,"logger":"controller_grafanadatasource","msg":"running periodic datasource resync"}
+{"level":"info","ts":1588020207.781519,"logger":"controller_grafanadashboard","msg":"running periodic dashboard resync"}
+{"level":"info","ts":1588020208.8020709,"logger":"action-runner","msg":"(    0)    SUCCESS update admin credentials secret"}
+{"level":"info","ts":1588020208.8068533,"logger":"action-runner","msg":"(    1)    SUCCESS update grafana service"}
+{"level":"info","ts":1588020208.808677,"logger":"action-runner","msg":"(    2)    SUCCESS update grafana service account"}
+{"level":"info","ts":1588020208.8104975,"logger":"action-runner","msg":"(    3)    SUCCESS update grafana config"}
+{"level":"info","ts":1588020208.8105192,"logger":"action-runner","msg":"(    4)    SUCCESS plugins unchanged"}
+{"level":"info","ts":1588020208.813564,"logger":"action-runner","msg":"(    5)    SUCCESS update grafana deployment"}
+{"level":"info","ts":1588020208.8135858,"logger":"action-runner","msg":"(    6)    SUCCESS check deployment readiness"}
+{"level":"info","ts":1588020208.8169737,"logger":"grafana-controller","msg":"desired cluster state met"}
+{"level":"info","ts":1588020217.7814515,"logger":"controller_grafanadashboard","msg":"running periodic dashboard resync"}
+{"level":"info","ts":1588020218.820029,"logger":"action-runner","msg":"(    0)    SUCCESS update admin credentials secret"}
+{"level":"info","ts":1588020218.823266,"logger":"action-runner","msg":"(    1)    SUCCESS update grafana service"}
+{"level":"info","ts":1588020218.8255184,"logger":"action-runner","msg":"(    2)    SUCCESS update grafana service account"}
+{"level":"info","ts":1588020218.828098,"logger":"action-runner","msg":"(    3)    SUCCESS update grafana config"}
+{"level":"info","ts":1588020218.8281298,"logger":"action-runner","msg":"(    4)    SUCCESS plugins unchanged"}
+{"level":"info","ts":1588020218.83186,"logger":"action-runner","msg":"(    5)    SUCCESS update grafana deployment"}
+{"level":"info","ts":1588020218.8318937,"logger":"action-runner","msg":"(    6)    SUCCESS check deployment readiness"}
+{"level":"info","ts":1588020218.8408155,"logger":"grafana-controller","msg":"desired cluster state met"}
+{"level":"info","ts":1588020223.1811645,"logger":"controller_grafanadatasource","msg":"running periodic datasource resync"}
+{"level":"info","ts":1588020227.7814956,"logger":"controller_grafanadashboard","msg":"running periodic dashboard resync"}
+{"level":"info","ts":1588020228.84393,"logger":"action-runner","msg":"(    0)    SUCCESS update admin credentials secret"}
+{"level":"info","ts":1588020228.8472695,"logger":"action-runner","msg":"(    1)    SUCCESS update grafana service"}
+{"level":"info","ts":1588020228.849197,"logger":"action-runner","msg":"(    2)    SUCCESS update grafana service account"}
+{"level":"info","ts":1588020228.8510904,"logger":"action-runner","msg":"(    3)    SUCCESS update grafana config"}
+{"level":"info","ts":1588020228.8511107,"logger":"action-runner","msg":"(    4)    SUCCESS plugins unchanged"}
+{"level":"info","ts":1588020228.8539133,"logger":"action-runner","msg":"(    5)    SUCCESS update grafana deployment"}
+{"level":"info","ts":1588020228.8539333,"logger":"action-runner","msg":"(    6)    SUCCESS check deployment readiness"}
+{"level":"info","ts":1588020228.857397,"logger":"grafana-controller","msg":"desired cluster state met"}
+{"level":"info","ts":1588020237.7815108,"logger":"controller_grafanadashboard","msg":"running periodic dashboard resync"}
+{"level":"info","ts":1588020238.8605285,"logger":"action-runner","msg":"(    0)    SUCCESS update admin credentials secret"}
+{"level":"info","ts":1588020238.864883,"logger":"action-runner","msg":"(    1)    SUCCESS update grafana service"}
+{"level":"info","ts":1588020238.8667126,"logger":"action-runner","msg":"(    2)    SUCCESS update grafana service account"}
+{"level":"info","ts":1588020238.868684,"logger":"action-runner","msg":"(    3)    SUCCESS update grafana config"}
+{"level":"info","ts":1588020238.8687038,"logger":"action-runner","msg":"(    4)    SUCCESS plugins unchanged"}
+{"level":"info","ts":1588020238.871461,"logger":"action-runner","msg":"(    5)    SUCCESS update grafana deployment"}
+{"level":"info","ts":1588020238.8714824,"logger":"action-runner","msg":"(    6)    SUCCESS check deployment readiness"}
+{"level":"info","ts":1588020238.8751109,"logger":"grafana-controller","msg":"desired cluster state met"}
+{"level":"info","ts":1588020243.1811411,"logger":"controller_grafanadatasource","msg":"running periodic datasource resync"}
+{"level":"info","ts":1588020247.7815132,"logger":"controller_grafanadashboard","msg":"running periodic dashboard resync"}
+{"level":"info","ts":1588020248.8783755,"logger":"action-runner","msg":"(    0)    SUCCESS update admin credentials secret"}
+{"level":"info","ts":1588020248.8812335,"logger":"action-runner","msg":"(    1)    SUCCESS update grafana service"}
+{"level":"info","ts":1588020248.883268,"logger":"action-runner","msg":"(    2)    SUCCESS update grafana service account"}
+{"level":"info","ts":1588020248.885015,"logger":"action-runner","msg":"(    3)    SUCCESS update grafana config"}
+{"level":"info","ts":1588020248.885036,"logger":"action-runner","msg":"(    4)    SUCCESS plugins unchanged"}
+{"level":"info","ts":1588020248.8876264,"logger":"action-runner","msg":"(    5)    SUCCESS update grafana deployment"}
+{"level":"info","ts":1588020248.887647,"logger":"action-runner","msg":"(    6)    SUCCESS check deployment readiness"}
+{"level":"info","ts":1588020248.8913674,"logger":"grafana-controller","msg":"desired cluster state met"}
+{"level":"info","ts":1588020257.781527,"logger":"controller_grafanadashboard","msg":"running periodic dashboard resync"}
+{"level":"info","ts":1588020258.8937502,"logger":"action-runner","msg":"(    0)    SUCCESS update admin credentials secret"}
+{"level":"info","ts":1588020258.8965535,"logger":"action-runner","msg":"(    1)    SUCCESS update grafana service"}
+{"level":"info","ts":1588020258.898438,"logger":"action-runner","msg":"(    2)    SUCCESS update grafana service account"}
+{"level":"info","ts":1588020258.9002922,"logger":"action-runner","msg":"(    3)    SUCCESS update grafana config"}
+{"level":"info","ts":1588020258.900311,"logger":"action-runner","msg":"(    4)    SUCCESS plugins unchanged"}
+{"level":"info","ts":1588020258.9030433,"logger":"action-runner","msg":"(    5)    SUCCESS update grafana deployment"}
+{"level":"info","ts":1588020258.9030702,"logger":"action-runner","msg":"(    6)    SUCCESS check deployment readiness"}
+{"level":"info","ts":1588020258.9068937,"logger":"grafana-controller","msg":"desired cluster state met"}
+{"level":"info","ts":1588020263.1811545,"logger":"controller_grafanadatasource","msg":"running periodic datasource resync"}
+{"level":"info","ts":1588020267.7815208,"logger":"controller_grafanadashboard","msg":"running periodic dashboard resync"}
+{"level":"info","ts":1588020268.9099288,"logger":"action-runner","msg":"(    0)    SUCCESS update admin credentials secret"}
+{"level":"info","ts":1588020268.9145632,"logger":"action-runner","msg":"(    1)    SUCCESS update grafana service"}
+{"level":"info","ts":1588020268.9163444,"logger":"action-runner","msg":"(    2)    SUCCESS update grafana service account"}
+{"level":"info","ts":1588020268.9181767,"logger":"action-runner","msg":"(    3)    SUCCESS update grafana config"}
+{"level":"info","ts":1588020268.9182053,"logger":"action-runner","msg":"(    4)    SUCCESS plugins unchanged"}
+{"level":"info","ts":1588020268.9209397,"logger":"action-runner","msg":"(    5)    SUCCESS update grafana deployment"}
+{"level":"info","ts":1588020268.9209623,"logger":"action-runner","msg":"(    6)    SUCCESS check deployment readiness"}
+{"level":"info","ts":1588020268.9247816,"logger":"grafana-controller","msg":"desired cluster state met"}
+{"level":"info","ts":1588020277.7815125,"logger":"controller_grafanadashboard","msg":"running periodic dashboard resync"}
+{"level":"info","ts":1588020278.9280367,"logger":"action-runner","msg":"(    0)    SUCCESS update admin credentials secret"}
+{"level":"info","ts":1588020278.9313574,"logger":"action-runner","msg":"(    1)    SUCCESS update grafana service"}
+{"level":"info","ts":1588020278.9336066,"logger":"action-runner","msg":"(    2)    SUCCESS update grafana service account"}
+{"level":"info","ts":1588020278.9357011,"logger":"action-runner","msg":"(    3)    SUCCESS update grafana config"}
+{"level":"info","ts":1588020278.935728,"logger":"action-runner","msg":"(    4)    SUCCESS plugins unchanged"}
+{"level":"info","ts":1588020278.9386706,"logger":"action-runner","msg":"(    5)    SUCCESS update grafana deployment"}
+{"level":"info","ts":1588020278.938694,"logger":"action-runner","msg":"(    6)    SUCCESS check deployment readiness"}
+{"level":"info","ts":1588020278.945323,"logger":"grafana-controller","msg":"desired cluster state met"}
+{"level":"info","ts":1588020283.1836762,"logger":"controller_grafanadatasource","msg":"running periodic datasource resync"}
+{"level":"info","ts":1588020287.7815294,"logger":"controller_grafanadashboard","msg":"running periodic dashboard resync"}
+{"level":"info","ts":1588020288.948516,"logger":"action-runner","msg":"(    0)    SUCCESS update admin credentials secret"}
+{"level":"info","ts":1588020288.9514918,"logger":"action-runner","msg":"(    1)    SUCCESS update grafana service"}
+{"level":"info","ts":1588020288.954262,"logger":"action-runner","msg":"(    2)    SUCCESS update grafana service account"}
+{"level":"info","ts":1588020288.9561243,"logger":"action-runner","msg":"(    3)    SUCCESS update grafana config"}
+{"level":"info","ts":1588020288.9561567,"logger":"action-runner","msg":"(    4)    SUCCESS plugins unchanged"}
+{"level":"info","ts":1588020288.9591339,"logger":"action-runner","msg":"(    5)    SUCCESS update grafana deployment"}
+{"level":"info","ts":1588020288.9591522,"logger":"action-runner","msg":"(    6)    SUCCESS check deployment readiness"}
+{"level":"info","ts":1588020288.9623795,"logger":"grafana-controller","msg":"desired cluster state met"}
+{"level":"info","ts":1588020297.781499,"logger":"controller_grafanadashboard","msg":"running periodic dashboard resync"}
+{"level":"info","ts":1588020298.9656272,"logger":"action-runner","msg":"(    0)    SUCCESS update admin credentials secret"}
+{"level":"info","ts":1588020298.9696667,"logger":"action-runner","msg":"(    1)    SUCCESS update grafana service"}
+{"level":"info","ts":1588020298.971461,"logger":"action-runner","msg":"(    2)    SUCCESS update grafana service account"}
+{"level":"info","ts":1588020298.9731886,"logger":"action-runner","msg":"(    3)    SUCCESS update grafana config"}
+{"level":"info","ts":1588020298.9732063,"logger":"action-runner","msg":"(    4)    SUCCESS plugins unchanged"}
+{"level":"info","ts":1588020298.9758263,"logger":"action-runner","msg":"(    5)    SUCCESS update grafana deployment"}
+{"level":"info","ts":1588020298.975844,"logger":"action-runner","msg":"(    6)    SUCCESS check deployment readiness"}
+{"level":"info","ts":1588020298.9790628,"logger":"grafana-controller","msg":"desired cluster state met"}
+{"level":"info","ts":1588020303.1811435,"logger":"controller_grafanadatasource","msg":"running periodic datasource resync"}
+{"level":"info","ts":1588020307.7815008,"logger":"controller_grafanadashboard","msg":"running periodic dashboard resync"}
+{"level":"info","ts":1588020308.9823468,"logger":"action-runner","msg":"(    0)    SUCCESS update admin credentials secret"}
+{"level":"info","ts":1588020308.9851868,"logger":"action-runner","msg":"(    1)    SUCCESS update grafana service"}
+{"level":"info","ts":1588020308.9868836,"logger":"action-runner","msg":"(    2)    SUCCESS update grafana service account"}
+{"level":"info","ts":1588020308.988809,"logger":"action-runner","msg":"(    3)    SUCCESS update grafana config"}
+{"level":"info","ts":1588020308.9888308,"logger":"action-runner","msg":"(    4)    SUCCESS plugins unchanged"}
+{"level":"info","ts":1588020308.9915726,"logger":"action-runner","msg":"(    5)    SUCCESS update grafana deployment"}
+{"level":"info","ts":1588020308.9915957,"logger":"action-runner","msg":"(    6)    SUCCESS check deployment readiness"}
+{"level":"info","ts":1588020308.995182,"logger":"grafana-controller","msg":"desired cluster state met"}
+{"level":"info","ts":1588020317.7815087,"logger":"controller_grafanadashboard","msg":"running periodic dashboard resync"}
+{"level":"info","ts":1588020318.9979446,"logger":"action-runner","msg":"(    0)    SUCCESS update admin credentials secret"}
+{"level":"info","ts":1588020319.0010889,"logger":"action-runner","msg":"(    1)    SUCCESS update grafana service"}
+{"level":"info","ts":1588020319.0029256,"logger":"action-runner","msg":"(    2)    SUCCESS update grafana service account"}
+{"level":"info","ts":1588020319.0046556,"logger":"action-runner","msg":"(    3)    SUCCESS update grafana config"}
+{"level":"info","ts":1588020319.0046759,"logger":"action-runner","msg":"(    4)    SUCCESS plugins unchanged"}
+{"level":"info","ts":1588020319.0073087,"logger":"action-runner","msg":"(    5)    SUCCESS update grafana deployment"}
+{"level":"info","ts":1588020319.007334,"logger":"action-runner","msg":"(    6)    SUCCESS check deployment readiness"}
+{"level":"info","ts":1588020319.0104635,"logger":"grafana-controller","msg":"desired cluster state met"}
+{"level":"info","ts":1588020323.1811388,"logger":"controller_grafanadatasource","msg":"running periodic datasource resync"}
+{"level":"info","ts":1588020327.781502,"logger":"controller_grafanadashboard","msg":"running periodic dashboard resync"}
+{"level":"info","ts":1588020329.013827,"logger":"action-runner","msg":"(    0)    SUCCESS update admin credentials secret"}
+{"level":"info","ts":1588020329.0180688,"logger":"action-runner","msg":"(    1)    SUCCESS update grafana service"}
+{"level":"info","ts":1588020329.0199423,"logger":"action-runner","msg":"(    2)    SUCCESS update grafana service account"}
+{"level":"info","ts":1588020329.0217662,"logger":"action-runner","msg":"(    3)    SUCCESS update grafana config"}
+{"level":"info","ts":1588020329.0217862,"logger":"action-runner","msg":"(    4)    SUCCESS plugins unchanged"}
+{"level":"info","ts":1588020329.0245473,"logger":"action-runner","msg":"(    5)    SUCCESS update grafana deployment"}
+{"level":"info","ts":1588020329.0245674,"logger":"action-runner","msg":"(    6)    SUCCESS check deployment readiness"}
+{"level":"info","ts":1588020329.0278342,"logger":"grafana-controller","msg":"desired cluster state met"}
+{"level":"info","ts":1588020337.7815068,"logger":"controller_grafanadashboard","msg":"running periodic dashboard resync"}
+{"level":"info","ts":1588020339.0311828,"logger":"action-runner","msg":"(    0)    SUCCESS update admin credentials secret"}
+{"level":"info","ts":1588020339.0341918,"logger":"action-runner","msg":"(    1)    SUCCESS update grafana service"}
+{"level":"info","ts":1588020339.0362332,"logger":"action-runner","msg":"(    2)    SUCCESS update grafana service account"}
+{"level":"info","ts":1588020339.0382512,"logger":"action-runner","msg":"(    3)    SUCCESS update grafana config"}
+{"level":"info","ts":1588020339.038277,"logger":"action-runner","msg":"(    4)    SUCCESS plugins unchanged"}
+{"level":"info","ts":1588020339.0409083,"logger":"action-runner","msg":"(    5)    SUCCESS update grafana deployment"}
+{"level":"info","ts":1588020339.0409288,"logger":"action-runner","msg":"(    6)    SUCCESS check deployment readiness"}
+{"level":"info","ts":1588020339.0444784,"logger":"grafana-controller","msg":"desired cluster state met"}
+{"level":"info","ts":1588020343.1811523,"logger":"controller_grafanadatasource","msg":"running periodic datasource resync"}
+{"level":"info","ts":1588020347.7814777,"logger":"controller_grafanadashboard","msg":"running periodic dashboard resync"}
+{"level":"info","ts":1588020349.0476599,"logger":"action-runner","msg":"(    0)    SUCCESS update admin credentials secret"}
+{"level":"info","ts":1588020349.050595,"logger":"action-runner","msg":"(    1)    SUCCESS update grafana service"}
+{"level":"info","ts":1588020349.052306,"logger":"action-runner","msg":"(    2)    SUCCESS update grafana service account"}
+{"level":"info","ts":1588020349.054203,"logger":"action-runner","msg":"(    3)    SUCCESS update grafana config"}
+{"level":"info","ts":1588020349.0542219,"logger":"action-runner","msg":"(    4)    SUCCESS plugins unchanged"}
+{"level":"info","ts":1588020349.0569904,"logger":"action-runner","msg":"(    5)    SUCCESS update grafana deployment"}
+{"level":"info","ts":1588020349.0570102,"logger":"action-runner","msg":"(    6)    SUCCESS check deployment readiness"}
+{"level":"info","ts":1588020349.060435,"logger":"grafana-controller","msg":"desired cluster state met"}

@@ -1,0 +1,35 @@
+level=info ts=2020-04-27T20:40:47.026921109Z caller=main.go:149 msg="Tracing will be disabled"
+level=info ts=2020-04-27T20:40:47.02710463Z caller=options.go:24 protocol=gRPC msg="enabling server side TLS"
+level=info ts=2020-04-27T20:40:47.027533373Z caller=options.go:54 protocol=gRPC msg="server TLS client verification enabled"
+level=info ts=2020-04-27T20:40:47.02780816Z caller=factory.go:43 msg="loading bucket configuration"
+level=error ts=2020-04-27T20:40:47.028085036Z caller=sidecar.go:287 err="WAL dir is not accessible. Is this dir a TSDB directory? If yes it is shared with TSDB?: stat /prometheus/prometheus-db/wal: no such file or directory"
+level=info ts=2020-04-27T20:40:47.028111358Z caller=sidecar.go:331 msg="starting sidecar"
+level=info ts=2020-04-27T20:40:47.02824106Z caller=prober.go:107 msg="changing probe status" status=ready
+level=info ts=2020-04-27T20:40:47.028287925Z caller=reloader.go:154 component=reloader msg="started watching config file and non-recursively rule dirs for changes" cfg= out= dirs=
+level=info ts=2020-04-27T20:40:47.028362443Z caller=prober.go:127 msg="changing probe status" status=healthy
+level=info ts=2020-04-27T20:40:47.028388058Z caller=grpc.go:98 service=gRPC/server component=sidecar msg="listening for StoreAPI gRPC" address=[100.200.82.49]:10901
+level=info ts=2020-04-27T20:40:47.028403699Z caller=http.go:53 service=http/server component=sidecar msg="listening for requests and metrics" address=[100.200.82.49]:10902
+level=warn ts=2020-04-27T20:40:47.028957192Z caller=sidecar.go:343 msg="failed to get Prometheus flags. Is Prometheus running? Retrying" err="request config against http://localhost:9090/api/v1/status/flags: Get http://localhost:9090/api/v1/status/flags: dial tcp [::1]:9090: connect: connection refused"
+level=info ts=2020-04-27T20:40:49.038958745Z caller=sidecar.go:199 msg="successfully loaded prometheus external labels" external_labels="{cluster=\"test\", prometheus=\"monitoring/k8s\", prometheus_replica=\"prometheus-k8s-1\"}"
+level=warn ts=2020-04-27T20:40:51.033992429Z caller=sidecar.go:315 err="iter local block metas: read dir: open /prometheus/prometheus-db: no such file or directory" uploaded=0
+level=warn ts=2020-04-27T20:40:51.0340697Z caller=sidecar.go:320 msg="reading timestamps failed" err="read shipper meta file: open /prometheus/prometheus-db/thanos.shipper.json: no such file or directory"
+level=warn ts=2020-04-27T20:41:21.034116892Z caller=sidecar.go:315 err="iter local block metas: read dir: open /prometheus/prometheus-db: no such file or directory" uploaded=0
+level=warn ts=2020-04-27T20:41:21.034176678Z caller=sidecar.go:320 msg="reading timestamps failed" err="read shipper meta file: open /prometheus/prometheus-db/thanos.shipper.json: no such file or directory"
+level=warn ts=2020-04-27T20:41:51.034175333Z caller=sidecar.go:315 err="iter local block metas: read dir: open /prometheus/prometheus-db: no such file or directory" uploaded=0
+level=warn ts=2020-04-27T20:41:51.034222692Z caller=sidecar.go:320 msg="reading timestamps failed" err="read shipper meta file: open /prometheus/prometheus-db/thanos.shipper.json: no such file or directory"
+level=warn ts=2020-04-27T20:42:21.034152271Z caller=sidecar.go:315 err="iter local block metas: read dir: open /prometheus/prometheus-db: no such file or directory" uploaded=0
+level=warn ts=2020-04-27T20:42:21.034205334Z caller=sidecar.go:320 msg="reading timestamps failed" err="read shipper meta file: open /prometheus/prometheus-db/thanos.shipper.json: no such file or directory"
+level=warn ts=2020-04-27T20:42:51.034152704Z caller=sidecar.go:315 err="iter local block metas: read dir: open /prometheus/prometheus-db: no such file or directory" uploaded=0
+level=warn ts=2020-04-27T20:42:51.034204023Z caller=sidecar.go:320 msg="reading timestamps failed" err="read shipper meta file: open /prometheus/prometheus-db/thanos.shipper.json: no such file or directory"
+level=warn ts=2020-04-27T20:43:21.034145206Z caller=sidecar.go:315 err="iter local block metas: read dir: open /prometheus/prometheus-db: no such file or directory" uploaded=0
+level=warn ts=2020-04-27T20:43:21.034207439Z caller=sidecar.go:320 msg="reading timestamps failed" err="read shipper meta file: open /prometheus/prometheus-db/thanos.shipper.json: no such file or directory"
+level=warn ts=2020-04-27T20:43:51.034136592Z caller=sidecar.go:315 err="iter local block metas: read dir: open /prometheus/prometheus-db: no such file or directory" uploaded=0
+level=warn ts=2020-04-27T20:43:51.034196866Z caller=sidecar.go:320 msg="reading timestamps failed" err="read shipper meta file: open /prometheus/prometheus-db/thanos.shipper.json: no such file or directory"
+level=warn ts=2020-04-27T20:44:21.034137291Z caller=sidecar.go:315 err="iter local block metas: read dir: open /prometheus/prometheus-db: no such file or directory" uploaded=0
+level=warn ts=2020-04-27T20:44:21.03418742Z caller=sidecar.go:320 msg="reading timestamps failed" err="read shipper meta file: open /prometheus/prometheus-db/thanos.shipper.json: no such file or directory"
+level=warn ts=2020-04-27T20:44:51.034139398Z caller=sidecar.go:315 err="iter local block metas: read dir: open /prometheus/prometheus-db: no such file or directory" uploaded=0
+level=warn ts=2020-04-27T20:44:51.034189854Z caller=sidecar.go:320 msg="reading timestamps failed" err="read shipper meta file: open /prometheus/prometheus-db/thanos.shipper.json: no such file or directory"
+level=warn ts=2020-04-27T20:45:21.038139043Z caller=sidecar.go:315 err="iter local block metas: read dir: open /prometheus/prometheus-db: no such file or directory" uploaded=0
+level=warn ts=2020-04-27T20:45:21.038244914Z caller=sidecar.go:320 msg="reading timestamps failed" err="read shipper meta file: open /prometheus/prometheus-db/thanos.shipper.json: no such file or directory"
+level=warn ts=2020-04-27T20:45:51.03435198Z caller=sidecar.go:315 err="iter local block metas: read dir: open /prometheus/prometheus-db: no such file or directory" uploaded=0
+level=warn ts=2020-04-27T20:45:51.034405427Z caller=sidecar.go:320 msg="reading timestamps failed" err="read shipper meta file: open /prometheus/prometheus-db/thanos.shipper.json: no such file or directory"

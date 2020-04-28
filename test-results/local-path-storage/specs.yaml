@@ -1,0 +1,535 @@
+apiVersion: v1
+items:
+- items:
+  - apiVersion: v1
+    data:
+      config.json: |-
+        {
+                "nodePathMap":[
+                {
+                        "node":"DEFAULT_PATH_FOR_NON_LISTED_NODES",
+                        "paths":["/opt/local-path-provisioner"]
+                }
+                ]
+        }
+    kind: ConfigMap
+    metadata:
+      creationTimestamp: "2020-04-27T20:35:43Z"
+      name: local-path-config
+      namespace: local-path-storage
+      resourceVersion: "1008"
+      selfLink: /api/v1/namespaces/local-path-storage/configmaps/local-path-config
+      uid: 374d5f2c-cb39-4a49-86b7-be9d9087f7a2
+  metadata: {}
+- items:
+  - apiVersion: v1
+    kind: Pod
+    metadata:
+      annotations:
+        cni.projectcalico.org/podIP: 100.200.82.8/32
+      creationTimestamp: "2020-04-27T20:35:42Z"
+      generateName: local-path-provisioner-5cf74d94c6-
+      labels:
+        app: local-path-provisioner
+        pod-template-hash: 5cf74d94c6
+      name: local-path-provisioner-5cf74d94c6-blqm9
+      namespace: local-path-storage
+      ownerReferences:
+      - apiVersion: apps/v1
+        blockOwnerDeletion: true
+        controller: true
+        kind: ReplicaSet
+        name: local-path-provisioner-5cf74d94c6
+        uid: 6ace85c0-8321-45fc-9f5b-09cb7beb6cfb
+      resourceVersion: "1066"
+      selfLink: /api/v1/namespaces/local-path-storage/pods/local-path-provisioner-5cf74d94c6-blqm9
+      uid: ca583e28-d77e-4ac0-8747-f25b6bf0b0d1
+    spec:
+      containers:
+      - command:
+        - local-path-provisioner
+        - --debug
+        - start
+        - --config
+        - /etc/config/config.json
+        env:
+        - name: POD_NAMESPACE
+          valueFrom:
+            fieldRef:
+              apiVersion: v1
+              fieldPath: metadata.namespace
+        image: rancher/local-path-provisioner:v0.0.11
+        imagePullPolicy: IfNotPresent
+        name: local-path-provisioner
+        resources:
+          limits:
+            cpu: 200m
+            memory: 256Mi
+          requests:
+            cpu: 10m
+            memory: 20Mi
+        terminationMessagePath: /dev/termination-log
+        terminationMessagePolicy: File
+        volumeMounts:
+        - mountPath: /etc/config/
+          name: config-volume
+        - mountPath: /var/run/secrets/kubernetes.io/serviceaccount
+          name: local-path-provisioner-service-account-token-7z6ng
+          readOnly: true
+      dnsPolicy: ClusterFirst
+      enableServiceLinks: true
+      nodeName: kind-control-plane
+      priority: 0
+      restartPolicy: Always
+      schedulerName: default-scheduler
+      securityContext: {}
+      serviceAccount: local-path-provisioner-service-account
+      serviceAccountName: local-path-provisioner-service-account
+      terminationGracePeriodSeconds: 30
+      tolerations:
+      - effect: NoExecute
+        key: node.kubernetes.io/not-ready
+        operator: Exists
+        tolerationSeconds: 300
+      - effect: NoExecute
+        key: node.kubernetes.io/unreachable
+        operator: Exists
+        tolerationSeconds: 300
+      volumes:
+      - configMap:
+          defaultMode: 420
+          name: local-path-config
+        name: config-volume
+      - name: local-path-provisioner-service-account-token-7z6ng
+        secret:
+          defaultMode: 420
+          secretName: local-path-provisioner-service-account-token-7z6ng
+    status:
+      conditions:
+      - lastProbeTime: null
+        lastTransitionTime: "2020-04-27T20:35:42Z"
+        status: "True"
+        type: Initialized
+      - lastProbeTime: null
+        lastTransitionTime: "2020-04-27T20:35:45Z"
+        status: "True"
+        type: Ready
+      - lastProbeTime: null
+        lastTransitionTime: "2020-04-27T20:35:45Z"
+        status: "True"
+        type: ContainersReady
+      - lastProbeTime: null
+        lastTransitionTime: "2020-04-27T20:35:42Z"
+        status: "True"
+        type: PodScheduled
+      containerStatuses:
+      - containerID: containerd://a38cd57a7b211875a841b70660ec58e8fbdd71de1ade0baf4911ea9e7c5dab67
+        image: docker.io/rancher/local-path-provisioner:v0.0.11
+        imageID: sha256:9d12f9848b99f4e5f5271b7cac02790de44ec12014762a83987cfff7f3c26106
+        lastState: {}
+        name: local-path-provisioner
+        ready: true
+        restartCount: 0
+        state:
+          running:
+            startedAt: "2020-04-27T20:35:44Z"
+      hostIP: 172.17.0.2
+      phase: Running
+      podIP: 100.200.82.8
+      qosClass: Burstable
+      startTime: "2020-04-27T20:35:42Z"
+  metadata: {}
+- items:
+  - apiVersion: v1
+    kind: ServiceAccount
+    metadata:
+      creationTimestamp: "2020-04-27T20:35:40Z"
+      name: default
+      namespace: local-path-storage
+      resourceVersion: "978"
+      selfLink: /api/v1/namespaces/local-path-storage/serviceaccounts/default
+      uid: 4f45c9b2-2f39-406f-93b0-21870ded341c
+    secrets:
+    - name: default-token-m5ffk
+  - apiVersion: v1
+    kind: ServiceAccount
+    metadata:
+      creationTimestamp: "2020-04-27T20:35:40Z"
+      name: local-path-provisioner-service-account
+      namespace: local-path-storage
+      resourceVersion: "2183"
+      selfLink: /api/v1/namespaces/local-path-storage/serviceaccounts/local-path-provisioner-service-account
+      uid: aed1b09b-beb4-4d6b-8671-75380fad8109
+    secrets:
+    - name: local-path-provisioner-service-account-token-4wpjc
+  metadata: {}
+- items:
+  - apiVersion: apps/v1
+    kind: Deployment
+    metadata:
+      annotations:
+        deployment.kubernetes.io/revision: "1"
+      creationTimestamp: "2020-04-27T20:35:42Z"
+      generation: 2
+      name: local-path-provisioner
+      namespace: local-path-storage
+      resourceVersion: "2197"
+      selfLink: /apis/apps/v1/namespaces/local-path-storage/deployments/local-path-provisioner
+      uid: 2f11d10f-e407-4e16-b807-1cfd73fbfc10
+    spec:
+      progressDeadlineSeconds: 600
+      replicas: 1
+      revisionHistoryLimit: 10
+      selector:
+        matchLabels:
+          app: local-path-provisioner
+      strategy:
+        rollingUpdate:
+          maxSurge: 25%
+          maxUnavailable: 25%
+        type: RollingUpdate
+      template:
+        metadata:
+          creationTimestamp: null
+          labels:
+            app: local-path-provisioner
+        spec:
+          containers:
+          - command:
+            - local-path-provisioner
+            - --debug
+            - start
+            - --config
+            - /etc/config/config.json
+            env:
+            - name: POD_NAMESPACE
+              valueFrom:
+                fieldRef:
+                  apiVersion: v1
+                  fieldPath: metadata.namespace
+            image: rancher/local-path-provisioner:v0.0.11
+            imagePullPolicy: IfNotPresent
+            name: local-path-provisioner
+            resources:
+              limits:
+                cpu: 200m
+                memory: 256Mi
+              requests:
+                cpu: 10m
+                memory: 20Mi
+            terminationMessagePath: /dev/termination-log
+            terminationMessagePolicy: File
+            volumeMounts:
+            - mountPath: /etc/config/
+              name: config-volume
+          dnsPolicy: ClusterFirst
+          restartPolicy: Always
+          schedulerName: default-scheduler
+          securityContext: {}
+          serviceAccount: local-path-provisioner-service-account
+          serviceAccountName: local-path-provisioner-service-account
+          terminationGracePeriodSeconds: 30
+          volumes:
+          - configMap:
+              defaultMode: 420
+              name: local-path-config
+            name: config-volume
+    status:
+      availableReplicas: 1
+      conditions:
+      - lastTransitionTime: "2020-04-27T20:35:45Z"
+        lastUpdateTime: "2020-04-27T20:35:45Z"
+        message: Deployment has minimum availability.
+        reason: MinimumReplicasAvailable
+        status: "True"
+        type: Available
+      - lastTransitionTime: "2020-04-27T20:35:42Z"
+        lastUpdateTime: "2020-04-27T20:35:45Z"
+        message: ReplicaSet "local-path-provisioner-5cf74d94c6" has successfully progressed.
+        reason: NewReplicaSetAvailable
+        status: "True"
+        type: Progressing
+      observedGeneration: 2
+      readyReplicas: 1
+      replicas: 1
+      updatedReplicas: 1
+  metadata: {}
+- items:
+  - apiVersion: apps/v1
+    kind: ReplicaSet
+    metadata:
+      annotations:
+        deployment.kubernetes.io/desired-replicas: "1"
+        deployment.kubernetes.io/max-replicas: "2"
+        deployment.kubernetes.io/revision: "1"
+      creationTimestamp: "2020-04-27T20:35:42Z"
+      generation: 1
+      labels:
+        app: local-path-provisioner
+        pod-template-hash: 5cf74d94c6
+      name: local-path-provisioner-5cf74d94c6
+      namespace: local-path-storage
+      ownerReferences:
+      - apiVersion: apps/v1
+        blockOwnerDeletion: true
+        controller: true
+        kind: Deployment
+        name: local-path-provisioner
+        uid: 2f11d10f-e407-4e16-b807-1cfd73fbfc10
+      resourceVersion: "1067"
+      selfLink: /apis/apps/v1/namespaces/local-path-storage/replicasets/local-path-provisioner-5cf74d94c6
+      uid: 6ace85c0-8321-45fc-9f5b-09cb7beb6cfb
+    spec:
+      replicas: 1
+      selector:
+        matchLabels:
+          app: local-path-provisioner
+          pod-template-hash: 5cf74d94c6
+      template:
+        metadata:
+          creationTimestamp: null
+          labels:
+            app: local-path-provisioner
+            pod-template-hash: 5cf74d94c6
+        spec:
+          containers:
+          - command:
+            - local-path-provisioner
+            - --debug
+            - start
+            - --config
+            - /etc/config/config.json
+            env:
+            - name: POD_NAMESPACE
+              valueFrom:
+                fieldRef:
+                  apiVersion: v1
+                  fieldPath: metadata.namespace
+            image: rancher/local-path-provisioner:v0.0.11
+            imagePullPolicy: IfNotPresent
+            name: local-path-provisioner
+            resources:
+              limits:
+                cpu: 200m
+                memory: 256Mi
+              requests:
+                cpu: 10m
+                memory: 20Mi
+            terminationMessagePath: /dev/termination-log
+            terminationMessagePolicy: File
+            volumeMounts:
+            - mountPath: /etc/config/
+              name: config-volume
+          dnsPolicy: ClusterFirst
+          restartPolicy: Always
+          schedulerName: default-scheduler
+          securityContext: {}
+          serviceAccount: local-path-provisioner-service-account
+          serviceAccountName: local-path-provisioner-service-account
+          terminationGracePeriodSeconds: 30
+          volumes:
+          - configMap:
+              defaultMode: 420
+              name: local-path-config
+            name: config-volume
+    status:
+      availableReplicas: 1
+      fullyLabeledReplicas: 1
+      observedGeneration: 1
+      readyReplicas: 1
+      replicas: 1
+  metadata: {}
+- items:
+  - apiVersion: extensions/v1beta1
+    kind: Deployment
+    metadata:
+      annotations:
+        deployment.kubernetes.io/revision: "1"
+      creationTimestamp: "2020-04-27T20:35:42Z"
+      generation: 2
+      name: local-path-provisioner
+      namespace: local-path-storage
+      resourceVersion: "2197"
+      selfLink: /apis/extensions/v1beta1/namespaces/local-path-storage/deployments/local-path-provisioner
+      uid: 2f11d10f-e407-4e16-b807-1cfd73fbfc10
+    spec:
+      progressDeadlineSeconds: 600
+      replicas: 1
+      revisionHistoryLimit: 10
+      selector:
+        matchLabels:
+          app: local-path-provisioner
+      strategy:
+        rollingUpdate:
+          maxSurge: 25%
+          maxUnavailable: 25%
+        type: RollingUpdate
+      template:
+        metadata:
+          creationTimestamp: null
+          labels:
+            app: local-path-provisioner
+        spec:
+          containers:
+          - command:
+            - local-path-provisioner
+            - --debug
+            - start
+            - --config
+            - /etc/config/config.json
+            env:
+            - name: POD_NAMESPACE
+              valueFrom:
+                fieldRef:
+                  apiVersion: v1
+                  fieldPath: metadata.namespace
+            image: rancher/local-path-provisioner:v0.0.11
+            imagePullPolicy: IfNotPresent
+            name: local-path-provisioner
+            resources:
+              limits:
+                cpu: 200m
+                memory: 256Mi
+              requests:
+                cpu: 10m
+                memory: 20Mi
+            terminationMessagePath: /dev/termination-log
+            terminationMessagePolicy: File
+            volumeMounts:
+            - mountPath: /etc/config/
+              name: config-volume
+          dnsPolicy: ClusterFirst
+          restartPolicy: Always
+          schedulerName: default-scheduler
+          securityContext: {}
+          serviceAccount: local-path-provisioner-service-account
+          serviceAccountName: local-path-provisioner-service-account
+          terminationGracePeriodSeconds: 30
+          volumes:
+          - configMap:
+              defaultMode: 420
+              name: local-path-config
+            name: config-volume
+    status:
+      availableReplicas: 1
+      conditions:
+      - lastTransitionTime: "2020-04-27T20:35:45Z"
+        lastUpdateTime: "2020-04-27T20:35:45Z"
+        message: Deployment has minimum availability.
+        reason: MinimumReplicasAvailable
+        status: "True"
+        type: Available
+      - lastTransitionTime: "2020-04-27T20:35:42Z"
+        lastUpdateTime: "2020-04-27T20:35:45Z"
+        message: ReplicaSet "local-path-provisioner-5cf74d94c6" has successfully progressed.
+        reason: NewReplicaSetAvailable
+        status: "True"
+        type: Progressing
+      observedGeneration: 2
+      readyReplicas: 1
+      replicas: 1
+      updatedReplicas: 1
+  metadata: {}
+- items:
+  - apiVersion: extensions/v1beta1
+    kind: ReplicaSet
+    metadata:
+      annotations:
+        deployment.kubernetes.io/desired-replicas: "1"
+        deployment.kubernetes.io/max-replicas: "2"
+        deployment.kubernetes.io/revision: "1"
+      creationTimestamp: "2020-04-27T20:35:42Z"
+      generation: 1
+      labels:
+        app: local-path-provisioner
+        pod-template-hash: 5cf74d94c6
+      name: local-path-provisioner-5cf74d94c6
+      namespace: local-path-storage
+      ownerReferences:
+      - apiVersion: apps/v1
+        blockOwnerDeletion: true
+        controller: true
+        kind: Deployment
+        name: local-path-provisioner
+        uid: 2f11d10f-e407-4e16-b807-1cfd73fbfc10
+      resourceVersion: "1067"
+      selfLink: /apis/extensions/v1beta1/namespaces/local-path-storage/replicasets/local-path-provisioner-5cf74d94c6
+      uid: 6ace85c0-8321-45fc-9f5b-09cb7beb6cfb
+    spec:
+      replicas: 1
+      selector:
+        matchLabels:
+          app: local-path-provisioner
+          pod-template-hash: 5cf74d94c6
+      template:
+        metadata:
+          creationTimestamp: null
+          labels:
+            app: local-path-provisioner
+            pod-template-hash: 5cf74d94c6
+        spec:
+          containers:
+          - command:
+            - local-path-provisioner
+            - --debug
+            - start
+            - --config
+            - /etc/config/config.json
+            env:
+            - name: POD_NAMESPACE
+              valueFrom:
+                fieldRef:
+                  apiVersion: v1
+                  fieldPath: metadata.namespace
+            image: rancher/local-path-provisioner:v0.0.11
+            imagePullPolicy: IfNotPresent
+            name: local-path-provisioner
+            resources:
+              limits:
+                cpu: 200m
+                memory: 256Mi
+              requests:
+                cpu: 10m
+                memory: 20Mi
+            terminationMessagePath: /dev/termination-log
+            terminationMessagePolicy: File
+            volumeMounts:
+            - mountPath: /etc/config/
+              name: config-volume
+          dnsPolicy: ClusterFirst
+          restartPolicy: Always
+          schedulerName: default-scheduler
+          securityContext: {}
+          serviceAccount: local-path-provisioner-service-account
+          serviceAccountName: local-path-provisioner-service-account
+          terminationGracePeriodSeconds: 30
+          volumes:
+          - configMap:
+              defaultMode: 420
+              name: local-path-config
+            name: config-volume
+    status:
+      availableReplicas: 1
+      fullyLabeledReplicas: 1
+      observedGeneration: 1
+      readyReplicas: 1
+      replicas: 1
+  metadata: {}
+- items:
+  - apiVersion: metrics.k8s.io/v1beta1
+    containers:
+    - name: local-path-provisioner
+      usage:
+        cpu: 4m
+        memory: 18656Ki
+    kind: PodMetrics
+    metadata:
+      creationTimestamp: "2020-04-27T20:46:12Z"
+      name: local-path-provisioner-5cf74d94c6-blqm9
+      namespace: local-path-storage
+      selfLink: /apis/metrics.k8s.io/v1beta1/namespaces/local-path-storage/pods/local-path-provisioner-5cf74d94c6-blqm9
+    timestamp: "2020-04-27T20:46:12Z"
+    window: 5m0s
+  metadata: {}
+kind: List
+metadata: {}

@@ -1,0 +1,90 @@
+2020-04-27T20:40:56Z [INFO] [/replication/adapter/native/adapter.go:42]: the factory for adapter docker-registry registered
+2020-04-27T20:40:56Z [INFO] [/replication/adapter/harbor/adapter.go:40]: the factory for adapter harbor registered
+2020-04-27T20:40:56Z [INFO] [/replication/adapter/dockerhub/adapter.go:25]: Factory for adapter docker-hub registered
+2020-04-27T20:40:56Z [INFO] [/replication/adapter/huawei/huawei_adapter.go:27]: the factory of Huawei adapter was registered
+2020-04-27T20:40:56Z [INFO] [/replication/adapter/googlegcr/adapter.go:29]: the factory for adapter google-gcr registered
+2020-04-27T20:40:56Z [INFO] [/replication/adapter/awsecr/adapter.go:47]: the factory for adapter aws-ecr registered
+2020-04-27T20:40:56Z [INFO] [/replication/adapter/azurecr/adapter.go:15]: Factory for adapter azure-acr registered
+2020-04-27T20:40:56Z [INFO] [/replication/adapter/aliacr/adapter.go:26]: the factory for adapter ali-acr registered
+2020-04-27T20:40:56Z [INFO] [/replication/adapter/jfrog/adapter.go:30]: the factory of jfrog artifactory adapter was registered
+2020-04-27T20:40:56Z [INFO] [/replication/adapter/quayio/adapter.go:34]: the factory of Quay.io adapter was registered
+2020-04-27T20:40:56Z [INFO] [/replication/adapter/helmhub/adapter.go:30]: the factory for adapter helm-hub registered
+2020-04-27T20:40:56Z [INFO] [/replication/adapter/gitlab/adapter.go:19]: the factory for adapter gitlab registered
+2020-04-27T20:40:56Z [INFO] [/core/controllers/base.go:289]: Config path: /etc/core/app.conf
+2020-04-27T20:40:56Z [INFO] [/core/main.go:177]: initializing configurations...
+2020-04-27T20:40:56Z [INFO] [/core/config/config.go:100]: key path: /etc/core/key
+2020-04-27T20:40:56Z [INFO] [/core/config/config.go:73]: init secret store
+2020-04-27T20:40:56Z [INFO] [/core/config/config.go:76]: init project manager based on deploy mode
+2020-04-27T20:40:56Z [INFO] [/core/config/config.go:145]: initializing the project manager based on local database...
+2020-04-27T20:40:56Z [INFO] [/core/main.go:181]: configurations initialization completed
+2020-04-27T20:40:56Z [INFO] [/common/dao/base.go:84]: Registering database: type-PostgreSQL host-postgres-harbor.postgres-operator.svc.cluster.local port-5432 databse-registry sslmode-"disable"
+2020-04-27T20:40:56Z [INFO] [/common/dao/base.go:89]: Register database completed
+2020-04-27T20:40:56Z [INFO] [/common/dao/pgsql.go:119]: Upgrading schema for pgsql ...
+2020-04-27T20:40:56Z [INFO] [/common/dao/pgsql.go:122]: No change in schema, skip.
+2020-04-27T20:40:56Z [INFO] [/core/main.go:83]: User id: 1 already has its encrypted password.
+2020-04-27T20:40:56Z [INFO] [/chartserver/cache.go:184]: Enable redis cache for chart caching
+2020-04-27T20:40:56Z [INFO] [/chartserver/reverse_proxy.go:58]: New chart server traffic proxy with middlewares
+2020-04-27T20:40:56Z [INFO] [/core/api/chart_repository.go:607]: API controller for chart repository server is successfully initialized
+2020-04-27T20:40:56Z [INFO] [/common/dao/base.go:64]: initialized clair database
+2020-04-27T20:40:56Z [INFO] [/core/main.go:245]: initializing notification...
+2020-04-27T20:40:56Z [INFO] [/pkg/notification/notification.go:50]: notification initialization completed
+2020-04-27T20:40:56Z [INFO] [/core/main.go:269]: Because SYNC_REGISTRY set false , no need to sync registry 
+2020-04-27T20:40:56Z [INFO] [/core/main.go:272]: Init proxy
+2020-04-27T20:40:56Z [ERROR] [/core/main.go:280]: Failed to parse SYNC_QUOTA: strconv.ParseBool: parsing "": invalid syntax
+2020-04-27T20:40:56Z [INFO] [/core/main.go:291]: Version: v1.10.0, Git commit: 6b84b62f
+2020/04/27 20:40:56 [1;34m[I] [asm_amd64.s:1337] http server Running on http://:8080[0m
+2020/04/27 20:41:22 [1;44m[D] [server.go:2774] |     172.17.0.2|[42m 200 [0m|   2.312639ms|   match|[44m GET     [0m /api/ping   r:/api/ping[0m
+2020/04/27 20:41:32 [1;44m[D] [server.go:2774] |     172.17.0.2|[42m 200 [0m|    599.408µs|   match|[44m GET     [0m /api/ping   r:/api/ping[0m
+2020/04/27 20:41:38 [1;44m[D] [server.go:2774] |      127.0.0.1|[42m 200 [0m|   2.289734ms|   match|[44m GET     [0m /api/health   r:/api/health[0m
+2020/04/27 20:41:42 [1;44m[D] [server.go:2774] |     172.17.0.2|[42m 200 [0m|    701.588µs|   match|[44m GET     [0m /api/ping   r:/api/ping[0m
+2020/04/27 20:41:43 [1;44m[D] [server.go:2774] |      127.0.0.1|[42m 200 [0m|   1.151333ms|   match|[44m GET     [0m /api/health   r:/api/health[0m
+2020/04/27 20:41:48 [1;44m[D] [server.go:2774] |      127.0.0.1|[42m 200 [0m|   2.228435ms|   match|[44m GET     [0m /api/health   r:/api/health[0m
+2020/04/27 20:41:52 [1;44m[D] [server.go:2774] |     172.17.0.2|[42m 200 [0m|    911.335µs|   match|[44m GET     [0m /api/ping   r:/api/ping[0m
+2020/04/27 20:41:53 [1;44m[D] [server.go:2774] |      127.0.0.1|[42m 200 [0m|   2.585168ms|   match|[44m GET     [0m /api/health   r:/api/health[0m
+2020/04/27 20:41:58 [1;44m[D] [server.go:2774] |      127.0.0.1|[42m 200 [0m|   1.380664ms|   match|[44m GET     [0m /api/health   r:/api/health[0m
+2020/04/27 20:42:02 [1;44m[D] [server.go:2774] |     172.17.0.2|[42m 200 [0m|     720.56µs|   match|[44m GET     [0m /api/ping   r:/api/ping[0m
+2020/04/27 20:42:03 [1;44m[D] [server.go:2774] |      127.0.0.1|[42m 200 [0m|   2.505487ms|   match|[44m GET     [0m /api/health   r:/api/health[0m
+2020/04/27 20:42:08 [1;44m[D] [server.go:2774] |      127.0.0.1|[42m 200 [0m|    808.381µs|   match|[44m GET     [0m /api/health   r:/api/health[0m
+2020/04/27 20:42:12 [1;44m[D] [server.go:2774] |     172.17.0.2|[42m 200 [0m|    670.213µs|   match|[44m GET     [0m /api/ping   r:/api/ping[0m
+2020/04/27 20:42:13 [1;44m[D] [server.go:2774] |      127.0.0.1|[42m 200 [0m|    1.44452ms|   match|[44m GET     [0m /api/health   r:/api/health[0m
+2020/04/27 20:42:18 [1;44m[D] [server.go:2774] |      127.0.0.1|[42m 200 [0m|   1.749624ms|   match|[44m GET     [0m /api/health   r:/api/health[0m
+2020/04/27 20:42:22 [1;44m[D] [server.go:2774] |     172.17.0.2|[42m 200 [0m|    634.604µs|   match|[44m GET     [0m /api/ping   r:/api/ping[0m
+2020/04/27 20:42:23 [1;44m[D] [server.go:2774] |      127.0.0.1|[42m 200 [0m|    962.096µs|   match|[44m GET     [0m /api/health   r:/api/health[0m
+2020/04/27 20:42:28 [1;44m[D] [server.go:2774] |      127.0.0.1|[42m 200 [0m|   1.848148ms|   match|[44m GET     [0m /api/health   r:/api/health[0m
+2020/04/27 20:42:32 [1;44m[D] [server.go:2774] |     172.17.0.2|[42m 200 [0m|    589.773µs|   match|[44m GET     [0m /api/ping   r:/api/ping[0m
+2020/04/27 20:42:33 [1;44m[D] [server.go:2774] |      127.0.0.1|[42m 200 [0m|    966.122µs|   match|[44m GET     [0m /api/health   r:/api/health[0m
+2020/04/27 20:42:38 [1;44m[D] [server.go:2774] |      127.0.0.1|[42m 200 [0m|   1.122571ms|   match|[44m GET     [0m /api/health   r:/api/health[0m
+2020/04/27 20:42:42 [1;44m[D] [server.go:2774] |     172.17.0.2|[42m 200 [0m|    740.855µs|   match|[44m GET     [0m /api/ping   r:/api/ping[0m
+2020/04/27 20:42:43 [1;44m[D] [server.go:2774] |      127.0.0.1|[42m 200 [0m|   2.561751ms|   match|[44m GET     [0m /api/health   r:/api/health[0m
+2020/04/27 20:42:48 [1;44m[D] [server.go:2774] |      127.0.0.1|[42m 200 [0m|   1.095455ms|   match|[44m GET     [0m /api/health   r:/api/health[0m
+2020/04/27 20:42:52 [1;44m[D] [server.go:2774] |     172.17.0.2|[42m 200 [0m|    608.772µs|   match|[44m GET     [0m /api/ping   r:/api/ping[0m
+2020/04/27 20:42:53 [1;44m[D] [server.go:2774] |      127.0.0.1|[42m 200 [0m|   1.439757ms|   match|[44m GET     [0m /api/health   r:/api/health[0m
+2020/04/27 20:42:58 [1;44m[D] [server.go:2774] |      127.0.0.1|[42m 200 [0m|    949.035µs|   match|[44m GET     [0m /api/health   r:/api/health[0m
+2020/04/27 20:43:02 [1;44m[D] [server.go:2774] |     172.17.0.2|[42m 200 [0m|    628.464µs|   match|[44m GET     [0m /api/ping   r:/api/ping[0m
+2020/04/27 20:43:03 [1;44m[D] [server.go:2774] |      127.0.0.1|[42m 200 [0m|    758.902µs|   match|[44m GET     [0m /api/health   r:/api/health[0m
+2020/04/27 20:43:08 [1;44m[D] [server.go:2774] |      127.0.0.1|[42m 200 [0m|   1.120588ms|   match|[44m GET     [0m /api/health   r:/api/health[0m
+2020/04/27 20:43:12 [1;44m[D] [server.go:2774] |     172.17.0.2|[42m 200 [0m|   1.219304ms|   match|[44m GET     [0m /api/internal/configurations   r:/api/internal/configurations[0m
+2020/04/27 20:43:12 [1;44m[D] [server.go:2774] |     172.17.0.2|[42m 200 [0m|    566.515µs|   match|[44m GET     [0m /api/ping   r:/api/ping[0m
+2020/04/27 20:43:13 [1;44m[D] [server.go:2774] |      127.0.0.1|[42m 200 [0m|    884.608µs|   match|[44m GET     [0m /api/health   r:/api/health[0m
+2020/04/27 20:43:14 [1;44m[D] [server.go:2774] |     172.17.0.2|[42m 200 [0m|   1.303918ms|   match|[44m GET     [0m /api/internal/configurations   r:/api/internal/configurations[0m
+2020/04/27 20:43:18 [1;44m[D] [server.go:2774] |      127.0.0.1|[42m 200 [0m|    820.302µs|   match|[44m GET     [0m /api/health   r:/api/health[0m
+2020/04/27 20:43:22 [1;44m[D] [server.go:2774] |     172.17.0.2|[42m 200 [0m|    613.394µs|   match|[44m GET     [0m /api/ping   r:/api/ping[0m
+2020/04/27 20:43:24 [1;44m[D] [server.go:2774] |      127.0.0.1|[42m 200 [0m|    776.758µs|   match|[44m GET     [0m /api/health   r:/api/health[0m
+2020/04/27 20:43:29 [1;44m[D] [server.go:2774] |      127.0.0.1|[42m 200 [0m|    1.03922ms|   match|[44m GET     [0m /api/health   r:/api/health[0m
+2020/04/27 20:43:32 [1;44m[D] [server.go:2774] |     172.17.0.2|[42m 200 [0m|    598.169µs|   match|[44m GET     [0m /api/ping   r:/api/ping[0m
+2020/04/27 20:43:34 [1;44m[D] [server.go:2774] |      127.0.0.1|[42m 200 [0m|   1.028331ms|   match|[44m GET     [0m /api/health   r:/api/health[0m
+2020/04/27 20:43:34 [1;44m[D] [server.go:2774] |      127.0.0.1|[42m 200 [0m|    3.44652ms|   match|[44m GET     [0m /api/health   r:/api/health[0m
+2020/04/27 20:43:42 [1;44m[D] [server.go:2774] |     172.17.0.2|[42m 200 [0m|     855.23µs|   match|[44m GET     [0m /api/ping   r:/api/ping[0m
+2020/04/27 20:43:52 [1;44m[D] [server.go:2774] |     172.17.0.2|[42m 200 [0m|    673.179µs|   match|[44m GET     [0m /api/ping   r:/api/ping[0m
+2020/04/27 20:44:02 [1;44m[D] [server.go:2774] |     172.17.0.2|[42m 200 [0m|    606.854µs|   match|[44m GET     [0m /api/ping   r:/api/ping[0m
+2020/04/27 20:44:12 [1;44m[D] [server.go:2774] |     172.17.0.2|[42m 200 [0m|    668.463µs|   match|[44m GET     [0m /api/ping   r:/api/ping[0m
+2020-04-27T20:44:19Z [INFO] [/replication/registry/healthcheck.go:60]: Start regular health check for registries with interval 5m0s
+2020/04/27 20:44:22 [1;44m[D] [server.go:2774] |     172.17.0.2|[42m 200 [0m|    630.636µs|   match|[44m GET     [0m /api/ping   r:/api/ping[0m
+2020/04/27 20:44:32 [1;44m[D] [server.go:2774] |     172.17.0.2|[42m 200 [0m|    594.137µs|   match|[44m GET     [0m /api/ping   r:/api/ping[0m
+2020/04/27 20:44:42 [1;44m[D] [server.go:2774] |     172.17.0.2|[42m 200 [0m|    665.214µs|   match|[44m GET     [0m /api/ping   r:/api/ping[0m
+2020/04/27 20:44:52 [1;44m[D] [server.go:2774] |     172.17.0.2|[42m 200 [0m|    623.117µs|   match|[44m GET     [0m /api/ping   r:/api/ping[0m
+2020/04/27 20:45:02 [1;44m[D] [server.go:2774] |     172.17.0.2|[42m 200 [0m|    685.249µs|   match|[44m GET     [0m /api/ping   r:/api/ping[0m
+2020/04/27 20:45:12 [1;44m[D] [server.go:2774] |     172.17.0.2|[42m 200 [0m|    652.227µs|   match|[44m GET     [0m /api/ping   r:/api/ping[0m
+2020/04/27 20:45:22 [1;44m[D] [server.go:2774] |     172.17.0.2|[42m 200 [0m|    668.766µs|   match|[44m GET     [0m /api/ping   r:/api/ping[0m
+2020/04/27 20:45:32 [1;44m[D] [server.go:2774] |     172.17.0.2|[42m 200 [0m|    705.991µs|   match|[44m GET     [0m /api/ping   r:/api/ping[0m
+2020/04/27 20:45:42 [1;44m[D] [server.go:2774] |     172.17.0.2|[42m 200 [0m|    753.447µs|   match|[44m GET     [0m /api/ping   r:/api/ping[0m

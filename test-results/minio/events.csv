@@ -1,0 +1,14 @@
+LAST SEEN                      Count  TYPE    REASON             OBJECT                                   MESSAGE
+2020-04-27 20:35:49 +0000 UTC  1      Normal  Scheduled          Pod/minio-69f8f4cd59-czlqm               Successfully assigned minio/minio-69f8f4cd59-czlqm to kind-control-plane
+2020-04-27 20:35:50 +0000 UTC  1      Normal  Pulling            Pod/minio-69f8f4cd59-czlqm               Pulling image "minio/minio:RELEASE.2020-03-06T22-23-56Z"
+2020-04-27 20:35:56 +0000 UTC  1      Normal  Pulled             Pod/minio-69f8f4cd59-czlqm               Successfully pulled image "minio/minio:RELEASE.2020-03-06T22-23-56Z"
+2020-04-27 20:35:56 +0000 UTC  1      Normal  Created            Pod/minio-69f8f4cd59-czlqm               Created container minio
+2020-04-27 20:35:56 +0000 UTC  1      Normal  Started            Pod/minio-69f8f4cd59-czlqm               Started container minio
+2020-04-27 20:35:49 +0000 UTC  1      Normal  SuccessfulCreate   ReplicaSet/minio-69f8f4cd59              Created pod: minio-69f8f4cd59-czlqm
+2020-04-27 20:35:50 +0000 UTC  1      Normal  CertificateIssued  CertificateRequest/minio-tls-2930958712  Certificate fetched from issuer successfully
+2020-04-27 20:35:50 +0000 UTC  1      Normal  GeneratedKey       Certificate/minio-tls                    Generated a new private key
+2020-04-27 20:35:50 +0000 UTC  1      Normal  Requested          Certificate/minio-tls                    Created new CertificateRequest resource "minio-tls-2930958712"
+2020-04-27 20:35:50 +0000 UTC  1      Normal  Issued             Certificate/minio-tls                    Certificate issued successfully
+2020-04-27 20:35:49 +0000 UTC  1      Normal  ScalingReplicaSet  Deployment/minio                         Scaled up replica set minio-69f8f4cd59 to 1
+2020-04-27 20:35:50 +0000 UTC  1      Normal  CREATE             Ingress/minio                            Ingress minio/minio
+2020-04-27 20:35:50 +0000 UTC  1      Normal  CreateCertificate  Ingress/minio                            Successfully created Certificate "minio-tls"

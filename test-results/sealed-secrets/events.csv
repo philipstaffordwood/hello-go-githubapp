@@ -1,0 +1,8 @@
+LAST SEEN                      Count  TYPE    REASON             OBJECT                                          MESSAGE
+2020-04-27 20:40:47 +0000 UTC  1      Normal  Scheduled          Pod/sealed-secrets-controller-8dd955b66-rtw99   Successfully assigned sealed-secrets/sealed-secrets-controller-8dd955b66-rtw99 to kind-control-plane
+2020-04-27 20:40:48 +0000 UTC  1      Normal  Pulling            Pod/sealed-secrets-controller-8dd955b66-rtw99   Pulling image "quay.io/bitnami/sealed-secrets-controller:v0.10.0"
+2020-04-27 20:40:51 +0000 UTC  1      Normal  Pulled             Pod/sealed-secrets-controller-8dd955b66-rtw99   Successfully pulled image "quay.io/bitnami/sealed-secrets-controller:v0.10.0"
+2020-04-27 20:40:51 +0000 UTC  1      Normal  Created            Pod/sealed-secrets-controller-8dd955b66-rtw99   Created container sealed-secrets-controller
+2020-04-27 20:40:51 +0000 UTC  1      Normal  Started            Pod/sealed-secrets-controller-8dd955b66-rtw99   Started container sealed-secrets-controller
+2020-04-27 20:40:47 +0000 UTC  1      Normal  SuccessfulCreate   ReplicaSet/sealed-secrets-controller-8dd955b66  Created pod: sealed-secrets-controller-8dd955b66-rtw99
+2020-04-27 20:40:47 +0000 UTC  1      Normal  ScalingReplicaSet  Deployment/sealed-secrets-controller            Scaled up replica set sealed-secrets-controller-8dd955b66 to 1

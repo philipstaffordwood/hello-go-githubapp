@@ -1,0 +1,996 @@
+apiVersion: v1
+items:
+- items:
+  - apiVersion: v1
+    data:
+      filebeat.yml: |-
+        fields:
+          cluster: "test"
+        filebeat.inputs:
+        - type: container
+          paths:
+            - /var/log/containers/*.log
+          processors:
+            - add_kubernetes_metadata:
+                host: ${NODE_NAME}
+                matchers:
+                - logs_path:
+                    logs_path: "/var/log/containers/"
+
+        processors:
+          - add_cloud_metadata:
+          - drop_event:
+              when:
+                or:
+                  - contains:
+                      # ignore nsx INFO messages
+                      message: level="INFO"
+                  - contains:
+                      # ignore nsx DEBUG messages
+                      message: level="DEBUG"
+                  - contains:
+                      message: GET / HTTP/1.1" 200
+                  - contains:
+                      # ignore harbor-portal access logging
+                      message: server.go:2774
+                  - contains:
+                      message: GET /api/health HTTP/1.1" 200
+                  - contains:
+                      message: kube-probe/
+                  - contains:
+                      message: GET /healthz
+          - drop_fields:
+              fields:
+                - ecs.version
+                - agent.id
+                - agent.ephemeral_id
+                - agent.hostname
+                - kubernetes.pod.uid
+                - log.file.path
+                - log.offset
+                - host.os.family
+              ignore_missing: true
+
+
+        output.elasticsearch:
+          hosts: ['${ELASTIC_URL}']
+          username: ${ELASTIC_USERNAME}
+          password: ${ELASTIC_PASSWORD}
+          protocol: https
+          ssl.verification_mode: none
+          ssl.supported_protocols: [TLSv1.2, TLSv1.3]
+    kind: ConfigMap
+    metadata:
+      creationTimestamp: "2020-04-27T20:40:54Z"
+      labels:
+        k8s-app: filebeat
+      name: filebeat-config
+      namespace: platform-system
+      resourceVersion: "4679"
+      selfLink: /api/v1/namespaces/platform-system/configmaps/filebeat-config
+      uid: 398f3132-f583-4647-b267-3396527b8af3
+  metadata: {}
+- items:
+  - apiVersion: v1
+    kind: Pod
+    metadata:
+      creationTimestamp: "2020-04-27T20:40:56Z"
+      generateName: filebeat-
+      labels:
+        controller-revision-hash: 574bcf8c74
+        k8s-app: filebeat
+        pod-template-generation: "1"
+      name: filebeat-4fj5w
+      namespace: platform-system
+      ownerReferences:
+      - apiVersion: apps/v1
+        blockOwnerDeletion: true
+        controller: true
+        kind: DaemonSet
+        name: filebeat
+        uid: d2400667-e557-44e6-b5fd-5a300ea79428
+      resourceVersion: "5050"
+      selfLink: /api/v1/namespaces/platform-system/pods/filebeat-4fj5w
+      uid: 319f80e5-97fb-4e5d-9b15-69c3f7d0c6ef
+    spec:
+      affinity:
+        nodeAffinity:
+          requiredDuringSchedulingIgnoredDuringExecution:
+            nodeSelectorTerms:
+            - matchFields:
+              - key: metadata.name
+                operator: In
+                values:
+                - kind-control-plane
+      containers:
+      - args:
+        - -c
+        - /etc/filebeat.yml
+        - -e
+        env:
+        - name: NODE_NAME
+          valueFrom:
+            fieldRef:
+              apiVersion: v1
+              fieldPath: spec.nodeName
+        envFrom:
+        - secretRef:
+            name: elastic
+            optional: true
+        - secretRef:
+            name: logstash
+            optional: true
+        image: docker.elastic.co/beats/filebeat:7.6.0
+        imagePullPolicy: IfNotPresent
+        name: filebeat
+        resources:
+          limits:
+            memory: 200Mi
+          requests:
+            cpu: 100m
+            memory: 100Mi
+        securityContext:
+          runAsUser: 0
+        terminationMessagePath: /dev/termination-log
+        terminationMessagePolicy: File
+        volumeMounts:
+        - mountPath: /etc/filebeat.yml
+          name: config
+          readOnly: true
+          subPath: filebeat.yml
+        - mountPath: /usr/share/filebeat/data
+          name: data
+        - mountPath: /var/lib/docker/containers
+          name: varlibdockercontainers
+          readOnly: true
+        - mountPath: /var/log
+          name: varlog
+          readOnly: true
+        - mountPath: /var/run/secrets/kubernetes.io/serviceaccount
+          name: filebeat-token-rzt9g
+          readOnly: true
+      dnsPolicy: ClusterFirstWithHostNet
+      enableServiceLinks: true
+      hostNetwork: true
+      nodeName: kind-control-plane
+      priority: 0
+      restartPolicy: Always
+      schedulerName: default-scheduler
+      securityContext: {}
+      serviceAccount: filebeat
+      serviceAccountName: filebeat
+      terminationGracePeriodSeconds: 30
+      tolerations:
+      - effect: NoExecute
+        key: node.kubernetes.io/not-ready
+        operator: Exists
+      - effect: NoExecute
+        key: node.kubernetes.io/unreachable
+        operator: Exists
+      - effect: NoSchedule
+        key: node.kubernetes.io/disk-pressure
+        operator: Exists
+      - effect: NoSchedule
+        key: node.kubernetes.io/memory-pressure
+        operator: Exists
+      - effect: NoSchedule
+        key: node.kubernetes.io/pid-pressure
+        operator: Exists
+      - effect: NoSchedule
+        key: node.kubernetes.io/unschedulable
+        operator: Exists
+      - effect: NoSchedule
+        key: node.kubernetes.io/network-unavailable
+        operator: Exists
+      volumes:
+      - configMap:
+          defaultMode: 384
+          name: filebeat-config
+        name: config
+      - hostPath:
+          path: /var/lib/docker/containers
+          type: ""
+        name: varlibdockercontainers
+      - hostPath:
+          path: /var/log
+          type: ""
+        name: varlog
+      - hostPath:
+          path: /var/lib/filebeat-data
+          type: DirectoryOrCreate
+        name: data
+      - name: filebeat-token-rzt9g
+        secret:
+          defaultMode: 420
+          secretName: filebeat-token-rzt9g
+    status:
+      conditions:
+      - lastProbeTime: null
+        lastTransitionTime: "2020-04-27T20:40:56Z"
+        status: "True"
+        type: Initialized
+      - lastProbeTime: null
+        lastTransitionTime: "2020-04-27T20:41:07Z"
+        status: "True"
+        type: Ready
+      - lastProbeTime: null
+        lastTransitionTime: "2020-04-27T20:41:07Z"
+        status: "True"
+        type: ContainersReady
+      - lastProbeTime: null
+        lastTransitionTime: "2020-04-27T20:40:56Z"
+        status: "True"
+        type: PodScheduled
+      containerStatuses:
+      - containerID: containerd://21ac7386b0871cf63cd043c6cd09be4a25740c4d7a267ac7eff0ea3b5d638081
+        image: docker.elastic.co/beats/filebeat:7.6.0
+        imageID: docker.elastic.co/beats/filebeat@sha256:139ccd9e6585a6e2f375367834afe46fadf2525425f5e436fe5d1455597d16d6
+        lastState: {}
+        name: filebeat
+        ready: true
+        restartCount: 0
+        state:
+          running:
+            startedAt: "2020-04-27T20:41:07Z"
+      hostIP: 172.17.0.2
+      phase: Running
+      podIP: 172.17.0.2
+      qosClass: Burstable
+      startTime: "2020-04-27T20:40:56Z"
+  - apiVersion: v1
+    kind: Pod
+    metadata:
+      annotations:
+        cni.projectcalico.org/podIP: 100.200.82.53/32
+      creationTimestamp: "2020-04-27T20:40:46Z"
+      generateName: reloader-5c84b96d94-
+      labels:
+        app: reloader
+        pod-template-hash: 5c84b96d94
+      name: reloader-5c84b96d94-2j2h7
+      namespace: platform-system
+      ownerReferences:
+      - apiVersion: apps/v1
+        blockOwnerDeletion: true
+        controller: true
+        kind: ReplicaSet
+        name: reloader-5c84b96d94
+        uid: b3a51aa9-d160-468f-80ba-633572b4632c
+      resourceVersion: "4481"
+      selfLink: /api/v1/namespaces/platform-system/pods/reloader-5c84b96d94-2j2h7
+      uid: 0a438dc7-be84-4fad-ab82-dfb1e123a4b7
+    spec:
+      containers:
+      - args:
+        - --configmap-annotation=reload/configmap
+        - --secret-annotation=reload/secret
+        - --auto-annotation=reload/all
+        image: stakater/reloader:v0.0.56
+        imagePullPolicy: IfNotPresent
+        name: reloader
+        resources: {}
+        terminationMessagePath: /dev/termination-log
+        terminationMessagePolicy: File
+        volumeMounts:
+        - mountPath: /var/run/secrets/kubernetes.io/serviceaccount
+          name: reloader-token-lw226
+          readOnly: true
+      dnsPolicy: ClusterFirst
+      enableServiceLinks: true
+      nodeName: kind-control-plane
+      priority: 0
+      restartPolicy: Always
+      schedulerName: default-scheduler
+      securityContext: {}
+      serviceAccount: reloader
+      serviceAccountName: reloader
+      terminationGracePeriodSeconds: 30
+      tolerations:
+      - effect: NoExecute
+        key: node.kubernetes.io/not-ready
+        operator: Exists
+        tolerationSeconds: 300
+      - effect: NoExecute
+        key: node.kubernetes.io/unreachable
+        operator: Exists
+        tolerationSeconds: 300
+      volumes:
+      - name: reloader-token-lw226
+        secret:
+          defaultMode: 420
+          secretName: reloader-token-lw226
+    status:
+      conditions:
+      - lastProbeTime: null
+        lastTransitionTime: "2020-04-27T20:40:46Z"
+        status: "True"
+        type: Initialized
+      - lastProbeTime: null
+        lastTransitionTime: "2020-04-27T20:40:50Z"
+        status: "True"
+        type: Ready
+      - lastProbeTime: null
+        lastTransitionTime: "2020-04-27T20:40:50Z"
+        status: "True"
+        type: ContainersReady
+      - lastProbeTime: null
+        lastTransitionTime: "2020-04-27T20:40:46Z"
+        status: "True"
+        type: PodScheduled
+      containerStatuses:
+      - containerID: containerd://c33b2207b5e45549d0e6b6223ecd09e958d4461c92e70d79f4e7c3314e1c8319
+        image: docker.io/stakater/reloader:v0.0.56
+        imageID: docker.io/stakater/reloader@sha256:7781202e10ff7e005add2ac49702d5a5ff712983ade6114b77d3fa233d0d821f
+        lastState: {}
+        name: reloader
+        ready: true
+        restartCount: 0
+        state:
+          running:
+            startedAt: "2020-04-27T20:40:49Z"
+      hostIP: 172.17.0.2
+      phase: Running
+      podIP: 100.200.82.53
+      qosClass: BestEffort
+      startTime: "2020-04-27T20:40:46Z"
+  metadata: {}
+- items:
+  - apiVersion: v1
+    kind: ServiceAccount
+    metadata:
+      creationTimestamp: "2020-04-27T20:35:28Z"
+      name: default
+      namespace: platform-system
+      resourceVersion: "829"
+      selfLink: /api/v1/namespaces/platform-system/serviceaccounts/default
+      uid: 748e619d-4743-49e8-a752-15e419cefd67
+    secrets:
+    - name: default-token-n5gvt
+  - apiVersion: v1
+    kind: ServiceAccount
+    metadata:
+      creationTimestamp: "2020-04-27T20:40:56Z"
+      labels:
+        k8s-app: filebeat
+      name: filebeat
+      namespace: platform-system
+      resourceVersion: "4751"
+      selfLink: /api/v1/namespaces/platform-system/serviceaccounts/filebeat
+      uid: 84ca5bd9-fa63-4f17-adb2-09bbc23e3c60
+    secrets:
+    - name: filebeat-token-rzt9g
+  - apiVersion: v1
+    kind: ServiceAccount
+    metadata:
+      creationTimestamp: "2020-04-27T20:40:46Z"
+      labels:
+        app: reloader
+      name: reloader
+      namespace: platform-system
+      resourceVersion: "4171"
+      selfLink: /api/v1/namespaces/platform-system/serviceaccounts/reloader
+      uid: caefe29f-9023-434e-b5a9-31297597f4a6
+    secrets:
+    - name: reloader-token-lw226
+  metadata: {}
+- items:
+  - apiVersion: apps/v1
+    data:
+      spec:
+        template:
+          $patch: replace
+          metadata:
+            creationTimestamp: null
+            labels:
+              k8s-app: filebeat
+          spec:
+            containers:
+            - args:
+              - -c
+              - /etc/filebeat.yml
+              - -e
+              env:
+              - name: NODE_NAME
+                valueFrom:
+                  fieldRef:
+                    apiVersion: v1
+                    fieldPath: spec.nodeName
+              envFrom:
+              - secretRef:
+                  name: elastic
+                  optional: true
+              - secretRef:
+                  name: logstash
+                  optional: true
+              image: docker.elastic.co/beats/filebeat:7.6.0
+              imagePullPolicy: IfNotPresent
+              name: filebeat
+              resources:
+                limits:
+                  memory: 200Mi
+                requests:
+                  cpu: 100m
+                  memory: 100Mi
+              securityContext:
+                runAsUser: 0
+              terminationMessagePath: /dev/termination-log
+              terminationMessagePolicy: File
+              volumeMounts:
+              - mountPath: /etc/filebeat.yml
+                name: config
+                readOnly: true
+                subPath: filebeat.yml
+              - mountPath: /usr/share/filebeat/data
+                name: data
+              - mountPath: /var/lib/docker/containers
+                name: varlibdockercontainers
+                readOnly: true
+              - mountPath: /var/log
+                name: varlog
+                readOnly: true
+            dnsPolicy: ClusterFirstWithHostNet
+            hostNetwork: true
+            restartPolicy: Always
+            schedulerName: default-scheduler
+            securityContext: {}
+            serviceAccount: filebeat
+            serviceAccountName: filebeat
+            terminationGracePeriodSeconds: 30
+            volumes:
+            - configMap:
+                defaultMode: 384
+                name: filebeat-config
+              name: config
+            - hostPath:
+                path: /var/lib/docker/containers
+                type: ""
+              name: varlibdockercontainers
+            - hostPath:
+                path: /var/log
+                type: ""
+              name: varlog
+            - hostPath:
+                path: /var/lib/filebeat-data
+                type: DirectoryOrCreate
+              name: data
+    kind: ControllerRevision
+    metadata:
+      annotations:
+        deprecated.daemonset.template.generation: "1"
+        reload/all: "true"
+      creationTimestamp: "2020-04-27T20:40:55Z"
+      labels:
+        controller-revision-hash: 574bcf8c74
+        k8s-app: filebeat
+      name: filebeat-574bcf8c74
+      namespace: platform-system
+      ownerReferences:
+      - apiVersion: apps/v1
+        blockOwnerDeletion: true
+        controller: true
+        kind: DaemonSet
+        name: filebeat
+        uid: d2400667-e557-44e6-b5fd-5a300ea79428
+      resourceVersion: "4700"
+      selfLink: /apis/apps/v1/namespaces/platform-system/controllerrevisions/filebeat-574bcf8c74
+      uid: acc47ca2-1d3a-4607-8e8d-c487f02f1bed
+    revision: 1
+  metadata: {}
+- items:
+  - apiVersion: apps/v1
+    kind: DaemonSet
+    metadata:
+      annotations:
+        deprecated.daemonset.template.generation: "1"
+        reload/all: "true"
+      creationTimestamp: "2020-04-27T20:40:55Z"
+      generation: 1
+      labels:
+        k8s-app: filebeat
+      name: filebeat
+      namespace: platform-system
+      resourceVersion: "5051"
+      selfLink: /apis/apps/v1/namespaces/platform-system/daemonsets/filebeat
+      uid: d2400667-e557-44e6-b5fd-5a300ea79428
+    spec:
+      revisionHistoryLimit: 10
+      selector:
+        matchLabels:
+          k8s-app: filebeat
+      template:
+        metadata:
+          creationTimestamp: null
+          labels:
+            k8s-app: filebeat
+        spec:
+          containers:
+          - args:
+            - -c
+            - /etc/filebeat.yml
+            - -e
+            env:
+            - name: NODE_NAME
+              valueFrom:
+                fieldRef:
+                  apiVersion: v1
+                  fieldPath: spec.nodeName
+            envFrom:
+            - secretRef:
+                name: elastic
+                optional: true
+            - secretRef:
+                name: logstash
+                optional: true
+            image: docker.elastic.co/beats/filebeat:7.6.0
+            imagePullPolicy: IfNotPresent
+            name: filebeat
+            resources:
+              limits:
+                memory: 200Mi
+              requests:
+                cpu: 100m
+                memory: 100Mi
+            securityContext:
+              runAsUser: 0
+            terminationMessagePath: /dev/termination-log
+            terminationMessagePolicy: File
+            volumeMounts:
+            - mountPath: /etc/filebeat.yml
+              name: config
+              readOnly: true
+              subPath: filebeat.yml
+            - mountPath: /usr/share/filebeat/data
+              name: data
+            - mountPath: /var/lib/docker/containers
+              name: varlibdockercontainers
+              readOnly: true
+            - mountPath: /var/log
+              name: varlog
+              readOnly: true
+          dnsPolicy: ClusterFirstWithHostNet
+          hostNetwork: true
+          restartPolicy: Always
+          schedulerName: default-scheduler
+          securityContext: {}
+          serviceAccount: filebeat
+          serviceAccountName: filebeat
+          terminationGracePeriodSeconds: 30
+          volumes:
+          - configMap:
+              defaultMode: 384
+              name: filebeat-config
+            name: config
+          - hostPath:
+              path: /var/lib/docker/containers
+              type: ""
+            name: varlibdockercontainers
+          - hostPath:
+              path: /var/log
+              type: ""
+            name: varlog
+          - hostPath:
+              path: /var/lib/filebeat-data
+              type: DirectoryOrCreate
+            name: data
+      updateStrategy:
+        rollingUpdate:
+          maxUnavailable: 1
+        type: RollingUpdate
+    status:
+      currentNumberScheduled: 1
+      desiredNumberScheduled: 1
+      numberAvailable: 1
+      numberMisscheduled: 0
+      numberReady: 1
+      observedGeneration: 1
+      updatedNumberScheduled: 1
+  metadata: {}
+- items:
+  - apiVersion: apps/v1
+    kind: Deployment
+    metadata:
+      annotations:
+        deployment.kubernetes.io/revision: "1"
+      creationTimestamp: "2020-04-27T20:40:46Z"
+      generation: 1
+      labels:
+        app: reloader
+      name: reloader
+      namespace: platform-system
+      resourceVersion: "4511"
+      selfLink: /apis/apps/v1/namespaces/platform-system/deployments/reloader
+      uid: b5fc622e-1daa-4c81-a948-a3f8bb3de4a8
+    spec:
+      progressDeadlineSeconds: 600
+      replicas: 1
+      revisionHistoryLimit: 2
+      selector:
+        matchLabels:
+          app: reloader
+      strategy:
+        rollingUpdate:
+          maxSurge: 25%
+          maxUnavailable: 25%
+        type: RollingUpdate
+      template:
+        metadata:
+          creationTimestamp: null
+          labels:
+            app: reloader
+        spec:
+          containers:
+          - args:
+            - --configmap-annotation=reload/configmap
+            - --secret-annotation=reload/secret
+            - --auto-annotation=reload/all
+            image: stakater/reloader:v0.0.56
+            imagePullPolicy: IfNotPresent
+            name: reloader
+            resources: {}
+            terminationMessagePath: /dev/termination-log
+            terminationMessagePolicy: File
+          dnsPolicy: ClusterFirst
+          restartPolicy: Always
+          schedulerName: default-scheduler
+          securityContext: {}
+          serviceAccount: reloader
+          serviceAccountName: reloader
+          terminationGracePeriodSeconds: 30
+    status:
+      availableReplicas: 1
+      conditions:
+      - lastTransitionTime: "2020-04-27T20:40:51Z"
+        lastUpdateTime: "2020-04-27T20:40:51Z"
+        message: Deployment has minimum availability.
+        reason: MinimumReplicasAvailable
+        status: "True"
+        type: Available
+      - lastTransitionTime: "2020-04-27T20:40:46Z"
+        lastUpdateTime: "2020-04-27T20:40:51Z"
+        message: ReplicaSet "reloader-5c84b96d94" has successfully progressed.
+        reason: NewReplicaSetAvailable
+        status: "True"
+        type: Progressing
+      observedGeneration: 1
+      readyReplicas: 1
+      replicas: 1
+      updatedReplicas: 1
+  metadata: {}
+- items:
+  - apiVersion: apps/v1
+    kind: ReplicaSet
+    metadata:
+      annotations:
+        deployment.kubernetes.io/desired-replicas: "1"
+        deployment.kubernetes.io/max-replicas: "2"
+        deployment.kubernetes.io/revision: "1"
+      creationTimestamp: "2020-04-27T20:40:46Z"
+      generation: 1
+      labels:
+        app: reloader
+        pod-template-hash: 5c84b96d94
+      name: reloader-5c84b96d94
+      namespace: platform-system
+      ownerReferences:
+      - apiVersion: apps/v1
+        blockOwnerDeletion: true
+        controller: true
+        kind: Deployment
+        name: reloader
+        uid: b5fc622e-1daa-4c81-a948-a3f8bb3de4a8
+      resourceVersion: "4487"
+      selfLink: /apis/apps/v1/namespaces/platform-system/replicasets/reloader-5c84b96d94
+      uid: b3a51aa9-d160-468f-80ba-633572b4632c
+    spec:
+      replicas: 1
+      selector:
+        matchLabels:
+          app: reloader
+          pod-template-hash: 5c84b96d94
+      template:
+        metadata:
+          creationTimestamp: null
+          labels:
+            app: reloader
+            pod-template-hash: 5c84b96d94
+        spec:
+          containers:
+          - args:
+            - --configmap-annotation=reload/configmap
+            - --secret-annotation=reload/secret
+            - --auto-annotation=reload/all
+            image: stakater/reloader:v0.0.56
+            imagePullPolicy: IfNotPresent
+            name: reloader
+            resources: {}
+            terminationMessagePath: /dev/termination-log
+            terminationMessagePolicy: File
+          dnsPolicy: ClusterFirst
+          restartPolicy: Always
+          schedulerName: default-scheduler
+          securityContext: {}
+          serviceAccount: reloader
+          serviceAccountName: reloader
+          terminationGracePeriodSeconds: 30
+    status:
+      availableReplicas: 1
+      fullyLabeledReplicas: 1
+      observedGeneration: 1
+      readyReplicas: 1
+      replicas: 1
+  metadata: {}
+- items:
+  - apiVersion: extensions/v1beta1
+    kind: DaemonSet
+    metadata:
+      annotations:
+        reload/all: "true"
+      creationTimestamp: "2020-04-27T20:40:55Z"
+      generation: 1
+      labels:
+        k8s-app: filebeat
+      name: filebeat
+      namespace: platform-system
+      resourceVersion: "5051"
+      selfLink: /apis/extensions/v1beta1/namespaces/platform-system/daemonsets/filebeat
+      uid: d2400667-e557-44e6-b5fd-5a300ea79428
+    spec:
+      revisionHistoryLimit: 10
+      selector:
+        matchLabels:
+          k8s-app: filebeat
+      template:
+        metadata:
+          creationTimestamp: null
+          labels:
+            k8s-app: filebeat
+        spec:
+          containers:
+          - args:
+            - -c
+            - /etc/filebeat.yml
+            - -e
+            env:
+            - name: NODE_NAME
+              valueFrom:
+                fieldRef:
+                  apiVersion: v1
+                  fieldPath: spec.nodeName
+            envFrom:
+            - secretRef:
+                name: elastic
+                optional: true
+            - secretRef:
+                name: logstash
+                optional: true
+            image: docker.elastic.co/beats/filebeat:7.6.0
+            imagePullPolicy: IfNotPresent
+            name: filebeat
+            resources:
+              limits:
+                memory: 200Mi
+              requests:
+                cpu: 100m
+                memory: 100Mi
+            securityContext:
+              runAsUser: 0
+            terminationMessagePath: /dev/termination-log
+            terminationMessagePolicy: File
+            volumeMounts:
+            - mountPath: /etc/filebeat.yml
+              name: config
+              readOnly: true
+              subPath: filebeat.yml
+            - mountPath: /usr/share/filebeat/data
+              name: data
+            - mountPath: /var/lib/docker/containers
+              name: varlibdockercontainers
+              readOnly: true
+            - mountPath: /var/log
+              name: varlog
+              readOnly: true
+          dnsPolicy: ClusterFirstWithHostNet
+          hostNetwork: true
+          restartPolicy: Always
+          schedulerName: default-scheduler
+          securityContext: {}
+          serviceAccount: filebeat
+          serviceAccountName: filebeat
+          terminationGracePeriodSeconds: 30
+          volumes:
+          - configMap:
+              defaultMode: 384
+              name: filebeat-config
+            name: config
+          - hostPath:
+              path: /var/lib/docker/containers
+              type: ""
+            name: varlibdockercontainers
+          - hostPath:
+              path: /var/log
+              type: ""
+            name: varlog
+          - hostPath:
+              path: /var/lib/filebeat-data
+              type: DirectoryOrCreate
+            name: data
+      templateGeneration: 1
+      updateStrategy:
+        rollingUpdate:
+          maxUnavailable: 1
+        type: RollingUpdate
+    status:
+      currentNumberScheduled: 1
+      desiredNumberScheduled: 1
+      numberAvailable: 1
+      numberMisscheduled: 0
+      numberReady: 1
+      observedGeneration: 1
+      updatedNumberScheduled: 1
+  metadata: {}
+- items:
+  - apiVersion: extensions/v1beta1
+    kind: Deployment
+    metadata:
+      annotations:
+        deployment.kubernetes.io/revision: "1"
+      creationTimestamp: "2020-04-27T20:40:46Z"
+      generation: 1
+      labels:
+        app: reloader
+      name: reloader
+      namespace: platform-system
+      resourceVersion: "4511"
+      selfLink: /apis/extensions/v1beta1/namespaces/platform-system/deployments/reloader
+      uid: b5fc622e-1daa-4c81-a948-a3f8bb3de4a8
+    spec:
+      progressDeadlineSeconds: 600
+      replicas: 1
+      revisionHistoryLimit: 2
+      selector:
+        matchLabels:
+          app: reloader
+      strategy:
+        rollingUpdate:
+          maxSurge: 25%
+          maxUnavailable: 25%
+        type: RollingUpdate
+      template:
+        metadata:
+          creationTimestamp: null
+          labels:
+            app: reloader
+        spec:
+          containers:
+          - args:
+            - --configmap-annotation=reload/configmap
+            - --secret-annotation=reload/secret
+            - --auto-annotation=reload/all
+            image: stakater/reloader:v0.0.56
+            imagePullPolicy: IfNotPresent
+            name: reloader
+            resources: {}
+            terminationMessagePath: /dev/termination-log
+            terminationMessagePolicy: File
+          dnsPolicy: ClusterFirst
+          restartPolicy: Always
+          schedulerName: default-scheduler
+          securityContext: {}
+          serviceAccount: reloader
+          serviceAccountName: reloader
+          terminationGracePeriodSeconds: 30
+    status:
+      availableReplicas: 1
+      conditions:
+      - lastTransitionTime: "2020-04-27T20:40:51Z"
+        lastUpdateTime: "2020-04-27T20:40:51Z"
+        message: Deployment has minimum availability.
+        reason: MinimumReplicasAvailable
+        status: "True"
+        type: Available
+      - lastTransitionTime: "2020-04-27T20:40:46Z"
+        lastUpdateTime: "2020-04-27T20:40:51Z"
+        message: ReplicaSet "reloader-5c84b96d94" has successfully progressed.
+        reason: NewReplicaSetAvailable
+        status: "True"
+        type: Progressing
+      observedGeneration: 1
+      readyReplicas: 1
+      replicas: 1
+      updatedReplicas: 1
+  metadata: {}
+- items:
+  - apiVersion: extensions/v1beta1
+    kind: ReplicaSet
+    metadata:
+      annotations:
+        deployment.kubernetes.io/desired-replicas: "1"
+        deployment.kubernetes.io/max-replicas: "2"
+        deployment.kubernetes.io/revision: "1"
+      creationTimestamp: "2020-04-27T20:40:46Z"
+      generation: 1
+      labels:
+        app: reloader
+        pod-template-hash: 5c84b96d94
+      name: reloader-5c84b96d94
+      namespace: platform-system
+      ownerReferences:
+      - apiVersion: apps/v1
+        blockOwnerDeletion: true
+        controller: true
+        kind: Deployment
+        name: reloader
+        uid: b5fc622e-1daa-4c81-a948-a3f8bb3de4a8
+      resourceVersion: "4487"
+      selfLink: /apis/extensions/v1beta1/namespaces/platform-system/replicasets/reloader-5c84b96d94
+      uid: b3a51aa9-d160-468f-80ba-633572b4632c
+    spec:
+      replicas: 1
+      selector:
+        matchLabels:
+          app: reloader
+          pod-template-hash: 5c84b96d94
+      template:
+        metadata:
+          creationTimestamp: null
+          labels:
+            app: reloader
+            pod-template-hash: 5c84b96d94
+        spec:
+          containers:
+          - args:
+            - --configmap-annotation=reload/configmap
+            - --secret-annotation=reload/secret
+            - --auto-annotation=reload/all
+            image: stakater/reloader:v0.0.56
+            imagePullPolicy: IfNotPresent
+            name: reloader
+            resources: {}
+            terminationMessagePath: /dev/termination-log
+            terminationMessagePolicy: File
+          dnsPolicy: ClusterFirst
+          restartPolicy: Always
+          schedulerName: default-scheduler
+          securityContext: {}
+          serviceAccount: reloader
+          serviceAccountName: reloader
+          terminationGracePeriodSeconds: 30
+    status:
+      availableReplicas: 1
+      fullyLabeledReplicas: 1
+      observedGeneration: 1
+      readyReplicas: 1
+      replicas: 1
+  metadata: {}
+- items:
+  - apiVersion: metrics.k8s.io/v1beta1
+    containers:
+    - name: reloader
+      usage:
+        cpu: 2m
+        memory: 17480Ki
+    kind: PodMetrics
+    metadata:
+      creationTimestamp: "2020-04-27T20:46:16Z"
+      name: reloader-5c84b96d94-2j2h7
+      namespace: platform-system
+      selfLink: /apis/metrics.k8s.io/v1beta1/namespaces/platform-system/pods/reloader-5c84b96d94-2j2h7
+    timestamp: "2020-04-27T20:46:16Z"
+    window: 5m0s
+  - apiVersion: metrics.k8s.io/v1beta1
+    containers:
+    - name: filebeat
+      usage:
+        cpu: 4m
+        memory: 100504Ki
+    kind: PodMetrics
+    metadata:
+      creationTimestamp: "2020-04-27T20:46:16Z"
+      name: filebeat-4fj5w
+      namespace: platform-system
+      selfLink: /apis/metrics.k8s.io/v1beta1/namespaces/platform-system/pods/filebeat-4fj5w
+    timestamp: "2020-04-27T20:46:16Z"
+    window: 5m0s
+  metadata: {}
+kind: List
+metadata: {}

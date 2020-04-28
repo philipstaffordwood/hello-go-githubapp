@@ -1,0 +1,74 @@
+
+WARNING! Unable to read storage migration status.
+2020-04-27T20:36:38.539Z [INFO]  proxy environment: http_proxy= https_proxy= no_proxy=
+2020-04-27T20:36:38.539Z [WARN]  storage.consul: appending trailing forward slash to path
+2020-04-27T20:36:38.581Z [WARN]  storage migration check error: error="Get http://consul-server:8500/v1/kv/vault/core/migration: dial tcp: lookup consul-server on 10.96.0.10:53: no such host"
+2020-04-27T20:36:40.584Z [WARN]  storage migration check error: error="Get http://consul-server:8500/v1/kv/vault/core/migration: dial tcp: lookup consul-server on 10.96.0.10:53: no such host"
+2020-04-27T20:36:42.586Z [WARN]  storage migration check error: error="Get http://consul-server:8500/v1/kv/vault/core/migration: dial tcp: lookup consul-server on 10.96.0.10:53: no such host"
+2020-04-27T20:36:51.982Z [WARN]  storage migration check error: error="Unexpected response code: 500"
+2020-04-27T20:37:00.997Z [WARN]  storage migration check error: error="Unexpected response code: 500"
+2020-04-27T20:37:10.071Z [WARN]  storage migration check error: error="Unexpected response code: 500"
+==> Vault server configuration:
+
+           AWS KMS KeyID: arn:aws:kms:us-east-1:745897381572:key/dde327f5-3b77-41b7-b42a-f9ae2270d90d
+          AWS KMS Region: us-east-1
+               Seal Type: awskms
+             Api Address: https://100.200.82.21:8200
+                     Cgo: disabled
+         Cluster Address: https://100.200.82.21:8201
+              Listener 1: tcp (addr: "[::]:8200", cluster address: "[::]:8201", max_request_duration: "1m30s", max_request_size: "33554432", tls: "enabled")
+               Log Level: info
+                   Mlock: supported: true, enabled: false
+           Recovery Mode: false
+                 Storage: consul (HA available)
+                 Version: Vault v1.3.2
+
+==> Vault server started! Log data will stream in below:
+
+2020-04-27T20:37:13.545Z [INFO]  core: stored unseal keys supported, attempting fetch
+2020-04-27T20:37:13.546Z [WARN]  failed to unseal core: error="stored unseal keys are supported, but none were found"
+2020-04-27T20:37:14.411Z [INFO]  core.autoseal: seal configuration missing, but cannot check old path as core is sealed: seal_type=recovery
+2020-04-27T20:37:15.290Z [INFO]  core: security barrier not initialized
+2020-04-27T20:37:15.373Z [WARN]  core: stored keys supported on init, forcing shares/threshold to 1
+2020-04-27T20:37:15.374Z [INFO]  core: security barrier not initialized
+2020-04-27T20:37:15.383Z [INFO]  core: security barrier initialized: stored=1 shares=1 threshold=1
+2020-04-27T20:37:15.492Z [INFO]  core: post-unseal setup starting
+2020-04-27T20:37:15.509Z [INFO]  core: loaded wrapping token key
+2020-04-27T20:37:15.509Z [INFO]  core: successfully setup plugin catalog: plugin-directory=
+2020-04-27T20:37:15.510Z [INFO]  core: no mounts; adding default mount table
+2020-04-27T20:37:15.519Z [INFO]  core: successfully mounted backend: type=cubbyhole path=cubbyhole/
+2020-04-27T20:37:15.519Z [INFO]  core: successfully mounted backend: type=system path=sys/
+2020-04-27T20:37:15.519Z [INFO]  core: successfully mounted backend: type=identity path=identity/
+2020-04-27T20:37:15.551Z [INFO]  core: successfully enabled credential backend: type=token path=token/
+2020-04-27T20:37:15.551Z [INFO]  core: restoring leases
+2020-04-27T20:37:15.551Z [INFO]  rollback: starting rollback manager
+2020-04-27T20:37:15.552Z [INFO]  expiration: lease restore complete
+2020-04-27T20:37:15.560Z [INFO]  identity: entities restored
+2020-04-27T20:37:15.561Z [INFO]  identity: groups restored
+2020-04-27T20:37:15.646Z [WARN]  core: post-unseal upgrade seal keys failed: error="no recovery key found"
+2020-04-27T20:37:15.650Z [INFO]  core: post-unseal setup complete
+2020-04-27T20:37:15.738Z [INFO]  core: root token generated
+2020-04-27T20:37:15.738Z [INFO]  core: pre-seal teardown starting
+2020-04-27T20:37:15.738Z [INFO]  rollback: stopping rollback manager
+2020-04-27T20:37:15.738Z [INFO]  core: pre-seal teardown complete
+2020-04-27T20:37:15.738Z [INFO]  core: stored unseal keys supported, attempting fetch
+2020-04-27T20:37:15.814Z [INFO]  core.cluster-listener: starting listener: listener_address=[::]:8201
+2020-04-27T20:37:15.814Z [INFO]  core.cluster-listener: serving cluster requests: cluster_listen_address=[::]:8201
+2020-04-27T20:37:15.814Z [INFO]  core: entering standby mode
+2020-04-27T20:37:15.815Z [INFO]  core: vault is unsealed
+2020-04-27T20:37:15.815Z [INFO]  core: unsealed with stored keys: stored_keys_used=1
+2020-04-27T20:37:15.825Z [INFO]  core: acquired lock, enabling active operation
+2020-04-27T20:37:15.853Z [INFO]  core: post-unseal setup starting
+2020-04-27T20:37:15.855Z [INFO]  core: loaded wrapping token key
+2020-04-27T20:37:15.855Z [INFO]  core: successfully setup plugin catalog: plugin-directory=
+2020-04-27T20:37:15.857Z [INFO]  core: successfully mounted backend: type=system path=sys/
+2020-04-27T20:37:15.857Z [INFO]  core: successfully mounted backend: type=identity path=identity/
+2020-04-27T20:37:15.857Z [INFO]  core: successfully mounted backend: type=cubbyhole path=cubbyhole/
+2020-04-27T20:37:15.864Z [INFO]  core: successfully enabled credential backend: type=token path=token/
+2020-04-27T20:37:15.864Z [INFO]  core: restoring leases
+2020-04-27T20:37:15.864Z [INFO]  rollback: starting rollback manager
+2020-04-27T20:37:15.865Z [INFO]  expiration: lease restore complete
+2020-04-27T20:37:15.867Z [INFO]  identity: entities restored
+2020-04-27T20:37:15.867Z [INFO]  identity: groups restored
+2020-04-27T20:37:15.945Z [INFO]  core: post-unseal setup complete
+2020-04-27T20:37:18.546Z [WARN]  core: attempted unseal with stored keys, but vault is already unsealed

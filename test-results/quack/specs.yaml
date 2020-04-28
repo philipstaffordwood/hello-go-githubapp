@@ -1,0 +1,774 @@
+apiVersion: v1
+items:
+- items:
+  - apiVersion: v1
+    data:
+      Domain: 127.0.0.1.nip.io
+      Name: test
+      domain: 127.0.0.1.nip.io
+      name: test
+    kind: ConfigMap
+    metadata:
+      creationTimestamp: "2020-04-27T20:35:40Z"
+      name: quack-config
+      namespace: quack
+      resourceVersion: "974"
+      selfLink: /api/v1/namespaces/quack/configmaps/quack-config
+      uid: 67875b3e-3d79-486c-816d-0b2b8bfdfc0e
+  metadata: {}
+- items:
+  - apiVersion: v1
+    kind: Pod
+    metadata:
+      annotations:
+        cni.projectcalico.org/podIP: 100.200.82.7/32
+      creationTimestamp: "2020-04-27T20:35:38Z"
+      generateName: quack-75dbc56886-
+      labels:
+        app: quack
+        pod-template-hash: 75dbc56886
+      name: quack-75dbc56886-dmnb6
+      namespace: quack
+      ownerReferences:
+      - apiVersion: apps/v1
+        blockOwnerDeletion: true
+        controller: true
+        kind: ReplicaSet
+        name: quack-75dbc56886
+        uid: b0222186-3633-4cb3-a693-0f2d8f3b079b
+      resourceVersion: "1353"
+      selfLink: /api/v1/namespaces/quack/pods/quack-75dbc56886-dmnb6
+      uid: 06e14655-e0d7-474d-a146-bf1ebedcfa7a
+    spec:
+      containers:
+      - args:
+        - --values-configmap=quack-config
+        - --tls-cert-file=/etc/certs/tls.crt
+        - --tls-private-key-file=/etc/certs/tls.key
+        - --audit-log-path=-
+        - --v=2
+        image: quay.io/pusher/quack:v0.1.0
+        imagePullPolicy: Always
+        livenessProbe:
+          failureThreshold: 3
+          httpGet:
+            path: /healthz
+            port: 443
+            scheme: HTTPS
+          initialDelaySeconds: 10
+          periodSeconds: 10
+          successThreshold: 1
+          timeoutSeconds: 1
+        name: quack
+        readinessProbe:
+          failureThreshold: 3
+          httpGet:
+            path: /healthz
+            port: 443
+            scheme: HTTPS
+          initialDelaySeconds: 10
+          periodSeconds: 10
+          successThreshold: 1
+          timeoutSeconds: 1
+        resources:
+          limits:
+            cpu: 500m
+            memory: 100Mi
+          requests:
+            cpu: 10m
+            memory: 20Mi
+        terminationMessagePath: /dev/termination-log
+        terminationMessagePolicy: File
+        volumeMounts:
+        - mountPath: /etc/certs
+          name: certs
+          readOnly: true
+        - mountPath: /etc/config
+          name: config
+          readOnly: true
+        - mountPath: /var/run/secrets/kubernetes.io/serviceaccount
+          name: quack-token-m4qk9
+          readOnly: true
+      dnsPolicy: ClusterFirst
+      enableServiceLinks: true
+      nodeName: kind-control-plane
+      priority: 0
+      restartPolicy: Always
+      schedulerName: default-scheduler
+      securityContext: {}
+      serviceAccount: quack
+      serviceAccountName: quack
+      terminationGracePeriodSeconds: 30
+      tolerations:
+      - effect: NoExecute
+        key: node.kubernetes.io/not-ready
+        operator: Exists
+        tolerationSeconds: 300
+      - effect: NoExecute
+        key: node.kubernetes.io/unreachable
+        operator: Exists
+        tolerationSeconds: 300
+      volumes:
+      - name: certs
+        secret:
+          defaultMode: 420
+          secretName: quack-certs
+      - configMap:
+          defaultMode: 420
+          name: quack-config
+        name: config
+      - name: quack-token-m4qk9
+        secret:
+          defaultMode: 420
+          secretName: quack-token-m4qk9
+    status:
+      conditions:
+      - lastProbeTime: null
+        lastTransitionTime: "2020-04-27T20:35:38Z"
+        status: "True"
+        type: Initialized
+      - lastProbeTime: null
+        lastTransitionTime: "2020-04-27T20:35:59Z"
+        status: "True"
+        type: Ready
+      - lastProbeTime: null
+        lastTransitionTime: "2020-04-27T20:35:59Z"
+        status: "True"
+        type: ContainersReady
+      - lastProbeTime: null
+        lastTransitionTime: "2020-04-27T20:35:38Z"
+        status: "True"
+        type: PodScheduled
+      containerStatuses:
+      - containerID: containerd://2f48639a0fb19b3259faa931f16f96e021d101f8f973e9b046197861fb405446
+        image: quay.io/pusher/quack:v0.1.0
+        imageID: sha256:9c971081ffa696cc5ae432355a344578abb146cc1d530be0f35b4ca5e7dc8d75
+        lastState: {}
+        name: quack
+        ready: true
+        restartCount: 0
+        state:
+          running:
+            startedAt: "2020-04-27T20:35:46Z"
+      hostIP: 172.17.0.2
+      phase: Running
+      podIP: 100.200.82.7
+      qosClass: Burstable
+      startTime: "2020-04-27T20:35:38Z"
+  metadata: {}
+- items:
+  - apiVersion: v1
+    kind: ServiceAccount
+    metadata:
+      creationTimestamp: "2020-04-27T20:35:34Z"
+      name: default
+      namespace: quack
+      resourceVersion: "914"
+      selfLink: /api/v1/namespaces/quack/serviceaccounts/default
+      uid: 48b44e0d-38ed-4388-a87e-15f2f1b74d87
+    secrets:
+    - name: default-token-s4vg6
+  - apiVersion: v1
+    kind: ServiceAccount
+    metadata:
+      creationTimestamp: "2020-04-27T20:35:36Z"
+      name: quack
+      namespace: quack
+      resourceVersion: "2146"
+      selfLink: /api/v1/namespaces/quack/serviceaccounts/quack
+      uid: 092d5dbb-4364-48fb-9e7d-55e50ecd6c88
+    secrets:
+    - name: quack-token-ktgh2
+  metadata: {}
+- items:
+  - apiVersion: v1
+    kind: Service
+    metadata:
+      creationTimestamp: "2020-04-27T20:35:39Z"
+      labels:
+        app: quack
+      name: quack
+      namespace: quack
+      resourceVersion: "968"
+      selfLink: /api/v1/namespaces/quack/services/quack
+      uid: 3a6f178c-8519-45d6-a676-f15e247d54ce
+    spec:
+      clusterIP: 10.102.99.104
+      ports:
+      - name: https-webhook
+        port: 443
+        protocol: TCP
+        targetPort: 443
+      selector:
+        app: quack
+      sessionAffinity: None
+      type: ClusterIP
+    status:
+      loadBalancer: {}
+  metadata: {}
+- items:
+  - apiVersion: apps/v1
+    kind: Deployment
+    metadata:
+      annotations:
+        deployment.kubernetes.io/revision: "1"
+      creationTimestamp: "2020-04-27T20:35:38Z"
+      generation: 2
+      labels:
+        app: quack
+      name: quack
+      namespace: quack
+      resourceVersion: "2173"
+      selfLink: /apis/apps/v1/namespaces/quack/deployments/quack
+      uid: 3b983bc6-4768-4d09-a8fd-d4da173e0393
+    spec:
+      progressDeadlineSeconds: 600
+      replicas: 1
+      revisionHistoryLimit: 10
+      selector:
+        matchLabels:
+          app: quack
+      strategy:
+        rollingUpdate:
+          maxSurge: 25%
+          maxUnavailable: 25%
+        type: RollingUpdate
+      template:
+        metadata:
+          creationTimestamp: null
+          labels:
+            app: quack
+          name: quack
+        spec:
+          containers:
+          - args:
+            - --values-configmap=quack-config
+            - --tls-cert-file=/etc/certs/tls.crt
+            - --tls-private-key-file=/etc/certs/tls.key
+            - --audit-log-path=-
+            - --v=2
+            image: quay.io/pusher/quack:v0.1.0
+            imagePullPolicy: Always
+            livenessProbe:
+              failureThreshold: 3
+              httpGet:
+                path: /healthz
+                port: 443
+                scheme: HTTPS
+              initialDelaySeconds: 10
+              periodSeconds: 10
+              successThreshold: 1
+              timeoutSeconds: 1
+            name: quack
+            readinessProbe:
+              failureThreshold: 3
+              httpGet:
+                path: /healthz
+                port: 443
+                scheme: HTTPS
+              initialDelaySeconds: 10
+              periodSeconds: 10
+              successThreshold: 1
+              timeoutSeconds: 1
+            resources:
+              limits:
+                cpu: 500m
+                memory: 100Mi
+              requests:
+                cpu: 10m
+                memory: 20Mi
+            terminationMessagePath: /dev/termination-log
+            terminationMessagePolicy: File
+            volumeMounts:
+            - mountPath: /etc/certs
+              name: certs
+              readOnly: true
+            - mountPath: /etc/config
+              name: config
+              readOnly: true
+          dnsPolicy: ClusterFirst
+          restartPolicy: Always
+          schedulerName: default-scheduler
+          securityContext: {}
+          serviceAccount: quack
+          serviceAccountName: quack
+          terminationGracePeriodSeconds: 30
+          volumes:
+          - name: certs
+            secret:
+              defaultMode: 420
+              secretName: quack-certs
+          - configMap:
+              defaultMode: 420
+              name: quack-config
+            name: config
+    status:
+      availableReplicas: 1
+      conditions:
+      - lastTransitionTime: "2020-04-27T20:35:59Z"
+        lastUpdateTime: "2020-04-27T20:35:59Z"
+        message: Deployment has minimum availability.
+        reason: MinimumReplicasAvailable
+        status: "True"
+        type: Available
+      - lastTransitionTime: "2020-04-27T20:35:38Z"
+        lastUpdateTime: "2020-04-27T20:35:59Z"
+        message: ReplicaSet "quack-75dbc56886" has successfully progressed.
+        reason: NewReplicaSetAvailable
+        status: "True"
+        type: Progressing
+      observedGeneration: 2
+      readyReplicas: 1
+      replicas: 1
+      updatedReplicas: 1
+  metadata: {}
+- items:
+  - apiVersion: apps/v1
+    kind: ReplicaSet
+    metadata:
+      annotations:
+        deployment.kubernetes.io/desired-replicas: "1"
+        deployment.kubernetes.io/max-replicas: "2"
+        deployment.kubernetes.io/revision: "1"
+      creationTimestamp: "2020-04-27T20:35:38Z"
+      generation: 1
+      labels:
+        app: quack
+        pod-template-hash: 75dbc56886
+      name: quack-75dbc56886
+      namespace: quack
+      ownerReferences:
+      - apiVersion: apps/v1
+        blockOwnerDeletion: true
+        controller: true
+        kind: Deployment
+        name: quack
+        uid: 3b983bc6-4768-4d09-a8fd-d4da173e0393
+      resourceVersion: "1354"
+      selfLink: /apis/apps/v1/namespaces/quack/replicasets/quack-75dbc56886
+      uid: b0222186-3633-4cb3-a693-0f2d8f3b079b
+    spec:
+      replicas: 1
+      selector:
+        matchLabels:
+          app: quack
+          pod-template-hash: 75dbc56886
+      template:
+        metadata:
+          creationTimestamp: null
+          labels:
+            app: quack
+            pod-template-hash: 75dbc56886
+          name: quack
+        spec:
+          containers:
+          - args:
+            - --values-configmap=quack-config
+            - --tls-cert-file=/etc/certs/tls.crt
+            - --tls-private-key-file=/etc/certs/tls.key
+            - --audit-log-path=-
+            - --v=2
+            image: quay.io/pusher/quack:v0.1.0
+            imagePullPolicy: Always
+            livenessProbe:
+              failureThreshold: 3
+              httpGet:
+                path: /healthz
+                port: 443
+                scheme: HTTPS
+              initialDelaySeconds: 10
+              periodSeconds: 10
+              successThreshold: 1
+              timeoutSeconds: 1
+            name: quack
+            readinessProbe:
+              failureThreshold: 3
+              httpGet:
+                path: /healthz
+                port: 443
+                scheme: HTTPS
+              initialDelaySeconds: 10
+              periodSeconds: 10
+              successThreshold: 1
+              timeoutSeconds: 1
+            resources:
+              limits:
+                cpu: 500m
+                memory: 100Mi
+              requests:
+                cpu: 10m
+                memory: 20Mi
+            terminationMessagePath: /dev/termination-log
+            terminationMessagePolicy: File
+            volumeMounts:
+            - mountPath: /etc/certs
+              name: certs
+              readOnly: true
+            - mountPath: /etc/config
+              name: config
+              readOnly: true
+          dnsPolicy: ClusterFirst
+          restartPolicy: Always
+          schedulerName: default-scheduler
+          securityContext: {}
+          serviceAccount: quack
+          serviceAccountName: quack
+          terminationGracePeriodSeconds: 30
+          volumes:
+          - name: certs
+            secret:
+              defaultMode: 420
+              secretName: quack-certs
+          - configMap:
+              defaultMode: 420
+              name: quack-config
+            name: config
+    status:
+      availableReplicas: 1
+      fullyLabeledReplicas: 1
+      observedGeneration: 1
+      readyReplicas: 1
+      replicas: 1
+  metadata: {}
+- items:
+  - apiVersion: cert-manager.io/v1alpha2
+    kind: CertificateRequest
+    metadata:
+      annotations:
+        cert-manager.io/certificate-name: quack-certs
+        cert-manager.io/private-key-secret-name: quack-certs
+      creationTimestamp: "2020-04-27T20:37:52Z"
+      generation: 1
+      name: quack-certs-2684760203
+      namespace: quack
+      ownerReferences:
+      - apiVersion: cert-manager.io/v1alpha2
+        blockOwnerDeletion: true
+        controller: true
+        kind: Certificate
+        name: quack-certs
+        uid: 2b368f0d-ebd7-4b0a-9555-e080f3f40fa5
+      resourceVersion: "2162"
+      selfLink: /apis/cert-manager.io/v1alpha2/namespaces/quack/certificaterequests/quack-certs-2684760203
+      uid: b55fe90d-9ea7-4ac1-a410-35ac089903a4
+    spec:
+      csr: LS0tLS1CRUdJTiBDRVJUSUZJQ0FURSBSRVFVRVNULS0tLS0KTUlJQ2lUQ0NBWEVDQVFBd0Z6RVZNQk1HQTFVRUNoTU1ZMlZ5ZEMxdFlXNWhaMlZ5TUlJQklqQU5CZ2txaGtpRwo5dzBCQVFFRkFBT0NBUThBTUlJQkNnS0NBUUVBdWxJNitPWFpmRHQ0NnRSdERWSDJCbE9sUU5TK2txREJmVlJOClBoNmxYcDhnZ1BFVG0zamEzU1ZjMHljbTdQcGpZOTB0Z2YxR0dPcW1wR3dPT0JOUnIrUXdMUmE2RjZsYXRDYkIKRkpjSVQ2Z2pmSzRQNU1JM3JKN2lUa2Q0d1d1MlJ6dzJUNjhoUGNGcnRmL3FBUi9TWktDWUNiWTFlVUliV0RjKwpHdE4vdXNRbG1TOEZ1LzRDQW1lTDBVcEpRb1FmSW5tYk96bHEzUGFIN01CTXBJY1kzVDlxNmQzcnlMY2NuNUhOCkpZWXlTZmoyY2c2QVJ2K1l3OGNsT3o2WHVFZGVwb1hjZ0l6MUdoVXpwMW9TRjU0ckxXRE9aY3Jya0gvby96dUYKNithaWRnSGxYMk5aeHE2Yk5DVGtKak1hTDAzd3c5MHhHVVZtbnUwejFSanR2dDVTTFFJREFRQUJvQzB3S3dZSgpLb1pJaHZjTkFRa09NUjR3SERBYUJnTlZIUkVFRXpBUmdnOXhkV0ZqYXk1eGRXRmpheTV6ZG1Nd0RRWUpLb1pJCmh2Y05BUUVMQlFBRGdnRUJBRWYreWdoQXVvei8wY3ZhUVNFTTBob3V1N3FyQ3c3M1hraGJPdGk3QjZuVm82WkEKWjJOMy9RbDhrZUZrbTY3eE52NUF3amI0ck5VSENxSWY2WEpOY1QvR0w0OCtKV1h3bHYxeExCemNsZXdsdEJHSQpMbTZjMUw5SENUSS9aajR3VFVJMXduMXo1cTlmUzF3RlB6a1RXR2VQZFdWd0czdVc4eWtRL1d4U2FNWG5sWE1lCmJzUVlYZG8yR2hOVmpFWjIxN2N2YURRVGRtc2J0OGlmRytsbXVoWnAzd0E5anJreW9wY2wySFNMemM0Rk55QmcKZGxmL01OK1JwY3R0OGIwblZtcEx5T1BoYTdFcXJuaVpwUWp5cEdZRVRZYWs1VGhZTm5tVGJqN3lPL0VvS2E5bAorTWNYanNnY3ZnRk5ZTU5MMC8yN2R5SkRtQWZsSnE3MGtwRlhLTXM9Ci0tLS0tRU5EIENFUlRJRklDQVRFIFJFUVVFU1QtLS0tLQo=
+      issuerRef:
+        kind: ClusterIssuer
+        name: default-issuer
+    status:
+      ca: LS0tLS1CRUdJTiBDRVJUSUZJQ0FURS0tLS0tCk1JSURRakNDQWlxZ0F3SUJBZ0lRY2FhVkQ0bUx5dEl0ZGdyamJpMVI2ekFOQmdrcWhraUc5dzBCQVFzRkFEQkEKTVJ3d0dnWURWUVFLRXhOalpYSjBMVzFoYm1GblpYSXVjM2x6ZEdWdE1TQXdIZ1lEVlFRREV4ZGpaWEowTFcxaApibUZuWlhJdWQyVmlhRzl2YXk1allUQWVGdzB5TURBME1qY3lNRE0wTlROYUZ3MHlOVEEwTWpZeU1ETTBOVE5hCk1FQXhIREFhQmdOVkJBb1RFMk5sY25RdGJXRnVZV2RsY2k1emVYTjBaVzB4SURBZUJnTlZCQU1URjJObGNuUXQKYldGdVlXZGxjaTUzWldKb2IyOXJMbU5oTUlJQklqQU5CZ2txaGtpRzl3MEJBUUVGQUFPQ0FROEFNSUlCQ2dLQwpBUUVBdDZSaEZ1S2x5SXU3LzVJdE9IVnZrSFA0cUZ1NVFrY3BCK1J3dmJGUWpTbFNoemN2eU1OUGprcGQzNm9OCmw1K3E1bitRUDBWRFBoRTJNM203eVpJZGdmb0wyT0JkRlpRQVVDUGlhQ1dBQ0d1YnJtUVZuN0FXMjRjNHFKR3IKdGJjVzZDdWhDQnpCQ3g1VUJHdm5MM1h2T01UNGtsQ05TYTA1VmpLVDFqU29UcWhRUnlXNTJPcmllcC9lK2xwRAp2WGozSVZvK29QVGhRelpDaVduMlNiU24zU1N5NnUya3dUWDdlY1MwcXU5Z3EweFY2Z1c2QU5sZUNQdTN0blFkCkJTVDRDOGgrNXFvajdieDJleGMvRTlERng5VCs4TktXVWl1djA5TmU3L1BXZ0dzbkVhbDgwaWNvOFpTUlBSNGQKamQ1ZStwYVFsTE44VU1SSVBNc2NxbWt5SlFJREFRQUJvemd3TmpBT0JnTlZIUThCQWY4RUJBTUNBcVF3RXdZRApWUjBsQkF3d0NnWUlLd1lCQlFVSEF3RXdEd1lEVlIwVEFRSC9CQVV3QXdFQi96QU5CZ2txaGtpRzl3MEJBUXNGCkFBT0NBUUVBalhTaUNMUWxkUTRBZE5ZMTlGNkE1OFcxWHJqT1dPL0wzOGtueTRsRDg0bUU5TjFFa0tML2FQUlEKcklFa3Ftc2tIRnUwMGlET0d4RXFqZkhNZmtzNFV4NHltNWxPMmhlcEhTOE1qdzhDbFBHTkdnNVdtbS9TNTcvdApjbm9pNTV0ajFvMEtZcDdKQ1hTcUNsQUpPYXNTTmZBbEpraUJVRjIwMGlDUk1JN0N6SEJWS1hUWUs0cWZtZXJKCkF5d0R6Y1Y0Qjdkd1o3cEpZM0JDV0oybE1lbm5OMEFhN2ZLbTBhcnpUNG0yOU5qaVNMNUIreDFINWpldmFMR04KaFpsK0piTCtsczM2ZkFhUXhrUkR2QXovUElpVEM2ZDRWc0VDRjluSUFHQkpmVldab3MxNGVpckxHVDdwTnF0aQpZNWxxd3hDWnoyWWd3cVVPQURJbjlXYjZ5Z0lHc1E9PQotLS0tLUVORCBDRVJUSUZJQ0FURS0tLS0tCg==
+      certificate: LS0tLS1CRUdJTiBDRVJUSUZJQ0FURS0tLS0tCk1JSURNakNDQWhxZ0F3SUJBZ0lRZW1rTVQ2alhkdWZJZ2xPSUE1Mzd4ekFOQmdrcWhraUc5dzBCQVFzRkFEQkEKTVJ3d0dnWURWUVFLRXhOalpYSjBMVzFoYm1GblpYSXVjM2x6ZEdWdE1TQXdIZ1lEVlFRREV4ZGpaWEowTFcxaApibUZuWlhJdWQyVmlhRzl2YXk1allUQWVGdzB5TURBME1qY3lNRE0zTlRKYUZ3MHlNREEzTWpZeU1ETTNOVEphCk1CY3hGVEFUQmdOVkJBb1RER05sY25RdGJXRnVZV2RsY2pDQ0FTSXdEUVlKS29aSWh2Y05BUUVCQlFBRGdnRVAKQURDQ0FRb0NnZ0VCQUxwU092amwyWHc3ZU9yVWJRMVI5Z1pUcFVEVXZwS2d3WDFVVFQ0ZXBWNmZJSUR4RTV0NAoydDBsWE5Nbkp1ejZZMlBkTFlIOVJoanFwcVJzRGpnVFVhL2tNQzBXdWhlcFdyUW13UlNYQ0Urb0kzeXVEK1RDCk42eWU0azVIZU1GcnRrYzhOayt2SVQzQmE3WC82Z0VmMG1TZ21BbTJOWGxDRzFnM1BoclRmN3JFSlprdkJidisKQWdKbmk5RktTVUtFSHlKNW16czVhdHoyaCt6QVRLU0hHTjAvYXVuZDY4aTNISitSelNXR01rbjQ5bklPZ0ViLwptTVBISlRzK2w3aEhYcWFGM0lDTTlSb1ZNNmRhRWhlZUt5MWd6bVhLNjVCLzZQODdoZXZtb25ZQjVWOWpXY2F1Cm16UWs1Q1l6R2k5TjhNUGRNUmxGWnA3dE05VVk3YjdlVWkwQ0F3RUFBYU5STUU4d0RnWURWUjBQQVFIL0JBUUQKQWdXZ01CTUdBMVVkSlFRTU1Bb0dDQ3NHQVFVRkJ3TUJNQXdHQTFVZEV3RUIvd1FDTUFBd0dnWURWUjBSQkJNdwpFWUlQY1hWaFkyc3VjWFZoWTJzdWMzWmpNQTBHQ1NxR1NJYjNEUUVCQ3dVQUE0SUJBUUI5b2J1bTZNSjdHTHdlCmU4K2pPSHRMYXdxOGZpZ2pZQzV3ckZ6YmtPaVpnTlBNRTUrNW90SHU1MEk3WmJtWGNSK09vUm81T29kTUJQdXYKM0pTdjlqNkhRWVZoeDJUODdySzdWRFVPQVBSZ2l6cHRpa0JyN2ZyK1JCNmxETFk4djFUWERWNWZHQnZHeTUxOApTalBOcGdyZGxxYU5vVlNndHRHRzRvOStlNHFPVWoxVFlET0taVHZKWk5scC9zVyt0d09mVEZuZXhZWnNKalVMCnVnaHVGV01ZNTBMQmkzUGNrN3BnS08ySjRwck5XMkVuS1lFaExydHJvYU00ZXByZmxQOEFOaXpkTVQ5OHhHb0MKM2NldkdUNXNEczAzSm1aK0lzM1ZYZkNIVEg3MFduODdGbzFRS2R1b0YwV2llY0xEeHJaNXVzNWY5MTNLdTM0MQo0MXk1cUxkMAotLS0tLUVORCBDRVJUSUZJQ0FURS0tLS0tCg==
+      conditions:
+      - lastTransitionTime: "2020-04-27T20:37:52Z"
+        message: Certificate fetched from issuer successfully
+        reason: Issued
+        status: "True"
+        type: Ready
+  metadata: {}
+- items:
+  - apiVersion: cert-manager.io/v1alpha2
+    kind: Certificate
+    metadata:
+      creationTimestamp: "2020-04-27T20:35:38Z"
+      generation: 1
+      name: quack-certs
+      namespace: quack
+      resourceVersion: "2166"
+      selfLink: /apis/cert-manager.io/v1alpha2/namespaces/quack/certificates/quack-certs
+      uid: 2b368f0d-ebd7-4b0a-9555-e080f3f40fa5
+    spec:
+      dnsNames:
+      - quack.quack.svc
+      issuerRef:
+        kind: ClusterIssuer
+        name: default-issuer
+      secretName: quack-certs
+    status:
+      conditions:
+      - lastTransitionTime: "2020-04-27T20:37:52Z"
+        message: Certificate is up to date and has not expired
+        reason: Ready
+        status: "True"
+        type: Ready
+      notAfter: "2020-07-26T20:37:52Z"
+  metadata: {}
+- items:
+  - apiVersion: extensions/v1beta1
+    kind: Deployment
+    metadata:
+      annotations:
+        deployment.kubernetes.io/revision: "1"
+      creationTimestamp: "2020-04-27T20:35:38Z"
+      generation: 2
+      labels:
+        app: quack
+      name: quack
+      namespace: quack
+      resourceVersion: "2173"
+      selfLink: /apis/extensions/v1beta1/namespaces/quack/deployments/quack
+      uid: 3b983bc6-4768-4d09-a8fd-d4da173e0393
+    spec:
+      progressDeadlineSeconds: 600
+      replicas: 1
+      revisionHistoryLimit: 10
+      selector:
+        matchLabels:
+          app: quack
+      strategy:
+        rollingUpdate:
+          maxSurge: 25%
+          maxUnavailable: 25%
+        type: RollingUpdate
+      template:
+        metadata:
+          creationTimestamp: null
+          labels:
+            app: quack
+          name: quack
+        spec:
+          containers:
+          - args:
+            - --values-configmap=quack-config
+            - --tls-cert-file=/etc/certs/tls.crt
+            - --tls-private-key-file=/etc/certs/tls.key
+            - --audit-log-path=-
+            - --v=2
+            image: quay.io/pusher/quack:v0.1.0
+            imagePullPolicy: Always
+            livenessProbe:
+              failureThreshold: 3
+              httpGet:
+                path: /healthz
+                port: 443
+                scheme: HTTPS
+              initialDelaySeconds: 10
+              periodSeconds: 10
+              successThreshold: 1
+              timeoutSeconds: 1
+            name: quack
+            readinessProbe:
+              failureThreshold: 3
+              httpGet:
+                path: /healthz
+                port: 443
+                scheme: HTTPS
+              initialDelaySeconds: 10
+              periodSeconds: 10
+              successThreshold: 1
+              timeoutSeconds: 1
+            resources:
+              limits:
+                cpu: 500m
+                memory: 100Mi
+              requests:
+                cpu: 10m
+                memory: 20Mi
+            terminationMessagePath: /dev/termination-log
+            terminationMessagePolicy: File
+            volumeMounts:
+            - mountPath: /etc/certs
+              name: certs
+              readOnly: true
+            - mountPath: /etc/config
+              name: config
+              readOnly: true
+          dnsPolicy: ClusterFirst
+          restartPolicy: Always
+          schedulerName: default-scheduler
+          securityContext: {}
+          serviceAccount: quack
+          serviceAccountName: quack
+          terminationGracePeriodSeconds: 30
+          volumes:
+          - name: certs
+            secret:
+              defaultMode: 420
+              secretName: quack-certs
+          - configMap:
+              defaultMode: 420
+              name: quack-config
+            name: config
+    status:
+      availableReplicas: 1
+      conditions:
+      - lastTransitionTime: "2020-04-27T20:35:59Z"
+        lastUpdateTime: "2020-04-27T20:35:59Z"
+        message: Deployment has minimum availability.
+        reason: MinimumReplicasAvailable
+        status: "True"
+        type: Available
+      - lastTransitionTime: "2020-04-27T20:35:38Z"
+        lastUpdateTime: "2020-04-27T20:35:59Z"
+        message: ReplicaSet "quack-75dbc56886" has successfully progressed.
+        reason: NewReplicaSetAvailable
+        status: "True"
+        type: Progressing
+      observedGeneration: 2
+      readyReplicas: 1
+      replicas: 1
+      updatedReplicas: 1
+  metadata: {}
+- items:
+  - apiVersion: extensions/v1beta1
+    kind: ReplicaSet
+    metadata:
+      annotations:
+        deployment.kubernetes.io/desired-replicas: "1"
+        deployment.kubernetes.io/max-replicas: "2"
+        deployment.kubernetes.io/revision: "1"
+      creationTimestamp: "2020-04-27T20:35:38Z"
+      generation: 1
+      labels:
+        app: quack
+        pod-template-hash: 75dbc56886
+      name: quack-75dbc56886
+      namespace: quack
+      ownerReferences:
+      - apiVersion: apps/v1
+        blockOwnerDeletion: true
+        controller: true
+        kind: Deployment
+        name: quack
+        uid: 3b983bc6-4768-4d09-a8fd-d4da173e0393
+      resourceVersion: "1354"
+      selfLink: /apis/extensions/v1beta1/namespaces/quack/replicasets/quack-75dbc56886
+      uid: b0222186-3633-4cb3-a693-0f2d8f3b079b
+    spec:
+      replicas: 1
+      selector:
+        matchLabels:
+          app: quack
+          pod-template-hash: 75dbc56886
+      template:
+        metadata:
+          creationTimestamp: null
+          labels:
+            app: quack
+            pod-template-hash: 75dbc56886
+          name: quack
+        spec:
+          containers:
+          - args:
+            - --values-configmap=quack-config
+            - --tls-cert-file=/etc/certs/tls.crt
+            - --tls-private-key-file=/etc/certs/tls.key
+            - --audit-log-path=-
+            - --v=2
+            image: quay.io/pusher/quack:v0.1.0
+            imagePullPolicy: Always
+            livenessProbe:
+              failureThreshold: 3
+              httpGet:
+                path: /healthz
+                port: 443
+                scheme: HTTPS
+              initialDelaySeconds: 10
+              periodSeconds: 10
+              successThreshold: 1
+              timeoutSeconds: 1
+            name: quack
+            readinessProbe:
+              failureThreshold: 3
+              httpGet:
+                path: /healthz
+                port: 443
+                scheme: HTTPS
+              initialDelaySeconds: 10
+              periodSeconds: 10
+              successThreshold: 1
+              timeoutSeconds: 1
+            resources:
+              limits:
+                cpu: 500m
+                memory: 100Mi
+              requests:
+                cpu: 10m
+                memory: 20Mi
+            terminationMessagePath: /dev/termination-log
+            terminationMessagePolicy: File
+            volumeMounts:
+            - mountPath: /etc/certs
+              name: certs
+              readOnly: true
+            - mountPath: /etc/config
+              name: config
+              readOnly: true
+          dnsPolicy: ClusterFirst
+          restartPolicy: Always
+          schedulerName: default-scheduler
+          securityContext: {}
+          serviceAccount: quack
+          serviceAccountName: quack
+          terminationGracePeriodSeconds: 30
+          volumes:
+          - name: certs
+            secret:
+              defaultMode: 420
+              secretName: quack-certs
+          - configMap:
+              defaultMode: 420
+              name: quack-config
+            name: config
+    status:
+      availableReplicas: 1
+      fullyLabeledReplicas: 1
+      observedGeneration: 1
+      readyReplicas: 1
+      replicas: 1
+  metadata: {}
+- items:
+  - apiVersion: metrics.k8s.io/v1beta1
+    containers:
+    - name: quack
+      usage:
+        cpu: 2m
+        memory: 21288Ki
+    kind: PodMetrics
+    metadata:
+      creationTimestamp: "2020-04-27T20:46:17Z"
+      name: quack-75dbc56886-dmnb6
+      namespace: quack
+      selfLink: /apis/metrics.k8s.io/v1beta1/namespaces/quack/pods/quack-75dbc56886-dmnb6
+    timestamp: "2020-04-27T20:46:17Z"
+    window: 5m0s
+  metadata: {}
+- items:
+  - apiVersion: rbac.authorization.k8s.io/v1
+    kind: RoleBinding
+    metadata:
+      creationTimestamp: "2020-04-27T20:35:35Z"
+      name: quack
+      namespace: quack
+      resourceVersion: "921"
+      selfLink: /apis/rbac.authorization.k8s.io/v1/namespaces/quack/rolebindings/quack
+      uid: 44746777-b64f-4e26-a019-577dbc542fba
+    roleRef:
+      apiGroup: rbac.authorization.k8s.io
+      kind: Role
+      name: quack
+    subjects:
+    - kind: ServiceAccount
+      name: quack
+      namespace: quack
+  metadata: {}
+- items:
+  - apiVersion: rbac.authorization.k8s.io/v1
+    kind: Role
+    metadata:
+      creationTimestamp: "2020-04-27T20:35:34Z"
+      name: quack
+      namespace: quack
+      resourceVersion: "918"
+      selfLink: /apis/rbac.authorization.k8s.io/v1/namespaces/quack/roles/quack
+      uid: a0aed106-163e-4b12-be4b-ecd66f481478
+    rules:
+    - apiGroups:
+      - ""
+      resources:
+      - configmaps
+      verbs:
+      - get
+  metadata: {}
+kind: List
+metadata: {}

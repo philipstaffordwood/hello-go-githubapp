@@ -1,0 +1,17 @@
+apiVersion: v1
+items:
+- items:
+  - apiVersion: v1
+    kind: ServiceAccount
+    metadata:
+      creationTimestamp: "2020-04-27T20:38:21Z"
+      name: default
+      namespace: pgo
+      resourceVersion: "2337"
+      selfLink: /api/v1/namespaces/pgo/serviceaccounts/default
+      uid: 175bc079-fb01-4467-9f38-96784e990f7c
+    secrets:
+    - name: default-token-mptpk
+  metadata: {}
+kind: List
+metadata: {}

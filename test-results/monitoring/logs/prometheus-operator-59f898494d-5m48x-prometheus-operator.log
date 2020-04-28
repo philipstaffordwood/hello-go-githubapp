@@ -1,0 +1,90 @@
+ts=2020-04-27T20:40:11.878376558Z caller=main.go:208 msg="Starting Prometheus Operator version '0.36.0'."
+ts=2020-04-27T20:40:11.883380392Z caller=main.go:98 msg="Staring insecure server on :8080"
+level=info ts=2020-04-27T20:40:11.888155206Z caller=operator.go:292 component=thanosoperator msg="connection established" cluster-version=v1.15.7
+level=info ts=2020-04-27T20:40:11.888182579Z caller=operator.go:452 component=prometheusoperator msg="connection established" cluster-version=v1.15.7
+level=info ts=2020-04-27T20:40:11.888159913Z caller=operator.go:214 component=alertmanageroperator msg="connection established" cluster-version=v1.15.7
+level=info ts=2020-04-27T20:40:12.283372799Z caller=operator.go:672 component=thanosoperator msg="CRD created" crd=ThanosRuler
+level=info ts=2020-04-27T20:40:12.407081763Z caller=operator.go:653 component=alertmanageroperator msg="CRD updated" crd=Alertmanager
+level=info ts=2020-04-27T20:40:12.510216973Z caller=operator.go:1920 component=prometheusoperator msg="CRD updated" crd=Prometheus
+level=info ts=2020-04-27T20:40:12.532477078Z caller=operator.go:1920 component=prometheusoperator msg="CRD updated" crd=ServiceMonitor
+level=info ts=2020-04-27T20:40:12.545065478Z caller=operator.go:1920 component=prometheusoperator msg="CRD updated" crd=PodMonitor
+level=info ts=2020-04-27T20:40:12.554129585Z caller=operator.go:1920 component=prometheusoperator msg="CRD updated" crd=PrometheusRule
+level=info ts=2020-04-27T20:40:15.414486926Z caller=operator.go:230 component=alertmanageroperator msg="CRD API endpoints ready"
+level=info ts=2020-04-27T20:40:15.614921506Z caller=operator.go:185 component=alertmanageroperator msg="successfully synced all caches"
+level=warn ts=2020-04-27T20:40:15.615067305Z caller=operator.go:514 component=alertmanageroperator msg="alertmanager key=monitoring/main, field spec.baseImage is deprecated, 'spec.image' field should be used instead"
+level=info ts=2020-04-27T20:40:15.615160534Z caller=operator.go:459 component=alertmanageroperator msg="sync alertmanager" key=monitoring/main
+level=info ts=2020-04-27T20:40:15.661159183Z caller=operator.go:459 component=alertmanageroperator msg="sync alertmanager" key=monitoring/main
+level=info ts=2020-04-27T20:40:15.709089872Z caller=operator.go:459 component=alertmanageroperator msg="sync alertmanager" key=monitoring/main
+level=info ts=2020-04-27T20:40:18.295820266Z caller=operator.go:308 component=thanosoperator msg="CRD API endpoints ready"
+level=info ts=2020-04-27T20:40:18.796667571Z caller=operator.go:253 component=thanosoperator msg="successfully synced all caches"
+level=info ts=2020-04-27T20:40:24.567986174Z caller=operator.go:468 component=prometheusoperator msg="CRD API endpoints ready"
+level=info ts=2020-04-27T20:40:25.206803596Z caller=operator.go:459 component=alertmanageroperator msg="sync alertmanager" key=monitoring/main
+level=info ts=2020-04-27T20:40:25.369446581Z caller=operator.go:398 component=prometheusoperator msg="successfully synced all caches"
+level=warn ts=2020-04-27T20:40:25.369587984Z caller=operator.go:1201 component=prometheusoperator msg="prometheus key=monitoring/k8s, field spec.baseImage is deprecated, 'spec.image' field should be used instead"
+level=info ts=2020-04-27T20:40:25.369712445Z caller=operator.go:1087 component=prometheusoperator msg="sync prometheus" key=monitoring/k8s
+level=info ts=2020-04-27T20:40:25.424065399Z caller=operator.go:1087 component=prometheusoperator msg="sync prometheus" key=monitoring/k8s
+level=info ts=2020-04-27T20:40:25.472604545Z caller=operator.go:1087 component=prometheusoperator msg="sync prometheus" key=monitoring/k8s
+level=info ts=2020-04-27T20:40:25.505456587Z caller=operator.go:1087 component=prometheusoperator msg="sync prometheus" key=monitoring/k8s
+level=info ts=2020-04-27T20:40:25.68632931Z caller=operator.go:1087 component=prometheusoperator msg="sync prometheus" key=monitoring/k8s
+level=info ts=2020-04-27T20:40:25.862033429Z caller=operator.go:1087 component=prometheusoperator msg="sync prometheus" key=monitoring/k8s
+level=info ts=2020-04-27T20:40:26.058553736Z caller=operator.go:1087 component=prometheusoperator msg="sync prometheus" key=monitoring/k8s
+level=info ts=2020-04-27T20:40:26.185642089Z caller=operator.go:1087 component=prometheusoperator msg="sync prometheus" key=monitoring/k8s
+level=info ts=2020-04-27T20:40:26.459418286Z caller=operator.go:1087 component=prometheusoperator msg="sync prometheus" key=monitoring/k8s
+level=info ts=2020-04-27T20:40:26.566222619Z caller=operator.go:1087 component=prometheusoperator msg="sync prometheus" key=monitoring/k8s
+level=info ts=2020-04-27T20:40:26.858180409Z caller=operator.go:1087 component=prometheusoperator msg="sync prometheus" key=monitoring/k8s
+level=info ts=2020-04-27T20:40:26.973254044Z caller=operator.go:1087 component=prometheusoperator msg="sync prometheus" key=monitoring/k8s
+level=info ts=2020-04-27T20:40:27.26117694Z caller=operator.go:1087 component=prometheusoperator msg="sync prometheus" key=monitoring/k8s
+level=info ts=2020-04-27T20:40:27.385517007Z caller=operator.go:1087 component=prometheusoperator msg="sync prometheus" key=monitoring/k8s
+level=info ts=2020-04-27T20:40:27.65822378Z caller=operator.go:1087 component=prometheusoperator msg="sync prometheus" key=monitoring/k8s
+level=info ts=2020-04-27T20:40:27.775109919Z caller=operator.go:1087 component=prometheusoperator msg="sync prometheus" key=monitoring/k8s
+level=info ts=2020-04-27T20:40:28.060837854Z caller=operator.go:1087 component=prometheusoperator msg="sync prometheus" key=monitoring/k8s
+level=info ts=2020-04-27T20:40:28.203139713Z caller=operator.go:1087 component=prometheusoperator msg="sync prometheus" key=monitoring/k8s
+level=info ts=2020-04-27T20:40:28.458338476Z caller=operator.go:1087 component=prometheusoperator msg="sync prometheus" key=monitoring/k8s
+level=info ts=2020-04-27T20:40:28.519685865Z caller=operator.go:1087 component=prometheusoperator msg="sync prometheus" key=monitoring/k8s
+level=info ts=2020-04-27T20:40:28.858392092Z caller=operator.go:1087 component=prometheusoperator msg="sync prometheus" key=monitoring/k8s
+level=info ts=2020-04-27T20:40:29.049641994Z caller=operator.go:1087 component=prometheusoperator msg="sync prometheus" key=monitoring/k8s
+level=info ts=2020-04-27T20:40:29.259374426Z caller=operator.go:1087 component=prometheusoperator msg="sync prometheus" key=monitoring/k8s
+level=info ts=2020-04-27T20:40:29.364298139Z caller=operator.go:459 component=alertmanageroperator msg="sync alertmanager" key=monitoring/main
+level=info ts=2020-04-27T20:40:29.386223398Z caller=operator.go:1087 component=prometheusoperator msg="sync prometheus" key=monitoring/k8s
+level=info ts=2020-04-27T20:40:29.660429663Z caller=operator.go:1087 component=prometheusoperator msg="sync prometheus" key=monitoring/k8s
+level=info ts=2020-04-27T20:40:29.769648707Z caller=operator.go:459 component=alertmanageroperator msg="sync alertmanager" key=monitoring/main
+level=info ts=2020-04-27T20:40:29.807379223Z caller=operator.go:1087 component=prometheusoperator msg="sync prometheus" key=monitoring/k8s
+level=info ts=2020-04-27T20:40:30.065314291Z caller=operator.go:1087 component=prometheusoperator msg="sync prometheus" key=monitoring/k8s
+level=info ts=2020-04-27T20:40:30.196530617Z caller=operator.go:1087 component=prometheusoperator msg="sync prometheus" key=monitoring/k8s
+level=info ts=2020-04-27T20:40:44.458227273Z caller=operator.go:1087 component=prometheusoperator msg="sync prometheus" key=monitoring/k8s
+level=info ts=2020-04-27T20:40:45.782219042Z caller=operator.go:1087 component=prometheusoperator msg="sync prometheus" key=monitoring/k8s
+level=info ts=2020-04-27T20:40:45.876410992Z caller=operator.go:1087 component=prometheusoperator msg="sync prometheus" key=monitoring/k8s
+level=info ts=2020-04-27T20:40:46.470918804Z caller=operator.go:1087 component=prometheusoperator msg="sync prometheus" key=monitoring/k8s
+level=info ts=2020-04-27T20:40:46.911390519Z caller=operator.go:1087 component=prometheusoperator msg="sync prometheus" key=monitoring/k8s
+level=info ts=2020-04-27T20:40:46.981435613Z caller=operator.go:1087 component=prometheusoperator msg="sync prometheus" key=monitoring/k8s
+level=info ts=2020-04-27T20:40:47.267484275Z caller=operator.go:1087 component=prometheusoperator msg="sync prometheus" key=monitoring/k8s
+level=info ts=2020-04-27T20:40:50.945611527Z caller=operator.go:1087 component=prometheusoperator msg="sync prometheus" key=monitoring/k8s
+level=info ts=2020-04-27T20:40:52.872415463Z caller=operator.go:1087 component=prometheusoperator msg="sync prometheus" key=monitoring/k8s
+level=info ts=2020-04-27T20:40:53.311295737Z caller=operator.go:1087 component=prometheusoperator msg="sync prometheus" key=monitoring/k8s
+level=info ts=2020-04-27T20:40:54.058883401Z caller=operator.go:1087 component=prometheusoperator msg="sync prometheus" key=monitoring/k8s
+level=info ts=2020-04-27T20:40:54.467004202Z caller=operator.go:1087 component=prometheusoperator msg="sync prometheus" key=monitoring/k8s
+level=info ts=2020-04-27T20:40:56.464048258Z caller=operator.go:1087 component=prometheusoperator msg="sync prometheus" key=monitoring/k8s
+level=info ts=2020-04-27T20:41:02.767084985Z caller=operator.go:1087 component=prometheusoperator msg="sync prometheus" key=monitoring/k8s
+level=info ts=2020-04-27T20:41:04.192502489Z caller=operator.go:1087 component=prometheusoperator msg="sync prometheus" key=monitoring/k8s
+level=info ts=2020-04-27T20:41:07.715810989Z caller=operator.go:1087 component=prometheusoperator msg="sync prometheus" key=monitoring/k8s
+level=info ts=2020-04-27T20:43:34.435843448Z caller=operator.go:1087 component=prometheusoperator msg="sync prometheus" key=monitoring/k8s
+level=info ts=2020-04-27T20:43:34.530960247Z caller=operator.go:1087 component=prometheusoperator msg="sync prometheus" key=monitoring/k8s
+level=info ts=2020-04-27T20:43:34.615050465Z caller=operator.go:1087 component=prometheusoperator msg="sync prometheus" key=monitoring/k8s
+level=info ts=2020-04-27T20:43:34.849258635Z caller=operator.go:1087 component=prometheusoperator msg="sync prometheus" key=monitoring/k8s
+level=info ts=2020-04-27T20:43:34.976541833Z caller=operator.go:1087 component=prometheusoperator msg="sync prometheus" key=monitoring/k8s
+level=info ts=2020-04-27T20:43:35.343001991Z caller=operator.go:1087 component=prometheusoperator msg="sync prometheus" key=monitoring/k8s
+level=info ts=2020-04-27T20:43:39.63934075Z caller=operator.go:1087 component=prometheusoperator msg="sync prometheus" key=monitoring/k8s
+level=info ts=2020-04-27T20:43:40.350472842Z caller=operator.go:1087 component=prometheusoperator msg="sync prometheus" key=monitoring/k8s
+level=info ts=2020-04-27T20:43:43.533413969Z caller=operator.go:1087 component=prometheusoperator msg="sync prometheus" key=monitoring/k8s
+level=info ts=2020-04-27T20:43:45.669990938Z caller=operator.go:1087 component=prometheusoperator msg="sync prometheus" key=monitoring/k8s
+level=info ts=2020-04-27T20:43:45.808109685Z caller=operator.go:1087 component=prometheusoperator msg="sync prometheus" key=monitoring/k8s
+level=info ts=2020-04-27T20:43:45.870675135Z caller=operator.go:1087 component=prometheusoperator msg="sync prometheus" key=monitoring/k8s
+level=info ts=2020-04-27T20:43:53.548413053Z caller=operator.go:1087 component=prometheusoperator msg="sync prometheus" key=monitoring/k8s
+level=info ts=2020-04-27T20:43:53.661917295Z caller=operator.go:1087 component=prometheusoperator msg="sync prometheus" key=monitoring/k8s
+level=info ts=2020-04-27T20:44:44.794533485Z caller=operator.go:1087 component=prometheusoperator msg="sync prometheus" key=monitoring/k8s
+level=info ts=2020-04-27T20:44:44.879987734Z caller=operator.go:1087 component=prometheusoperator msg="sync prometheus" key=monitoring/k8s
+level=info ts=2020-04-27T20:45:47.590035394Z caller=operator.go:1087 component=prometheusoperator msg="sync prometheus" key=monitoring/k8s
+level=info ts=2020-04-27T20:45:50.546973924Z caller=operator.go:1087 component=prometheusoperator msg="sync prometheus" key=monitoring/k8s
+level=info ts=2020-04-27T20:45:50.663847048Z caller=operator.go:1087 component=prometheusoperator msg="sync prometheus" key=monitoring/k8s
+level=info ts=2020-04-27T20:45:51.655024734Z caller=operator.go:1087 component=prometheusoperator msg="sync prometheus" key=monitoring/k8s
+level=info ts=2020-04-27T20:45:51.766598457Z caller=operator.go:1087 component=prometheusoperator msg="sync prometheus" key=monitoring/k8s

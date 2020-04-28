@@ -1,0 +1,140 @@
+apiVersion: v1
+items:
+- items:
+  - apiVersion: v1
+    data:
+      jws-kubeconfig-abcdef: eyJhbGciOiJIUzI1NiIsImtpZCI6ImFiY2RlZiJ9..A8b2uC-plSKz2rWZRmJIWYuT_WoD-8hvHc_xSMZhIkg
+      kubeconfig: |
+        apiVersion: v1
+        clusters:
+        - cluster:
+            certificate-authority-data: LS0tLS1CRUdJTiBDRVJUSUZJQ0FURS0tLS0tCk1JSUN5RENDQWJDZ0F3SUJBZ0lCQURBTkJna3Foa2lHOXcwQkFRc0ZBREFWTVJNd0VRWURWUVFERXdwcmRXSmwKY201bGRHVnpNQjRYRFRJd01EUXlOekl3TXpNMU9Gb1hEVE13TURReU5USXdNek0xT0Zvd0ZURVRNQkVHQTFVRQpBeE1LYTNWaVpYSnVaWFJsY3pDQ0FTSXdEUVlKS29aSWh2Y05BUUVCQlFBRGdnRVBBRENDQVFvQ2dnRUJBTEdTClh6MzZES1M2aUdkeDh5enVSTDM4ejU1a0xtTnpzVy9pbTE2Y3ZmME02QnNSVFEyZ0pybDhWZGZ4UjJsQ1Q0cW4KK285ZlQyUm1KakFCUnF6V2c0Zit2SGtZWTU3ZUZpaWlpVkM2cFNVR0paSXByWVp4OEF3ZXBXaC9YMlBKV2J5RQpMMWlFOFRqNHdtMFUybjYrcFNNMm1JUTlWT3J0UFArcUc5bzdrQjJOQ20vTzlIalVuYnQycUVQcTZ4MWxGc3V5CnJmZ1cvVHdxVExOSnJHRDlMMXFsYnpwVEtSd0lRUjlXNnJJRG01S0dWbDZmdmpnS3QyeUNkR0VlQ0VQaVV4d0sKWTI0cVhFcnNHcXlSNEpGZnZ0OW8vSFlaY2E2ampEV3NFL3cxMmZsenc5MkNBR1VJMkNkaUp1c2RXc1dUNnhtZApWSzhTQ1pQQ2xvbnU0bUN5aVBrQ0F3RUFBYU1qTUNFd0RnWURWUjBQQVFIL0JBUURBZ0trTUE4R0ExVWRFd0VCCi93UUZNQU1CQWY4d0RRWUpLb1pJaHZjTkFRRUxCUUFEZ2dFQkFDZlo0TW9LMmplYVVLSzZiYVVWSkc0V1RicDAKQU9IZk9rMmM2UnR0WVYxV3JoMkN3M2lvMDgvSG1OMFZNM1hyNjJDdDVaYlFxMTByTTlNNE5zQUs0dTdNSG8rbwpEcVVORVVCU0t5N0lPMCtDMy9rd3paU0tZUFg2Wm1Ga2ZyVVVKQXlhbld0VFI3eCtCQ0I1MFQyNDVITDlFcTJICmdUL1pDR3o1Z1AxSG1NTVB2UE5WNS9aNjZRSVVaS3Z6SUlnT1VOaTBUMHVSOEx3aW14bjRyUlg3bGlGSXVvOTMKa1ZMeTVRQ0JMZXh4Y3V3aXRVMGsrVGFWK0NwS0FGclZBWGxpR0lwOC82TzhxZkRVRDF2WW5DU2lMK0VlM2dSLwoxUDl3V0tTN1ZGaE51SDJEUllOVmFnRnFVNTRkRWZTSEVEU2RVVnl1Z2ZzNUZhSTBmclNwTS9XbHA2az0KLS0tLS1FTkQgQ0VSVElGSUNBVEUtLS0tLQo=
+            server: https://172.17.0.2:6443
+          name: ""
+        contexts: []
+        current-context: ""
+        kind: Config
+        preferences: {}
+        users: []
+    kind: ConfigMap
+    metadata:
+      creationTimestamp: "2020-04-27T20:34:17Z"
+      name: cluster-info
+      namespace: kube-public
+      resourceVersion: "483"
+      selfLink: /api/v1/namespaces/kube-public/configmaps/cluster-info
+      uid: 8761a7eb-9e70-488e-835c-6be6bd6fb8f6
+  metadata: {}
+- items:
+  - apiVersion: v1
+    kind: ServiceAccount
+    metadata:
+      creationTimestamp: "2020-04-27T20:34:35Z"
+      name: default
+      namespace: kube-public
+      resourceVersion: "422"
+      selfLink: /api/v1/namespaces/kube-public/serviceaccounts/default
+      uid: e62e35f8-7f3e-45a6-a82b-b602a39b66ff
+    secrets:
+    - name: default-token-fmvhj
+  metadata: {}
+- items:
+  - apiVersion: rbac.authorization.k8s.io/v1
+    kind: RoleBinding
+    metadata:
+      creationTimestamp: "2020-04-27T20:34:17Z"
+      name: kubeadm:bootstrap-signer-clusterinfo
+      namespace: kube-public
+      resourceVersion: "166"
+      selfLink: /apis/rbac.authorization.k8s.io/v1/namespaces/kube-public/rolebindings/kubeadm:bootstrap-signer-clusterinfo
+      uid: bc8056b6-10ed-492a-9d89-cbd1e7bcc7bd
+    roleRef:
+      apiGroup: rbac.authorization.k8s.io
+      kind: Role
+      name: kubeadm:bootstrap-signer-clusterinfo
+    subjects:
+    - apiGroup: rbac.authorization.k8s.io
+      kind: User
+      name: system:anonymous
+  - apiVersion: rbac.authorization.k8s.io/v1
+    kind: RoleBinding
+    metadata:
+      annotations:
+        rbac.authorization.kubernetes.io/autoupdate: "true"
+      creationTimestamp: "2020-04-27T20:34:16Z"
+      labels:
+        kubernetes.io/bootstrapping: rbac-defaults
+      name: system:controller:bootstrap-signer
+      namespace: kube-public
+      resourceVersion: "146"
+      selfLink: /apis/rbac.authorization.k8s.io/v1/namespaces/kube-public/rolebindings/system:controller:bootstrap-signer
+      uid: be82755f-71d7-42f5-8056-4ae3d79d7c62
+    roleRef:
+      apiGroup: rbac.authorization.k8s.io
+      kind: Role
+      name: system:controller:bootstrap-signer
+    subjects:
+    - kind: ServiceAccount
+      name: bootstrap-signer
+      namespace: kube-system
+  metadata: {}
+- items:
+  - apiVersion: rbac.authorization.k8s.io/v1
+    kind: Role
+    metadata:
+      creationTimestamp: "2020-04-27T20:34:17Z"
+      name: kubeadm:bootstrap-signer-clusterinfo
+      namespace: kube-public
+      resourceVersion: "165"
+      selfLink: /apis/rbac.authorization.k8s.io/v1/namespaces/kube-public/roles/kubeadm:bootstrap-signer-clusterinfo
+      uid: 06172b7b-e145-4d21-9797-4b29d3f0d6bc
+    rules:
+    - apiGroups:
+      - ""
+      resourceNames:
+      - cluster-info
+      resources:
+      - configmaps
+      verbs:
+      - get
+  - apiVersion: rbac.authorization.k8s.io/v1
+    kind: Role
+    metadata:
+      annotations:
+        rbac.authorization.kubernetes.io/autoupdate: "true"
+      creationTimestamp: "2020-04-27T20:34:16Z"
+      labels:
+        kubernetes.io/bootstrapping: rbac-defaults
+      name: system:controller:bootstrap-signer
+      namespace: kube-public
+      resourceVersion: "139"
+      selfLink: /apis/rbac.authorization.k8s.io/v1/namespaces/kube-public/roles/system:controller:bootstrap-signer
+      uid: a6eaa99c-09ff-4d4f-b4b2-aba96d7aeb83
+    rules:
+    - apiGroups:
+      - ""
+      resources:
+      - configmaps
+      verbs:
+      - get
+      - list
+      - watch
+    - apiGroups:
+      - ""
+      resourceNames:
+      - cluster-info
+      resources:
+      - configmaps
+      verbs:
+      - update
+    - apiGroups:
+      - ""
+      resources:
+      - events
+      verbs:
+      - create
+      - patch
+      - update
+  metadata: {}
+kind: List
+metadata: {}

@@ -1,0 +1,1748 @@
+apiVersion: v1
+items:
+- items:
+  - apiVersion: v1
+    kind: PersistentVolumeClaim
+    metadata:
+      annotations:
+        pv.kubernetes.io/bind-completed: "yes"
+        pv.kubernetes.io/bound-by-controller: "yes"
+        volume.alpha.kubernetes.io/storage-class: default
+        volume.beta.kubernetes.io/storage-provisioner: rancher.io/local-path
+        volume.kubernetes.io/selected-node: kind-control-plane
+      creationTimestamp: "2020-04-27T20:38:39Z"
+      finalizers:
+      - kubernetes.io/pvc-protection
+      labels:
+        application: spilo
+        cluster-name: postgres-harbor
+      name: pgdata-postgres-harbor-0
+      namespace: postgres-operator
+      resourceVersion: "2686"
+      selfLink: /api/v1/namespaces/postgres-operator/persistentvolumeclaims/pgdata-postgres-harbor-0
+      uid: 1a62c55d-c34e-4cb5-91b2-06c40be68d0b
+    spec:
+      accessModes:
+      - ReadWriteOnce
+      resources:
+        requests:
+          storage: 10Gi
+      storageClassName: local-path
+      volumeMode: Filesystem
+      volumeName: pvc-1a62c55d-c34e-4cb5-91b2-06c40be68d0b
+    status:
+      accessModes:
+      - ReadWriteOnce
+      capacity:
+        storage: 10Gi
+      phase: Bound
+  - apiVersion: v1
+    kind: PersistentVolumeClaim
+    metadata:
+      annotations:
+        pv.kubernetes.io/bind-completed: "yes"
+        pv.kubernetes.io/bound-by-controller: "yes"
+        volume.alpha.kubernetes.io/storage-class: default
+        volume.beta.kubernetes.io/storage-provisioner: rancher.io/local-path
+        volume.kubernetes.io/selected-node: kind-control-plane
+      creationTimestamp: "2020-04-27T20:39:02Z"
+      finalizers:
+      - kubernetes.io/pvc-protection
+      labels:
+        application: spilo
+        cluster-name: postgres-harbor
+      name: pgdata-postgres-harbor-1
+      namespace: postgres-operator
+      resourceVersion: "2841"
+      selfLink: /api/v1/namespaces/postgres-operator/persistentvolumeclaims/pgdata-postgres-harbor-1
+      uid: 00fea81d-5f07-42be-a325-90ed06c966e4
+    spec:
+      accessModes:
+      - ReadWriteOnce
+      resources:
+        requests:
+          storage: 10Gi
+      storageClassName: local-path
+      volumeMode: Filesystem
+      volumeName: pvc-00fea81d-5f07-42be-a325-90ed06c966e4
+    status:
+      accessModes:
+      - ReadWriteOnce
+      capacity:
+        storage: 10Gi
+      phase: Bound
+  metadata: {}
+- items:
+  - apiVersion: v1
+    kind: Pod
+    metadata:
+      annotations:
+        cni.projectcalico.org/podIP: 100.200.82.30/32
+        status: '{"conn_url":"postgres://100.200.82.30:5432/postgres","api_url":"http://100.200.82.30:8008/patroni","state":"running","role":"master","version":"1.6.4","xlog_location":184549472,"timeline":1}'
+      creationTimestamp: "2020-04-27T20:38:39Z"
+      generateName: postgres-harbor-
+      labels:
+        application: spilo
+        cluster-name: postgres-harbor
+        controller-revision-hash: postgres-harbor-7b5dcc869
+        spilo-role: master
+        statefulset.kubernetes.io/pod-name: postgres-harbor-0
+        team: postgres
+      name: postgres-harbor-0
+      namespace: postgres-operator
+      ownerReferences:
+      - apiVersion: apps/v1
+        blockOwnerDeletion: true
+        controller: true
+        kind: StatefulSet
+        name: postgres-harbor
+        uid: 623d5e30-d9f5-4aa9-bb07-328efd6f1868
+      resourceVersion: "6779"
+      selfLink: /api/v1/namespaces/postgres-operator/pods/postgres-harbor-0
+      uid: af0e2b0d-ad31-4645-94f3-bb077d4cc5af
+    spec:
+      containers:
+      - env:
+        - name: BACKUP_SCHEDULE
+          value: '*/5 * * * *'
+        - name: USE_WALG_RESTORE
+          value: "true"
+        - name: USE_WALG_BACKUP
+          value: "true"
+        - name: AWS_ACCESS_KEY_ID
+          valueFrom:
+            secretKeyRef:
+              key: AWS_ACCESS_KEY_ID
+              name: postgres-operator-cluster-environment
+        - name: AWS_SECRET_ACCESS_KEY
+          valueFrom:
+            secretKeyRef:
+              key: AWS_SECRET_ACCESS_KEY
+              name: postgres-operator-cluster-environment
+        - name: AWS_ENDPOINT
+          valueFrom:
+            secretKeyRef:
+              key: AWS_ENDPOINT
+              name: postgres-operator-cluster-environment
+        - name: AWS_S3_FORCE_PATH_STYLE
+          valueFrom:
+            secretKeyRef:
+              key: AWS_S3_FORCE_PATH_STYLE
+              name: postgres-operator-cluster-environment
+        - name: WAL_BUCKET_SCOPE_SUFFIX
+        - name: WALG_S3_PREFIX
+          value: s3://postgres-backups-test/postgres-harbor/wal/
+        - name: CLONE_WAL_BUCKET_SCOPE_SUFFIX
+          value: /
+        - name: SCOPE
+          value: postgres-harbor
+        - name: PGROOT
+          value: /home/postgres/pgdata/pgroot
+        - name: POD_IP
+          valueFrom:
+            fieldRef:
+              apiVersion: v1
+              fieldPath: status.podIP
+        - name: POD_NAMESPACE
+          valueFrom:
+            fieldRef:
+              apiVersion: v1
+              fieldPath: metadata.namespace
+        - name: PGUSER_SUPERUSER
+          value: postgres
+        - name: KUBERNETES_SCOPE_LABEL
+          value: cluster-name
+        - name: KUBERNETES_ROLE_LABEL
+          value: spilo-role
+        - name: PGPASSWORD_SUPERUSER
+          valueFrom:
+            secretKeyRef:
+              key: password
+              name: postgres.postgres-harbor.credentials
+        - name: PGUSER_STANDBY
+          value: standby
+        - name: PGPASSWORD_STANDBY
+          valueFrom:
+            secretKeyRef:
+              key: password
+              name: standby.postgres-harbor.credentials
+        - name: PAM_OAUTH2
+        - name: HUMAN_ROLE
+          value: zalandos
+        - name: KUBERNETES_LABELS
+          value: '{"application":"spilo"}'
+        - name: SPILO_CONFIGURATION
+          value: '{"postgresql":{"bin_dir":"/usr/lib/postgresql/12/bin","parameters":{"archive_mode":"on","archive_timeout":"60s"},"pg_hba":["hostssl
+            all all 0.0.0.0/0 md5","host    all all 0.0.0.0/0 md5"]},"bootstrap":{"initdb":[{"auth-host":"md5"},{"auth-local":"trust"},"data-checksums",{"encoding":"UTF8"},{"locale":"en_US.UTF-8"}],"users":{"zalandos":{"password":"","options":["CREATEDB","NOLOGIN"]}},"dcs":{"ttl":30,"loop_wait":10,"retry_timeout":10,"maximum_lag_on_failover":33554432}}}'
+        - name: DCS_ENABLE_KUBERNETES_API
+          value: "true"
+        image: docker.io/flanksource/spilo:1.6-p2.flanksource
+        imagePullPolicy: IfNotPresent
+        name: postgres
+        ports:
+        - containerPort: 8008
+          protocol: TCP
+        - containerPort: 5432
+          protocol: TCP
+        - containerPort: 8080
+          protocol: TCP
+        resources:
+          limits:
+            cpu: "2"
+            memory: 2Gi
+          requests:
+            cpu: 100m
+            memory: 100Mi
+        securityContext:
+          privileged: false
+          readOnlyRootFilesystem: false
+        terminationMessagePath: /dev/termination-log
+        terminationMessagePolicy: File
+        volumeMounts:
+        - mountPath: /home/postgres/pgdata
+          name: pgdata
+        - mountPath: /dev/shm
+          name: dshm
+        - mountPath: /var/run/secrets/kubernetes.io/serviceaccount
+          name: postgres-pod-token-tn9fh
+          readOnly: true
+      dnsPolicy: ClusterFirst
+      enableServiceLinks: true
+      hostname: postgres-harbor-0
+      nodeName: kind-control-plane
+      priority: 0
+      restartPolicy: Always
+      schedulerName: default-scheduler
+      securityContext: {}
+      serviceAccount: postgres-pod
+      serviceAccountName: postgres-pod
+      subdomain: postgres-harbor
+      terminationGracePeriodSeconds: 300
+      tolerations:
+      - effect: NoExecute
+        key: node.kubernetes.io/not-ready
+        operator: Exists
+        tolerationSeconds: 300
+      - effect: NoExecute
+        key: node.kubernetes.io/unreachable
+        operator: Exists
+        tolerationSeconds: 300
+      volumes:
+      - name: pgdata
+        persistentVolumeClaim:
+          claimName: pgdata-postgres-harbor-0
+      - emptyDir:
+          medium: Memory
+        name: dshm
+      - name: postgres-pod-token-tn9fh
+        secret:
+          defaultMode: 420
+          secretName: postgres-pod-token-tn9fh
+    status:
+      conditions:
+      - lastProbeTime: null
+        lastTransitionTime: "2020-04-27T20:38:42Z"
+        status: "True"
+        type: Initialized
+      - lastProbeTime: null
+        lastTransitionTime: "2020-04-27T20:39:02Z"
+        status: "True"
+        type: Ready
+      - lastProbeTime: null
+        lastTransitionTime: "2020-04-27T20:39:02Z"
+        status: "True"
+        type: ContainersReady
+      - lastProbeTime: null
+        lastTransitionTime: "2020-04-27T20:38:42Z"
+        status: "True"
+        type: PodScheduled
+      containerStatuses:
+      - containerID: containerd://33fef9c2c37e29339bc82b58190a9566147a28ff05e6a4f24ca437ca98715e03
+        image: docker.io/flanksource/spilo:1.6-p2.flanksource
+        imageID: docker.io/flanksource/spilo@sha256:5b8ded18520b09992b44bf064a5c98a5e0b89127d893f60c2530b97650a8441e
+        lastState: {}
+        name: postgres
+        ready: true
+        restartCount: 0
+        state:
+          running:
+            startedAt: "2020-04-27T20:39:02Z"
+      hostIP: 172.17.0.2
+      phase: Running
+      podIP: 100.200.82.30
+      qosClass: Burstable
+      startTime: "2020-04-27T20:38:42Z"
+  - apiVersion: v1
+    kind: Pod
+    metadata:
+      annotations:
+        cni.projectcalico.org/podIP: 100.200.82.32/32
+        status: '{"conn_url":"postgres://100.200.82.32:5432/postgres","api_url":"http://100.200.82.32:8008/patroni","state":"running","role":"replica","version":"1.6.4","xlog_location":184549472,"timeline":1}'
+      creationTimestamp: "2020-04-27T20:39:02Z"
+      generateName: postgres-harbor-
+      labels:
+        application: spilo
+        cluster-name: postgres-harbor
+        controller-revision-hash: postgres-harbor-7b5dcc869
+        spilo-role: replica
+        statefulset.kubernetes.io/pod-name: postgres-harbor-1
+        team: postgres
+      name: postgres-harbor-1
+      namespace: postgres-operator
+      ownerReferences:
+      - apiVersion: apps/v1
+        blockOwnerDeletion: true
+        controller: true
+        kind: StatefulSet
+        name: postgres-harbor
+        uid: 623d5e30-d9f5-4aa9-bb07-328efd6f1868
+      resourceVersion: "6774"
+      selfLink: /api/v1/namespaces/postgres-operator/pods/postgres-harbor-1
+      uid: 1b97d04b-98fe-49df-a2ea-bd3b26bc4a52
+    spec:
+      containers:
+      - env:
+        - name: BACKUP_SCHEDULE
+          value: '*/5 * * * *'
+        - name: USE_WALG_RESTORE
+          value: "true"
+        - name: USE_WALG_BACKUP
+          value: "true"
+        - name: AWS_ACCESS_KEY_ID
+          valueFrom:
+            secretKeyRef:
+              key: AWS_ACCESS_KEY_ID
+              name: postgres-operator-cluster-environment
+        - name: AWS_SECRET_ACCESS_KEY
+          valueFrom:
+            secretKeyRef:
+              key: AWS_SECRET_ACCESS_KEY
+              name: postgres-operator-cluster-environment
+        - name: AWS_ENDPOINT
+          valueFrom:
+            secretKeyRef:
+              key: AWS_ENDPOINT
+              name: postgres-operator-cluster-environment
+        - name: AWS_S3_FORCE_PATH_STYLE
+          valueFrom:
+            secretKeyRef:
+              key: AWS_S3_FORCE_PATH_STYLE
+              name: postgres-operator-cluster-environment
+        - name: WAL_BUCKET_SCOPE_SUFFIX
+        - name: WALG_S3_PREFIX
+          value: s3://postgres-backups-test/postgres-harbor/wal/
+        - name: CLONE_WAL_BUCKET_SCOPE_SUFFIX
+          value: /
+        - name: SCOPE
+          value: postgres-harbor
+        - name: PGROOT
+          value: /home/postgres/pgdata/pgroot
+        - name: POD_IP
+          valueFrom:
+            fieldRef:
+              apiVersion: v1
+              fieldPath: status.podIP
+        - name: POD_NAMESPACE
+          valueFrom:
+            fieldRef:
+              apiVersion: v1
+              fieldPath: metadata.namespace
+        - name: PGUSER_SUPERUSER
+          value: postgres
+        - name: KUBERNETES_SCOPE_LABEL
+          value: cluster-name
+        - name: KUBERNETES_ROLE_LABEL
+          value: spilo-role
+        - name: PGPASSWORD_SUPERUSER
+          valueFrom:
+            secretKeyRef:
+              key: password
+              name: postgres.postgres-harbor.credentials
+        - name: PGUSER_STANDBY
+          value: standby
+        - name: PGPASSWORD_STANDBY
+          valueFrom:
+            secretKeyRef:
+              key: password
+              name: standby.postgres-harbor.credentials
+        - name: PAM_OAUTH2
+        - name: HUMAN_ROLE
+          value: zalandos
+        - name: KUBERNETES_LABELS
+          value: '{"application":"spilo"}'
+        - name: SPILO_CONFIGURATION
+          value: '{"postgresql":{"bin_dir":"/usr/lib/postgresql/12/bin","parameters":{"archive_mode":"on","archive_timeout":"60s"},"pg_hba":["hostssl
+            all all 0.0.0.0/0 md5","host    all all 0.0.0.0/0 md5"]},"bootstrap":{"initdb":[{"auth-host":"md5"},{"auth-local":"trust"},"data-checksums",{"encoding":"UTF8"},{"locale":"en_US.UTF-8"}],"users":{"zalandos":{"password":"","options":["CREATEDB","NOLOGIN"]}},"dcs":{"ttl":30,"loop_wait":10,"retry_timeout":10,"maximum_lag_on_failover":33554432}}}'
+        - name: DCS_ENABLE_KUBERNETES_API
+          value: "true"
+        image: docker.io/flanksource/spilo:1.6-p2.flanksource
+        imagePullPolicy: IfNotPresent
+        name: postgres
+        ports:
+        - containerPort: 8008
+          protocol: TCP
+        - containerPort: 5432
+          protocol: TCP
+        - containerPort: 8080
+          protocol: TCP
+        resources:
+          limits:
+            cpu: "2"
+            memory: 2Gi
+          requests:
+            cpu: 100m
+            memory: 100Mi
+        securityContext:
+          privileged: false
+          readOnlyRootFilesystem: false
+        terminationMessagePath: /dev/termination-log
+        terminationMessagePolicy: File
+        volumeMounts:
+        - mountPath: /home/postgres/pgdata
+          name: pgdata
+        - mountPath: /dev/shm
+          name: dshm
+        - mountPath: /var/run/secrets/kubernetes.io/serviceaccount
+          name: postgres-pod-token-tn9fh
+          readOnly: true
+      dnsPolicy: ClusterFirst
+      enableServiceLinks: true
+      hostname: postgres-harbor-1
+      nodeName: kind-control-plane
+      priority: 0
+      restartPolicy: Always
+      schedulerName: default-scheduler
+      securityContext: {}
+      serviceAccount: postgres-pod
+      serviceAccountName: postgres-pod
+      subdomain: postgres-harbor
+      terminationGracePeriodSeconds: 300
+      tolerations:
+      - effect: NoExecute
+        key: node.kubernetes.io/not-ready
+        operator: Exists
+        tolerationSeconds: 300
+      - effect: NoExecute
+        key: node.kubernetes.io/unreachable
+        operator: Exists
+        tolerationSeconds: 300
+      volumes:
+      - name: pgdata
+        persistentVolumeClaim:
+          claimName: pgdata-postgres-harbor-1
+      - emptyDir:
+          medium: Memory
+        name: dshm
+      - name: postgres-pod-token-tn9fh
+        secret:
+          defaultMode: 420
+          secretName: postgres-pod-token-tn9fh
+    status:
+      conditions:
+      - lastProbeTime: null
+        lastTransitionTime: "2020-04-27T20:39:05Z"
+        status: "True"
+        type: Initialized
+      - lastProbeTime: null
+        lastTransitionTime: "2020-04-27T20:39:07Z"
+        status: "True"
+        type: Ready
+      - lastProbeTime: null
+        lastTransitionTime: "2020-04-27T20:39:07Z"
+        status: "True"
+        type: ContainersReady
+      - lastProbeTime: null
+        lastTransitionTime: "2020-04-27T20:39:05Z"
+        status: "True"
+        type: PodScheduled
+      containerStatuses:
+      - containerID: containerd://91dc53e341182d9acdfca75b828b5841d8ee109a6417aac25200aa002d96f0b3
+        image: docker.io/flanksource/spilo:1.6-p2.flanksource
+        imageID: docker.io/flanksource/spilo@sha256:5b8ded18520b09992b44bf064a5c98a5e0b89127d893f60c2530b97650a8441e
+        lastState: {}
+        name: postgres
+        ready: true
+        restartCount: 0
+        state:
+          running:
+            startedAt: "2020-04-27T20:39:06Z"
+      hostIP: 172.17.0.2
+      phase: Running
+      podIP: 100.200.82.32
+      qosClass: Burstable
+      startTime: "2020-04-27T20:39:05Z"
+  - apiVersion: v1
+    kind: Pod
+    metadata:
+      annotations:
+        cni.projectcalico.org/podIP: 100.200.82.17/32
+      creationTimestamp: "2020-04-27T20:36:27Z"
+      generateName: postgres-operator-74b9745bdc-
+      labels:
+        name: postgres-operator
+        pod-template-hash: 74b9745bdc
+      name: postgres-operator-74b9745bdc-chln2
+      namespace: postgres-operator
+      ownerReferences:
+      - apiVersion: apps/v1
+        blockOwnerDeletion: true
+        controller: true
+        kind: ReplicaSet
+        name: postgres-operator-74b9745bdc
+        uid: 90fb2462-11e3-4ad8-84e1-75c2dbb76665
+      resourceVersion: "1583"
+      selfLink: /api/v1/namespaces/postgres-operator/pods/postgres-operator-74b9745bdc-chln2
+      uid: b6f53cb9-117d-415d-8f59-f998dd709a13
+    spec:
+      containers:
+      - env:
+        - name: POSTGRES_OPERATOR_CONFIGURATION_OBJECT
+          value: default
+        image: docker.io/flanksource/postgres-operator:v1.3.4.flanksource.1
+        imagePullPolicy: IfNotPresent
+        name: postgres-operator
+        resources:
+          limits:
+            cpu: 500m
+            memory: 500Mi
+          requests:
+            cpu: 100m
+            memory: 250Mi
+        securityContext:
+          readOnlyRootFilesystem: true
+          runAsNonRoot: true
+          runAsUser: 1000
+        terminationMessagePath: /dev/termination-log
+        terminationMessagePolicy: File
+        volumeMounts:
+        - mountPath: /var/run/secrets/kubernetes.io/serviceaccount
+          name: postgres-operator-token-vwnd4
+          readOnly: true
+      dnsPolicy: ClusterFirst
+      enableServiceLinks: true
+      nodeName: kind-control-plane
+      priority: 0
+      restartPolicy: Always
+      schedulerName: default-scheduler
+      securityContext: {}
+      serviceAccount: postgres-operator
+      serviceAccountName: postgres-operator
+      terminationGracePeriodSeconds: 30
+      tolerations:
+      - effect: NoExecute
+        key: node.kubernetes.io/not-ready
+        operator: Exists
+        tolerationSeconds: 300
+      - effect: NoExecute
+        key: node.kubernetes.io/unreachable
+        operator: Exists
+        tolerationSeconds: 300
+      volumes:
+      - name: postgres-operator-token-vwnd4
+        secret:
+          defaultMode: 420
+          secretName: postgres-operator-token-vwnd4
+    status:
+      conditions:
+      - lastProbeTime: null
+        lastTransitionTime: "2020-04-27T20:36:27Z"
+        status: "True"
+        type: Initialized
+      - lastProbeTime: null
+        lastTransitionTime: "2020-04-27T20:36:30Z"
+        status: "True"
+        type: Ready
+      - lastProbeTime: null
+        lastTransitionTime: "2020-04-27T20:36:30Z"
+        status: "True"
+        type: ContainersReady
+      - lastProbeTime: null
+        lastTransitionTime: "2020-04-27T20:36:27Z"
+        status: "True"
+        type: PodScheduled
+      containerStatuses:
+      - containerID: containerd://4d157271db83c2abf3ef904da2cbf4b746c82d1fc765bb9eb9ad86471c8e77eb
+        image: docker.io/flanksource/postgres-operator:v1.3.4.flanksource.1
+        imageID: docker.io/flanksource/postgres-operator@sha256:dd90517cb3271cc99ae90b778d80b3cfd6b6c90bd9606724b8dc395c8b82ef77
+        lastState: {}
+        name: postgres-operator
+        ready: true
+        restartCount: 0
+        state:
+          running:
+            startedAt: "2020-04-27T20:36:30Z"
+      hostIP: 172.17.0.2
+      phase: Running
+      podIP: 100.200.82.17
+      qosClass: Burstable
+      startTime: "2020-04-27T20:36:27Z"
+  metadata: {}
+- items:
+  - apiVersion: v1
+    kind: ServiceAccount
+    metadata:
+      creationTimestamp: "2020-04-27T20:36:20Z"
+      name: default
+      namespace: postgres-operator
+      resourceVersion: "1484"
+      selfLink: /api/v1/namespaces/postgres-operator/serviceaccounts/default
+      uid: 713dcb26-29a0-4cf3-a366-dab5e71434fc
+    secrets:
+    - name: default-token-5vk2l
+  - apiVersion: v1
+    kind: ServiceAccount
+    metadata:
+      creationTimestamp: "2020-04-27T20:36:26Z"
+      name: postgres-operator
+      namespace: postgres-operator
+      resourceVersion: "2264"
+      selfLink: /api/v1/namespaces/postgres-operator/serviceaccounts/postgres-operator
+      uid: fc553fbe-df3d-470a-b175-6ad5081ccac1
+    secrets:
+    - name: postgres-operator-token-9zjlt
+  - apiVersion: v1
+    kind: ServiceAccount
+    metadata:
+      creationTimestamp: "2020-04-27T20:38:39Z"
+      name: postgres-pod
+      namespace: postgres-operator
+      resourceVersion: "2623"
+      selfLink: /api/v1/namespaces/postgres-operator/serviceaccounts/postgres-pod
+      uid: 361203f4-58e0-4d3f-9ded-c3676d0e5be1
+    secrets:
+    - name: postgres-pod-token-tn9fh
+  metadata: {}
+- items:
+  - apiVersion: v1
+    kind: Service
+    metadata:
+      creationTimestamp: "2020-04-27T20:38:39Z"
+      labels:
+        application: spilo
+        cluster-name: postgres-harbor
+        spilo-role: master
+        team: postgres
+      name: postgres-harbor
+      namespace: postgres-operator
+      resourceVersion: "2629"
+      selfLink: /api/v1/namespaces/postgres-operator/services/postgres-harbor
+      uid: 809cec0f-fdb3-47bb-afd8-e30ab8a0197e
+    spec:
+      clusterIP: 10.99.243.220
+      ports:
+      - name: postgresql
+        port: 5432
+        protocol: TCP
+        targetPort: 5432
+      sessionAffinity: None
+      type: ClusterIP
+    status:
+      loadBalancer: {}
+  - apiVersion: v1
+    kind: Service
+    metadata:
+      creationTimestamp: "2020-04-27T20:39:03Z"
+      labels:
+        application: spilo
+        cluster-name: postgres-harbor
+      name: postgres-harbor-config
+      namespace: postgres-operator
+      resourceVersion: "2828"
+      selfLink: /api/v1/namespaces/postgres-operator/services/postgres-harbor-config
+      uid: b38fe90a-9195-4392-8494-d85d29d25589
+    spec:
+      clusterIP: None
+      sessionAffinity: None
+      type: ClusterIP
+    status:
+      loadBalancer: {}
+  - apiVersion: v1
+    kind: Service
+    metadata:
+      creationTimestamp: "2020-04-27T20:38:39Z"
+      labels:
+        application: spilo
+        cluster-name: postgres-harbor
+        spilo-role: replica
+        team: postgres
+      name: postgres-harbor-repl
+      namespace: postgres-operator
+      resourceVersion: "2631"
+      selfLink: /api/v1/namespaces/postgres-operator/services/postgres-harbor-repl
+      uid: 66a3ef18-09ee-4d16-9275-7b83e9079b5d
+    spec:
+      clusterIP: 10.106.220.241
+      ports:
+      - name: postgresql
+        port: 5432
+        protocol: TCP
+        targetPort: 5432
+      selector:
+        application: spilo
+        cluster-name: postgres-harbor
+        spilo-role: replica
+      sessionAffinity: None
+      type: ClusterIP
+    status:
+      loadBalancer: {}
+  - apiVersion: v1
+    kind: Service
+    metadata:
+      creationTimestamp: "2020-04-27T20:36:27Z"
+      name: postgres-operator
+      namespace: postgres-operator
+      resourceVersion: "1542"
+      selfLink: /api/v1/namespaces/postgres-operator/services/postgres-operator
+      uid: c365b7a0-a618-4d74-8859-5f6442f678d9
+    spec:
+      clusterIP: 10.99.163.240
+      ports:
+      - port: 8080
+        protocol: TCP
+        targetPort: 8080
+      selector:
+        name: postgres-operator
+      sessionAffinity: None
+      type: ClusterIP
+    status:
+      loadBalancer: {}
+  metadata: {}
+- items:
+  - apiVersion: acid.zalan.do/v1
+    configuration:
+      aws_or_gcp:
+        aws_region: us-east1
+      debug:
+        debug_logging: true
+        enable_database_access: true
+      docker_image: docker.io/flanksource/spilo:1.6-p2.flanksource
+      enable_crd_validation: false
+      enable_shm_volume: true
+      etcd_host: ""
+      kubernetes:
+        cluster_domain: cluster.local
+        cluster_labels:
+          application: spilo
+        cluster_name_label: cluster-name
+        enable_init_containers: true
+        enable_pod_antiaffinity: false
+        enable_pod_disruption_budget: true
+        enable_sidecars: true
+        pdb_name_format: postgres-{cluster}-pdb
+        pod_antiaffinity_topology_key: kubernetes.io/hostname
+        pod_management_policy: ordered_ready
+        pod_role_label: spilo-role
+        pod_service_account_name: postgres-pod
+        pod_terminate_grace_period: 5m
+        secret_name_template: '{username}.{cluster}.credentials'
+        spilo_privileged: false
+      load_balancer:
+        enable_master_load_balancer: false
+        enable_replica_load_balancer: false
+        master_dns_name_format: '{cluster}.{team}.{hostedzone}'
+        replica_dns_name_format: '{cluster}-repl.{team}.{hostedzone}'
+      logging_rest_api:
+        api_port: 8008
+        cluster_history_entries: 1000
+        ring_log_lines: 100
+      logical_backup:
+        logical_backup_docker_image: docker.io/flanksource/postgres-backups:0.1.5
+        logical_backup_s3_access_key_id: minio
+        logical_backup_s3_bucket: postgres-backups-test
+        logical_backup_s3_endpoint: https://http://minio.minio.svc:9000
+        logical_backup_s3_region: us-east1
+        logical_backup_s3_secret_access_key: minio123
+        logical_backup_s3_sse: AES256
+      max_instances: 5
+      min_instances: 1
+      postgres_pod_resources:
+        default_cpu_limit: 2000m
+        default_cpu_request: 500m
+        default_memory_limit: 2Gi
+        default_memory_request: 512Mi
+        min_cpu_limit: 250m
+        min_memory_limit: 250Mi
+      repair_period: 5m
+      resync_period: 30m
+      teams_api:
+        enable_team_superuser: false
+        enable_teams_api: false
+        pam_role_name: zalandos
+        protected_role_names:
+        - admin
+        team_admin_role: admin
+        team_api_role_configuration:
+          log_statement: all
+      timeouts:
+        pod_deletion_wait_timeout: 10m
+        pod_label_wait_timeout: 10m
+        ready_wait_interval: 4s
+        ready_wait_timeout: 30s
+        resource_check_interval: 3s
+        resource_check_timeout: 10m
+      users:
+        replication_username: standby
+        super_username: postgres
+      workers: 4
+    kind: OperatorConfiguration
+    metadata:
+      creationTimestamp: "2020-04-27T20:36:26Z"
+      generation: 1
+      name: default
+      namespace: postgres-operator
+      resourceVersion: "1517"
+      selfLink: /apis/acid.zalan.do/v1/namespaces/postgres-operator/operatorconfigurations/default
+      uid: 5f0c2437-7f64-423e-b500-7ae762b495e3
+  metadata: {}
+- items:
+  - apiVersion: acid.zalan.do/v1
+    kind: postgresql
+    metadata:
+      creationTimestamp: "2020-04-27T20:38:39Z"
+      generation: 1
+      name: postgres-harbor
+      namespace: postgres-operator
+      resourceVersion: "3015"
+      selfLink: /apis/acid.zalan.do/v1/namespaces/postgres-operator/postgresqls/postgres-harbor
+      uid: 5f67c581-2891-4c3e-a519-39d6790100d9
+    spec:
+      allowedSourceRanges: null
+      databases:
+        clair: app
+        notary_server: app
+        notary_signer: app
+        registry: app
+      dockerImage: docker.io/flanksource/spilo:1.6-p2.flanksource
+      enableShmVolume: true
+      env:
+      - name: BACKUP_SCHEDULE
+        value: '*/5 * * * *'
+      - name: USE_WALG_RESTORE
+        value: "true"
+      - name: USE_WALG_BACKUP
+        value: "true"
+      - name: AWS_ACCESS_KEY_ID
+        valueFrom:
+          secretKeyRef:
+            key: AWS_ACCESS_KEY_ID
+            name: postgres-operator-cluster-environment
+      - name: AWS_SECRET_ACCESS_KEY
+        valueFrom:
+          secretKeyRef:
+            key: AWS_SECRET_ACCESS_KEY
+            name: postgres-operator-cluster-environment
+      - name: AWS_ENDPOINT
+        valueFrom:
+          secretKeyRef:
+            key: AWS_ENDPOINT
+            name: postgres-operator-cluster-environment
+      - name: AWS_S3_FORCE_PATH_STYLE
+        valueFrom:
+          secretKeyRef:
+            key: AWS_S3_FORCE_PATH_STYLE
+            name: postgres-operator-cluster-environment
+      - name: WAL_BUCKET_SCOPE_SUFFIX
+      - name: WALG_S3_PREFIX
+        value: s3://postgres-backups-test/postgres-harbor/wal/
+      - name: CLONE_WAL_BUCKET_SCOPE_SUFFIX
+        value: /
+      numberOfInstances: 2
+      patroni:
+        initdb:
+          data-checksums: "true"
+          encoding: UTF8
+          locale: en_US.UTF-8
+        loop_wait: 10
+        maximum_lag_on_failover: 33554432
+        pg_hba:
+        - hostssl all all 0.0.0.0/0 md5
+        - host    all all 0.0.0.0/0 md5
+        retry_timeout: 10
+        slots: {}
+        ttl: 30
+      podAnnotations: {}
+      postgresql:
+        parameters:
+          archive_mode: "on"
+          archive_timeout: 60s
+        version: "12"
+      resources:
+        limits:
+          cpu: "2"
+          memory: 2Gi
+        requests:
+          cpu: 100m
+          memory: 100Mi
+      serviceAnnotations: {}
+      teamId: postgres
+      users:
+        app:
+        - createdb
+        - superuser
+      volume:
+        size: 10Gi
+        storageClass: ""
+    status:
+      PostgresClusterStatus: Running
+  metadata: {}
+- items:
+  - apiVersion: apps/v1
+    data:
+      spec:
+        template:
+          $patch: replace
+          metadata:
+            creationTimestamp: null
+            labels:
+              application: spilo
+              cluster-name: postgres-7b8z59
+              team: postgres
+            namespace: postgres-operator
+          spec:
+            containers:
+            - env:
+              - name: BACKUP_SCHEDULE
+                value: '*/1 * * * *'
+              - name: USE_WALG_RESTORE
+                value: "true"
+              - name: USE_WALG_BACKUP
+                value: "true"
+              - name: AWS_ACCESS_KEY_ID
+                valueFrom:
+                  secretKeyRef:
+                    key: AWS_ACCESS_KEY_ID
+                    name: postgres-operator-cluster-environment
+              - name: AWS_SECRET_ACCESS_KEY
+                valueFrom:
+                  secretKeyRef:
+                    key: AWS_SECRET_ACCESS_KEY
+                    name: postgres-operator-cluster-environment
+              - name: AWS_ENDPOINT
+                valueFrom:
+                  secretKeyRef:
+                    key: AWS_ENDPOINT
+                    name: postgres-operator-cluster-environment
+              - name: AWS_S3_FORCE_PATH_STYLE
+                valueFrom:
+                  secretKeyRef:
+                    key: AWS_S3_FORCE_PATH_STYLE
+                    name: postgres-operator-cluster-environment
+              - name: WAL_BUCKET_SCOPE_SUFFIX
+              - name: WALG_S3_PREFIX
+                value: s3://postgres-backups-test/postgres-7b8z59/wal/
+              - name: CLONE_WAL_BUCKET_SCOPE_SUFFIX
+                value: /
+              - name: SCOPE
+                value: postgres-7b8z59
+              - name: PGROOT
+                value: /home/postgres/pgdata/pgroot
+              - name: POD_IP
+                valueFrom:
+                  fieldRef:
+                    apiVersion: v1
+                    fieldPath: status.podIP
+              - name: POD_NAMESPACE
+                valueFrom:
+                  fieldRef:
+                    apiVersion: v1
+                    fieldPath: metadata.namespace
+              - name: PGUSER_SUPERUSER
+                value: postgres
+              - name: KUBERNETES_SCOPE_LABEL
+                value: cluster-name
+              - name: KUBERNETES_ROLE_LABEL
+                value: spilo-role
+              - name: PGPASSWORD_SUPERUSER
+                valueFrom:
+                  secretKeyRef:
+                    key: password
+                    name: postgres.postgres-7b8z59.credentials
+              - name: PGUSER_STANDBY
+                value: standby
+              - name: PGPASSWORD_STANDBY
+                valueFrom:
+                  secretKeyRef:
+                    key: password
+                    name: standby.postgres-7b8z59.credentials
+              - name: PAM_OAUTH2
+              - name: HUMAN_ROLE
+                value: zalandos
+              - name: KUBERNETES_LABELS
+                value: '{"application":"spilo"}'
+              - name: SPILO_CONFIGURATION
+                value: '{"postgresql":{"bin_dir":"/usr/lib/postgresql/12/bin","parameters":{"archive_mode":"on","archive_timeout":"60s"},"pg_hba":["hostssl
+                  all all 0.0.0.0/0 md5","host    all all 0.0.0.0/0 md5"]},"bootstrap":{"initdb":[{"auth-host":"md5"},{"auth-local":"trust"},"data-checksums",{"encoding":"UTF8"},{"locale":"en_US.UTF-8"}],"users":{"zalandos":{"password":"","options":["CREATEDB","NOLOGIN"]}},"dcs":{"ttl":30,"loop_wait":10,"retry_timeout":10,"maximum_lag_on_failover":33554432}}}'
+              - name: DCS_ENABLE_KUBERNETES_API
+                value: "true"
+              image: docker.io/flanksource/spilo:1.6-p2.flanksource
+              imagePullPolicy: IfNotPresent
+              name: postgres
+              ports:
+              - containerPort: 8008
+                protocol: TCP
+              - containerPort: 5432
+                protocol: TCP
+              - containerPort: 8080
+                protocol: TCP
+              resources:
+                limits:
+                  cpu: "2"
+                  memory: 2Gi
+                requests:
+                  cpu: 100m
+                  memory: 100Mi
+              securityContext:
+                privileged: false
+                readOnlyRootFilesystem: false
+              terminationMessagePath: /dev/termination-log
+              terminationMessagePolicy: File
+              volumeMounts:
+              - mountPath: /home/postgres/pgdata
+                name: pgdata
+              - mountPath: /dev/shm
+                name: dshm
+            dnsPolicy: ClusterFirst
+            restartPolicy: Always
+            schedulerName: default-scheduler
+            securityContext: {}
+            serviceAccount: postgres-pod
+            serviceAccountName: postgres-pod
+            terminationGracePeriodSeconds: 300
+            volumes:
+            - emptyDir:
+                medium: Memory
+              name: dshm
+    kind: ControllerRevision
+    metadata:
+      annotations:
+        zalando-postgres-operator-rolling-update-required: "false"
+      creationTimestamp: "2020-04-27T20:43:34Z"
+      labels:
+        application: spilo
+        cluster-name: postgres-7b8z59
+        controller.kubernetes.io/hash: 785c6d5cf8
+        team: postgres
+      name: postgres-7b8z59-785c6d5cf8
+      namespace: postgres-operator
+      resourceVersion: "6821"
+      selfLink: /apis/apps/v1/namespaces/postgres-operator/controllerrevisions/postgres-7b8z59-785c6d5cf8
+      uid: fadf3cbb-a207-4bf7-9f8b-7c103c9ca5d9
+    revision: 1
+  - apiVersion: apps/v1
+    data:
+      spec:
+        template:
+          $patch: replace
+          metadata:
+            creationTimestamp: null
+            labels:
+              application: spilo
+              cluster-name: postgres-harbor
+              team: postgres
+            namespace: postgres-operator
+          spec:
+            containers:
+            - env:
+              - name: BACKUP_SCHEDULE
+                value: '*/5 * * * *'
+              - name: USE_WALG_RESTORE
+                value: "true"
+              - name: USE_WALG_BACKUP
+                value: "true"
+              - name: AWS_ACCESS_KEY_ID
+                valueFrom:
+                  secretKeyRef:
+                    key: AWS_ACCESS_KEY_ID
+                    name: postgres-operator-cluster-environment
+              - name: AWS_SECRET_ACCESS_KEY
+                valueFrom:
+                  secretKeyRef:
+                    key: AWS_SECRET_ACCESS_KEY
+                    name: postgres-operator-cluster-environment
+              - name: AWS_ENDPOINT
+                valueFrom:
+                  secretKeyRef:
+                    key: AWS_ENDPOINT
+                    name: postgres-operator-cluster-environment
+              - name: AWS_S3_FORCE_PATH_STYLE
+                valueFrom:
+                  secretKeyRef:
+                    key: AWS_S3_FORCE_PATH_STYLE
+                    name: postgres-operator-cluster-environment
+              - name: WAL_BUCKET_SCOPE_SUFFIX
+              - name: WALG_S3_PREFIX
+                value: s3://postgres-backups-test/postgres-harbor/wal/
+              - name: CLONE_WAL_BUCKET_SCOPE_SUFFIX
+                value: /
+              - name: SCOPE
+                value: postgres-harbor
+              - name: PGROOT
+                value: /home/postgres/pgdata/pgroot
+              - name: POD_IP
+                valueFrom:
+                  fieldRef:
+                    apiVersion: v1
+                    fieldPath: status.podIP
+              - name: POD_NAMESPACE
+                valueFrom:
+                  fieldRef:
+                    apiVersion: v1
+                    fieldPath: metadata.namespace
+              - name: PGUSER_SUPERUSER
+                value: postgres
+              - name: KUBERNETES_SCOPE_LABEL
+                value: cluster-name
+              - name: KUBERNETES_ROLE_LABEL
+                value: spilo-role
+              - name: PGPASSWORD_SUPERUSER
+                valueFrom:
+                  secretKeyRef:
+                    key: password
+                    name: postgres.postgres-harbor.credentials
+              - name: PGUSER_STANDBY
+                value: standby
+              - name: PGPASSWORD_STANDBY
+                valueFrom:
+                  secretKeyRef:
+                    key: password
+                    name: standby.postgres-harbor.credentials
+              - name: PAM_OAUTH2
+              - name: HUMAN_ROLE
+                value: zalandos
+              - name: KUBERNETES_LABELS
+                value: '{"application":"spilo"}'
+              - name: SPILO_CONFIGURATION
+                value: '{"postgresql":{"bin_dir":"/usr/lib/postgresql/12/bin","parameters":{"archive_mode":"on","archive_timeout":"60s"},"pg_hba":["hostssl
+                  all all 0.0.0.0/0 md5","host    all all 0.0.0.0/0 md5"]},"bootstrap":{"initdb":[{"auth-host":"md5"},{"auth-local":"trust"},"data-checksums",{"encoding":"UTF8"},{"locale":"en_US.UTF-8"}],"users":{"zalandos":{"password":"","options":["CREATEDB","NOLOGIN"]}},"dcs":{"ttl":30,"loop_wait":10,"retry_timeout":10,"maximum_lag_on_failover":33554432}}}'
+              - name: DCS_ENABLE_KUBERNETES_API
+                value: "true"
+              image: docker.io/flanksource/spilo:1.6-p2.flanksource
+              imagePullPolicy: IfNotPresent
+              name: postgres
+              ports:
+              - containerPort: 8008
+                protocol: TCP
+              - containerPort: 5432
+                protocol: TCP
+              - containerPort: 8080
+                protocol: TCP
+              resources:
+                limits:
+                  cpu: "2"
+                  memory: 2Gi
+                requests:
+                  cpu: 100m
+                  memory: 100Mi
+              securityContext:
+                privileged: false
+                readOnlyRootFilesystem: false
+              terminationMessagePath: /dev/termination-log
+              terminationMessagePolicy: File
+              volumeMounts:
+              - mountPath: /home/postgres/pgdata
+                name: pgdata
+              - mountPath: /dev/shm
+                name: dshm
+            dnsPolicy: ClusterFirst
+            restartPolicy: Always
+            schedulerName: default-scheduler
+            securityContext: {}
+            serviceAccount: postgres-pod
+            serviceAccountName: postgres-pod
+            terminationGracePeriodSeconds: 300
+            volumes:
+            - emptyDir:
+                medium: Memory
+              name: dshm
+    kind: ControllerRevision
+    metadata:
+      annotations:
+        zalando-postgres-operator-rolling-update-required: "false"
+      creationTimestamp: "2020-04-27T20:38:39Z"
+      labels:
+        application: spilo
+        cluster-name: postgres-harbor
+        controller.kubernetes.io/hash: 7b5dcc869
+        team: postgres
+      name: postgres-harbor-7b5dcc869
+      namespace: postgres-operator
+      ownerReferences:
+      - apiVersion: apps/v1
+        blockOwnerDeletion: true
+        controller: true
+        kind: StatefulSet
+        name: postgres-harbor
+        uid: 623d5e30-d9f5-4aa9-bb07-328efd6f1868
+      resourceVersion: "2641"
+      selfLink: /apis/apps/v1/namespaces/postgres-operator/controllerrevisions/postgres-harbor-7b5dcc869
+      uid: d9774b6a-f667-41a9-b9b6-48621c3dd768
+    revision: 1
+  metadata: {}
+- items:
+  - apiVersion: apps/v1
+    kind: Deployment
+    metadata:
+      annotations:
+        deployment.kubernetes.io/revision: "1"
+      creationTimestamp: "2020-04-27T20:36:27Z"
+      generation: 2
+      name: postgres-operator
+      namespace: postgres-operator
+      resourceVersion: "2272"
+      selfLink: /apis/apps/v1/namespaces/postgres-operator/deployments/postgres-operator
+      uid: 99ef3810-2694-4ca9-844c-b6b405f13018
+    spec:
+      progressDeadlineSeconds: 600
+      replicas: 1
+      revisionHistoryLimit: 10
+      selector:
+        matchLabels:
+          name: postgres-operator
+      strategy:
+        rollingUpdate:
+          maxSurge: 25%
+          maxUnavailable: 25%
+        type: RollingUpdate
+      template:
+        metadata:
+          creationTimestamp: null
+          labels:
+            name: postgres-operator
+        spec:
+          containers:
+          - env:
+            - name: POSTGRES_OPERATOR_CONFIGURATION_OBJECT
+              value: default
+            image: docker.io/flanksource/postgres-operator:v1.3.4.flanksource.1
+            imagePullPolicy: IfNotPresent
+            name: postgres-operator
+            resources:
+              limits:
+                cpu: 500m
+                memory: 500Mi
+              requests:
+                cpu: 100m
+                memory: 250Mi
+            securityContext:
+              readOnlyRootFilesystem: true
+              runAsNonRoot: true
+              runAsUser: 1000
+            terminationMessagePath: /dev/termination-log
+            terminationMessagePolicy: File
+          dnsPolicy: ClusterFirst
+          restartPolicy: Always
+          schedulerName: default-scheduler
+          securityContext: {}
+          serviceAccount: postgres-operator
+          serviceAccountName: postgres-operator
+          terminationGracePeriodSeconds: 30
+    status:
+      availableReplicas: 1
+      conditions:
+      - lastTransitionTime: "2020-04-27T20:36:30Z"
+        lastUpdateTime: "2020-04-27T20:36:30Z"
+        message: Deployment has minimum availability.
+        reason: MinimumReplicasAvailable
+        status: "True"
+        type: Available
+      - lastTransitionTime: "2020-04-27T20:36:27Z"
+        lastUpdateTime: "2020-04-27T20:36:30Z"
+        message: ReplicaSet "postgres-operator-74b9745bdc" has successfully progressed.
+        reason: NewReplicaSetAvailable
+        status: "True"
+        type: Progressing
+      observedGeneration: 2
+      readyReplicas: 1
+      replicas: 1
+      updatedReplicas: 1
+  metadata: {}
+- items:
+  - apiVersion: apps/v1
+    kind: ReplicaSet
+    metadata:
+      annotations:
+        deployment.kubernetes.io/desired-replicas: "1"
+        deployment.kubernetes.io/max-replicas: "2"
+        deployment.kubernetes.io/revision: "1"
+      creationTimestamp: "2020-04-27T20:36:27Z"
+      generation: 1
+      labels:
+        name: postgres-operator
+        pod-template-hash: 74b9745bdc
+      name: postgres-operator-74b9745bdc
+      namespace: postgres-operator
+      ownerReferences:
+      - apiVersion: apps/v1
+        blockOwnerDeletion: true
+        controller: true
+        kind: Deployment
+        name: postgres-operator
+        uid: 99ef3810-2694-4ca9-844c-b6b405f13018
+      resourceVersion: "1584"
+      selfLink: /apis/apps/v1/namespaces/postgres-operator/replicasets/postgres-operator-74b9745bdc
+      uid: 90fb2462-11e3-4ad8-84e1-75c2dbb76665
+    spec:
+      replicas: 1
+      selector:
+        matchLabels:
+          name: postgres-operator
+          pod-template-hash: 74b9745bdc
+      template:
+        metadata:
+          creationTimestamp: null
+          labels:
+            name: postgres-operator
+            pod-template-hash: 74b9745bdc
+        spec:
+          containers:
+          - env:
+            - name: POSTGRES_OPERATOR_CONFIGURATION_OBJECT
+              value: default
+            image: docker.io/flanksource/postgres-operator:v1.3.4.flanksource.1
+            imagePullPolicy: IfNotPresent
+            name: postgres-operator
+            resources:
+              limits:
+                cpu: 500m
+                memory: 500Mi
+              requests:
+                cpu: 100m
+                memory: 250Mi
+            securityContext:
+              readOnlyRootFilesystem: true
+              runAsNonRoot: true
+              runAsUser: 1000
+            terminationMessagePath: /dev/termination-log
+            terminationMessagePolicy: File
+          dnsPolicy: ClusterFirst
+          restartPolicy: Always
+          schedulerName: default-scheduler
+          securityContext: {}
+          serviceAccount: postgres-operator
+          serviceAccountName: postgres-operator
+          terminationGracePeriodSeconds: 30
+    status:
+      availableReplicas: 1
+      fullyLabeledReplicas: 1
+      observedGeneration: 1
+      readyReplicas: 1
+      replicas: 1
+  metadata: {}
+- items:
+  - apiVersion: apps/v1
+    kind: StatefulSet
+    metadata:
+      annotations:
+        zalando-postgres-operator-rolling-update-required: "false"
+      creationTimestamp: "2020-04-27T20:38:39Z"
+      generation: 1
+      labels:
+        application: spilo
+        cluster-name: postgres-harbor
+        team: postgres
+      name: postgres-harbor
+      namespace: postgres-operator
+      resourceVersion: "2872"
+      selfLink: /apis/apps/v1/namespaces/postgres-operator/statefulsets/postgres-harbor
+      uid: 623d5e30-d9f5-4aa9-bb07-328efd6f1868
+    spec:
+      podManagementPolicy: OrderedReady
+      replicas: 2
+      revisionHistoryLimit: 10
+      selector:
+        matchLabels:
+          application: spilo
+          cluster-name: postgres-harbor
+      serviceName: postgres-harbor
+      template:
+        metadata:
+          creationTimestamp: null
+          labels:
+            application: spilo
+            cluster-name: postgres-harbor
+            team: postgres
+          namespace: postgres-operator
+        spec:
+          containers:
+          - env:
+            - name: BACKUP_SCHEDULE
+              value: '*/5 * * * *'
+            - name: USE_WALG_RESTORE
+              value: "true"
+            - name: USE_WALG_BACKUP
+              value: "true"
+            - name: AWS_ACCESS_KEY_ID
+              valueFrom:
+                secretKeyRef:
+                  key: AWS_ACCESS_KEY_ID
+                  name: postgres-operator-cluster-environment
+            - name: AWS_SECRET_ACCESS_KEY
+              valueFrom:
+                secretKeyRef:
+                  key: AWS_SECRET_ACCESS_KEY
+                  name: postgres-operator-cluster-environment
+            - name: AWS_ENDPOINT
+              valueFrom:
+                secretKeyRef:
+                  key: AWS_ENDPOINT
+                  name: postgres-operator-cluster-environment
+            - name: AWS_S3_FORCE_PATH_STYLE
+              valueFrom:
+                secretKeyRef:
+                  key: AWS_S3_FORCE_PATH_STYLE
+                  name: postgres-operator-cluster-environment
+            - name: WAL_BUCKET_SCOPE_SUFFIX
+            - name: WALG_S3_PREFIX
+              value: s3://postgres-backups-test/postgres-harbor/wal/
+            - name: CLONE_WAL_BUCKET_SCOPE_SUFFIX
+              value: /
+            - name: SCOPE
+              value: postgres-harbor
+            - name: PGROOT
+              value: /home/postgres/pgdata/pgroot
+            - name: POD_IP
+              valueFrom:
+                fieldRef:
+                  apiVersion: v1
+                  fieldPath: status.podIP
+            - name: POD_NAMESPACE
+              valueFrom:
+                fieldRef:
+                  apiVersion: v1
+                  fieldPath: metadata.namespace
+            - name: PGUSER_SUPERUSER
+              value: postgres
+            - name: KUBERNETES_SCOPE_LABEL
+              value: cluster-name
+            - name: KUBERNETES_ROLE_LABEL
+              value: spilo-role
+            - name: PGPASSWORD_SUPERUSER
+              valueFrom:
+                secretKeyRef:
+                  key: password
+                  name: postgres.postgres-harbor.credentials
+            - name: PGUSER_STANDBY
+              value: standby
+            - name: PGPASSWORD_STANDBY
+              valueFrom:
+                secretKeyRef:
+                  key: password
+                  name: standby.postgres-harbor.credentials
+            - name: PAM_OAUTH2
+            - name: HUMAN_ROLE
+              value: zalandos
+            - name: KUBERNETES_LABELS
+              value: '{"application":"spilo"}'
+            - name: SPILO_CONFIGURATION
+              value: '{"postgresql":{"bin_dir":"/usr/lib/postgresql/12/bin","parameters":{"archive_mode":"on","archive_timeout":"60s"},"pg_hba":["hostssl
+                all all 0.0.0.0/0 md5","host    all all 0.0.0.0/0 md5"]},"bootstrap":{"initdb":[{"auth-host":"md5"},{"auth-local":"trust"},"data-checksums",{"encoding":"UTF8"},{"locale":"en_US.UTF-8"}],"users":{"zalandos":{"password":"","options":["CREATEDB","NOLOGIN"]}},"dcs":{"ttl":30,"loop_wait":10,"retry_timeout":10,"maximum_lag_on_failover":33554432}}}'
+            - name: DCS_ENABLE_KUBERNETES_API
+              value: "true"
+            image: docker.io/flanksource/spilo:1.6-p2.flanksource
+            imagePullPolicy: IfNotPresent
+            name: postgres
+            ports:
+            - containerPort: 8008
+              protocol: TCP
+            - containerPort: 5432
+              protocol: TCP
+            - containerPort: 8080
+              protocol: TCP
+            resources:
+              limits:
+                cpu: "2"
+                memory: 2Gi
+              requests:
+                cpu: 100m
+                memory: 100Mi
+            securityContext:
+              privileged: false
+              readOnlyRootFilesystem: false
+            terminationMessagePath: /dev/termination-log
+            terminationMessagePolicy: File
+            volumeMounts:
+            - mountPath: /home/postgres/pgdata
+              name: pgdata
+            - mountPath: /dev/shm
+              name: dshm
+          dnsPolicy: ClusterFirst
+          restartPolicy: Always
+          schedulerName: default-scheduler
+          securityContext: {}
+          serviceAccount: postgres-pod
+          serviceAccountName: postgres-pod
+          terminationGracePeriodSeconds: 300
+          volumes:
+          - emptyDir:
+              medium: Memory
+            name: dshm
+      updateStrategy:
+        type: OnDelete
+      volumeClaimTemplates:
+      - metadata:
+          annotations:
+            volume.alpha.kubernetes.io/storage-class: default
+          creationTimestamp: null
+          name: pgdata
+        spec:
+          accessModes:
+          - ReadWriteOnce
+          resources:
+            requests:
+              storage: 10Gi
+          volumeMode: Filesystem
+        status:
+          phase: Pending
+    status:
+      collisionCount: 0
+      currentReplicas: 2
+      currentRevision: postgres-harbor-7b5dcc869
+      observedGeneration: 1
+      readyReplicas: 2
+      replicas: 2
+      updateRevision: postgres-harbor-7b5dcc869
+      updatedReplicas: 2
+  metadata: {}
+- items:
+  - apiVersion: extensions/v1beta1
+    kind: Deployment
+    metadata:
+      annotations:
+        deployment.kubernetes.io/revision: "1"
+      creationTimestamp: "2020-04-27T20:36:27Z"
+      generation: 2
+      name: postgres-operator
+      namespace: postgres-operator
+      resourceVersion: "2272"
+      selfLink: /apis/extensions/v1beta1/namespaces/postgres-operator/deployments/postgres-operator
+      uid: 99ef3810-2694-4ca9-844c-b6b405f13018
+    spec:
+      progressDeadlineSeconds: 600
+      replicas: 1
+      revisionHistoryLimit: 10
+      selector:
+        matchLabels:
+          name: postgres-operator
+      strategy:
+        rollingUpdate:
+          maxSurge: 25%
+          maxUnavailable: 25%
+        type: RollingUpdate
+      template:
+        metadata:
+          creationTimestamp: null
+          labels:
+            name: postgres-operator
+        spec:
+          containers:
+          - env:
+            - name: POSTGRES_OPERATOR_CONFIGURATION_OBJECT
+              value: default
+            image: docker.io/flanksource/postgres-operator:v1.3.4.flanksource.1
+            imagePullPolicy: IfNotPresent
+            name: postgres-operator
+            resources:
+              limits:
+                cpu: 500m
+                memory: 500Mi
+              requests:
+                cpu: 100m
+                memory: 250Mi
+            securityContext:
+              readOnlyRootFilesystem: true
+              runAsNonRoot: true
+              runAsUser: 1000
+            terminationMessagePath: /dev/termination-log
+            terminationMessagePolicy: File
+          dnsPolicy: ClusterFirst
+          restartPolicy: Always
+          schedulerName: default-scheduler
+          securityContext: {}
+          serviceAccount: postgres-operator
+          serviceAccountName: postgres-operator
+          terminationGracePeriodSeconds: 30
+    status:
+      availableReplicas: 1
+      conditions:
+      - lastTransitionTime: "2020-04-27T20:36:30Z"
+        lastUpdateTime: "2020-04-27T20:36:30Z"
+        message: Deployment has minimum availability.
+        reason: MinimumReplicasAvailable
+        status: "True"
+        type: Available
+      - lastTransitionTime: "2020-04-27T20:36:27Z"
+        lastUpdateTime: "2020-04-27T20:36:30Z"
+        message: ReplicaSet "postgres-operator-74b9745bdc" has successfully progressed.
+        reason: NewReplicaSetAvailable
+        status: "True"
+        type: Progressing
+      observedGeneration: 2
+      readyReplicas: 1
+      replicas: 1
+      updatedReplicas: 1
+  metadata: {}
+- items:
+  - apiVersion: extensions/v1beta1
+    kind: ReplicaSet
+    metadata:
+      annotations:
+        deployment.kubernetes.io/desired-replicas: "1"
+        deployment.kubernetes.io/max-replicas: "2"
+        deployment.kubernetes.io/revision: "1"
+      creationTimestamp: "2020-04-27T20:36:27Z"
+      generation: 1
+      labels:
+        name: postgres-operator
+        pod-template-hash: 74b9745bdc
+      name: postgres-operator-74b9745bdc
+      namespace: postgres-operator
+      ownerReferences:
+      - apiVersion: apps/v1
+        blockOwnerDeletion: true
+        controller: true
+        kind: Deployment
+        name: postgres-operator
+        uid: 99ef3810-2694-4ca9-844c-b6b405f13018
+      resourceVersion: "1584"
+      selfLink: /apis/extensions/v1beta1/namespaces/postgres-operator/replicasets/postgres-operator-74b9745bdc
+      uid: 90fb2462-11e3-4ad8-84e1-75c2dbb76665
+    spec:
+      replicas: 1
+      selector:
+        matchLabels:
+          name: postgres-operator
+          pod-template-hash: 74b9745bdc
+      template:
+        metadata:
+          creationTimestamp: null
+          labels:
+            name: postgres-operator
+            pod-template-hash: 74b9745bdc
+        spec:
+          containers:
+          - env:
+            - name: POSTGRES_OPERATOR_CONFIGURATION_OBJECT
+              value: default
+            image: docker.io/flanksource/postgres-operator:v1.3.4.flanksource.1
+            imagePullPolicy: IfNotPresent
+            name: postgres-operator
+            resources:
+              limits:
+                cpu: 500m
+                memory: 500Mi
+              requests:
+                cpu: 100m
+                memory: 250Mi
+            securityContext:
+              readOnlyRootFilesystem: true
+              runAsNonRoot: true
+              runAsUser: 1000
+            terminationMessagePath: /dev/termination-log
+            terminationMessagePolicy: File
+          dnsPolicy: ClusterFirst
+          restartPolicy: Always
+          schedulerName: default-scheduler
+          securityContext: {}
+          serviceAccount: postgres-operator
+          serviceAccountName: postgres-operator
+          terminationGracePeriodSeconds: 30
+    status:
+      availableReplicas: 1
+      fullyLabeledReplicas: 1
+      observedGeneration: 1
+      readyReplicas: 1
+      replicas: 1
+  metadata: {}
+- items:
+  - apiVersion: metrics.k8s.io/v1beta1
+    containers:
+    - name: postgres
+      usage:
+        cpu: 16m
+        memory: 636184Ki
+    kind: PodMetrics
+    metadata:
+      creationTimestamp: "2020-04-27T20:46:17Z"
+      name: postgres-harbor-0
+      namespace: postgres-operator
+      selfLink: /apis/metrics.k8s.io/v1beta1/namespaces/postgres-operator/pods/postgres-harbor-0
+    timestamp: "2020-04-27T20:46:17Z"
+    window: 5m0s
+  - apiVersion: metrics.k8s.io/v1beta1
+    containers:
+    - name: postgres
+      usage:
+        cpu: 6m
+        memory: 193368Ki
+    kind: PodMetrics
+    metadata:
+      creationTimestamp: "2020-04-27T20:46:17Z"
+      name: postgres-harbor-1
+      namespace: postgres-operator
+      selfLink: /apis/metrics.k8s.io/v1beta1/namespaces/postgres-operator/pods/postgres-harbor-1
+    timestamp: "2020-04-27T20:46:17Z"
+    window: 5m0s
+  - apiVersion: metrics.k8s.io/v1beta1
+    containers:
+    - name: postgres-operator
+      usage:
+        cpu: 2m
+        memory: 20048Ki
+    kind: PodMetrics
+    metadata:
+      creationTimestamp: "2020-04-27T20:46:17Z"
+      name: postgres-operator-74b9745bdc-chln2
+      namespace: postgres-operator
+      selfLink: /apis/metrics.k8s.io/v1beta1/namespaces/postgres-operator/pods/postgres-operator-74b9745bdc-chln2
+    timestamp: "2020-04-27T20:46:17Z"
+    window: 5m0s
+  metadata: {}
+- items:
+  - apiVersion: policy/v1beta1
+    kind: PodDisruptionBudget
+    metadata:
+      creationTimestamp: "2020-04-27T20:38:39Z"
+      generation: 1
+      labels:
+        application: spilo
+        cluster-name: postgres-harbor
+        team: postgres
+      name: postgres-postgres-harbor-pdb
+      namespace: postgres-operator
+      resourceVersion: "2857"
+      selfLink: /apis/policy/v1beta1/namespaces/postgres-operator/poddisruptionbudgets/postgres-postgres-harbor-pdb
+      uid: 210c6c35-8d3d-4143-b4ef-57a912f7081c
+    spec:
+      minAvailable: 1
+      selector:
+        matchLabels:
+          application: spilo
+          cluster-name: postgres-harbor
+          spilo-role: master
+    status:
+      currentHealthy: 1
+      desiredHealthy: 1
+      disruptionsAllowed: 0
+      expectedPods: 1
+      observedGeneration: 1
+  metadata: {}
+- items:
+  - apiVersion: rbac.authorization.k8s.io/v1
+    kind: RoleBinding
+    metadata:
+      creationTimestamp: "2020-04-27T20:38:39Z"
+      name: postgres-pod
+      namespace: postgres-operator
+      resourceVersion: "2624"
+      selfLink: /apis/rbac.authorization.k8s.io/v1/namespaces/postgres-operator/rolebindings/postgres-pod
+      uid: 5f7c6cad-72e3-4149-9c59-8a64601f9e93
+    roleRef:
+      apiGroup: rbac.authorization.k8s.io
+      kind: ClusterRole
+      name: postgres-pod
+    subjects:
+    - kind: ServiceAccount
+      name: postgres-pod
+  metadata: {}
+kind: List
+metadata: {}

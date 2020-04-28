@@ -1,0 +1,117 @@
+2020/04/27 20:35:30 2020-04-27T20:35:30.559Z [INFO] Using Corefile /etc/Corefile
+2020/04/27 20:35:30 2020-04-27T20:35:30.561Z [INFO] Tearing down
+2020/04/27 20:35:30 2020-04-27T20:35:30.687Z [INFO] Hit error during teardown - Link not found
+2020/04/27 20:35:30 2020-04-27T20:35:30.687Z [INFO] Setting up networking for node cache
+2020/04/27 20:35:30 2020-04-27T20:35:30.739Z [INFO] Updated Corefile with 0 custom stubdomains and upstream servers /etc/resolv.conf
+2020/04/27 20:35:30 2020-04-27T20:35:30.739Z [INFO] Using config file:
+cluster.local:53 {
+    errors
+    cache {
+        success 9984 30
+        denial 9984 5
+    }
+    reload
+    loop
+    bind 169.254.20.10 10.96.0.10
+    forward . 10.97.46.160 {
+        force_tcp
+    }
+    prometheus :9253
+    health 169.254.20.10:8080
+}
+in-addr.arpa:53 {
+    errors
+    cache 30
+    reload
+    loop
+    bind 169.254.20.10 10.96.0.10
+    forward . 10.97.46.160 {
+        force_tcp
+    }
+    prometheus :9253
+}
+ip6.arpa:53 {
+    errors
+    cache 30
+    reload
+    loop
+    bind 169.254.20.10 10.96.0.10
+    forward . 10.97.46.160 {
+        force_tcp
+    }
+    prometheus :9253
+}
+.:53 {
+    errors
+    cache 30
+    reload
+    loop
+    bind 169.254.20.10 10.96.0.10
+    forward . /etc/resolv.conf {
+        force_tcp
+    }
+    prometheus :9253
+}
+2020/04/27 20:35:30 2020-04-27T20:35:30.739Z [INFO] Updated Corefile with 0 custom stubdomains and upstream servers /etc/resolv.conf
+2020/04/27 20:35:30 2020-04-27T20:35:30.739Z [INFO] Using config file:
+cluster.local:53 {
+    errors
+    cache {
+        success 9984 30
+        denial 9984 5
+    }
+    reload
+    loop
+    bind 169.254.20.10 10.96.0.10
+    forward . 10.97.46.160 {
+        force_tcp
+    }
+    prometheus :9253
+    health 169.254.20.10:8080
+}
+in-addr.arpa:53 {
+    errors
+    cache 30
+    reload
+    loop
+    bind 169.254.20.10 10.96.0.10
+    forward . 10.97.46.160 {
+        force_tcp
+    }
+    prometheus :9253
+}
+ip6.arpa:53 {
+    errors
+    cache 30
+    reload
+    loop
+    bind 169.254.20.10 10.96.0.10
+    forward . 10.97.46.160 {
+        force_tcp
+    }
+    prometheus :9253
+}
+.:53 {
+    errors
+    cache 30
+    reload
+    loop
+    bind 169.254.20.10 10.96.0.10
+    forward . /etc/resolv.conf {
+        force_tcp
+    }
+    prometheus :9253
+}
+.:53 on 169.254.20.10
+cluster.local.:53 on 169.254.20.10
+in-addr.arpa.:53 on 169.254.20.10
+ip6.arpa.:53 on 169.254.20.10
+.:53 on 10.96.0.10
+cluster.local.:53 on 10.96.0.10
+in-addr.arpa.:53 on 10.96.0.10
+ip6.arpa.:53 on 10.96.0.10
+2020-04-27T20:35:30.765Z [INFO] CoreDNS-1.2.6
+2020-04-27T20:35:30.765Z [INFO] linux/amd64, go1.11.13, 
+CoreDNS-1.2.6
+linux/amd64, go1.11.13, 
+ [INFO] plugin/reload: Running configuration MD5 = 57d5bc55603c467962c93f17b923920e

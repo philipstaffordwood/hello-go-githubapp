@@ -1,0 +1,1594 @@
+apiVersion: v1
+items:
+- items:
+  - apiVersion: v1
+    data:
+      dex.cfg: "issuer: https://dex.127.0.0.1.nip.io\nstorage:\n  type: kubernetes\n
+        \ config:\n    inCluster: true\nweb:\n  https: 0.0.0.0:8443\n  tlsCert: /ssl/tls.crt\n
+        \ tlsKey: /ssl/tls.key\nfrontend:\n   theme: \"coreos\"\n   \nlogger:\n  level:
+        \"debug\"\nconnectors:\n- type: ldap\n  id: ldap\n  name: LDAP\n  config:\n
+        \   host: apacheds.ldap:10636\n    insecureSkipVerify: true\n    bindDN: $AD_USERNAME\n
+        \   bindPW: $AD_PASSWORD\n\n    userSearch:\n      baseDN: ou=users,dc=example,dc=com\n
+        \     filter: \"(objectClass=person)\"\n      username: sAMAccountName\n      idAttr:
+        DN\n      emailAttr: mail\n      nameAttr: displayName\n\n    groupSearch:\n
+        \     baseDN: ou=groups,dc=example,dc=com\n      filter: \"(objectClass=group)\"\n
+        \     userAttr: DN\n      groupAttr: member\n      nameAttr: name\nstaticClients:\n-
+        id: kubernetes\n  redirectURIs:\n  - 'http://localhost:8000'\n  - 'https://oauth2.127.0.0.1.nip.io/oauth2/callback'\n
+        \ name: 'Kubernetes'\n  secret: ZXhhbXBsZS1hcHAtc2VjcmV0\n"
+    kind: ConfigMap
+    metadata:
+      creationTimestamp: "2020-04-27T20:35:52Z"
+      name: dex
+      namespace: dex
+      resourceVersion: "1238"
+      selfLink: /api/v1/namespaces/dex/configmaps/dex
+      uid: 099f6d55-5dd3-4b5a-b1cb-137fb7ba4241
+  metadata: {}
+- items:
+  - apiVersion: v1
+    kind: Pod
+    metadata:
+      annotations:
+        cni.projectcalico.org/podIP: 100.200.82.60/32
+      creationTimestamp: "2020-04-27T20:41:11Z"
+      generateName: dex-74cbcf9f4f-
+      labels:
+        app: dex
+        pod-template-hash: 74cbcf9f4f
+      name: dex-74cbcf9f4f-d2442
+      namespace: dex
+      ownerReferences:
+      - apiVersion: apps/v1
+        blockOwnerDeletion: true
+        controller: true
+        kind: ReplicaSet
+        name: dex-74cbcf9f4f
+        uid: c2aa12e4-506d-47ab-aa25-fb7729703279
+      resourceVersion: "5166"
+      selfLink: /api/v1/namespaces/dex/pods/dex-74cbcf9f4f-d2442
+      uid: 182424bb-cde3-4ac3-ac12-490252c90623
+    spec:
+      containers:
+      - command:
+        - /usr/local/bin/dex
+        - serve
+        - /etc/dex/cfg/config.yaml
+        env:
+        - name: AD_USERNAME
+          valueFrom:
+            secretKeyRef:
+              key: AD_USERNAME
+              name: ldap-account
+        - name: AD_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              key: AD_PASSWORD
+              name: ldap-account
+        - name: STAKATER_DEX_CONFIGMAP
+          value: 04678c41cfec5f07ac5493ce2b2928958f9745e6
+        - name: STAKATER_LDAP_ACCOUNT_SECRET
+          value: cbd48b072eaf721f001036db15064fc0e5717a0c
+        - name: STAKATER_DEX_TLS_SECRET
+          value: 1898a51ef3c94463f9bb9fc8e757f10140153392
+        image: quay.io/dexidp/dex:v2.17.0
+        imagePullPolicy: IfNotPresent
+        name: dex
+        ports:
+        - containerPort: 443
+          name: https
+          protocol: TCP
+        resources:
+          limits:
+            cpu: 500m
+            memory: 500Mi
+          requests:
+            cpu: 10m
+            memory: 20Mi
+        terminationMessagePath: /dev/termination-log
+        terminationMessagePolicy: File
+        volumeMounts:
+        - mountPath: /etc/dex/cfg
+          name: config
+        - mountPath: /ssl
+          name: tls
+        - mountPath: /var/run/secrets/kubernetes.io/serviceaccount
+          name: dex-token-97jrl
+          readOnly: true
+      dnsPolicy: ClusterFirst
+      enableServiceLinks: true
+      nodeName: kind-control-plane
+      priority: 0
+      restartPolicy: Always
+      schedulerName: default-scheduler
+      securityContext: {}
+      serviceAccount: dex
+      serviceAccountName: dex
+      terminationGracePeriodSeconds: 30
+      tolerations:
+      - effect: NoExecute
+        key: node.kubernetes.io/not-ready
+        operator: Exists
+        tolerationSeconds: 300
+      - effect: NoExecute
+        key: node.kubernetes.io/unreachable
+        operator: Exists
+        tolerationSeconds: 300
+      volumes:
+      - configMap:
+          defaultMode: 420
+          items:
+          - key: dex.cfg
+            path: config.yaml
+          name: dex
+        name: config
+      - name: tls
+        secret:
+          defaultMode: 420
+          secretName: dex-tls
+      - name: dex-token-97jrl
+        secret:
+          defaultMode: 420
+          secretName: dex-token-97jrl
+    status:
+      conditions:
+      - lastProbeTime: null
+        lastTransitionTime: "2020-04-27T20:41:11Z"
+        status: "True"
+        type: Initialized
+      - lastProbeTime: null
+        lastTransitionTime: "2020-04-27T20:41:12Z"
+        status: "True"
+        type: Ready
+      - lastProbeTime: null
+        lastTransitionTime: "2020-04-27T20:41:12Z"
+        status: "True"
+        type: ContainersReady
+      - lastProbeTime: null
+        lastTransitionTime: "2020-04-27T20:41:11Z"
+        status: "True"
+        type: PodScheduled
+      containerStatuses:
+      - containerID: containerd://1478261eeb18ceffcdbc29ce10e1f57eb85b26d3c4eced74350305dd26f2475a
+        image: quay.io/dexidp/dex:v2.17.0
+        imageID: sha256:450f78bd433a610b4c8d9546621718b61fbe52207d06f6b47f738ea04dbdb237
+        lastState: {}
+        name: dex
+        ready: true
+        restartCount: 0
+        state:
+          running:
+            startedAt: "2020-04-27T20:41:12Z"
+      hostIP: 172.17.0.2
+      phase: Running
+      podIP: 100.200.82.60
+      qosClass: Burstable
+      startTime: "2020-04-27T20:41:11Z"
+  - apiVersion: v1
+    kind: Pod
+    metadata:
+      annotations:
+        cni.projectcalico.org/podIP: 100.200.82.50/32
+      creationTimestamp: "2020-04-27T20:40:54Z"
+      generateName: dex-74cbcf9f4f-
+      labels:
+        app: dex
+        pod-template-hash: 74cbcf9f4f
+      name: dex-74cbcf9f4f-l2dk2
+      namespace: dex
+      ownerReferences:
+      - apiVersion: apps/v1
+        blockOwnerDeletion: true
+        controller: true
+        kind: ReplicaSet
+        name: dex-74cbcf9f4f
+        uid: c2aa12e4-506d-47ab-aa25-fb7729703279
+      resourceVersion: "4806"
+      selfLink: /api/v1/namespaces/dex/pods/dex-74cbcf9f4f-l2dk2
+      uid: 77f86931-1307-4390-84ca-4a10d87065e7
+    spec:
+      containers:
+      - command:
+        - /usr/local/bin/dex
+        - serve
+        - /etc/dex/cfg/config.yaml
+        env:
+        - name: AD_USERNAME
+          valueFrom:
+            secretKeyRef:
+              key: AD_USERNAME
+              name: ldap-account
+        - name: AD_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              key: AD_PASSWORD
+              name: ldap-account
+        - name: STAKATER_DEX_CONFIGMAP
+          value: 04678c41cfec5f07ac5493ce2b2928958f9745e6
+        - name: STAKATER_LDAP_ACCOUNT_SECRET
+          value: cbd48b072eaf721f001036db15064fc0e5717a0c
+        - name: STAKATER_DEX_TLS_SECRET
+          value: 1898a51ef3c94463f9bb9fc8e757f10140153392
+        image: quay.io/dexidp/dex:v2.17.0
+        imagePullPolicy: IfNotPresent
+        name: dex
+        ports:
+        - containerPort: 443
+          name: https
+          protocol: TCP
+        resources:
+          limits:
+            cpu: 500m
+            memory: 500Mi
+          requests:
+            cpu: 10m
+            memory: 20Mi
+        terminationMessagePath: /dev/termination-log
+        terminationMessagePolicy: File
+        volumeMounts:
+        - mountPath: /etc/dex/cfg
+          name: config
+        - mountPath: /ssl
+          name: tls
+        - mountPath: /var/run/secrets/kubernetes.io/serviceaccount
+          name: dex-token-97jrl
+          readOnly: true
+      dnsPolicy: ClusterFirst
+      enableServiceLinks: true
+      nodeName: kind-control-plane
+      priority: 0
+      restartPolicy: Always
+      schedulerName: default-scheduler
+      securityContext: {}
+      serviceAccount: dex
+      serviceAccountName: dex
+      terminationGracePeriodSeconds: 30
+      tolerations:
+      - effect: NoExecute
+        key: node.kubernetes.io/not-ready
+        operator: Exists
+        tolerationSeconds: 300
+      - effect: NoExecute
+        key: node.kubernetes.io/unreachable
+        operator: Exists
+        tolerationSeconds: 300
+      volumes:
+      - configMap:
+          defaultMode: 420
+          items:
+          - key: dex.cfg
+            path: config.yaml
+          name: dex
+        name: config
+      - name: tls
+        secret:
+          defaultMode: 420
+          secretName: dex-tls
+      - name: dex-token-97jrl
+        secret:
+          defaultMode: 420
+          secretName: dex-token-97jrl
+    status:
+      conditions:
+      - lastProbeTime: null
+        lastTransitionTime: "2020-04-27T20:40:54Z"
+        status: "True"
+        type: Initialized
+      - lastProbeTime: null
+        lastTransitionTime: "2020-04-27T20:40:56Z"
+        status: "True"
+        type: Ready
+      - lastProbeTime: null
+        lastTransitionTime: "2020-04-27T20:40:56Z"
+        status: "True"
+        type: ContainersReady
+      - lastProbeTime: null
+        lastTransitionTime: "2020-04-27T20:40:54Z"
+        status: "True"
+        type: PodScheduled
+      containerStatuses:
+      - containerID: containerd://6a03a57b537a37b8209a7ad831db2ef41cd1a0824dbe980acd1a3a398896cba6
+        image: quay.io/dexidp/dex:v2.17.0
+        imageID: sha256:450f78bd433a610b4c8d9546621718b61fbe52207d06f6b47f738ea04dbdb237
+        lastState: {}
+        name: dex
+        ready: true
+        restartCount: 0
+        state:
+          running:
+            startedAt: "2020-04-27T20:40:56Z"
+      hostIP: 172.17.0.2
+      phase: Running
+      podIP: 100.200.82.50
+      qosClass: Burstable
+      startTime: "2020-04-27T20:40:54Z"
+  - apiVersion: v1
+    kind: Pod
+    metadata:
+      annotations:
+        cni.projectcalico.org/podIP: 100.200.82.35/32
+      creationTimestamp: "2020-04-27T20:41:01Z"
+      generateName: dex-74cbcf9f4f-
+      labels:
+        app: dex
+        pod-template-hash: 74cbcf9f4f
+      name: dex-74cbcf9f4f-rm4hs
+      namespace: dex
+      ownerReferences:
+      - apiVersion: apps/v1
+        blockOwnerDeletion: true
+        controller: true
+        kind: ReplicaSet
+        name: dex-74cbcf9f4f
+        uid: c2aa12e4-506d-47ab-aa25-fb7729703279
+      resourceVersion: "4993"
+      selfLink: /api/v1/namespaces/dex/pods/dex-74cbcf9f4f-rm4hs
+      uid: 69abaa68-b5b3-4b74-b5ba-4fb5c3621af8
+    spec:
+      containers:
+      - command:
+        - /usr/local/bin/dex
+        - serve
+        - /etc/dex/cfg/config.yaml
+        env:
+        - name: AD_USERNAME
+          valueFrom:
+            secretKeyRef:
+              key: AD_USERNAME
+              name: ldap-account
+        - name: AD_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              key: AD_PASSWORD
+              name: ldap-account
+        - name: STAKATER_DEX_CONFIGMAP
+          value: 04678c41cfec5f07ac5493ce2b2928958f9745e6
+        - name: STAKATER_LDAP_ACCOUNT_SECRET
+          value: cbd48b072eaf721f001036db15064fc0e5717a0c
+        - name: STAKATER_DEX_TLS_SECRET
+          value: 1898a51ef3c94463f9bb9fc8e757f10140153392
+        image: quay.io/dexidp/dex:v2.17.0
+        imagePullPolicy: IfNotPresent
+        name: dex
+        ports:
+        - containerPort: 443
+          name: https
+          protocol: TCP
+        resources:
+          limits:
+            cpu: 500m
+            memory: 500Mi
+          requests:
+            cpu: 10m
+            memory: 20Mi
+        terminationMessagePath: /dev/termination-log
+        terminationMessagePolicy: File
+        volumeMounts:
+        - mountPath: /etc/dex/cfg
+          name: config
+        - mountPath: /ssl
+          name: tls
+        - mountPath: /var/run/secrets/kubernetes.io/serviceaccount
+          name: dex-token-97jrl
+          readOnly: true
+      dnsPolicy: ClusterFirst
+      enableServiceLinks: true
+      nodeName: kind-control-plane
+      priority: 0
+      restartPolicy: Always
+      schedulerName: default-scheduler
+      securityContext: {}
+      serviceAccount: dex
+      serviceAccountName: dex
+      terminationGracePeriodSeconds: 30
+      tolerations:
+      - effect: NoExecute
+        key: node.kubernetes.io/not-ready
+        operator: Exists
+        tolerationSeconds: 300
+      - effect: NoExecute
+        key: node.kubernetes.io/unreachable
+        operator: Exists
+        tolerationSeconds: 300
+      volumes:
+      - configMap:
+          defaultMode: 420
+          items:
+          - key: dex.cfg
+            path: config.yaml
+          name: dex
+        name: config
+      - name: tls
+        secret:
+          defaultMode: 420
+          secretName: dex-tls
+      - name: dex-token-97jrl
+        secret:
+          defaultMode: 420
+          secretName: dex-token-97jrl
+    status:
+      conditions:
+      - lastProbeTime: null
+        lastTransitionTime: "2020-04-27T20:41:01Z"
+        status: "True"
+        type: Initialized
+      - lastProbeTime: null
+        lastTransitionTime: "2020-04-27T20:41:03Z"
+        status: "True"
+        type: Ready
+      - lastProbeTime: null
+        lastTransitionTime: "2020-04-27T20:41:03Z"
+        status: "True"
+        type: ContainersReady
+      - lastProbeTime: null
+        lastTransitionTime: "2020-04-27T20:41:01Z"
+        status: "True"
+        type: PodScheduled
+      containerStatuses:
+      - containerID: containerd://42008ed282df58651820e75ec0d6d5d08eeeed4e8b636dfea3145515c173c9ce
+        image: quay.io/dexidp/dex:v2.17.0
+        imageID: sha256:450f78bd433a610b4c8d9546621718b61fbe52207d06f6b47f738ea04dbdb237
+        lastState: {}
+        name: dex
+        ready: true
+        restartCount: 0
+        state:
+          running:
+            startedAt: "2020-04-27T20:41:03Z"
+      hostIP: 172.17.0.2
+      phase: Running
+      podIP: 100.200.82.35
+      qosClass: Burstable
+      startTime: "2020-04-27T20:41:01Z"
+  metadata: {}
+- items:
+  - apiVersion: v1
+    kind: ServiceAccount
+    metadata:
+      creationTimestamp: "2020-04-27T20:35:52Z"
+      name: default
+      namespace: dex
+      resourceVersion: "1234"
+      selfLink: /api/v1/namespaces/dex/serviceaccounts/default
+      uid: 2bba7bc5-fa33-4fd0-ae30-1070115b4e74
+    secrets:
+    - name: default-token-7dwf2
+  - apiVersion: v1
+    kind: ServiceAccount
+    metadata:
+      creationTimestamp: "2020-04-27T20:35:54Z"
+      labels:
+        app: dex
+      name: dex
+      namespace: dex
+      resourceVersion: "2289"
+      selfLink: /api/v1/namespaces/dex/serviceaccounts/dex
+      uid: dfffee21-7692-49a3-90e0-ed0c527cf978
+    secrets:
+    - name: dex-token-97jrl
+  metadata: {}
+- items:
+  - apiVersion: v1
+    kind: Service
+    metadata:
+      creationTimestamp: "2020-04-27T20:35:53Z"
+      name: dex
+      namespace: dex
+      resourceVersion: "1260"
+      selfLink: /api/v1/namespaces/dex/services/dex
+      uid: 20e5bc58-6558-475c-8aac-ed6e73824a78
+    spec:
+      clusterIP: 10.110.56.222
+      ports:
+      - name: dex
+        port: 443
+        protocol: TCP
+        targetPort: 8443
+      selector:
+        app: dex
+      sessionAffinity: None
+      type: ClusterIP
+    status:
+      loadBalancer: {}
+  metadata: {}
+- items:
+  - apiVersion: apps/v1
+    kind: Deployment
+    metadata:
+      annotations:
+        deployment.kubernetes.io/revision: "3"
+        reload/all: "true"
+      creationTimestamp: "2020-04-27T20:35:52Z"
+      generation: 5
+      labels:
+        app: dex
+      name: dex
+      namespace: dex
+      resourceVersion: "5179"
+      selfLink: /apis/apps/v1/namespaces/dex/deployments/dex
+      uid: 0fb5d42e-345a-4b9b-a2ca-9a52ddf9085a
+    spec:
+      progressDeadlineSeconds: 600
+      replicas: 3
+      revisionHistoryLimit: 10
+      selector:
+        matchLabels:
+          app: dex
+      strategy:
+        rollingUpdate:
+          maxSurge: 25%
+          maxUnavailable: 25%
+        type: RollingUpdate
+      template:
+        metadata:
+          creationTimestamp: null
+          labels:
+            app: dex
+        spec:
+          containers:
+          - command:
+            - /usr/local/bin/dex
+            - serve
+            - /etc/dex/cfg/config.yaml
+            env:
+            - name: AD_USERNAME
+              valueFrom:
+                secretKeyRef:
+                  key: AD_USERNAME
+                  name: ldap-account
+            - name: AD_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  key: AD_PASSWORD
+                  name: ldap-account
+            - name: STAKATER_DEX_CONFIGMAP
+              value: 04678c41cfec5f07ac5493ce2b2928958f9745e6
+            - name: STAKATER_LDAP_ACCOUNT_SECRET
+              value: cbd48b072eaf721f001036db15064fc0e5717a0c
+            - name: STAKATER_DEX_TLS_SECRET
+              value: 1898a51ef3c94463f9bb9fc8e757f10140153392
+            image: quay.io/dexidp/dex:v2.17.0
+            imagePullPolicy: IfNotPresent
+            name: dex
+            ports:
+            - containerPort: 443
+              name: https
+              protocol: TCP
+            resources:
+              limits:
+                cpu: 500m
+                memory: 500Mi
+              requests:
+                cpu: 10m
+                memory: 20Mi
+            terminationMessagePath: /dev/termination-log
+            terminationMessagePolicy: File
+            volumeMounts:
+            - mountPath: /etc/dex/cfg
+              name: config
+            - mountPath: /ssl
+              name: tls
+          dnsPolicy: ClusterFirst
+          restartPolicy: Always
+          schedulerName: default-scheduler
+          securityContext: {}
+          serviceAccount: dex
+          serviceAccountName: dex
+          terminationGracePeriodSeconds: 30
+          volumes:
+          - configMap:
+              defaultMode: 420
+              items:
+              - key: dex.cfg
+                path: config.yaml
+              name: dex
+            name: config
+          - name: tls
+            secret:
+              defaultMode: 420
+              secretName: dex-tls
+    status:
+      availableReplicas: 3
+      conditions:
+      - lastTransitionTime: "2020-04-27T20:36:10Z"
+        lastUpdateTime: "2020-04-27T20:36:10Z"
+        message: Deployment has minimum availability.
+        reason: MinimumReplicasAvailable
+        status: "True"
+        type: Available
+      - lastTransitionTime: "2020-04-27T20:35:52Z"
+        lastUpdateTime: "2020-04-27T20:41:23Z"
+        message: ReplicaSet "dex-74cbcf9f4f" has successfully progressed.
+        reason: NewReplicaSetAvailable
+        status: "True"
+        type: Progressing
+      observedGeneration: 5
+      readyReplicas: 3
+      replicas: 3
+      updatedReplicas: 3
+  metadata: {}
+- items:
+  - apiVersion: apps/v1
+    kind: ReplicaSet
+    metadata:
+      annotations:
+        deployment.kubernetes.io/desired-replicas: "3"
+        deployment.kubernetes.io/max-replicas: "4"
+        deployment.kubernetes.io/revision: "3"
+        reload/all: "true"
+      creationTimestamp: "2020-04-27T20:40:52Z"
+      generation: 4
+      labels:
+        app: dex
+        pod-template-hash: 74cbcf9f4f
+      name: dex-74cbcf9f4f
+      namespace: dex
+      ownerReferences:
+      - apiVersion: apps/v1
+        blockOwnerDeletion: true
+        controller: true
+        kind: Deployment
+        name: dex
+        uid: 0fb5d42e-345a-4b9b-a2ca-9a52ddf9085a
+      resourceVersion: "5167"
+      selfLink: /apis/apps/v1/namespaces/dex/replicasets/dex-74cbcf9f4f
+      uid: c2aa12e4-506d-47ab-aa25-fb7729703279
+    spec:
+      replicas: 3
+      selector:
+        matchLabels:
+          app: dex
+          pod-template-hash: 74cbcf9f4f
+      template:
+        metadata:
+          creationTimestamp: null
+          labels:
+            app: dex
+            pod-template-hash: 74cbcf9f4f
+        spec:
+          containers:
+          - command:
+            - /usr/local/bin/dex
+            - serve
+            - /etc/dex/cfg/config.yaml
+            env:
+            - name: AD_USERNAME
+              valueFrom:
+                secretKeyRef:
+                  key: AD_USERNAME
+                  name: ldap-account
+            - name: AD_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  key: AD_PASSWORD
+                  name: ldap-account
+            - name: STAKATER_DEX_CONFIGMAP
+              value: 04678c41cfec5f07ac5493ce2b2928958f9745e6
+            - name: STAKATER_LDAP_ACCOUNT_SECRET
+              value: cbd48b072eaf721f001036db15064fc0e5717a0c
+            - name: STAKATER_DEX_TLS_SECRET
+              value: 1898a51ef3c94463f9bb9fc8e757f10140153392
+            image: quay.io/dexidp/dex:v2.17.0
+            imagePullPolicy: IfNotPresent
+            name: dex
+            ports:
+            - containerPort: 443
+              name: https
+              protocol: TCP
+            resources:
+              limits:
+                cpu: 500m
+                memory: 500Mi
+              requests:
+                cpu: 10m
+                memory: 20Mi
+            terminationMessagePath: /dev/termination-log
+            terminationMessagePolicy: File
+            volumeMounts:
+            - mountPath: /etc/dex/cfg
+              name: config
+            - mountPath: /ssl
+              name: tls
+          dnsPolicy: ClusterFirst
+          restartPolicy: Always
+          schedulerName: default-scheduler
+          securityContext: {}
+          serviceAccount: dex
+          serviceAccountName: dex
+          terminationGracePeriodSeconds: 30
+          volumes:
+          - configMap:
+              defaultMode: 420
+              items:
+              - key: dex.cfg
+                path: config.yaml
+              name: dex
+            name: config
+          - name: tls
+            secret:
+              defaultMode: 420
+              secretName: dex-tls
+    status:
+      availableReplicas: 3
+      fullyLabeledReplicas: 3
+      observedGeneration: 4
+      readyReplicas: 3
+      replicas: 3
+  - apiVersion: apps/v1
+    kind: ReplicaSet
+    metadata:
+      annotations:
+        deployment.kubernetes.io/desired-replicas: "3"
+        deployment.kubernetes.io/max-replicas: "4"
+        deployment.kubernetes.io/revision: "1"
+        reload/all: "true"
+      creationTimestamp: "2020-04-27T20:35:52Z"
+      generation: 4
+      labels:
+        app: dex
+        pod-template-hash: 756bb5f8c4
+      name: dex-756bb5f8c4
+      namespace: dex
+      ownerReferences:
+      - apiVersion: apps/v1
+        blockOwnerDeletion: true
+        controller: true
+        kind: Deployment
+        name: dex
+        uid: 0fb5d42e-345a-4b9b-a2ca-9a52ddf9085a
+      resourceVersion: "5176"
+      selfLink: /apis/apps/v1/namespaces/dex/replicasets/dex-756bb5f8c4
+      uid: a273f36e-1896-4287-901a-37fc26bacf26
+    spec:
+      replicas: 0
+      selector:
+        matchLabels:
+          app: dex
+          pod-template-hash: 756bb5f8c4
+      template:
+        metadata:
+          creationTimestamp: null
+          labels:
+            app: dex
+            pod-template-hash: 756bb5f8c4
+        spec:
+          containers:
+          - command:
+            - /usr/local/bin/dex
+            - serve
+            - /etc/dex/cfg/config.yaml
+            env:
+            - name: AD_USERNAME
+              valueFrom:
+                secretKeyRef:
+                  key: AD_USERNAME
+                  name: ldap-account
+            - name: AD_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  key: AD_PASSWORD
+                  name: ldap-account
+            image: quay.io/dexidp/dex:v2.17.0
+            imagePullPolicy: IfNotPresent
+            name: dex
+            ports:
+            - containerPort: 443
+              name: https
+              protocol: TCP
+            resources:
+              limits:
+                cpu: 500m
+                memory: 500Mi
+              requests:
+                cpu: 10m
+                memory: 20Mi
+            terminationMessagePath: /dev/termination-log
+            terminationMessagePolicy: File
+            volumeMounts:
+            - mountPath: /etc/dex/cfg
+              name: config
+            - mountPath: /ssl
+              name: tls
+          dnsPolicy: ClusterFirst
+          restartPolicy: Always
+          schedulerName: default-scheduler
+          securityContext: {}
+          serviceAccount: dex
+          serviceAccountName: dex
+          terminationGracePeriodSeconds: 30
+          volumes:
+          - configMap:
+              defaultMode: 420
+              items:
+              - key: dex.cfg
+                path: config.yaml
+              name: dex
+            name: config
+          - name: tls
+            secret:
+              defaultMode: 420
+              secretName: dex-tls
+    status:
+      observedGeneration: 4
+      replicas: 0
+  - apiVersion: apps/v1
+    kind: ReplicaSet
+    metadata:
+      annotations:
+        deployment.kubernetes.io/desired-replicas: "3"
+        deployment.kubernetes.io/max-replicas: "4"
+        deployment.kubernetes.io/revision: "2"
+        reload/all: "true"
+      creationTimestamp: "2020-04-27T20:40:50Z"
+      generation: 2
+      labels:
+        app: dex
+        pod-template-hash: 79bcf475c9
+      name: dex-79bcf475c9
+      namespace: dex
+      ownerReferences:
+      - apiVersion: apps/v1
+        blockOwnerDeletion: true
+        controller: true
+        kind: Deployment
+        name: dex
+        uid: 0fb5d42e-345a-4b9b-a2ca-9a52ddf9085a
+      resourceVersion: "4605"
+      selfLink: /apis/apps/v1/namespaces/dex/replicasets/dex-79bcf475c9
+      uid: 0b0a8e75-ba3b-4a7c-9305-5846fda920aa
+    spec:
+      replicas: 0
+      selector:
+        matchLabels:
+          app: dex
+          pod-template-hash: 79bcf475c9
+      template:
+        metadata:
+          creationTimestamp: null
+          labels:
+            app: dex
+            pod-template-hash: 79bcf475c9
+        spec:
+          containers:
+          - command:
+            - /usr/local/bin/dex
+            - serve
+            - /etc/dex/cfg/config.yaml
+            env:
+            - name: AD_USERNAME
+              valueFrom:
+                secretKeyRef:
+                  key: AD_USERNAME
+                  name: ldap-account
+            - name: AD_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  key: AD_PASSWORD
+                  name: ldap-account
+            - name: STAKATER_DEX_CONFIGMAP
+              value: 04678c41cfec5f07ac5493ce2b2928958f9745e6
+            image: quay.io/dexidp/dex:v2.17.0
+            imagePullPolicy: IfNotPresent
+            name: dex
+            ports:
+            - containerPort: 443
+              name: https
+              protocol: TCP
+            resources:
+              limits:
+                cpu: 500m
+                memory: 500Mi
+              requests:
+                cpu: 10m
+                memory: 20Mi
+            terminationMessagePath: /dev/termination-log
+            terminationMessagePolicy: File
+            volumeMounts:
+            - mountPath: /etc/dex/cfg
+              name: config
+            - mountPath: /ssl
+              name: tls
+          dnsPolicy: ClusterFirst
+          restartPolicy: Always
+          schedulerName: default-scheduler
+          securityContext: {}
+          serviceAccount: dex
+          serviceAccountName: dex
+          terminationGracePeriodSeconds: 30
+          volumes:
+          - configMap:
+              defaultMode: 420
+              items:
+              - key: dex.cfg
+                path: config.yaml
+              name: dex
+            name: config
+          - name: tls
+            secret:
+              defaultMode: 420
+              secretName: dex-tls
+    status:
+      observedGeneration: 2
+      replicas: 0
+  metadata: {}
+- items:
+  - apiVersion: cert-manager.io/v1alpha2
+    kind: CertificateRequest
+    metadata:
+      annotations:
+        cert-manager.io/certificate-name: dex-tls
+        cert-manager.io/private-key-secret-name: dex-tls
+      creationTimestamp: "2020-04-27T20:35:53Z"
+      generation: 1
+      name: dex-tls-3658351222
+      namespace: dex
+      ownerReferences:
+      - apiVersion: cert-manager.io/v1alpha2
+        blockOwnerDeletion: true
+        controller: true
+        kind: Certificate
+        name: dex-tls
+        uid: 18f70c6c-f767-455c-a30c-9a7a2614f22d
+      resourceVersion: "1279"
+      selfLink: /apis/cert-manager.io/v1alpha2/namespaces/dex/certificaterequests/dex-tls-3658351222
+      uid: e7e7f469-f248-4363-b208-afd0a7944894
+    spec:
+      csr: LS0tLS1CRUdJTiBDRVJUSUZJQ0FURSBSRVFVRVNULS0tLS0KTUlJQ2pqQ0NBWFlDQVFBd0Z6RVZNQk1HQTFVRUNoTU1ZMlZ5ZEMxdFlXNWhaMlZ5TUlJQklqQU5CZ2txaGtpRwo5dzBCQVFFRkFBT0NBUThBTUlJQkNnS0NBUUVBclNCcHVtOWJ5NDFDWW8vVjJBMlp5N2VETkxRYU1YZndCRlJuCjB0UkUwai9PQmp4YkNxYjBkTHVZOHlsV0EySGpPRkxzeFVtOHRRMXk1VVNyc2lsNmNpcVZpY2NqdnFUeWNLN2cKczN2T1dyUjMySHQ1aTV5ZVBZRXRYaHhEU3Q1WXE5bVhXYjNmcmFIM1Z5OVA4MDhMTCtnS291VkR2cXpZL2ZrTwpsQ3Uxd3lQYUgwS0xQOHBmK1R0elRlWkI1YlBqb1JRRlY3SlRIUGtzR1NweE9pMjdsN0pzNytIbXhoS0ZWOWIxCnc5U3lNanRZOEZxdzJycER5VnVNZkxJMGhSaytzWDVKb3VrYXo5K0ozM2c1OXUrNTJpVnNUTkw2RGJ0ZGJOTGUKMG5KZE1JU0c5MjF1by9jUXovZDk0WDlwWlkxTUhObHlwRUJyMzB6TjJNZlgvZW5YVlFJREFRQUJvREl3TUFZSgpLb1pJaHZjTkFRa09NU013SVRBZkJnTlZIUkVFR0RBV2doUmtaWGd1TVRJM0xqQXVNQzR4TG01cGNDNXBiekFOCkJna3Foa2lHOXcwQkFRc0ZBQU9DQVFFQU9FREtoNUsrZmdxWU1DWVk1azlGbm9FanJrQ3o1czNma2tVRGNSMWMKTTAxRFl1eDg2dC9oSnFYa2twNVg2Y0lrNkR4dnZZRUJ1UmR2M0RxRzhkSlRmWHpkdDRkTFhsUnRudFYwNFpyegpXVUlaRWlpN1NkMkNsMnBUSUlpclZjRUw3SlpqaFQyalE0TzVBQmVjdDRjQUNFRjFXZjh6eEZQSEpBMTA1cUVNCi9sQkJHdTdEeXRLd05SdEFkcHFOUkttL2c3U2dUYllnaVd2NGJaZ2ZqcjJLUkZKZDMxRlc0alpEcXBwTzNmTlIKZWYwb0UwRkl1UzZ4Y3hPQnYyeHZOL2tlQjU0dlFyVTJnWWZiKzhhRHJxL1plbEZOcVhmK3BRTzFGUk9FTnFRRAp0NUt0ZUlTWk1seGt1bjQ4UXJ4QnlIZmVVdFRpYjdqdFRnWVl0SVUzdUhOcEJBPT0KLS0tLS1FTkQgQ0VSVElGSUNBVEUgUkVRVUVTVC0tLS0tCg==
+      issuerRef:
+        group: cert-manager.io
+        kind: ClusterIssuer
+        name: ingress-ca
+    status:
+      ca: LS0tLS1CRUdJTiBDRVJUSUZJQ0FURS0tLS0tCk1JSUMwakNDQWJxZ0F3SUJBZ0lJTTJrUWVscjYycTh3RFFZSktvWklodmNOQVFFTEJRQXdGVEVUTUJFR0ExVUUKQXhNS2FXNW5jbVZ6Y3kxallUQWVGdzB5TURBME1qY3lNREU0TURaYUZ3MHlNVEEwTWpZeU1ETXpNRFphTUJVeApFekFSQmdOVkJBTVRDbWx1WjNKbGMzTXRZMkV3Z2dFaU1BMEdDU3FHU0liM0RRRUJBUVVBQTRJQkR3QXdnZ0VLCkFvSUJBUUR6SXdlRnFIYktoRjNCWUdDaTFCOXAwNmNOVU1Hc2MyMm9lWVcvYmlqZmkvMWRRR3ViOHVBRnNPVG4KMTBHc0EvbzZxd25MS1BtT2k1U3Y3MzVlRGpPMThxSXMwcUhrdkVmbG8xVXdKZGw2Y3ZVU1ZDYTNlbStsU28xUwpEY1dxeDJuRlFjUVgxOEluc2dLYnhQZGY5UE5uQkM4QnE0L2ZPQTRoM1BBNTJEUHQxVGFCODNZZFhMdVNnMzZUCmUwTWI3ZnNadDRGZDMxWTArK0kxQklLc0dWWk0rejQxVlYrcWlucFpsTkZhQ0F4d2VwTnJPMGhXOUoxRlh0akYKTSsrYVR5bHNCQlJmV1FRcFFIZXAvME4vSzBZNDVPeURQVmdJNWp5a2d1VzM0aFZJRGYya3ViYldXMmJObVpIUAorVUI1MkZxSFpRemxWU1ZYMWhiSVI2Wm5lZzMzQWdNQkFBR2pKakFrTUE0R0ExVWREd0VCL3dRRUF3SUNwREFTCkJnTlZIUk1CQWY4RUNEQUdBUUgvQWdFQU1BMEdDU3FHU0liM0RRRUJDd1VBQTRJQkFRQ2Ura0VsWlZrZEdvVGcKVkVOQkhERGJYMkY5N0FmRDFMcjlaWTVlMHFORVJlZnpvSElJdGJrN00reXk3QTRLNzJkcHBzdlYya0ZtMXhZcApnd1o1OGZKWGtSSk5XQjlOMjNIcHVJUXdzZmVFTkpBYk8yL1UrWEZVdnBZMitaazQ5bE5oUEZWZFBjcS9nTXdSCkQ2Y2hWckF6L3NvLzh2V0h3WDREOTBQL01vd0dWQ2F4aENEWVZDRGt1WERKeGdwdnEvSDlQaXU3YlNYUjd1TVEKb3Z4V0QxN1BuN2xmdXFSbitjT2xmMVdmTXlQUmJXNHY1bGVjb0J0SGdZUkhsMG9PVU5SVXdJTHIydkkrczkzTwpjMmVPQ3dLZU9iWGllSUU3RjRGVWs2cGNUdjFBbDRjRXlzK2IyVWFxek96SndlY3J0ZUh5Z2ZTYjBWVE1mL3BwCmEzd3hZV0VDCi0tLS0tRU5EIENFUlRJRklDQVRFLS0tLS0K
+      certificate: LS0tLS1CRUdJTiBDRVJUSUZJQ0FURS0tLS0tCk1JSUREVENDQWZXZ0F3SUJBZ0lSQUsxbVZXb3FPNnh3T1l0OXU3Z2dRUWt3RFFZSktvWklodmNOQVFFTEJRQXcKRlRFVE1CRUdBMVVFQXhNS2FXNW5jbVZ6Y3kxallUQWVGdzB5TURBME1qY3lNRE0xTlROYUZ3MHlNREEzTWpZeQpNRE0xTlROYU1CY3hGVEFUQmdOVkJBb1RER05sY25RdGJXRnVZV2RsY2pDQ0FTSXdEUVlKS29aSWh2Y05BUUVCCkJRQURnZ0VQQURDQ0FRb0NnZ0VCQUswZ2FicHZXOHVOUW1LUDFkZ05tY3UzZ3pTMEdqRjM4QVJVWjlMVVJOSS8KemdZOFd3cW05SFM3bVBNcFZnTmg0emhTN01WSnZMVU5jdVZFcTdJcGVuSXFsWW5ISTc2azhuQ3U0TE43emxxMApkOWg3ZVl1Y25qMkJMVjRjUTByZVdLdlpsMW05MzYyaDkxY3ZUL05QQ3kvb0NxTGxRNzZzMlAzNURwUXJ0Y01qCjJoOUNpei9LWC9rN2MwM21RZVd6NDZFVUJWZXlVeHo1TEJrcWNUb3R1NWV5Yk8vaDVzWVNoVmZXOWNQVXNqSTcKV1BCYXNOcTZROGxiakh5eU5JVVpQckYrU2FMcEdzL2ZpZDk0T2ZidnVkb2xiRXpTK2cyN1hXelMzdEp5WFRDRQpodmR0YnFQM0VNLzNmZUYvYVdXTlRCelpjcVJBYTk5TXpkakgxLzNwMTFVQ0F3RUFBYU5XTUZRd0RnWURWUjBQCkFRSC9CQVFEQWdXZ01CTUdBMVVkSlFRTU1Bb0dDQ3NHQVFVRkJ3TUJNQXdHQTFVZEV3RUIvd1FDTUFBd0h3WUQKVlIwUkJCZ3dGb0lVWkdWNExqRXlOeTR3TGpBdU1TNXVhWEF1YVc4d0RRWUpLb1pJaHZjTkFRRUxCUUFEZ2dFQgpBRGJadWJBYnNMZVRMQ05XdXNPSWZDL0w0YVVDS2FMYmxieUk2bTRtTW40SC9ObzYxSFUzTWVHU09rbXdJczczCnZjNldmempHSWR2eXpPbG1qTHU1dGphdnhCVndCU21CSFV3dVhUeWhGeG9wVzRaYzRDUm9zdnZjTHl6QWRTN24KbkgyMUtjekFvWHY4SUVpVHA3U1RpbjB0eGwyeFh0eW5yS0RmTm9zMUFZTUlia3puZ3h4bEFMYjNWNHozdk1TbQpxRjE3RjVGQUZnbVZhdFJxQVptaEFuSmZUY3ZRMW5ZZEhwZzVJazByQytKTmIwTGdXWDJEZFltb0FmOU9BU3lyCjRveEp3L1FtMUVIWmZ2UE93bnVnZ0xqQWxhL0Y2Skc5SFdpb1EzMlFFNGNkM0hGUlBzWXRtQ3Zrb0poYWFVVGgKZk5VRjRGSGhlSzFEODlMa25lcWRkdGM9Ci0tLS0tRU5EIENFUlRJRklDQVRFLS0tLS0K
+      conditions:
+      - lastTransitionTime: "2020-04-27T20:35:53Z"
+        message: Certificate fetched from issuer successfully
+        reason: Issued
+        status: "True"
+        type: Ready
+  metadata: {}
+- items:
+  - apiVersion: cert-manager.io/v1alpha2
+    kind: Certificate
+    metadata:
+      creationTimestamp: "2020-04-27T20:35:53Z"
+      generation: 1
+      name: dex-tls
+      namespace: dex
+      ownerReferences:
+      - apiVersion: extensions/v1beta1
+        blockOwnerDeletion: true
+        controller: true
+        kind: Ingress
+        name: dex-ing
+        uid: 5b0378b3-c964-4d86-9b9e-910b090cc4f4
+      resourceVersion: "1282"
+      selfLink: /apis/cert-manager.io/v1alpha2/namespaces/dex/certificates/dex-tls
+      uid: 18f70c6c-f767-455c-a30c-9a7a2614f22d
+    spec:
+      dnsNames:
+      - dex.127.0.0.1.nip.io
+      issuerRef:
+        group: cert-manager.io
+        kind: ClusterIssuer
+        name: ingress-ca
+      secretName: dex-tls
+    status:
+      conditions:
+      - lastTransitionTime: "2020-04-27T20:35:53Z"
+        message: Certificate is up to date and has not expired
+        reason: Ready
+        status: "True"
+        type: Ready
+      notAfter: "2020-07-26T20:35:53Z"
+  metadata: {}
+- items:
+  - apiVersion: dex.coreos.com/v1
+    connID: ldap
+    kind: OfflineSessions
+    metadata:
+      creationTimestamp: "2020-04-27T20:43:35Z"
+      generation: 1
+      name: 3tptqif4dloxo
+      namespace: dex
+      resourceVersion: "6042"
+      selfLink: /apis/dex.coreos.com/v1/namespaces/dex/offlinesessionses/3tptqif4dloxo
+      uid: 53402da9-e5cd-4096-9c6d-679da1507e29
+    refresh:
+      kubernetes:
+        ClientID: kubernetes
+        CreatedAt: "2020-04-27T20:43:35.581430291Z"
+        ID: bnf7bl3sfg6w2erkeb6xxokqp
+        LastUsed: "2020-04-27T20:43:35.581430409Z"
+    userID: uid=test,ou=users,dc=example,dc=com
+  metadata: {}
+- items:
+  - CreatedAt: "2020-04-27T20:43:35.581430291Z"
+    LastUsed: "2020-04-27T20:43:35.581430409Z"
+    apiVersion: dex.coreos.com/v1
+    claims:
+      email: test@example.com
+      emailVerified: true
+      userID: uid=test,ou=users,dc=example,dc=com
+      username: John
+    clientID: kubernetes
+    connectorData: eyJ1c2VybmFtZSI6InRlc3QiLCJlbnRyeSI6eyJETiI6InVpZD10ZXN0LG91PXVzZXJzLGRjPWV4YW1wbGUsZGM9Y29tIiwiQXR0cmlidXRlcyI6W3siTmFtZSI6Im1haWwiLCJWYWx1ZXMiOlsidGVzdEBleGFtcGxlLmNvbSJdLCJCeXRlVmFsdWVzIjpbImRHVnpkRUJsZUdGdGNHeGxMbU52YlE9PSJdfSx7Ik5hbWUiOiJkaXNwbGF5TmFtZSIsIlZhbHVlcyI6WyJKb2huIl0sIkJ5dGVWYWx1ZXMiOlsiU205b2JnPT0iXX1dfX0=
+    connectorID: ldap
+    kind: RefreshToken
+    metadata:
+      creationTimestamp: "2020-04-27T20:43:35Z"
+      generation: 1
+      name: bnf7bl3sfg6w2erkeb6xxokqp
+      namespace: dex
+      resourceVersion: "6041"
+      selfLink: /apis/dex.coreos.com/v1/namespaces/dex/refreshtokens/bnf7bl3sfg6w2erkeb6xxokqp
+      uid: 30d943ea-4f09-4db0-aa67-d35550957dae
+    nonce: 2e9f13dd74ec590f523af0fa60302dae
+    scopes:
+    - offline_access
+    - openid
+    - profile
+    - email
+    - groups
+    token: uddjysyjmx3mjongebiyccp2l
+  metadata: {}
+- items:
+  - apiVersion: dex.coreos.com/v1
+    kind: SigningKey
+    metadata:
+      creationTimestamp: "2020-04-27T20:36:10Z"
+      generation: 1
+      name: openid-connect-keys
+      namespace: dex
+      resourceVersion: "1427"
+      selfLink: /apis/dex.coreos.com/v1/namespaces/dex/signingkeies/openid-connect-keys
+      uid: 741e21ca-90be-407f-b760-c56ce60bd0f6
+    nextRotation: "2020-04-28T02:36:10.371219473Z"
+    signingKey:
+      alg: RS256
+      d: z84So6j2WacHwEMnZ4iXPoVcUsEbCyhL5vVRnzgw22KTaSMtnacjjN6TroyRuPHkZ1ncApN9whoh9JviKOiUG8uVL3zIFCPywcodJVzwF4YbW_HDU2skUcw11AHHipMAyGVFcXax9dJOQgXGMjzr16ufRnpbdPSjHeOZgponAa0bWi8q3ZAnF-N9zVxuf7DI5It6oR3bgFotXa-ApzmGLMD-D7DanMyFMTdps7QyLHaqIfgtU4G7IWBRUx6trTazsG2P12XNtNjmBvs-Dc6REUioDto1CfISjuQ8EMvoBVc1PYo2iw_Gx-llGNePZn3G4sfXSfN15rHUKXAJGmKfoQ
+      e: AQAB
+      kid: fbbac4ac95e0aec3a1160dfde5817f0ec662d840
+      kty: RSA
+      "n": 1su7JEWuUmOGQWN4DokMIBfhvA-f7B2-yBu_rNUvg0Smho83euATVQIV668OJ2OnRlP2nk3g6rq_UAQ594xZ4OShCCn0_Tjktnyk_YmTMlVh9eDTp-CR_L1gykxfmHx38lQzD_1M8U3gp0UTfltvkcFVClOidEA_ID9GXCtB3FTVTxNDnsO0diDduwjXiTXbKjZjw5wr7wxeHnBGx-BBBr8JO4OOUYf0iP3u820KVXRB413g2sJ0tJ4_rr-FryHAbcR8fT6x5e-spe7rwIRMGAgxjMvv0UXeVYG9kM7uyUA6js4UCgIwWMwBI9Kv6580yXMct9LDNCJvziCoMxBn5w
+      p: 7d8SbKssZUqRE5cLPkoBytQhXO8fcY7dMdzu-x1Q0uXcm_jpkUUPcvG8LtlGj3oBP7Z1RjrbQIwKh-YrZMSrHgrsQQB0HZ4tQ4PHvMxckRue0trv8dVhQIwaH9JxO8HJMhF01zafoaOqxN7qEgxy9H8dyR1QIeFCQm9Qp9Viqb0
+      q: 5ypzETP8lfULK_4Pekk8VJlACd0oc-cQzZ12QWIym7IYmZs9Qn0fjtPA-LJcNGgRQXuA1yx643Vj-4ll84zB2_c-4ht2Xde-8WDw0SXhOOlIVkAFrT9bWiD6IwdZi539ZOIQj3pzlrQH6FOWM0Ezdv1RMyqTr4LgMq_SdlGVSHM
+      use: sig
+    signingKeyPub:
+      alg: RS256
+      e: AQAB
+      kid: fbbac4ac95e0aec3a1160dfde5817f0ec662d840
+      kty: RSA
+      "n": 1su7JEWuUmOGQWN4DokMIBfhvA-f7B2-yBu_rNUvg0Smho83euATVQIV668OJ2OnRlP2nk3g6rq_UAQ594xZ4OShCCn0_Tjktnyk_YmTMlVh9eDTp-CR_L1gykxfmHx38lQzD_1M8U3gp0UTfltvkcFVClOidEA_ID9GXCtB3FTVTxNDnsO0diDduwjXiTXbKjZjw5wr7wxeHnBGx-BBBr8JO4OOUYf0iP3u820KVXRB413g2sJ0tJ4_rr-FryHAbcR8fT6x5e-spe7rwIRMGAgxjMvv0UXeVYG9kM7uyUA6js4UCgIwWMwBI9Kv6580yXMct9LDNCJvziCoMxBn5w
+      use: sig
+  metadata: {}
+- items:
+  - apiVersion: extensions/v1beta1
+    kind: Deployment
+    metadata:
+      annotations:
+        deployment.kubernetes.io/revision: "3"
+        reload/all: "true"
+      creationTimestamp: "2020-04-27T20:35:52Z"
+      generation: 5
+      labels:
+        app: dex
+      name: dex
+      namespace: dex
+      resourceVersion: "5179"
+      selfLink: /apis/extensions/v1beta1/namespaces/dex/deployments/dex
+      uid: 0fb5d42e-345a-4b9b-a2ca-9a52ddf9085a
+    spec:
+      progressDeadlineSeconds: 600
+      replicas: 3
+      revisionHistoryLimit: 10
+      selector:
+        matchLabels:
+          app: dex
+      strategy:
+        rollingUpdate:
+          maxSurge: 25%
+          maxUnavailable: 25%
+        type: RollingUpdate
+      template:
+        metadata:
+          creationTimestamp: null
+          labels:
+            app: dex
+        spec:
+          containers:
+          - command:
+            - /usr/local/bin/dex
+            - serve
+            - /etc/dex/cfg/config.yaml
+            env:
+            - name: AD_USERNAME
+              valueFrom:
+                secretKeyRef:
+                  key: AD_USERNAME
+                  name: ldap-account
+            - name: AD_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  key: AD_PASSWORD
+                  name: ldap-account
+            - name: STAKATER_DEX_CONFIGMAP
+              value: 04678c41cfec5f07ac5493ce2b2928958f9745e6
+            - name: STAKATER_LDAP_ACCOUNT_SECRET
+              value: cbd48b072eaf721f001036db15064fc0e5717a0c
+            - name: STAKATER_DEX_TLS_SECRET
+              value: 1898a51ef3c94463f9bb9fc8e757f10140153392
+            image: quay.io/dexidp/dex:v2.17.0
+            imagePullPolicy: IfNotPresent
+            name: dex
+            ports:
+            - containerPort: 443
+              name: https
+              protocol: TCP
+            resources:
+              limits:
+                cpu: 500m
+                memory: 500Mi
+              requests:
+                cpu: 10m
+                memory: 20Mi
+            terminationMessagePath: /dev/termination-log
+            terminationMessagePolicy: File
+            volumeMounts:
+            - mountPath: /etc/dex/cfg
+              name: config
+            - mountPath: /ssl
+              name: tls
+          dnsPolicy: ClusterFirst
+          restartPolicy: Always
+          schedulerName: default-scheduler
+          securityContext: {}
+          serviceAccount: dex
+          serviceAccountName: dex
+          terminationGracePeriodSeconds: 30
+          volumes:
+          - configMap:
+              defaultMode: 420
+              items:
+              - key: dex.cfg
+                path: config.yaml
+              name: dex
+            name: config
+          - name: tls
+            secret:
+              defaultMode: 420
+              secretName: dex-tls
+    status:
+      availableReplicas: 3
+      conditions:
+      - lastTransitionTime: "2020-04-27T20:36:10Z"
+        lastUpdateTime: "2020-04-27T20:36:10Z"
+        message: Deployment has minimum availability.
+        reason: MinimumReplicasAvailable
+        status: "True"
+        type: Available
+      - lastTransitionTime: "2020-04-27T20:35:52Z"
+        lastUpdateTime: "2020-04-27T20:41:23Z"
+        message: ReplicaSet "dex-74cbcf9f4f" has successfully progressed.
+        reason: NewReplicaSetAvailable
+        status: "True"
+        type: Progressing
+      observedGeneration: 5
+      readyReplicas: 3
+      replicas: 3
+      updatedReplicas: 3
+  metadata: {}
+- items:
+  - apiVersion: extensions/v1beta1
+    kind: Ingress
+    metadata:
+      annotations:
+        kubernetes.io/tls-acme: "true"
+        nginx.ingress.kubernetes.io/backend-protocol: HTTPS
+        nginx.ingress.kubernetes.io/force-ssl-redirect: "true"
+        nginx.ingress.kubernetes.io/secure-backends: "true"
+        nginx.ingress.kubernetes.io/ssl-passthrough: "true"
+      creationTimestamp: "2020-04-27T20:35:53Z"
+      generation: 1
+      name: dex-ing
+      namespace: dex
+      resourceVersion: "1264"
+      selfLink: /apis/extensions/v1beta1/namespaces/dex/ingresses/dex-ing
+      uid: 5b0378b3-c964-4d86-9b9e-910b090cc4f4
+    spec:
+      rules:
+      - host: dex.127.0.0.1.nip.io
+        http:
+          paths:
+          - backend:
+              serviceName: dex
+              servicePort: 443
+      tls:
+      - hosts:
+        - dex.127.0.0.1.nip.io
+        secretName: dex-tls
+    status:
+      loadBalancer: {}
+  metadata: {}
+- items:
+  - apiVersion: extensions/v1beta1
+    kind: ReplicaSet
+    metadata:
+      annotations:
+        deployment.kubernetes.io/desired-replicas: "3"
+        deployment.kubernetes.io/max-replicas: "4"
+        deployment.kubernetes.io/revision: "3"
+        reload/all: "true"
+      creationTimestamp: "2020-04-27T20:40:52Z"
+      generation: 4
+      labels:
+        app: dex
+        pod-template-hash: 74cbcf9f4f
+      name: dex-74cbcf9f4f
+      namespace: dex
+      ownerReferences:
+      - apiVersion: apps/v1
+        blockOwnerDeletion: true
+        controller: true
+        kind: Deployment
+        name: dex
+        uid: 0fb5d42e-345a-4b9b-a2ca-9a52ddf9085a
+      resourceVersion: "5167"
+      selfLink: /apis/extensions/v1beta1/namespaces/dex/replicasets/dex-74cbcf9f4f
+      uid: c2aa12e4-506d-47ab-aa25-fb7729703279
+    spec:
+      replicas: 3
+      selector:
+        matchLabels:
+          app: dex
+          pod-template-hash: 74cbcf9f4f
+      template:
+        metadata:
+          creationTimestamp: null
+          labels:
+            app: dex
+            pod-template-hash: 74cbcf9f4f
+        spec:
+          containers:
+          - command:
+            - /usr/local/bin/dex
+            - serve
+            - /etc/dex/cfg/config.yaml
+            env:
+            - name: AD_USERNAME
+              valueFrom:
+                secretKeyRef:
+                  key: AD_USERNAME
+                  name: ldap-account
+            - name: AD_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  key: AD_PASSWORD
+                  name: ldap-account
+            - name: STAKATER_DEX_CONFIGMAP
+              value: 04678c41cfec5f07ac5493ce2b2928958f9745e6
+            - name: STAKATER_LDAP_ACCOUNT_SECRET
+              value: cbd48b072eaf721f001036db15064fc0e5717a0c
+            - name: STAKATER_DEX_TLS_SECRET
+              value: 1898a51ef3c94463f9bb9fc8e757f10140153392
+            image: quay.io/dexidp/dex:v2.17.0
+            imagePullPolicy: IfNotPresent
+            name: dex
+            ports:
+            - containerPort: 443
+              name: https
+              protocol: TCP
+            resources:
+              limits:
+                cpu: 500m
+                memory: 500Mi
+              requests:
+                cpu: 10m
+                memory: 20Mi
+            terminationMessagePath: /dev/termination-log
+            terminationMessagePolicy: File
+            volumeMounts:
+            - mountPath: /etc/dex/cfg
+              name: config
+            - mountPath: /ssl
+              name: tls
+          dnsPolicy: ClusterFirst
+          restartPolicy: Always
+          schedulerName: default-scheduler
+          securityContext: {}
+          serviceAccount: dex
+          serviceAccountName: dex
+          terminationGracePeriodSeconds: 30
+          volumes:
+          - configMap:
+              defaultMode: 420
+              items:
+              - key: dex.cfg
+                path: config.yaml
+              name: dex
+            name: config
+          - name: tls
+            secret:
+              defaultMode: 420
+              secretName: dex-tls
+    status:
+      availableReplicas: 3
+      fullyLabeledReplicas: 3
+      observedGeneration: 4
+      readyReplicas: 3
+      replicas: 3
+  - apiVersion: extensions/v1beta1
+    kind: ReplicaSet
+    metadata:
+      annotations:
+        deployment.kubernetes.io/desired-replicas: "3"
+        deployment.kubernetes.io/max-replicas: "4"
+        deployment.kubernetes.io/revision: "1"
+        reload/all: "true"
+      creationTimestamp: "2020-04-27T20:35:52Z"
+      generation: 4
+      labels:
+        app: dex
+        pod-template-hash: 756bb5f8c4
+      name: dex-756bb5f8c4
+      namespace: dex
+      ownerReferences:
+      - apiVersion: apps/v1
+        blockOwnerDeletion: true
+        controller: true
+        kind: Deployment
+        name: dex
+        uid: 0fb5d42e-345a-4b9b-a2ca-9a52ddf9085a
+      resourceVersion: "5176"
+      selfLink: /apis/extensions/v1beta1/namespaces/dex/replicasets/dex-756bb5f8c4
+      uid: a273f36e-1896-4287-901a-37fc26bacf26
+    spec:
+      replicas: 0
+      selector:
+        matchLabels:
+          app: dex
+          pod-template-hash: 756bb5f8c4
+      template:
+        metadata:
+          creationTimestamp: null
+          labels:
+            app: dex
+            pod-template-hash: 756bb5f8c4
+        spec:
+          containers:
+          - command:
+            - /usr/local/bin/dex
+            - serve
+            - /etc/dex/cfg/config.yaml
+            env:
+            - name: AD_USERNAME
+              valueFrom:
+                secretKeyRef:
+                  key: AD_USERNAME
+                  name: ldap-account
+            - name: AD_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  key: AD_PASSWORD
+                  name: ldap-account
+            image: quay.io/dexidp/dex:v2.17.0
+            imagePullPolicy: IfNotPresent
+            name: dex
+            ports:
+            - containerPort: 443
+              name: https
+              protocol: TCP
+            resources:
+              limits:
+                cpu: 500m
+                memory: 500Mi
+              requests:
+                cpu: 10m
+                memory: 20Mi
+            terminationMessagePath: /dev/termination-log
+            terminationMessagePolicy: File
+            volumeMounts:
+            - mountPath: /etc/dex/cfg
+              name: config
+            - mountPath: /ssl
+              name: tls
+          dnsPolicy: ClusterFirst
+          restartPolicy: Always
+          schedulerName: default-scheduler
+          securityContext: {}
+          serviceAccount: dex
+          serviceAccountName: dex
+          terminationGracePeriodSeconds: 30
+          volumes:
+          - configMap:
+              defaultMode: 420
+              items:
+              - key: dex.cfg
+                path: config.yaml
+              name: dex
+            name: config
+          - name: tls
+            secret:
+              defaultMode: 420
+              secretName: dex-tls
+    status:
+      observedGeneration: 4
+      replicas: 0
+  - apiVersion: extensions/v1beta1
+    kind: ReplicaSet
+    metadata:
+      annotations:
+        deployment.kubernetes.io/desired-replicas: "3"
+        deployment.kubernetes.io/max-replicas: "4"
+        deployment.kubernetes.io/revision: "2"
+        reload/all: "true"
+      creationTimestamp: "2020-04-27T20:40:50Z"
+      generation: 2
+      labels:
+        app: dex
+        pod-template-hash: 79bcf475c9
+      name: dex-79bcf475c9
+      namespace: dex
+      ownerReferences:
+      - apiVersion: apps/v1
+        blockOwnerDeletion: true
+        controller: true
+        kind: Deployment
+        name: dex
+        uid: 0fb5d42e-345a-4b9b-a2ca-9a52ddf9085a
+      resourceVersion: "4605"
+      selfLink: /apis/extensions/v1beta1/namespaces/dex/replicasets/dex-79bcf475c9
+      uid: 0b0a8e75-ba3b-4a7c-9305-5846fda920aa
+    spec:
+      replicas: 0
+      selector:
+        matchLabels:
+          app: dex
+          pod-template-hash: 79bcf475c9
+      template:
+        metadata:
+          creationTimestamp: null
+          labels:
+            app: dex
+            pod-template-hash: 79bcf475c9
+        spec:
+          containers:
+          - command:
+            - /usr/local/bin/dex
+            - serve
+            - /etc/dex/cfg/config.yaml
+            env:
+            - name: AD_USERNAME
+              valueFrom:
+                secretKeyRef:
+                  key: AD_USERNAME
+                  name: ldap-account
+            - name: AD_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  key: AD_PASSWORD
+                  name: ldap-account
+            - name: STAKATER_DEX_CONFIGMAP
+              value: 04678c41cfec5f07ac5493ce2b2928958f9745e6
+            image: quay.io/dexidp/dex:v2.17.0
+            imagePullPolicy: IfNotPresent
+            name: dex
+            ports:
+            - containerPort: 443
+              name: https
+              protocol: TCP
+            resources:
+              limits:
+                cpu: 500m
+                memory: 500Mi
+              requests:
+                cpu: 10m
+                memory: 20Mi
+            terminationMessagePath: /dev/termination-log
+            terminationMessagePolicy: File
+            volumeMounts:
+            - mountPath: /etc/dex/cfg
+              name: config
+            - mountPath: /ssl
+              name: tls
+          dnsPolicy: ClusterFirst
+          restartPolicy: Always
+          schedulerName: default-scheduler
+          securityContext: {}
+          serviceAccount: dex
+          serviceAccountName: dex
+          terminationGracePeriodSeconds: 30
+          volumes:
+          - configMap:
+              defaultMode: 420
+              items:
+              - key: dex.cfg
+                path: config.yaml
+              name: dex
+            name: config
+          - name: tls
+            secret:
+              defaultMode: 420
+              secretName: dex-tls
+    status:
+      observedGeneration: 2
+      replicas: 0
+  metadata: {}
+- items:
+  - apiVersion: metrics.k8s.io/v1beta1
+    containers:
+    - name: dex
+      usage:
+        cpu: "0"
+        memory: 8696Ki
+    kind: PodMetrics
+    metadata:
+      creationTimestamp: "2020-04-27T20:46:05Z"
+      name: dex-74cbcf9f4f-d2442
+      namespace: dex
+      selfLink: /apis/metrics.k8s.io/v1beta1/namespaces/dex/pods/dex-74cbcf9f4f-d2442
+    timestamp: "2020-04-27T20:46:05Z"
+    window: 5m0s
+  - apiVersion: metrics.k8s.io/v1beta1
+    containers:
+    - name: dex
+      usage:
+        cpu: "0"
+        memory: 10096Ki
+    kind: PodMetrics
+    metadata:
+      creationTimestamp: "2020-04-27T20:46:05Z"
+      name: dex-74cbcf9f4f-l2dk2
+      namespace: dex
+      selfLink: /apis/metrics.k8s.io/v1beta1/namespaces/dex/pods/dex-74cbcf9f4f-l2dk2
+    timestamp: "2020-04-27T20:46:05Z"
+    window: 5m0s
+  - apiVersion: metrics.k8s.io/v1beta1
+    containers:
+    - name: dex
+      usage:
+        cpu: "0"
+        memory: 10248Ki
+    kind: PodMetrics
+    metadata:
+      creationTimestamp: "2020-04-27T20:46:05Z"
+      name: dex-74cbcf9f4f-rm4hs
+      namespace: dex
+      selfLink: /apis/metrics.k8s.io/v1beta1/namespaces/dex/pods/dex-74cbcf9f4f-rm4hs
+    timestamp: "2020-04-27T20:46:05Z"
+    window: 5m0s
+  metadata: {}
+- items:
+  - apiVersion: networking.k8s.io/v1beta1
+    kind: Ingress
+    metadata:
+      annotations:
+        kubernetes.io/tls-acme: "true"
+        nginx.ingress.kubernetes.io/backend-protocol: HTTPS
+        nginx.ingress.kubernetes.io/force-ssl-redirect: "true"
+        nginx.ingress.kubernetes.io/secure-backends: "true"
+        nginx.ingress.kubernetes.io/ssl-passthrough: "true"
+      creationTimestamp: "2020-04-27T20:35:53Z"
+      generation: 1
+      name: dex-ing
+      namespace: dex
+      resourceVersion: "1264"
+      selfLink: /apis/networking.k8s.io/v1beta1/namespaces/dex/ingresses/dex-ing
+      uid: 5b0378b3-c964-4d86-9b9e-910b090cc4f4
+    spec:
+      rules:
+      - host: dex.127.0.0.1.nip.io
+        http:
+          paths:
+          - backend:
+              serviceName: dex
+              servicePort: 443
+      tls:
+      - hosts:
+        - dex.127.0.0.1.nip.io
+        secretName: dex-tls
+    status:
+      loadBalancer: {}
+  metadata: {}
+kind: List
+metadata: {}

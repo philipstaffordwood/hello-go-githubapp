@@ -1,0 +1,54 @@
+LAST SEEN                      Count  TYPE     REASON             OBJECT                                               MESSAGE
+2020-04-27 20:39:03 +0000 UTC  1      Normal   Pulled             Pod/create-pvc-00fea81d-5f07-42be-a325-90ed06c966e4  Container image "busybox" already present on machine
+2020-04-27 20:39:03 +0000 UTC  1      Normal   Created            Pod/create-pvc-00fea81d-5f07-42be-a325-90ed06c966e4  Created container local-path-create
+2020-04-27 20:39:03 +0000 UTC  1      Normal   Started            Pod/create-pvc-00fea81d-5f07-42be-a325-90ed06c966e4  Started container local-path-create
+2020-04-27 20:38:40 +0000 UTC  1      Normal   Pulled             Pod/create-pvc-1a62c55d-c34e-4cb5-91b2-06c40be68d0b  Container image "busybox" already present on machine
+2020-04-27 20:38:40 +0000 UTC  1      Normal   Created            Pod/create-pvc-1a62c55d-c34e-4cb5-91b2-06c40be68d0b  Created container local-path-create
+2020-04-27 20:38:40 +0000 UTC  1      Normal   Started            Pod/create-pvc-1a62c55d-c34e-4cb5-91b2-06c40be68d0b  Started container local-path-create
+2020-04-27 20:36:32 +0000 UTC  1      Normal   Pulling            Pod/create-pvc-32102c2c-b1fd-4c1f-8ca0-c41fa5b45914  Pulling image "busybox"
+2020-04-27 20:36:32 +0000 UTC  1      Normal   Pulled             Pod/create-pvc-32102c2c-b1fd-4c1f-8ca0-c41fa5b45914  Successfully pulled image "busybox"
+2020-04-27 20:36:33 +0000 UTC  1      Normal   Created            Pod/create-pvc-32102c2c-b1fd-4c1f-8ca0-c41fa5b45914  Created container local-path-create
+2020-04-27 20:36:33 +0000 UTC  1      Normal   Started            Pod/create-pvc-32102c2c-b1fd-4c1f-8ca0-c41fa5b45914  Started container local-path-create
+2020-04-27 20:43:35 +0000 UTC  1      Normal   Pulled             Pod/create-pvc-5b5b5ecc-e55b-4ead-8a93-6ac8ddc77274  Container image "busybox" already present on machine
+2020-04-27 20:43:35 +0000 UTC  1      Normal   Created            Pod/create-pvc-5b5b5ecc-e55b-4ead-8a93-6ac8ddc77274  Created container local-path-create
+2020-04-27 20:43:36 +0000 UTC  1      Normal   Started            Pod/create-pvc-5b5b5ecc-e55b-4ead-8a93-6ac8ddc77274  Started container local-path-create
+2020-04-27 20:39:57 +0000 UTC  1      Normal   Pulled             Pod/create-pvc-6758ea9e-a557-47a9-bae0-6500c83ec7b3  Container image "busybox" already present on machine
+2020-04-27 20:39:57 +0000 UTC  1      Normal   Created            Pod/create-pvc-6758ea9e-a557-47a9-bae0-6500c83ec7b3  Created container local-path-create
+2020-04-27 20:39:58 +0000 UTC  1      Normal   Started            Pod/create-pvc-6758ea9e-a557-47a9-bae0-6500c83ec7b3  Started container local-path-create
+2020-04-27 20:36:31 +0000 UTC  1      Normal   Pulling            Pod/create-pvc-6e3234a7-4d3a-45d7-954b-dcc74d4b4d8d  Pulling image "busybox"
+2020-04-27 20:36:32 +0000 UTC  1      Normal   Pulled             Pod/create-pvc-6e3234a7-4d3a-45d7-954b-dcc74d4b4d8d  Successfully pulled image "busybox"
+2020-04-27 20:36:32 +0000 UTC  1      Normal   Created            Pod/create-pvc-6e3234a7-4d3a-45d7-954b-dcc74d4b4d8d  Created container local-path-create
+2020-04-27 20:36:33 +0000 UTC  1      Normal   Started            Pod/create-pvc-6e3234a7-4d3a-45d7-954b-dcc74d4b4d8d  Started container local-path-create
+2020-04-27 20:43:41 +0000 UTC  1      Normal   Pulled             Pod/create-pvc-7d50e3d5-d834-4084-98e3-c0720d70068b  Container image "busybox" already present on machine
+2020-04-27 20:43:41 +0000 UTC  1      Normal   Created            Pod/create-pvc-7d50e3d5-d834-4084-98e3-c0720d70068b  Created container local-path-create
+2020-04-27 20:43:42 +0000 UTC  1      Normal   Started            Pod/create-pvc-7d50e3d5-d834-4084-98e3-c0720d70068b  Started container local-path-create
+2020-04-27 20:44:50 +0000 UTC  1      Normal   Pulled             Pod/create-pvc-7e80e0e8-d8c5-4d04-8278-4f46c32abbcd  Container image "busybox" already present on machine
+2020-04-27 20:44:50 +0000 UTC  1      Normal   Created            Pod/create-pvc-7e80e0e8-d8c5-4d04-8278-4f46c32abbcd  Created container local-path-create
+2020-04-27 20:44:50 +0000 UTC  1      Normal   Started            Pod/create-pvc-7e80e0e8-d8c5-4d04-8278-4f46c32abbcd  Started container local-path-create
+2020-04-27 20:36:32 +0000 UTC  1      Normal   Pulling            Pod/create-pvc-b3556e10-4bf8-4b4c-8768-07273516531c  Pulling image "busybox"
+2020-04-27 20:36:33 +0000 UTC  1      Normal   Pulled             Pod/create-pvc-b3556e10-4bf8-4b4c-8768-07273516531c  Successfully pulled image "busybox"
+2020-04-27 20:36:33 +0000 UTC  1      Normal   Created            Pod/create-pvc-b3556e10-4bf8-4b4c-8768-07273516531c  Created container local-path-create
+2020-04-27 20:36:33 +0000 UTC  1      Normal   Started            Pod/create-pvc-b3556e10-4bf8-4b4c-8768-07273516531c  Started container local-path-create
+2020-04-27 20:44:45 +0000 UTC  1      Normal   Pulled             Pod/create-pvc-ccfc4c78-8dbb-4229-97ad-49f28906532a  Container image "busybox" already present on machine
+2020-04-27 20:44:45 +0000 UTC  1      Normal   Created            Pod/create-pvc-ccfc4c78-8dbb-4229-97ad-49f28906532a  Created container local-path-create
+2020-04-27 20:44:46 +0000 UTC  1      Normal   Started            Pod/create-pvc-ccfc4c78-8dbb-4229-97ad-49f28906532a  Started container local-path-create
+2020-04-27 20:45:52 +0000 UTC  1      Normal   Pulled             Pod/delete-pvc-5b5b5ecc-e55b-4ead-8a93-6ac8ddc77274  Container image "busybox" already present on machine
+2020-04-27 20:45:52 +0000 UTC  1      Normal   Created            Pod/delete-pvc-5b5b5ecc-e55b-4ead-8a93-6ac8ddc77274  Created container local-path-delete
+2020-04-27 20:45:53 +0000 UTC  1      Normal   Started            Pod/delete-pvc-5b5b5ecc-e55b-4ead-8a93-6ac8ddc77274  Started container local-path-delete
+2020-04-27 20:45:52 +0000 UTC  1      Normal   Pulled             Pod/delete-pvc-7d50e3d5-d834-4084-98e3-c0720d70068b  Container image "busybox" already present on machine
+2020-04-27 20:45:52 +0000 UTC  1      Normal   Created            Pod/delete-pvc-7d50e3d5-d834-4084-98e3-c0720d70068b  Created container local-path-delete
+2020-04-27 20:45:52 +0000 UTC  1      Normal   Started            Pod/delete-pvc-7d50e3d5-d834-4084-98e3-c0720d70068b  Started container local-path-delete
+2020-04-27 20:45:53 +0000 UTC  1      Normal   Pulled             Pod/delete-pvc-7e80e0e8-d8c5-4d04-8278-4f46c32abbcd  Container image "busybox" already present on machine
+2020-04-27 20:45:53 +0000 UTC  1      Normal   Created            Pod/delete-pvc-7e80e0e8-d8c5-4d04-8278-4f46c32abbcd  Created container local-path-delete
+2020-04-27 20:45:53 +0000 UTC  1      Normal   Started            Pod/delete-pvc-7e80e0e8-d8c5-4d04-8278-4f46c32abbcd  Started container local-path-delete
+2020-04-27 20:45:52 +0000 UTC  1      Normal   Pulled             Pod/delete-pvc-ccfc4c78-8dbb-4229-97ad-49f28906532a  Container image "busybox" already present on machine
+2020-04-27 20:45:52 +0000 UTC  1      Normal   Created            Pod/delete-pvc-ccfc4c78-8dbb-4229-97ad-49f28906532a  Created container local-path-delete
+2020-04-27 20:45:53 +0000 UTC  1      Normal   Started            Pod/delete-pvc-ccfc4c78-8dbb-4229-97ad-49f28906532a  Started container local-path-delete
+2020-04-27 20:35:42 +0000 UTC  1      Normal   Scheduled          Pod/local-path-provisioner-5cf74d94c6-blqm9          Successfully assigned local-path-storage/local-path-provisioner-5cf74d94c6-blqm9 to kind-control-plane
+2020-04-27 20:35:42 +0000 UTC  1      Warning  FailedMount        Pod/local-path-provisioner-5cf74d94c6-blqm9          MountVolume.SetUp failed for volume "config-volume" : configmap "local-path-config" not found
+2020-04-27 20:35:44 +0000 UTC  1      Normal   Pulled             Pod/local-path-provisioner-5cf74d94c6-blqm9          Container image "rancher/local-path-provisioner:v0.0.11" already present on machine
+2020-04-27 20:35:44 +0000 UTC  1      Normal   Created            Pod/local-path-provisioner-5cf74d94c6-blqm9          Created container local-path-provisioner
+2020-04-27 20:35:44 +0000 UTC  1      Normal   Started            Pod/local-path-provisioner-5cf74d94c6-blqm9          Started container local-path-provisioner
+2020-04-27 20:35:42 +0000 UTC  1      Normal   SuccessfulCreate   ReplicaSet/local-path-provisioner-5cf74d94c6         Created pod: local-path-provisioner-5cf74d94c6-blqm9
+2020-04-27 20:35:42 +0000 UTC  1      Normal   ScalingReplicaSet  Deployment/local-path-provisioner                    Scaled up replica set local-path-provisioner-5cf74d94c6 to 1
+2020-04-27 20:35:44 +0000 UTC  1      Normal   LeaderElection     Endpoints/rancher.io-local-path                      local-path-provisioner-5cf74d94c6-blqm9_ab4a1296-88c6-11ea-aa81-e277fa688b26 became leader
