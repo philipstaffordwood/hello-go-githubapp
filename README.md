@@ -5,3 +5,5 @@ A simple githubapp implemented in Go with [github.com/palantir/go-githubapp](htt
 trigger check
 
 trigger another check
+
+trigger another check
