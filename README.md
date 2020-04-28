@@ -2,26 +2,4 @@
 
 A simple githubapp implemented in Go with [github.com/palantir/go-githubapp](https://github.com/palantir/go-githubapp)
 
-trigger check
-
-trigger another check
-
-trigger another check
-
-trigger another check
-
-
-trigger another check
-
-trigger another check
-
-
-trigger another check
-
-trigger another check
-
-
-trigger another check
-trigger another check
-
-trigger another check
+POC - adds a summary commant to a PR based on checks
