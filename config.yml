@@ -12,3 +12,4 @@ github:
       your-app-private-key-content-here
 app_configuration:
   pull_request_preamble: "I am echo bot."
+  #trigger
