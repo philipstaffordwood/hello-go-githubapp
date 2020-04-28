@@ -40,7 +40,7 @@ func (h *CheckRunHandler) Handle(ctx context.Context, eventType, deliveryID stri
 		return errors.Wrap(err, "failed to parse issue comment event payload")
 	}
 
-	zerolog.Ctx(ctx).Printf("%v, ",event.GetAction(), event.GetCheckRun().GetApp().GetName())
+	zerolog.Ctx(ctx).Printf("%v, %v",event.GetAction(), event.GetCheckRun().GetApp().GetName())
 
 
 	if event.GetAction() == "completed" {

@@ -14,7 +14,13 @@ func Test(t *testing.T) {
 
 	artifacts, _ := client.ListBuildArtifacts("flanksource","platform-cli",3040)
 
+
 	for _, artifact := range artifacts {
 		fmt.Printf("%#v", artifact)
+	}
+
+	tests, _ := client.ListTestMetadata("flanksource","platform-cli",3040)
+	for _, test := range tests {
+		fmt.Printf("%#v", test)
 	}
 }
