@@ -58,7 +58,13 @@ func (h *CheckRunHandler) Handle(ctx context.Context, eventType, deliveryID stri
 		repoOwner := repo.GetOwner().GetLogin()
 		repoName := repo.GetName()
 
-		msg := fmt.Sprintf("Hello %v", event.GetCheckRun().GetApp().GetName())
+		msg := fmt.Sprint(`
+| Table | Markdown |
+|-------|----------|
+| works | yup     |
+`)
+		// yeah, IssueComment.
+		// PRComments are review comments and have extra metadata
 		prComment := github.IssueComment{
 			Body: &msg,
 		}
@@ -66,6 +72,8 @@ func (h *CheckRunHandler) Handle(ctx context.Context, eventType, deliveryID stri
 		if _, _, err := client.Issues.CreateComment(ctx, repoOwner, repoName, prNum, &prComment); err != nil {
 			logger.Error().Err(err).Msg("Failed to comment on pull request")
 		}
+
+
 	}
 
 
