@@ -11,5 +11,6 @@ require (
 	github.com/pkg/errors v0.9.1
 	github.com/rs/zerolog v1.18.0
 	goji.io v2.0.2+incompatible
+	google.golang.org/appengine v1.4.0
 	gopkg.in/yaml.v2 v2.2.8
 )
