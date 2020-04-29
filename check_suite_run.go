@@ -24,29 +24,29 @@ import (
 	"github.com/rs/zerolog"
 )
 
-type CheckRunHandler struct {
+type CheckSuiteHandler struct {
 	githubapp.ClientCreator
 
 	preamble string
 }
 
-func (h *CheckRunHandler) Handles() []string {
-	return []string{"check_run"}
+func (h *CheckSuiteHandler) Handles() []string {
+	return []string{"check_suite"}
 }
 
-func (h *CheckRunHandler) Handle(ctx context.Context, eventType, deliveryID string, payload []byte) error {
-	var event github.CheckRunEvent
+func (h *CheckSuiteHandler) Handle(ctx context.Context, eventType, deliveryID string, payload []byte) error {
+	var event github.CheckSuiteEvent
 	if err := json.Unmarshal(payload, &event); err != nil {
 		return errors.Wrap(err, "failed to parse issue comment event payload")
 	}
 
-	zerolog.Ctx(ctx).Printf("%v, %v",event.GetAction(), event.GetCheckRun().GetApp().GetName())
+	zerolog.Ctx(ctx).Printf("%v, %v",event.GetAction(), event.GetCheckSuite().GetApp().GetName())
 
 
-	if event.GetAction() == "completed" {
+	if event.GetAction() != "" {
 		repo := event.GetRepo()
 
-		prNum := event.GetCheckRun().PullRequests[0].GetNumber()
+		prNum := event.GetCheckSuite().PullRequests[0].GetNumber()
 
 		installationID := githubapp.GetInstallationIDFromEvent(&event)
 
@@ -62,11 +62,14 @@ func (h *CheckRunHandler) Handle(ctx context.Context, eventType, deliveryID stri
 		repoOwner := repo.GetOwner().GetLogin()
 		repoName := repo.GetName()
 
-		msg := fmt.Sprint(`
-| Table | Markdown |
-|-------|----------|
-| works | yup     |
-`)
+		msg := fmt.Sprintf(`
+| Prop   | Value    |
+|--------|----------|
+| App    | %v       |
+| Action | %v       |
+`,
+		event.GetCheckSuite().GetApp().GetName(),
+		event.GetAction())
 		// yeah, IssueComment.
 		// PRComments are review comments and have extra metadata
 		prComment := github.IssueComment{

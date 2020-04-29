@@ -58,13 +58,31 @@ func main() {
 
 	registerOAuth2Handler(config.Github)
 
-	prCommentHandler := &CheckRunHandler{
+	checkRunHandler := &StatusHandler{
 		ClientCreator: cc,
 		preamble:      config.AppConfig.PullRequestPreamble,
 	}
 
-	webhookHandler := githubapp.NewDefaultEventDispatcher(config.Github, prCommentHandler)
-	server.Mux().Handle(pat.Post(githubapp.DefaultWebhookRoute), webhookHandler)
+	checkSuiteHandler := &CheckSuiteHandler{
+		ClientCreator: cc,
+		preamble:      config.AppConfig.PullRequestPreamble,
+	}
+
+	//webhookHandler := githubapp.NewDefaultEventDispatcher(config.Github, checkRunHandler)
+	webhookHandler := githubapp.NewEventDispatcher(
+		[]githubapp.EventHandler{
+			checkRunHandler,
+			checkSuiteHandler,
+		},
+		config.Github.App.WebhookSecret,
+	)
+
+	//server.Mux().Handle(pat.Post(githubapp.DefaultWebhookRoute), webhookHandler,webhookHandler2 )
+
+	mux := server.Mux()
+
+	// webhook route
+	mux.Handle(pat.Post(githubapp.DefaultWebhookRoute), webhookHandler)
 
 	// Start is blocking
 	err = server.Start()
@@ -91,3 +109,4 @@ func registerOAuth2Handler(c githubapp.Config) {
 		}),
 	))
 }
+
